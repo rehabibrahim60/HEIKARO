@@ -1,0 +1,81 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:45px 5%; /* قللت الـ padding شوية عشان لما يصغر يبقى شكله أحلى */
+  width: 100%;
+  position: fixed; /* هذا هو التعديل اللي هيخليها ثابتة */
+  top: 0;          /* لازم نحدد إنها لازقة في فوق */
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.4); /* زودت الشفافية شوية عشان النص يبان */
+  backdrop-filter: blur(30px);
+  transition: all 0.3s ease;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 50px; /* مسافة بين الروابط */
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+.social-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.social-icons a {
+  color: white;       /* لون الأيقونة */
+  font-size: 16px;    /* حجم الأيقونة */
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #007bff;     /* لون لما تقفي عليها بالماوس */
+  cursor: pointer;
+}
+.nav-link.active {
+  color: #007bff !important; 
+  border-bottom: 2px solid #007bff;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #007bff;
+  cursor: pointer;
+}
