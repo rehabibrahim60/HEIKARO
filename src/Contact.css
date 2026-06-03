@@ -1,0 +1,304 @@
+.contact-page { width: 100%; overflow-x: hidden; }
+
+.contact-hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    
+    /* إضافة الصورة هنا */
+    background-image: url('C:\Users\mena\Downloads\hekaro-site\public\hero-bg.jpg.jpeg'); /* ضعي مسار صورتك هنا */
+    background-size: cover;          /* لتغطية كامل المساحة */
+    background-position: center;     /* توسيط الصورة */
+    background-repeat: no-repeat;
+    
+    /* إضافة طبقة تعتيم فوق الصورة ليكون النص واضحاً */
+    background-color: rgba(5, 5, 5, 0.85); 
+    background-blend-mode: overlay;
+}
+.gradient-svg {
+    width: 600px;
+    height: 250px;
+}
+
+.text-content {
+    font-size: 80px;
+    font-weight: 900;
+    font-family: sans-serif;
+    fill: url(#gradient-fill); /* يربط النص بالتدرج اللوني */
+    filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.5)); /* توهج خفيف */
+}
+
+.contact-subtitle {
+    color: #888 !important;
+    
+    /* فرض تغيير حجم الخط */
+    font-size: 24px !important; 
+    
+    margin-top: 20px !important;
+    
+    /* التحريك باستخدام التحويل (أقوى من المارجن) */
+    transform: translateX(150px); /* حركي الرقم 150 لضبط المسافة لليمين */
+    
+    /* لضمان أن التغيير يظهر */
+    display: block !important;
+    letter-spacing: 1px;
+}
+
+.contact-form-section {
+    display: flex;
+    gap: 40px;
+    padding: 80px 5%;
+    background-color: #050505;
+    color: white;
+}
+
+.form-column { flex: 2; }
+.sidebar-column { flex: 1; }
+
+.section-header { font-size: 32px; margin-bottom: 30px; text-transform: uppercase; }
+
+.form-row { display: flex; gap: 20px; }
+.field { flex: 1; margin-bottom: 20px; display: flex; flex-direction: column; }
+
+label { font-size: 12px; color: #666; margin-bottom: 8px; font-weight: bold; }
+input, select, textarea {
+    background: transparent;
+    border: 1px solid #333;
+    padding: 12px;
+    color: white;
+}
+
+.channels-box {
+    background: #111;
+    padding: 25px;
+    margin-bottom: 20px;
+    border: 1px solid #222;
+}
+
+.submit-btn {
+    background: white;
+    color: black;
+    padding: 15px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px; /* هذه هي المسافة التي ستفصل الزر عما فوقه */
+    transition: all 0.3s ease;
+}
+/* تأثير الـ Hover */
+.submit-btn:hover {
+    background-color: #007bff; /* يتحول للأزرق */
+    color: #ffffff;            /* النص يتحول للأبيض */
+}
+.field input, 
+.field select, 
+.field textarea {
+    background-color: #0a0a0a; /* لون داكن قليلاً للمدخل */
+    border: 1px solid #333;   /* إطار خفيف */
+    padding: 15px;
+    color: #ffffff;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+/* إضافة تأثير عند الضغط داخل المربع */
+.field input:focus, 
+.field textarea:focus {
+    border-color: #007bff;    /* الإطار يتحول للأزرق عند التركيز */
+    outline: none;
+}
+
+.field textarea {
+    min-height: 120px; /* لضمان كبر مساحة النص */
+    resize: vertical;
+}
+
+.contact-form-section { display: flex; gap: 40px; padding: 60px 5%; background-color: #050505; color: white; }
+.form-column { flex: 2; }
+.sidebar-column { flex: 1; }
+
+.section-header { font-size: 32px; margin-bottom: 30px; }
+.form-row { display: flex; gap: 20px; }
+.field { flex: 1; margin-bottom: 20px; display: flex; flex-direction: column; }
+label { font-size: 11px; color: #666; margin-bottom: 8px; }
+input, select, textarea { background: transparent; border: 1px solid #333; padding: 12px; color: white; }
+
+.channels-box, .ecosystem-box { background: #111; padding: 20px; margin-bottom: 20px; border: 1px solid #222; }
+.social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.social-item { background: #1a1a1a; padding: 15px; font-size: 12px; font-weight: bold; }
+
+.submit-btn { background: white; color: black; padding: 15px; font-weight: bold; border: none; cursor: pointer; width: 100%; }
+
+/* الصندوق الخارجي (الخلفية الداكنة والحدود) */
+.channels-box {
+    background: #0a0a0a; /* لون داكن جداً */
+    border: 1px solid #222;
+    padding: 40px 30px;
+    margin-bottom: 30px;
+}
+.strategic-box {
+    background: #050a14; /* خلفية داكنة جداً */
+    padding: 30px;
+    border: 1px solid #003366; /* حدود زرقاء خفيفة */
+    color: #e0e0e0;
+}
+
+.strategic-box h3 {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.strategic-box p {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-bottom: 25px;
+}
+
+/* تنسيق القائمة (اللون الأخضر الليموني مع السهم) */
+.tracks-list {
+    list-style: none;
+    padding: 0;
+}
+
+.tracks-list li {
+    color: #bfff00; /* اللون الأخضر الليموني */
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* السهم الأزرق قبل النص */
+.tracks-list li::before {
+    content: "→";
+    color: #007bff; /* السهم أزرق */
+    margin-right: 10px;
+}
+
+/* زر العرض في الأسفل */
+.view-all {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.view-all::after {
+    content: "→";
+    margin-left: 8px;
+}
+
+/* عنوان القسم */
+.sidebar-title {
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* العنصر الواحد (الأيقونة + النص) */
+.channel-item {
+    display: flex;
+    align-items: flex-start; /* الأيقونة في الأعلى والنص تحتها */
+    gap: 15px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+/* تنسيق الأيقونة */
+.channel-item span {
+    font-size: 20px;
+    color: #555151; /* اللون الأزرق للأيقونات */
+    margin-top: 5px;
+}
+
+/* تنسيق النص (العنوان الصغير + القيمة البارزة) */
+.channel-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-small {
+    font-size: 10px;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.value-bold {
+    font-size: 16px;
+    font-weight: 600;
+        color: #555;
+
+}
+/* إجبار كل النصوص داخل الـ Channels على أن تكون بيضاء وإزالة أي تنسيق روابط */
+.channel-item a, 
+.channel-item span {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+/* التأكد من أن العنوان الصغير (EMAIL/PRESENCE) يظل رمادياً */
+.label-small {
+    color: #666666 !important;
+}
+.map-container iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+    /* هذا الفلتر يحول ألوان الخريطة الملونة إلى درجات الأسود والرمادي */
+    filter: grayscale(100%) invert(90%) contrast(110%);
+}
+.map-section {
+    padding: 50px 5%; /* مسافة من الأعلى والأسفل والجوانب */
+    background-color: #050505; /* نفس لون خلفية الموقع */
+}
+.map-section {
+  padding: 0 5% 50px 5%;
+  background-color: #050505;
+}
+
+.map-wrapper {
+  position: relative;
+  border: 1px solid #222;
+}
+
+/* تحويل الخريطة العادية إلى خريطة داكنة */
+.dark-map {
+  border: 0;
+  filter: grayscale(1) invert(1) contrast(0.9) brightness(0.8);
+}
+
+/* مربع النص فوق الخريطة */
+.location-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+}
+
+.overlay-box {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 20px 30px;
+  border-left: 2px solid #007bff; /* خط أزرق للهوية */
+  color: white;
+}
+
+.overlay-box .subtitle {
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.overlay-box .title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0 0 0;
+}

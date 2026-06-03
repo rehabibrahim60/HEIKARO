@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import HeroSection from "./About"; 
 import Portfolio from "./Portfolio"; 
+import Contact from "./Contact"; // 1. استدعي الصفحة هنا
+
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           <Route path="/about" element={<HeroSection />} />
           {/* ضيفي السطر ده عشان صفحة البورتفوليو تظهر */}
           <Route path="/portfolio" element={<Portfolio />} /> 
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
 
