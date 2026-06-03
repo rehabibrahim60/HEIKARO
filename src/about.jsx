@@ -1,11 +1,9 @@
 import './about.css';
-import Navbar from '../src/Navbar'; 
-import Footer from '../src/Footer'; 
 
-// تأكدي من المسار الصحيح لمكان ملف الهيدر
-// 1. مصفوفة البيانات الخاصة بالخدمات لتسهيل الـ Loop
-import './Navbar.css';
-import './Footer.css';
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+
 
 const servicesData = [
   {
