@@ -1,21 +1,56 @@
-import React from "react";
-import { NavLink } from "react-router-dom"; 
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaXTwitter, FaLinkedinIn, FaBehance, FaYoutube } from "react-icons/fa6";
 import "./Navbar.css";
+import MegaMenu from "./MegaMenu";
 
 const Navbar = () => {
+  const [showServices, setShowServices] = useState(false);
+  const timeoutRef = React.useRef(null);  // ← أضفناها هنا
+
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutRef.current);
+    setShowServices(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setShowServices(false);
+    }, 150);
+  };
+
   return (
     <nav className="navbar">
       <div className="logo">HEIKARO</div>
-      
+
       <div className="nav-links">
         <NavLink to="/" className="nav-link">Home</NavLink>
         <NavLink to="/about" className="nav-link">About</NavLink>
-        <NavLink to="/services" className="nav-link">Services</NavLink>
+
+        <div
+          className="nav-item-services"
+          onMouseEnter={handleMouseEnter}   // ← بدّلناها
+          onMouseLeave={handleMouseLeave}   // ← بدّلناها
+        >
+          <span className="nav-link services-trigger">
+            SERVICES {showServices ? "∧" : "∨"}
+          </span>
+        </div>
+
         <NavLink to="/portfolio" className="nav-link">Portfolio</NavLink>
         <NavLink to="/blog" className="nav-link">Blog</NavLink>
         <NavLink to="/contact" className="nav-link">Contact</NavLink>
       </div>
+
+      {showServices && (
+        <div
+          className="mega-menu-wrapper"
+          onMouseEnter={handleMouseEnter}   // ← بدّلناها
+          onMouseLeave={handleMouseLeave}   // ← بدّلناها
+        >
+          <MegaMenu />
+        </div>
+      )}
 
       <div className="social-icons">
         <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>

@@ -4,8 +4,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import HeroSection from "./About"; 
 import Portfolio from "./Portfolio"; 
-import Contact from "./Contact"; // 1. استدعي الصفحة هنا
-
+import Contact from "./Contact"; 
 
 function App() {
   return (
@@ -16,9 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HeroSection />} />
           <Route path="/about" element={<HeroSection />} />
-          {/* ضيفي السطر ده عشان صفحة البورتفوليو تظهر */}
           <Route path="/portfolio" element={<Portfolio />} /> 
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} /> {/* تأكدي أن هذا السطر موجود */}
         </Routes>
       </main>
 
