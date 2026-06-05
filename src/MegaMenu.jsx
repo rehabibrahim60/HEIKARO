@@ -72,6 +72,15 @@ const MegaMenu = () => {
           
         </div>
       ))}
+       <div className="mega-menu-footer">
+        <span className="footer-system">
+          <span className="footer-dot"></span>
+          OPERATING SYSTEM V4.2 DEPLOYMENT
+        </span>
+        <Link to="/services" className="footer-view-all">
+          VIEW ALL TRACKS
+        </Link>
+      </div>
     </div>
   );
 };

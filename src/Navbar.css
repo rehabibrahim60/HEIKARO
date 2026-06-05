@@ -1,0 +1,75 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 5%;
+  width: 100%;
+  position: fixed;        /* ← ثابت دايماً */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(5, 5, 5, 0.95);
+  box-sizing: border-box;
+}
+
+/* ← اللوجو */
+.logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ← عشان المحتوى ميتغطاش بالناف بار الثابت */
+body {
+  padding-top: 80px;
+}
+.nav-links {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.nav-link {
+  color: rgb(99, 96, 96);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* nav-item-services مش محتاج position هنا */
+.nav-item-services {
+  display: flex;
+  align-items: center;
+}
+
+.services-trigger {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* المنيو wrapper — يتمدد بعرض الناف بار كاملاً */
+.mega-menu-wrapper {
+  position: absolute;
+  top: 100%;       /* أسفل الناف بار مباشرة */
+  left: 0;
+  width: 100%;     /* عرض الناف بار = عرض الشاشة */
+  z-index: 999;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #007bff;
+}
