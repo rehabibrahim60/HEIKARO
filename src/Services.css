@@ -1,0 +1,372 @@
+.services-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #050505;
+  display: flex;
+  align-items: center;
+  /* إزالة justify-content: flex-end لأننا سنستخدم التموضع المطلق للمحتوى */
+  box-sizing: border-box;
+  overflow: hidden;
+    top: 40% !important; 
+
+}
+
+.services-hero-content {
+  position: absolute !important;
+  /* غيّري 50% إلى 40% مثلاً لرفع المحتوى للأعلى */
+  top: 40% !important; 
+  left: 10% !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  width: 90% !important;
+  max-width: 600px;
+  z-index: 999 !important;
+}
+.services-badge {
+  display: inline-block;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  animation: colorChange 6s infinite alternate;
+  margin-bottom: 10px;
+  /* البادج يبدأ من اليسار الآن */
+  align-self: flex-start; 
+}
+
+.services-hero-title {
+  font-size: clamp(50px, 10vw, 120px);
+  font-weight: 900;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  /* العنوان يبدأ من اليسار */
+  text-align: left;
+}
+
+.services-hero-subtitle {
+  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 23px !important;
+  line-height: 1.7 !important;
+  margin-top: 20px !important;
+  white-space: nowrap !important; 
+  width: auto !important;
+  max-width: none !important;
+  text-align: left !important;
+  
+  /* الحل النهائي: إزاحة العنصر نفسه بصرياً */
+  margin-left: 100px !important; /* زيدي الرقم لـ 100px إذا أردتِ تحريكها أكثر لليمين */
+}
+/* لا تنسي تعديل الـ bg-text ليظهر بشكل جميل مع المحتوى الجديد */
+.services-hero-bg-text {
+  position: absolute;
+  right: 5%; 
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 9vw;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.03); 
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  line-height: 1;
+}
+
+@keyframes colorChange {
+  0% { color: #ffffff; border-color: #ffffff; }
+  50% { color: #3b82f6; border-color: #3b82f6; }
+  100% { color: #facc15; border-color: #facc15; }
+}
+
+
+
+
+
+
+
+
+/* ============================================
+   ServicesCards Section
+   ============================================ */
+
+.sc-section {
+  width: 100%;
+  background-color: #050505;
+  padding: 80px 40px;
+  box-sizing: border-box;
+}
+
+.sc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #1a1a1a;
+}
+
+/* ---- Card ---- */
+.sc-card {
+  position: relative;
+  padding: 36px 28px 32px;
+  background: #050505;
+  border: 1px solid #1a1a1a;
+  cursor: pointer;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+  overflow: hidden;
+}
+
+/* الخط الأزرق العلوي — يظهر كله مرة واحدة */
+.sc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #3b82f6;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s ease;
+}
+
+.sc-card:hover {
+  border-color: #3b82f6;
+}
+
+.sc-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ---- Number ---- */
+.sc-num {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 0.1em;
+}
+
+/* ---- Icon ---- */
+.sc-icon {
+  width: 48px;
+  height: 48px;
+  background: #0e0e0e;
+  border: 1px solid #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 44px;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease;
+}
+
+.sc-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #444;
+  transition: stroke 0.2s ease;
+}
+
+.sc-card:hover .sc-icon {
+  border-color: #3b82f6;
+}
+
+.sc-card:hover .sc-icon svg {
+  stroke: #3b82f6;
+}
+
+/* ---- Body ---- */
+.sc-body {
+  flex: 1;
+}
+
+.sc-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  margin: 0 0 14px;
+  transition: color 0.2s ease;
+}
+
+.sc-card:hover .sc-title {
+  color: #3b82f6;
+}
+
+.sc-desc {
+  font-size: 12px;
+  color: #3a3a3a;
+  line-height: 1.75;
+  margin: 0 0 28px;
+}
+
+/* ---- Sub-items ---- */
+.sc-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+}
+
+.sc-items li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #2a2a2a;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  transition: color 0.2s ease;
+}
+
+.sc-items li svg {
+  width: 14px;
+  height: 14px;
+  stroke: #252525;
+  flex-shrink: 0;
+  transition: stroke 0.2s ease;
+}
+
+.sc-card:hover .sc-items li {
+  color: #444;
+}
+
+.sc-card:hover .sc-items li svg {
+  stroke: #3b82f6;
+}
+
+/* ---- CTA Link ---- */
+.sc-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #2a2a2a;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  margin-top: auto;
+  transition: color 0.2s ease;
+}
+
+.sc-link svg {
+  width: 14px;
+  height: 14px;
+  stroke: #2a2a2a;
+  stroke-width: 2;
+  flex-shrink: 0;
+  transition: stroke 0.2s ease, transform 0.2s ease;
+}
+
+.sc-card:hover .sc-link {
+  color: #3b82f6;
+}
+
+.sc-card:hover .sc-link svg {
+  stroke: #3b82f6;
+  transform: translateX(4px);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1200px) {
+  .sc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .sc-section {
+    padding: 60px 20px;
+  }
+  .sc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================================
+   Integrated Governance Section
+   ============================================ */
+.ig-section {
+  width: 100%;
+  background-color: #050505;
+  padding: 100px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid #1a1a1a;
+}
+
+.ig-container {
+  max-width: 800px;
+}
+
+.ig-title {
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.ig-desc {
+  font-size: 20px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 60px;
+}
+
+.ig-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  border-top: 1px solid #1a1a1a;
+  padding-top: 40px;
+}
+
+.ig-feat-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+}
+
+.ig-feat-sub {
+  display: block;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .ig-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
