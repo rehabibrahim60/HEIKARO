@@ -115,36 +115,35 @@ export default function Home() {
     <div className="relative min-h-screen overflow-hidden bg-[#020306] text-white pt-[110px]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(15,118,255,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,_rgba(74,199,255,0.08),transparent_25%),linear-gradient(180deg,rgba(7,9,16,0.92),rgba(3,3,8,0.98))]" />
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1500534623283-312aade485b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10" />
-      
+
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-110px)] max-w-[1240px] flex-col items-stretch gap-0 px-6 py-10 lg:flex-row lg:items-center lg:gap-12 lg:px-10">
         {/* Left Content */}
         <div className="max-w-xl space-y-8 flex-1">
           <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm uppercase tracking-[0.35em] text-slate-200 w-fit">
             {slide.label}
           </div>
-          
+
           <div className="space-y-6">
             <h1 className="text-4xl font-black leading-[1.15] text-white sm:text-5xl lg:text-6xl">
               <span className="bg-gradient-to-r from-slate-100 via-cyan-300 to-amber-300 bg-clip-text text-transparent">
                 {slide.heading}
               </span>
             </h1>
-            
+
             <p className="text-base leading-8 text-slate-300 sm:text-lg border-l-2 border-blue-500 pl-4">
               {slide.description}
             </p>
           </div>
-          
+
           <div className={`flex flex-col gap-4 ${slide.buttons.length === 1 ? 'sm:w-fit' : 'sm:flex-row'}`}>
             {slide.buttons.map((btn, idx) => (
               <a
                 key={idx}
                 href={btn.href}
-                className={`inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em] transition duration-300 ${
-                  btn.variant === 'primary'
-                    ? 'bg-[#065bff] text-white hover:bg-[#0878ff]'
-                    : 'border border-white/30 bg-transparent text-white hover:border-blue-400 hover:text-blue-200'
-                }`}
+                className={`inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em] transition duration-300 ${btn.variant === 'primary'
+                  ? 'bg-[#065bff] text-white hover:bg-[#0878ff]'
+                  : 'border border-white/30 bg-transparent text-white hover:border-blue-400 hover:text-blue-200'
+                  }`}
               >
                 {btn.text}
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -162,11 +161,10 @@ export default function Home() {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? 'w-8 bg-blue-500'
-                      : 'w-2 bg-white/30 hover:bg-white/50'
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide
+                    ? 'w-8 bg-blue-500'
+                    : 'w-2 bg-white/30 hover:bg-white/50'
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
