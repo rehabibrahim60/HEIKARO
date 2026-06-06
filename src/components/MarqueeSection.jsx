@@ -85,7 +85,7 @@ export default function MarqueeSection() {
                             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(2,3,6,0.65)] via-transparent to-transparent" />
 
                             {/* Tag */}
-                            <span className="absolute bottom-3.5 left-3.5 inline-flex items-center rounded-full border border-white/15 bg-black/35 px-2.5 py-1 text-xs uppercase tracking-[0.2em] text-white/70 backdrop-blur-sm">
+                            <span className="absolute bottom-3.5 left-3.5 inline-flex items-center rounded-full border border-white/15 bg-black/35 px-2.5 py-1 text-xs uppercase -[0.2em] text-white/70 backdrop-blur-sm">
                                 {image.tag}
                             </span>
                         </div>

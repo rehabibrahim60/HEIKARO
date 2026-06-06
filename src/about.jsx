@@ -2,57 +2,56 @@ import './about.css';
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-
+import Tracks from './components/Tracks';
 
 const servicesData = [
   {
     track: "Track 01",
     title: "BRAND & IDENTITY",
     desc: "Brand strategy, naming, messaging, logo design, visual identity, brand guidelines, rebranding, and packaging systems.",
-    icon: "❐" 
+    icon: "❐"
   },
   {
     track: "Track 02",
     title: "DESIGN & EXPERIENCE",
     desc: "UX, UI, websites, apps, landing pages, digital journeys, and conversion-focused experiences.",
-    icon: "◪" 
+    icon: "◪"
   },
   {
     track: "Track 03",
     title: "CONTENT & STORYTELLING",
     desc: "Copywriting, storytelling, social media content, content systems, and narrative structures that give brands a clear voice.",
-    icon: "💬" 
+    icon: "💬"
   },
   {
     track: "Track 04",
     title: "MARKETING & GROWTH",
     desc: "Campaigns, digital advertising, performance analytics, social media strategy, growth planning, and lead-generation systems.",
-    icon: "📈" 
+    icon: "📈"
   },
   {
     track: "Track 05",
     title: "MEDIA & PRODUCTION",
     desc: "Commercial production, media production, corporate videos, motion graphics, photography, and virtual tour experiences.",
-    icon: "🎞" 
+    icon: "🎞"
   },
   {
     track: "Track 06",
     title: "DIGITAL LEARNING EXPERIENCE",
     desc: "Learning experience design, interactive educational content, training programs, AI-enhanced learning, and learning platform content.",
-    icon: "📖" 
+    icon: "📖"
   },
   {
     track: "Track 07",
     title: "AI-POWERED VIDEO & CGI",
     desc: "AI cinematic videos, CGI visuals, hyper-real product visualization, AI commercials, motion, and VFX-driven brand films.",
-    icon: "✦" 
+    icon: "✦"
   },
   {
     track: "Track 08",
     title: "EVENTS & EXPERIENTIAL",
     desc: "Event strategy, corporate events, activations, exhibitions, product launches, conferences, and immersive brand experiences.",
-    icon: "🌐" 
+    icon: "🌐"
   }
 ];
 
@@ -219,28 +218,28 @@ export default function HeroSection() {
           <div className="ab-left">
             <span className="ab-label">Who We Are</span>
             <h2 className="ab-title">Operating with collective precision.</h2>
-            
+
             <p className="ab-body">
               HEIKARO is built for brands that need more than isolated creative output. We help businesses define where they stand, how they look, what they say, how they move, and how they grow across every digital and physical touchpoint.
             </p>
-            
+
             <p className="ab-body">
               We combine strategic thinking, creative direction, visual systems, content production, marketing execution, digital product design, media production, AI-powered workflows, and experiential activations into one connected model.
             </p>
-            
+
             <div className="ab-quote">
               "We do not design pieces. We build systems that make brands easier to understand, easier to trust, and harder to ignore."
             </div>
           </div>
 
           <div className="ab-right">
-            
+
             {/* كارت 1 */}
             <div className="ab-card ab-card-1">
               <div className="ab-card-header">
                 <span className="ab-card-tag tag-blue">Brand System Grid</span>
                 <span className="ab-card-icon icon-blue">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
                 </span>
               </div>
               <div className="ab-card-img-box">
@@ -254,7 +253,7 @@ export default function HeroSection() {
               <div className="ab-card-header">
                 <span className="ab-card-tag tag-grey">Production Frame</span>
                 <span className="ab-card-icon icon-grey">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><path d="M9 3v18M15 3v18M3 9h18M3 15h18" /></svg>
                 </span>
               </div>
               <div className="ab-card-center-text">
@@ -269,7 +268,7 @@ export default function HeroSection() {
               <div className="ab-card-header">
                 <span className="ab-card-tag tag-green">Interface</span>
                 <span className="ab-card-icon icon-green">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><path d="M3 9h18M9 21V9" /></svg>
                 </span>
               </div>
               <div className="ab-card-img-box">
@@ -281,19 +280,19 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
-       
+
       {/* --- 8. CORE BELIEFS SECTION --- */}
       <section className="beliefs-root">
         <div className="eco-header">
           <p className="eco-label">CORE BELIEFS</p>
           <h2 className="eco-title">WHAT WE BELIEVE</h2>
           <div className="eco-sub-wrapper">
-          <p className="eco-sub">
-            In a crowded market, brands do not grow because they look good once. They grow because every detail works together.
-          </p>
+            <p className="eco-sub">
+              In a crowded market, brands do not grow because they look good once. They grow because every detail works together.
+            </p>
+          </div>
         </div>
-        </div>
-        
+
         <div className="beliefs-grid">
           {beliefsData.map((item, idx) => (
             <div className="belief-card" key={idx}>
@@ -327,21 +326,7 @@ export default function HeroSection() {
           </p>
         </div>
 
-        <div className="services-grid">
-          {servicesData.map((service, index) => (
-            <div className="service-card" key={index}>
-              <div className="service-card-header">
-                <span className="service-track">{service.track}</span>
-                <span className="service-icon">{service.icon}</span>
-              </div>
-              <h3 className="service-title">{service.title}</h3>
-              <p className="service-desc">{service.desc}</p>
-              <div className="service-inspect">
-                INSPECT MODULE <span className="arrow">→</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Tracks/>
 
         <div className="services-footer">
           <button className="services-btn">VIEW ALL SERVICES</button>
@@ -361,7 +346,7 @@ export default function HeroSection() {
         <div className="model-container">
           <div className="model-left-timeline">
             <div className="timeline-line"></div>
-            
+
             {stepsData.map((item, index) => (
               <div className="timeline-item" key={index}>
                 <div className="step-number-box">
@@ -379,9 +364,9 @@ export default function HeroSection() {
           <div className="model-right-media">
             <div className="media-wrapper">
               <span className="media-tag-top">MAP INTEGRATION</span>
-              <img 
-                src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?q=80&w=800&auto=format&fit=crop" 
-                alt="Heikaro Workspace" 
+              <img
+                src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?q=80&w=800&auto=format&fit=crop"
+                alt="Heikaro Workspace"
                 className="model-img"
               />
               <span className="media-coord">COORD_GRID_94</span>
@@ -434,7 +419,7 @@ export default function HeroSection() {
       <section className="statement-root">
         <div className="statement-container">
           <h2 className="statement-text">
-            "THE DIFFERENCE IS NOT ONLY IN HOW THE WORK LOOKS. 
+            "THE DIFFERENCE IS NOT ONLY IN HOW THE WORK LOOKS.
             <span className="highlight-blue"> IT IS IN HOW THE WORK THINKS."</span>
           </h2>
         </div>
@@ -476,7 +461,7 @@ export default function HeroSection() {
                 <h3 className="val-card-title">{card.title}</h3>
                 <p className="val-card-desc">{card.desc}</p>
               </div>
-              
+
               <div className="val-card-footer">
                 <span className="val-footer-text">{card.title}</span>
               </div>
@@ -508,8 +493,8 @@ export default function HeroSection() {
 
       {/* --- 10. PROJECT BRIEFING SECTION --- */}
       <section className="briefing-root">
-        <div className="briefing-glow" /> 
-        
+        <div className="briefing-glow" />
+
         <div className="briefing-container">
           <p className="briefing-label">PROJECT BRIEFING</p>
           <h2 className="briefing-title">
@@ -517,11 +502,11 @@ export default function HeroSection() {
             <span className="highlight-blue">THAT WORKS BEYOND THE FIRST IMPRESSION?</span>
           </h2>
           <p className="briefing-desc">
-            Tell us what you are building, changing, launching, or scaling. HEIKARO 
-            will help you turn the idea into a structured creative direction and a clear 
+            Tell us what you are building, changing, launching, or scaling. HEIKARO
+            will help you turn the idea into a structured creative direction and a clear
             execution path.
           </p>
-          
+
           <div className="briefing-actions">
             <button className="briefing-btn-primary">START YOUR BRIEF</button>
             <button className="briefing-btn-outline">VIEW SERVICES</button>
@@ -532,7 +517,7 @@ export default function HeroSection() {
       {/* --- 11. CLARITY BANNER SECTION --- */}
       <section className="clarity-banner-root">
         <div className="clarity-banner-container">
-          
+
           <div className="clarity-banner-left">
             <h2 className="clarity-banner-title">
               START WITH CLARITY.<br />

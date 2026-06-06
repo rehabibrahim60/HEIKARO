@@ -53,7 +53,7 @@ const Footer = () => {
 
         {/* العمود الثاني: الروابط */}
         <div className="flex flex-col">
-          <h3 className="text-sm font-bold uppercase tracking-[2px] text-white mb-6">
+          <h3 className="text-sm font-bold uppercase cking-[2px] text-white mb-6">
             COMPANY
           </h3>
           <ul className="flex flex-col gap-[15px] list-none p-0">
@@ -70,7 +70,7 @@ const Footer = () => {
 
         {/* العمود الثالث: الخدمات */}
         <div className="flex flex-col">
-          <h3 className="text-sm font-bold uppercase tracking-[2px] text-white mb-6">
+          <h3 className="text-sm font-bold uppercase  text-white mb-6">
             FAMILIES
           </h3>
           <ul className="flex flex-col gap-[15px] list-none p-0">
@@ -87,7 +87,7 @@ const Footer = () => {
 
         {/* العمود الرابع: معلومات الاتصال */}
         <div className="flex flex-col">
-          <h3 className="text-sm font-bold uppercase tracking-[2px] text-white mb-6">
+          <h3 className="text-sm font-bold uppercase  text-white mb-6">
             CONTACT
           </h3>
           <p className="text-[#a0a0a0] text-base font-normal leading-relaxed mb-4">

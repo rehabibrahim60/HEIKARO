@@ -3,29 +3,19 @@ import "../Portfolio.css";
 import MarqueeSection from '../components/MarqueeSection';
 import EngineerYourMarket from '../components/ENGINEER_YOUR_MARKET';
 import StartWithClarity from '../components/START_WITH_CLARITY';
+import DirectionSection from '../components/DirectionSection';
+import StartWithBrief from '../components/START_WITH_BRIEF';
+import CapabilitiesSection from "../components/CapabilitiesSection";
+import CreativeSynthesis from "../components/CreativeSynthesis";
+import CaseArchitectures from "../components/CaseArchitectures";
+import ExecutionLoop from "../components/ExecutionLoop";
+import FrequencyLogic from "../components/FrequencyLogic";
 
 
 const slides = [
   {
-    label: 'Content & Storytelling',
-    heading: 'We tell narratives with purpose',
-    description: 'Connecting creative direction with execution across every customer touchpoint. Words that convert. Stories that stick. Content systems that scale your message.',
-    buttons: [
-      { text: 'See the Stories', href: '#portfolio', variant: 'primary' },
-      { text: 'Read Blogs', href: '#blog', variant: 'secondary' }
-    ]
-  },
-  {
-    label: 'Media & Production',
-    heading: 'We create cinema that last',
-    description: 'Cinematic excellence that justifies premier positioning and drives emotional conversion. High-fidelity production for brands that demand perfection in every pixel.',
-    buttons: [
-      { text: 'View Showreel', href: '#portfolio', variant: 'primary' }
-    ]
-  },
-  {
     label: 'Creative Powerhouse',
-    heading: 'We build brands that move',
+    heading: 'We Build BRANDS That Move',
     description: 'HEIKARO transforms ideas into structured brand, design, content, marketing, media, and digital experiences. Direction before design. Systems before decoration. Impact before noise.',
     buttons: [
       { text: 'Start Your Growth', href: '#contact', variant: 'primary' },
@@ -33,11 +23,47 @@ const slides = [
     ]
   },
   {
-    label: 'Digital Experience',
-    heading: 'Create experiences that convert',
-    description: 'From user interface design to interactive experiences, we craft digital solutions that engage and inspire. Technology meets creativity for impactful results.',
+    label: 'Brand Systems',
+    heading: 'We Scale IDENTITY Global Brands',
+    description: 'Every visual, message, and interaction works as part of one connected creative system.Consistency that builds trust.Design that drives growth.Strategy that wins market share.',
     buttons: [
-      { text: 'Start Project', href: '#contact', variant: 'primary' }
+      { text: 'EXPLORE DESIGN', href: '#services', variant: 'primary' },
+      { text: 'OUR WORK', href: '#portfolio', variant: 'secondary' }
+    ]
+  },
+  {
+    label: 'Content & Storytelling',
+    heading: 'We Tell NARRATIVES With Purpose',
+    description: 'Connecting creative direction with execution across every customer touchpoint. Words that convert.Stories that stick.Content systems that scale your message.',
+    buttons: [
+      { text: 'See the Stories', href: '#portfolio', variant: 'primary' },
+      { text: 'Read Blogs', href: '#blog', variant: 'secondary' }
+    ]
+  },
+  {
+    label: 'Marketing & Growth',
+    heading: 'We Ignite GROWTH Next Era Brands',
+    description: 'Multi-channel acquisition strategy with AI-accelerated creative iterations. Growth is not a lucky break.It\'s a structured system of testing, learning, and scaling.',
+    buttons: [
+      { text: 'SCALE YOUR BRAND', href: '#contact', variant: 'primary' },
+
+    ]
+  },
+  {
+    label: 'Media & Production',
+    heading: 'We create cinema that last',
+    description: 'Cinematic excellence that justifies premier positioning and drives emotional conversion. High- fidelity production for brands that demand perfection in every pixel.',
+    buttons: [
+      { text: 'View Showreel', href: '#portfolio', variant: 'primary' }
+    ]
+  },
+
+  {
+    label: 'Future Intelligence',
+    heading: 'We Build SYNTHESIS By Design',
+    description: 'AI-enhanced creative systems for brands ready to grow smarter. Blending human intuition with artificial intelligence to engineer impossible solutions.',
+    buttons: [
+      { text: 'BUILD THE FUTURE', href: '#contact', variant: 'primary' }
     ]
   }
 ];
@@ -65,6 +91,8 @@ function IconFleeCursor() {
         y: newY * 0.5
       });
     };
+
+
 
     const handleMouseLeave = () => {
       setOffset({ x: 0, y: 0 });
@@ -115,6 +143,13 @@ export default function Home() {
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 10000); // 10 ثواني
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -124,24 +159,24 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-110px)] max-w-[1240px] flex-col items-stretch gap-0 px-6 py-10 lg:flex-row lg:items-center lg:gap-12 lg:px-10">
           {/* Left Content */}
-          <div className="max-w-xl space-y-8 flex-1">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm uppercase tracking-[0.35em] text-slate-200 w-fit">
+          <div key={currentSlide} className="hero-slide-content max-w-2xl space-y-8 flex-1">
+            <div className="hero-label inline-flex items-center gap-3 border border-white/20 bg-white/5 px-4 py-2 text-xs font-black uppercase tracking-[0.35em] text-slate-200 w-fit">
               {slide.label}
             </div>
 
             <div className="space-y-6">
-              <h1 className="text-4xl font-black leading-[1.15] text-white sm:text-5xl lg:text-6xl">
-                <span className="bg-gradient-to-r from-slate-100 via-cyan-300 to-amber-300 bg-clip-text text-transparent">
+              <h1 className="hero-title text-3xl font-black uppercase leading-[0.9] text-white sm:text-4xl lg:text-[52px]">
+                <span className="hero-title-text bg-gradient-to-r from-white via-cyan-300 to-lime-300 bg-clip-text text-transparent">
                   {slide.heading}
                 </span>
               </h1>
 
-              <p className="text-base leading-8 text-slate-300 sm:text-lg border-l-2 border-blue-500 pl-4">
+              <p className="hero-desc max-w-3xl border-l border-lime-400 pl-5 text-base leading-8 text-slate-300 sm:text-lg">
                 {slide.description}
               </p>
             </div>
 
-            <div className={`flex flex-col gap-4 ${slide.buttons.length === 1 ? 'sm:w-fit' : 'sm:flex-row'}`}>
+            <div className={`hero-buttons flex flex-col gap-4 ${slide.buttons.length === 1 ? 'sm:w-fit' : 'sm:flex-row'}`}>
               {slide.buttons.map((btn, idx) => (
                 <a
                   key={idx}
@@ -230,7 +265,37 @@ export default function Home() {
 
       </div>
       <MarqueeSection />
+      <DirectionSection
+        title="Direction Before Design"
+        subtitle1="Creative systems built for brands that need clarity, presence, and growth."
+        subtitle2="HEIKARO transforms ideas into structured brand, design, content, and digital experiences."
+        buttonText="Start Your Brief"
+        buttonHref="#services"
+        imagePosition="right"
+      />
+      <DirectionSection
+        title="ONE CREATIVE SYSTEM"
+        subtitle1="Brand, design, content, marketing, media, digital learning, AI, and events working together."
+        subtitle2="HEIKARO organizes creative work into connected tracks that help brands move with clarity."
+        buttonText="Explore Services"
+        buttonHref="#services"
+        imagePosition="right"
+      />
 
+      <DirectionSection
+        title="FROM IDEA TO EXECUTION"
+        subtitle1="A FULL CREATIVE OPERATING MODEL FOR MODERN BRANDS."
+        subtitle2="From strategy to launch, HEIKARO builds the system, the message, the visuals, and the experience."
+        buttonText="View Portfolio"
+        buttonHref="#portfolio"
+        imagePosition="left"
+      />
+      <StartWithBrief />
+      <CapabilitiesSection />
+      <CreativeSynthesis />
+      <CaseArchitectures />
+      <ExecutionLoop />
+      <FrequencyLogic />
       <EngineerYourMarket />
       <StartWithClarity />
     </>

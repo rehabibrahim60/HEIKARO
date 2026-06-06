@@ -315,3 +315,106 @@ h1 {
     line-height: 1.5;
     margin-top: 20px;
 }
+
+.hero-slide-content {
+    animation: heroContentIn 0.9s ease both;
+}
+
+.hero-label {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: heroItemIn 0.7s ease forwards;
+}
+
+.hero-title {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+    animation: heroTitleIn 0.9s ease forwards 0.12s;
+}
+
+.hero-title-text {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-title-text::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 0.85em;
+    margin-left: 8px;
+    background: #b8ff57;
+    vertical-align: -0.08em;
+    animation: cursorBlink 0.75s steps(1) infinite;
+}
+
+.hero-desc {
+    opacity: 0;
+    transform: translateY(22px);
+    animation: heroItemIn 0.8s ease forwards 0.28s;
+}
+
+.hero-buttons {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: heroItemIn 0.8s ease forwards 0.42s;
+}
+
+@keyframes heroContentIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes heroTitleIn {
+    0% {
+        opacity: 0;
+        transform: translateY(34px) scale(0.98);
+        filter: blur(12px);
+        letter-spacing: 0.08em;
+    }
+
+    55% {
+        opacity: 1;
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+        letter-spacing: -0.04em;
+    }
+}
+
+@keyframes heroItemIn {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+        filter: blur(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
