@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube, FaLinkedinIn, FaBehance } from "react-icons/fa6";
-
+import logo from "../assets/Logo.png"; 
 const socialLinks = [
   { href: "https://www.facebook.com",              icon: <FaFacebookF /> },
   { href: "https://www.instagram.com",             icon: <FaInstagram /> },
@@ -28,9 +28,7 @@ const Footer = () => {
 
         {/* العمود الأول: اللوجو والوصف */}
         <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-black uppercase tracking-wider text-white">
-            HEIKARO
-          </h1>
+          <img src={logo} alt="Heikaro" className="logo" />
           <p className="text-[#a0a0a0] text-base font-normal leading-relaxed">
             HEIKARO is a premium creative agency connecting brand strategy,
             visual identity, UX/UI design, media production, and AI-powered

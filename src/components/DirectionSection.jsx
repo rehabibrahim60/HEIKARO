@@ -12,7 +12,7 @@ export default function DirectionSection({
             <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-2">
 
                 {imagePosition === "left" && (
-                    <div className="flex justify-start">
+                    <div className="flex justify-start hover:scale-105 active:scale-95 transition duration-300">
                         <div className="h-[350px] w-full border border-white/10" />
                     </div>
                 )}
@@ -35,14 +35,14 @@ export default function DirectionSection({
 
                     <a
                         href={buttonHref}
-                        className="mt-10 inline-flex border border-[#0A5BFF]/30 px-8 py-4 text-xs font-bold uppercase  transition hover:border-[#0A5BFF]"
+                        className="mt-10 inline-flex border border-[#0A5BFF]/30 px-8 py-4 text-xs font-bold uppercase  transition hover:bg-white hover:text-black hover:border-[#0A5BFF]"
                     >
                         {buttonText}
                     </a>
                 </div>
 
                 {imagePosition === "right" && (
-                    <div className="flex justify-end">
+                    <div className="flex justify-end hover:scale-105 active:scale-95 transition duration-300">
                         <div className="h-[350px] w-full border border-white/10" />
                     </div>
                 )}

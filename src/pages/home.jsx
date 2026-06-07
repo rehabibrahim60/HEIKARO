@@ -165,7 +165,7 @@ export default function Home() {
             </div>
 
             <div className="space-y-6">
-              <h1 className="hero-title text-3xl font-black uppercase leading-[0.9] text-white sm:text-4xl lg:text-[52px]">
+              <h1 className="hero-title text-xl font-black uppercase leading-[0.9] text-white sm:text-2xl lg:text-[36px]">
                 <span className="hero-title-text bg-gradient-to-r from-white via-cyan-300 to-lime-300 bg-clip-text text-transparent">
                   {slide.heading}
                 </span>
@@ -181,8 +181,8 @@ export default function Home() {
                 <a
                   key={idx}
                   href={btn.href}
-                  className={`inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase tracking-[0.24em] transition duration-300 ${btn.variant === 'primary'
-                    ? 'bg-[#065bff] text-white hover:bg-[#0878ff]'
+                  className={`inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase  transition duration-300 ${btn.variant === 'primary'
+                    ? 'bg-[#065bff] text-white hover:bg-white hover:text-black'
                     : 'border border-white/30 bg-transparent text-white hover:border-blue-400 hover:text-blue-200'
                     }`}
                 >
