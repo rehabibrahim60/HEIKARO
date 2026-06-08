@@ -7,6 +7,7 @@ import Portfolio from "./Portfolio";
 import Home from "./pages/Home"
 import Layout from "./components/Layout"
 import Contact from "./Contact"
+import  MediaProduction from "./pages/MediaProduction";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />     
           <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} /> 
+          <Route path="/services/media-production" element={<MediaProduction />} />
         </Route>
       </Routes>
     </BrowserRouter>
