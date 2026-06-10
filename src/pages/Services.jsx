@@ -1,6 +1,6 @@
 import React from "react";
-import "./Services.css";
-import "./Portfolio.css";
+import "./style/Services.css";
+import "./style/Portfolio.css";
 
 
 const services = [

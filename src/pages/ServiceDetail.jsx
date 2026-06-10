@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./ServiceDetail.css";
-import StartWithClarity from '../components/START_WITH_CLARITY';
+import "./style/ServiceDetail.css";
+import StartWithClarity from '../components/common/START_WITH_CLARITY';
 
 
 const capabilities = [

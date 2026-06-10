@@ -1,7 +1,7 @@
 // MarketingGrowth.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import StartWithClarity from '../components/START_WITH_CLARITY';
+import StartWithClarity from '../components/common/START_WITH_CLARITY';
 
 
 

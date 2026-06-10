@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
-import "../pages/Portfolio.css";
-import MarqueeSection from '../components/MarqueeSection';
-import EngineerYourMarket from '../components/ENGINEER_YOUR_MARKET';
-import StartWithClarity from '../components/START_WITH_CLARITY';
-import DirectionSection from '../components/DirectionSection';
-import StartWithBrief from '../components/START_WITH_BRIEF';
-import CapabilitiesSection from "../components/CapabilitiesSection";
-import CreativeSynthesis from "../components/CreativeSynthesis";
-import CaseArchitectures from "../components/CaseArchitectures";
-import ExecutionLoop from "../components/ExecutionLoop";
-import FrequencyLogic from "../components/FrequencyLogic";
+import "../pages/style/Portfolio.css";
+import MarqueeSection from '../components/Home/MarqueeSection';
+import EngineerYourMarket from '../components/common/ENGINEER_YOUR_MARKET';
+import StartWithClarity from '../components/common/START_WITH_CLARITY';
+import DirectionSection from '../components/Home/DirectionSection';
+import StartWithBrief from '../components/Home/START_WITH_BRIEF';
+import CapabilitiesSection from "../components/Home/CapabilitiesSection";
+import CreativeSynthesis from "../components/Home/CreativeSynthesis";
+import CaseArchitectures from "../components/Home/CaseArchitectures";
+import ExecutionLoop from "../components/Home/ExecutionLoop";
+import FrequencyLogic from "../components/Home/FrequencyLogic";
 
 
 const slides = [

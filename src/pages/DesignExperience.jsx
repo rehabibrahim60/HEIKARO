@@ -1,5 +1,5 @@
 import React from 'react';
-import StartWithClarity from '../components/START_WITH_CLARITY';
+import StartWithClarity from '../components/common/START_WITH_CLARITY';
 
 
 export default function DesignExperience() {

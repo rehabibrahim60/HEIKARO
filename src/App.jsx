@@ -2,11 +2,11 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import About from "./About";
+import About from "./pages/about";
 import Portfolio from "./pages/Portfolio";
 import Home from "./pages/Home"
 import Layout from "./components/Layout"
-import Contact from "./Contact"
+import Contact from "./pages/Contact"
 import MediaProduction from "./pages/MediaProduction";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";

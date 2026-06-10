@@ -1,8 +1,8 @@
-import './about.css';
+import './style/about.css';
 
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Tracks from './components/Tracks';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import Tracks from '../components/home/Tracks';
 
 const servicesData = [
   {

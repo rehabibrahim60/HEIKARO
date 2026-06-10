@@ -1,7 +1,7 @@
 import React from "react";
-import "./Contact.css"; 
+import "./style/contact.css"; 
 import { Link } from "react-router-dom";
-import "./about.css";
+import "./style/about.css";
  // تأكدي من وجود هذا السطر في أعلى الملف
 
 const Contact = () => {
