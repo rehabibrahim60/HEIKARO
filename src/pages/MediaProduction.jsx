@@ -4,6 +4,7 @@ import Failures from "../components/media_production/Failures";
 import Audiences from "../components/media_production/Audiences";
 import IncludedCapabilities from "../components/common/IncludedCapabilities";
 import CapabilitiesSection from "../components/capabilities/CapabilitiesSection";
+import Specs from "../components/media_production/Specs";
 
 
 const includedCapabilities = [
@@ -289,6 +290,7 @@ export default function MediaProduction() {
         title="Capabilities In Detail"
         cards={mediaProductionCapabilities}
       />
+      <Specs />
 
     </>
   );
