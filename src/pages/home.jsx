@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import "../Portfolio.css";
+import "../pages/Portfolio.css";
 import MarqueeSection from '../components/MarqueeSection';
 import EngineerYourMarket from '../components/ENGINEER_YOUR_MARKET';
 import StartWithClarity from '../components/START_WITH_CLARITY';

@@ -1,0 +1,909 @@
+/* تنسيق الجملة بالكامل */
+html {
+  scroll-behavior: smooth;
+}
+.sd-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+.service-detail-page {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.sd-hero {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: flex-end;
+  padding: 60px 40px;
+}
+
+.sd-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%);
+  z-index: 1;
+}
+
+.sd-hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+
+.sd-title {
+  font-size: 72px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  margin: 0;
+}
+
+.sd-desc-small {
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.sd-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.sd-crumb {
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.sd-crumb.active { color: #fff; }
+
+.sd-crumb-sep { color: rgba(255,255,255,0.2); }
+
+.sd-quote-left {
+  padding: 60px 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.sd-subtitle-label {
+  color: #aaff00;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.sd-quote {
+  font-size: 28px;
+  color: #fff;
+  line-height: 1.4;
+  margin: 0 0 16px;
+}
+
+.sd-description {
+  color: #888;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.sd-pillar-icon {
+  color: #aaff00;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.sd-pillar-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.sd-pillar-desc {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.sd-badge-static {
+    color: #fff;
+    opacity: 0.7;
+}
+/* هذا الكود يضمن أن التنسيقات لن تؤثر إلا على صفحة التفاصيل */
+.service-detail-page .section-title {
+    font-size: 48px;
+    color: #fff;
+    margin: 15px 0;
+}
+
+.service-detail-page .section-label {
+    color: #aaff00;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* حل مشكلة الصور العملاقة داخل صفحة التفاصيل */
+.service-detail-page img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.service-detail-page .operational-grid,
+.service-detail-page .pillars-grid,
+.service-detail-page .capabilities-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* أو 3 حسب رغبتك */
+    gap: 20px !important;
+}
+
+/* لضمان استجابة الموبايل */
+@media (max-width: 768px) {
+    .service-detail-page .operational-grid,
+    .service-detail-page .pillars-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.sd-badge-gradient {
+    /* هنا نضع التدرج اللوني الذي تريده */
+    background: linear-gradient(90deg, #fff 0%, #007bff 50%, #ffd700 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block; /* ضروري جداً ليعمل الـ Gradient */
+    white-space: nowrap;
+}
+/* 1. الحاوية الأساسية للقسم بالكامل */
+.sd-content-section {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  min-height: 600px;
+}
+
+/* 2. الجزء الأيسر (النص + المربعات) - يأخذ 65% من العرض */
+.sd-content-left {
+  flex: 0 0 65% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 3. شبكة المربعات (يجب أن تكون 2x2) */
+.sd-pillars {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important; /* هذا السطر يجبرهم أن يكونوا عمودين */
+  width: 100% !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* 4. تنسيق المربع الواحد */
+.sd-pillar {
+  padding: 40px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  box-sizing: border-box !important;
+}
+
+/* إزالة الخطوط اليمنى للمربعات في العمود الثاني */
+.sd-pillar:nth-child(2), 
+.sd-pillar:nth-child(4) {
+  border-right: none !important;
+}
+
+/* 5. الجزء الأيمن (الصورة) - يأخذ 35% من العرض */
+.sd-content-right {
+  flex: 0 0 35% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  overflow: hidden;
+}
+
+.sd-side-img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 400px !important; /* هذا سيجعل الصورة أصغر */
+  object-fit: contain !important;
+}
+
+
+.second-section {
+  padding: 80px 40px;
+  background-color: #0a0a0a; /* لون الخلفية الداكن */
+  color: #fff;
+}
+
+
+
+.section-label {
+  color: #ff3333; /* اللون الأحمر للعنوان الفرعي */
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.sd-root .section-title { font-size: 32px; }
+
+.section-description {
+  color: #aaa;
+  max-width: 600px;
+  font-size: 15px;
+  
+  /* هذا هو الجزء الذي سيقوم بالتوسيط */
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* التنسيق الأساسي للشبكة */
+
+
+/* شبكة المربعات المحدثة */
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 أعمدة */
+    gap: 20px; /* هذه هي المسافة التي طلبتها بين الكارد والتاني */
+    background-color: transparent; /* إلغاء لون الخلفية الموحد */
+    border: none; /* إلغاء الحدود الخارجية للشبكة */
+    padding: 20px 0;
+}
+
+.pillar-card {
+    background-color: #0d0d0d; /* خلفية الكارد نفسه */
+    padding: 30px; /* تصغير الـ padding قليلاً ليصغر حجم الكارد */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* إضافة حدود خفيفة للكارد */
+    transition: border 0.3s ease;
+}
+
+/* تأثير عند مرور الماوس (اختياري لجمالية التصميم) */
+.pillar-card:hover {
+    border-color: rgba(74, 6, 6, 0.2);
+}
+
+.pillar-number {
+    display: block;
+    color: #ff3333;
+    font-size: 12px; /* تصغير الخط قليلاً */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.pillar-text {
+    color: #fff;
+    font-size: 13px; /* تصغير النص قليلاً ليكون أنيقاً */
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+
+/* تنسيق القسم الجديد */
+/* تنسيق القسم العام */
+.capabilities-section {
+    padding: 100px 40px;
+    background-color: #050505; /* أسود داكن جداً خلفية الصفحة */
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* تنسيق العناوين (Modular Competency / Our Included Capabilities) */
+.section-header {
+    text-align: center; /* توسيط العناوين */
+    margin-bottom: 80px;
+}
+
+.section-label {
+    color: #aaff00; /* أخضر فسفوري */
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: 56px; /* عنوان كبير */
+    margin: 20px 0;
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+/* شبكة الكروت */
+.capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة */
+    gap: 24px; /* مسافة بين الكروت */
+    max-width: 1400px; /* تحديد عرض الشبكة */
+    margin: 0 auto; /* توسيط الشبكة في الصفحة */
+}
+
+/* --- التغييرات عند الـ Hover (الوقوف بالماوس) --- */
+.capability-card:hover {
+    border-color: #007bff; /* البوردر بيتحول للأزرق */
+    background-color: #0d0d0d; /* الخلفية بتفتح سنة */
+    transform: translateY(-5px); /* الكارد بيترفع للأعلى */
+}
+
+/* الرقم (01) */
+.card-number {
+    color: #555; /* لون رمادي في الهدوء */
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+}
+
+
+/* العنوان (Brand Strategy & Positioning) */
+.card-title {
+    color: #ccc; /* لون رمادي فاتح في الهدوء */
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.capability-card {
+    background-color: #0a0a0a;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+
+
+.card-number {
+    color: #555;
+    font-size: 13px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+
+
+.card-desc {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.card-divider {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.06);
+    margin: 20px 0;
+}
+
+.card-footer {
+    color: #aaff00;
+    font-size: 12px;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+}
+
+/* السهم في الكوشة */
+.capability-card::after {
+    content: "→";
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    color: #007bff;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.capability-card:hover::after {
+    opacity: 1;
+}
+/* عند الـ Hover: الجملة السفلية بتتحول للأزرق برضه */
+.capability-card:hover .card-footer {
+    color: #aaff00;
+}
+
+/* السهم (→) */
+.card-arrow {
+    position: absolute;
+    top: 50px;
+    right: 40px;
+    color: #007bff; /* أزرق ثابت */
+    font-size: 18px;
+    opacity: 0; /* مخفي في الهدوء */
+    transform: translateX(10px); /* متحرك لليمين سنة */
+    transition: all 0.3s ease; /* نعومة الحركة */
+}
+
+/* عند الـ Hover: السهم بيظهر وبيتحرك لمكانه */
+.capability-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* الخط الفاصل */
+.card-divider {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.08); /* لون خافت في الوضع العادي */
+    margin: 20px 0; /* مسافة بين الخط وما فوقه وما تحته */
+    transition: background-color 0.3s ease;
+}
+
+/* عند الوقوف بالماوس، الخط يتحول للأزرق ليطابق التصميم */
+.capability-card:hover .card-divider {
+    background-color: #007bff;
+}
+
+
+.detail-section {
+    padding: 100px 40px;
+    background-color: #050505;
+    color: #fff;
+    border-top: 1px solid #1a1a1a;
+}
+
+.chapter-label { color: #aaff00; font-size: 11px; font-weight: 700; letter-spacing: 2px; }
+
+.header-flex { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; }
+
+.main-content { max-width: 65%; }
+
+.detail-title { font-size: 48px; margin: 15px 0; }
+
+.detail-desc { color: #888; line-height: 1.6; font-size: 16px; }
+
+/* المربع الجانبي */
+.core-focus {
+    border: 1px solid #1a1a1a;
+    padding: 30px;
+    text-align: center;
+    width: 25%;
+}
+
+.focus-label { display: block; font-size: 10px; color: #555; margin-bottom: 10px; }
+.focus-value { color: #aaff00; font-weight: bold; font-size: 14px; }
+
+/* الشبكة السفلية */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 40px;
+}
+
+.item-number { display: block; color: #fff; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
+.item-desc { color: #666; font-size: 13px; line-height: 1.5; }
+/* هذا التنسيق يطبق على أي عنصر تأخذ كلاس interactive-card */
+.interactive-card {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: #0a0a0a;
+    transition: all 0.4s ease;
+    padding: 30px;
+}
+
+/* التأثير عند الهوفر لكل الأجزاء */
+.interactive-card:hover {
+    border-color: #007bff; /* اللون الأزرق */
+    background-color: #0d0d0d;
+}
+
+/* تنسيق خاص للعنوان داخل الكارد عند الهوفر */
+.interactive-card:hover .detail-title, 
+.interactive-card:hover .item-number {
+    color: #007bff; /* تحويل العناوين للأزرق عند الوقوف عليها */
+}
+
+/* تنسيق خاص للفقرات (نص الشرح) */
+.detail-desc {
+    color: #888;
+    transition: color 0.3s;
+}
+
+.interactive-card:hover .detail-desc {
+    color: #ccc; /* يفتح لون النص عند الهوفر */
+}
+/* الكارت الكبير الذي يجمع كل المحتوى */
+.main-detail-card {
+    background-color: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 60px; /* مساحة داخلية مريحة */
+    transition: border 0.3s ease;
+}
+
+/* التأثير التفاعلي عند الوقوف بالماوس على الكارت الكبير */
+.main-detail-card:hover {
+    border-color: #007bff; /* البوردر يصبح أزرق عند الهوفر */
+}
+
+/* نضمن أن الشبكة الرباعية داخل الكارت تأخذ مساحتها */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 40px;
+}
+.main-detail-title {
+    text-transform: none;
+    font-size: 40px;
+    font-weight: 400; /* سيجعل الحروف تظهر بشكل طبيعي (أول حرف كبير فقط) */
+}
+/* تنسيق الـ header-flex ليكون متوافقاً مع الكارت */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+
+/* توزيع الـ Grid الأساسي */
+.content-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px; /* النص يأخذ المساحة المتاحة، الصورة تأخذ 400px */
+    gap: 40px;
+    align-items: start;
+}
+
+/* ترتيب الكروت الأربعة (2x2) */
+.grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* عمودين */
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* تنسيق الكارت الصغير */
+.small-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+}
+
+/* تنسيق الصورة */
+.image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.operational-section {
+  padding: 80px 0;
+  background: #000; /* خلفية سوداء مثل التصميم */
+}
+
+.operational-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.operational-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 أعمدة */
+  gap: 20px;
+}
+
+/* --- الكارت في حالته الطبيعية --- */
+.op-card {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* الحدود العادية */
+  padding: 30px;
+  background: #0a0a0a;
+  
+  /* ترانزيشن عام لتغير الحدود والخلفية (الثلاث جهات) */
+  transition: border-color 0.4s ease, background 0.4s ease;
+  overflow: hidden; /* عشان الخط العلوي ميطلعش برا الكارت */
+  cursor: pointer;
+}
+
+/* --- الخط العلوي الأزرق (الذي سيتحرك من اليسار) --- */
+.op-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px; /* سمك الخط */
+  background: #007bff; /* لون الخط الأزرق */
+  
+  /* الحالة الطبيعية: الخط "منكمش" لليسار (0% عرض) */
+  transform: scaleX(0);
+  transform-origin: left; /* الحركة تبدأ من الشمال */
+  
+  /* ترانزيشن ناعم للحركة */
+  transition: transform 0.4s ease-out;
+}
+
+/* --- تأثير الـ Hover على الـ Pseudo-element (الخط العلوي) --- */
+.op-card:hover::before {
+  /* عند الـ Hover: الخط يمتد للعرض الكامل (من الشمال لليمين) */
+  transform: scaleX(1);
+}
+
+/* --- تأثير الـ Hover على باقي الحدود والخلفية (الثلاث جهات واللون الأصفر) --- */
+.op-card:hover {
+  /* الحدود الثلاثة الأخرى تتلون باللون الأصفر المائل للبرتقالي (ffd700) */
+  border-color: #aaff00;
+  
+  /* الخط العلوي يظل شفافاً في هذا الكلاس لتجنب تكراره */
+  border-top-color: transparent; 
+  
+  /* تغيير لون الخلفية بسيط لإعطاء عمق (اختياري) */
+  background: #111; 
+}
+.op-number {
+  color: #007bff; /* اللون الأزرق */
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.op-title {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.op-desc {
+  color: #888;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.service-detail-page .site-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.framework-section {
+  padding: 80px 0;
+  background: #000;
+}
+
+.anatomy-grid {
+  display: grid;
+  /* تقسيم 4 أعمدة متساوية */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 15px; /* المسافة بين المربعات */
+  margin-top: 40px;
+}
+
+.anatomy-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  color: #fff;
+  font-size: 14px;
+  background: #0a0a0a;
+  text-align: left;
+  transition: border-color 0.3s ease;
+}
+
+/* تأثير عند الوقوف بالماوس */
+.anatomy-card:hover {
+  border-color: #007bff; /* أو اللون الذي تفضلينه */
+  cursor: pointer;
+}
+.split-layout {
+  display: flex;
+  gap: 60px; /* مسافة بين النص والشبكة */
+  align-items: flex-start;
+}
+
+/* النص يأخذ حوالي 35% من العرض */
+.text-side {
+  flex: 0 0 35%;
+}
+
+.grid-side {
+  display: grid;
+  /* 1fr يعني توزيع المساحة بالتساوي بغض النظر عن طول النص */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 15px;
+  width: 100%; /* تأكدي أنها تأخذ كامل عرض حاويتها */
+}
+
+.anatomy-card {
+  /* تأكدي من أن المربع لا يحاول توسيع نفسه بناءً على المحتوى */
+  width: 100%;
+  box-sizing: border-box; /* هام جداً لجعل الـ padding جزءاً من العرض */
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0a0a0a;
+  
+  /* إذا كان النص طويلاً جداً، دعي السطر ينكسر بدلاً من توسيع المربع */
+  word-wrap: break-word;
+}
+
+.anatomy-card:hover {
+  border-color: #007bff; /* اللون الأصفر عند الـ Hover */
+  cursor: pointer;
+}
+
+.strategic-section {
+  padding: 100px 0;
+  background: #000;
+}
+
+.grid-side-pillars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* شبكة 2×2 */
+  gap: 20px;
+}
+
+.pillar-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  background: #0a0a0a;
+  transition: border-color 0.3s;
+}
+
+.pillar-card:hover {
+  border-color: #007bff; /* اللون الأصفر عند الوقوف بالماوس */
+}
+
+.pillar-icon {
+  color: #aaff00; /* لون علامة الصح */
+  font-size: 20px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.pillar-title {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.pillar-text {
+  color: #888;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.faq-section { background: #000; padding: 100px 0; color: #fff; }
+
+.faq-side { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+
+.faq-item { 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  background: #0a0a0a;
+  transition: border-color 0.3s;
+}
+
+.faq-item.active { border-color: #aaff00; }
+
+.faq-header { 
+  padding: 25px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  cursor: pointer;
+}
+
+.faq-header h3 { font-size: 16px; margin: 0; }
+
+.faq-arrow { color: #aaff00; font-size: 20px; }
+
+/* إخفاء وإظهار المحتوى */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s;
+  color: #888;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.faq-item.active .faq-content {
+  max-height: 200px; /* الارتفاع المناسب للنص */
+  padding: 0 25px 25px 25px;
+}
+
+
+/* التنسيق العام للسيكشن */
+.site-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* تنسيق الـ Hero Section (مطابق للصور) */
+.hero-section {
+  background-color: #000;
+  padding: 100px 0;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-label {
+  color: #aaff00; /* اللون الليموني المستخدم في التصميم */
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  display: block;
+  font-weight: bold;
+}
+
+.hero-title {
+  font-size: 40px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  line-height: 1.1;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+/* الأزرار كما في الصور */
+.btn-lime {
+  background-color: #677c38;
+  color: #000;
+  padding: 20px 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #fff;
+  padding: 20px 40px;
+  border: 1px solid #333;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+/* التنسيق الأساسي للزر */
+.custom-btn {
+  padding: 18px 35px;
+  background-color: #aaff00; /* اللون الليموني الأصلي */
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease; /* حركة ناعمة عند تغيير اللون */
+}
+
+/* تنسيق الزر عند الضغط عليه (يصبح أزرق وكلام أبيض) */
+.custom-btn.active {
+  background-color: #007bff; /* اللون الأزرق */
+  color: #ffffff; /* الكتابة باللون الأبيض */
+}

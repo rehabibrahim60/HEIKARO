@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Portfolio.css";
+import "../pages/Portfolio.css";
 
 
 

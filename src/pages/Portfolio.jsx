@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Portfolio.css";
-import StartWithClarity from "./components/START_WITH_CLARITY";
-import EngineerYourMarket from "./components/ENGINEER_YOUR_MARKET";
+import StartWithClarity from "../components/START_WITH_CLARITY";
+import EngineerYourMarket from "../components/ENGINEER_YOUR_MARKET";
 
 
 
