@@ -26,7 +26,7 @@ const gridStyle = {
     backgroundSize: "60px 60px",
 };
 
-const Specs = () => {
+const MediaProductionSpecs = () => {
     return (
         <section className="relative w-full bg-[#080808] overflow-hidden py-20 md:py-28">
 
@@ -57,14 +57,14 @@ const Specs = () => {
 
                     {/* ── RIGHT: items grid ── */}
                     <div className="flex-1">
-                        <div className="grid grid-cols-3 border-l border-t border-[#1e1e1e]">
+                        <div className="grid grid-cols-3 gap-[10px]">
                             {items.map((item, i) => (
                                 <div
                                     key={i}
-                                    className="border-r border-b border-[#1e1e1e] px-5 py-4
-                             text-[#aaa] text-[12.5px] leading-[1.5]
-                             transition-colors duration-150
-                             hover:bg-[rgba(255,255,255,0.02)] hover:text-white"
+                                    className="bg-[#111318] border border-[#1e2030] px-5 py-4
+                   text-[#aaa] text-[12.5px] leading-[1.5]
+                   transition-colors duration-150
+                   hover:bg-[#181c26] hover:text-white"
                                 >
                                     {item}
                                 </div>
@@ -78,4 +78,4 @@ const Specs = () => {
     );
 };
 
-export default Specs;
+export default MediaProductionSpecs;
