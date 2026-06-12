@@ -5,6 +5,11 @@ import Audiences from "../components/media_production/Audiences";
 import IncludedCapabilities from "../components/common/IncludedCapabilities";
 import CapabilitiesSection from "../components/capabilities/CapabilitiesSection";
 import Specs from "../components/media_production/Specs";
+import HowWeProduceMediaAssets from "../components/media_production/Howweproducemediaassets";
+import FAQSection from "../components/media_production/Faqsection";
+import CTASection from "../components/media_production/Ctasection";
+import StartWithClarity from "../components/common/START_WITH_CLARITY";
+
 
 
 const includedCapabilities = [
@@ -291,7 +296,10 @@ export default function MediaProduction() {
         cards={mediaProductionCapabilities}
       />
       <Specs />
-
+      <HowWeProduceMediaAssets />
+      <FAQSection />
+      <CTASection />
+      <StartWithClarity />
     </>
   );
 }

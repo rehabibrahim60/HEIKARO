@@ -123,8 +123,8 @@ const IncludedCapabilities = ({
                     </h2>
                 </div>
 
-                {/* ── Cards grid — 3 cols ── */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {/* ── Cards grid — 4 cols ── */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     {capabilities.map((cap) => (
                         <CapabilityCard key={cap.id} {...cap} />
                     ))}

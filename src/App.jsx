@@ -13,6 +13,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import DesignExperience from "./pages/DesignExperience";
 import ContentAndStorytelling from "./pages/ContentAndStorytelling";
 import MarketingGrowth from "./pages/MarketingGrowth";
+import DigitalLearning from "./pages/DigitalLearning";
 
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/services/media-production" element={<MediaProduction />} />
+          <Route path="/services/digital-learning" element={<DigitalLearning />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/design-experience" element={<DesignExperience />} />
 
