@@ -1,260 +1,320 @@
-import React from "react";
-import "./style/Services.css";
-import "./style/Portfolio.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import StartWithClarity from '../components/common/START_WITH_CLARITY';
 
 
-const services = [
+const servicesData = [
   {
     num: "01",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="12" cy="12" r="3"/>
-        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-      </svg>
-    ),
-    title: "Brand & Identity",
-    desc: "Translate your vision into a disciplined visual and strategic asset that...",
-    items: [
-      { label: "Brand Strategy & Positioning" },
-      { label: "Brand Naming & Messaging" },
-      { label: "Logo Design & Visual Identity" },
-    ],
+    icon: "🎨",
+    title: "BRAND & IDENTITY",
+    desc: "Translate your vision into a disciplined visual and strategic asset that benchmarks industry excellence.",
+    capabilities: 6,
+    tags: ["MARKET AUTHORITY", "INSTANT RECOGNITION", "STRATEGIC CONSISTENCY"],
     link: "/services/brand-identity",
   },
   {
     num: "02",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="3" y="3" width="8" height="8" rx="1"/>
-        <rect x="13" y="3" width="8" height="8" rx="1"/>
-        <rect x="3" y="13" width="8" height="8" rx="1"/>
-        <rect x="13" y="13" width="8" height="8" rx="1"/>
-      </svg>
-    ),
-    title: "Design & Experience",
-    desc: "Bridge the gap between aesthetic sophistication and functional conversio...",
-    items: [
-      { label: "UX/UI Service" },
-      { label: "Website Design & Development" },
-      { label: "App Design & Development" },
-    ],
+    icon: "🖥",
+    title: "DESIGN & EXPERIENCE",
+    desc: "Bridge the gap between aesthetic sophistication and functional conversion performance.",
+    capabilities: 4,
+    tags: ["USER RETENTION", "CONVERSION SURGE", "OPERATIONAL SPEED"],
     link: "/services/design-experience",
   },
   {
     num: "03",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-        <polyline points="14,2 14,8 20,8"/>
-        <line x1="16" y1="13" x2="8" y2="13"/>
-        <line x1="16" y1="17" x2="8" y2="17"/>
-      </svg>
-    ),
-    title: "Content & Storytelling",
-    desc: "Shift from random acts of content to a structured storytelling system that...",
-    items: [
-      { label: "Copywriting & Storytelling" },
-      { label: "Social Media Content Production (Graphic)" },
-      { label: "Social Media Content Production (Video/Photo)" },
-    ],
+    icon: "📄",
+    title: "CONTENT & STORYTELLING",
+    desc: "Shift from random acts of content to a structured storytelling system that builds durable brand equity.",
+    capabilities: 4,
+    tags: ["MARKET ADVOCACY", "AUDIENCE GROWTH", "STRATEGIC NARRATIVE"],
     link: "/services/content-storytelling",
   },
   {
     num: "04",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"/>
-        <polyline points="16,7 22,7 22,13"/>
-      </svg>
-    ),
-    title: "Marketing & Growth",
-    desc: "Deploy creative that is engineered to scale, backed by real-time performanc...",
-    items: [
-      { label: "Social Media Strategy & Management" },
-      { label: "Digital Advertising" },
-      { label: "Campaign Strategy & Performance Analytics" },
-    ],
+    icon: "📈",
+    title: "MARKETING & GROWTH",
+    desc: "Deploy creative that is engineered to scale, backed by real-time performance analytics.",
+    capabilities: 4,
+    tags: ["REVENUE EXPANSION", "CAC REDUCTION", "PREDICTABLE GROWTH"],
     link: "/services/marketing-growth",
   },
   {
     num: "05",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <polygon points="23,7 16,12 23,17"/>
-        <rect x="1" y="5" width="15" height="14" rx="2"/>
-      </svg>
-    ),
-    title: "Media & Production",
-    desc: "Cinematic excellence that justifies premier positioning and drives...",
-    items: [
-      { label: "Media Production" },
-      { label: "Commercial Production" },
-      { label: "Corporate & Brand Videos" },
-    ],
+    icon: "🎬",
+    title: "MEDIA & PRODUCTION",
+    desc: "Cinematic excellence that justifies premier positioning and drives emotional conversion.",
+    capabilities: 6,
+    tags: ["PREMIUM POSITIONING", "EMOTIONAL IMPACT", "CINEMATIC PROOF"],
     link: "/services/media-production",
   },
   {
     num: "06",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-      </svg>
-    ),
-    title: "Digital Learning Experience",
-    desc: "Standardize excellence by moving from traditional training to immersive...",
-    items: [
-      { label: "Learning Experience Design" },
-      { label: "Interactive Educational Content" },
-      { label: "Training & Capacity Building Programs" },
-    ],
-    link: "/services/digital-learning-experience",
+    icon: "📚",
+    title: "DIGITAL LEARNING EXPERIENCE",
+    desc: "Standardize excellence by moving from traditional training to immersive capacity building systems.",
+    capabilities: 4,
+    tags: ["KNOWLEDGE RETENTION", "STANDARDIZED QUALITY", "OPERATIONAL SCALE"],
+    link: "/services/digital-learning",
   },
   {
     num: "07",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="4" y="4" width="16" height="16" rx="2"/>
-        <rect x="9" y="9" width="6" height="6"/>
-        <path d="M15 2v2M9 2v2M2 15h2M2 9h2M15 20v2M9 20v2M20 15h2M20 9h2"/>
-      </svg>
-    ),
-    title: "AI-Powered Video & CGI",
-    desc: "Generate impossible visual worlds at strategic speed, blending imagination...",
-    items: [
-      { label: "AI Cinematic Video Production" },
-      { label: "CGI & Hyper-Real Visual Experiences" },
-      { label: "AI Commercials & Brand Films" },
-    ],
+    icon: "⚙️",
+    title: "AI-POWERED VIDEO & CGI",
+    desc: "Generate impossible visual worlds at strategic speed, blending imagination with technical precision.",
+    capabilities: 5,
+    tags: ["VISUAL UNIQUENESS", "PRODUCTION SPEED", "FUTURE-PROOFING"],
     link: "/services/ai-video-cgi",
   },
   {
     num: "08",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
-      </svg>
-    ),
-    title: "Events & Experiential",
-    desc: "We shape events as designed experience systems that connect...",
-    items: [
-      { label: "Event Strategy & Concept" },
-      { label: "Corporate Events" },
-      { label: "Exhibitions & Booths" },
-    ],
+    icon: "🎯",
+    title: "EVENTS & EXPERIENTIAL",
+    desc: "We shape events as designed experience systems that connect audience emotion with brand purpose.",
+    capabilities: 8,
+    tags: ["MEMORABLE AUDIENCE EXPERIENCES", "STRONGER BRAND STORYTELLING", "DIRECT STAKEHOLDER TRUST"],
     link: "/services/events-experiential",
   },
 ];
 
-const ServicesHero = () => {
+export default function Services() {
   return (
-    <>
+    <div className="bg-[#0a0a0a] min-h-screen text-white">
+
       {/* Hero Section */}
-      <section className="services-hero">
-        <div className="services-hero-bg-text">HEIKARO ASSET</div>
-        <div className="services-hero-content">
-          <span className="services-badge">CAPABILITIES ARCHITECTURE</span>
-          <h1 className="services-hero-title">SERVICES</h1>
-          <p className="services-hero-subtitle">
+      <section className="relative w-full min-h-screen flex flex-col justify-center px-[8%] overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: "url('/hero-bg.jpg.jpeg')" }} />
+        <div className="absolute inset-0 bg-black/80 z-0" />
+        <div className="absolute bottom-0 right-0 z-0 text-[8rem] md:text-[14rem] font-extrabold text-white/5 select-none pointer-events-none leading-none">
+          HEIKARO ASSET
+        </div>
+        <div className="relative z-10">
+          <div className="border border-white/30 px-4 py-2 w-fit mb-8">
+            <span className="text-white text-xs tracking-[3px] uppercase">CAPABILITIES ARCHITECTURE</span>
+          </div>
+          <h1 className="text-[6rem] md:text-[10rem] font-extrabold leading-[0.9] text-[#007bff] mb-8">
+            SERVICES
+          </h1>
+          <p className="text-gray-400 text-lg leading-relaxed max-w-[500px]">
             Strategic creative services designed as systems, not isolated outputs.
           </p>
         </div>
       </section>
 
-      {/* Cards Section */}
-      <section className="sc-section">
-        <div className="sc-grid">
-          {services.map((service) => (
-            <div className="sc-card" key={service.num}>
-              <span className="sc-num">{service.num}</span>
-              <div className="sc-icon">{service.icon}</div>
-              <div className="sc-body">
-                <h3 className="sc-title">{service.title}</h3>
-                <p className="sc-desc">{service.desc}</p>
-                <ul className="sc-items">
-                  {service.items.map((item, i) => (
-                    <li key={i}>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <circle cx="5" cy="12" r="1.5"/>
-                      </svg>
-                      {item.label}
-                    </li>
-                  ))}
-                </ul>
+      {/* Services Grid */}
+      <section className="bg-[#0a0a0a] py-24 px-[8%]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-l border-t border-[#222]">
+          {servicesData.map((item, index) => (
+            <div
+              key={index}
+              className="relative border-r border-b border-[#222] p-8 flex flex-col justify-between min-h-[500px] overflow-hidden group"
+            >
+              {/* البوردر اللي بيجي من شمال لليمين */}
+              <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#007bff] transition-all duration-500 group-hover:w-full z-10" />
+
+              <div>
+                {/* الأيقونة والرقم */}
+                <div className="flex items-center justify-between mb-8">
+                  <div className="w-12 h-12 border border-[#222] group-hover:border-[#007bff] transition-colors duration-300 flex items-center justify-center text-xl">
+                    {item.icon}
+                  </div>
+                  <span className="text-gray-600 group-hover:text-[#b0f200] font-mono text-sm transition-colors duration-300">{item.num}</span>
+                </div>
+
+                {/* العنوان */}
+                <h3 className="text-white group-hover:text-[#007bff] transition-colors duration-300 font-bold text-xl uppercase leading-tight mb-4">
+                  {item.title}
+                </h3>
+
+                {/* الوصف */}
+                <p className="text-gray-500 text-sm leading-relaxed mb-6">{item.desc}</p>
+
+                {/* عدد الـ capabilities */}
+                <div className="border border-[#222] px-3 py-1 w-fit mb-8">
+                  <span className="text-gray-500 text-xs tracking-[2px]">{item.capabilities} CAPABILITIES</span>
+                </div>
               </div>
-              <a href={service.link} className="sc-link">
-                Explore System
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
+
+              <div>
+                {/* التاجز */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {item.tags.map((tag, i) => (
+                    <span key={i} className="border border-[#b0f200] px-2 py-1 text-[10px] text-[#b0f200] tracking-[1px]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* الزر */}
+                <Link
+                  to={item.link}
+                  className="flex items-center gap-2 text-xs font-bold uppercase tracking-[2px] text-gray-500 group-hover:text-[#007bff] transition-all duration-300"
+                >
+                  <span className="group-hover:translate-x-2 transition-transform duration-300">EXPLORE TRACK</span>
+                  <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+                </Link>
+              </div>
+
             </div>
           ))}
         </div>
       </section>
-      <section className="ig-section">
-        <div className="ig-container">
-          <h2 className="ig-title">INTEGRATED GOVERNANCE</h2>
-          <p className="ig-desc">
-            Our services aren't silos. They are modules of a single growth machine. 
-            We apply rigorous documentation and governance across every family 
-            to ensure your brand compounds value with every execution.
+      {/* Section - How Services Work Together */}
+      <section className="bg-[#0a0a0a] text-white py-24 px-[8%] border-t border-[#111]">
+        <div className="text-center mb-16">
+          <p className="text-[#007bff] font-bold tracking-[3px] text-xs uppercase mb-4">
+            UNIFIED OPERATING MODEL
           </p>
-          <div className="ig-features">
-            <div className="ig-feature-item"><span className="ig-feat-label">QUALITY</span><span className="ig-feat-sub">RIGOROUS AUDIT</span></div>
-            <div className="ig-feature-item"><span className="ig-feat-label">SPEED</span><span className="ig-feat-sub">AI-ACCELERATED</span></div>
-            <div className="ig-feature-item"><span className="ig-feat-label">UNITY</span><span className="ig-feat-sub">SINGLE VOICE</span></div>
-            <div className="ig-feature-item"><span className="ig-feat-label">GROWTH</span><span className="ig-feat-sub">MEASURED RESULTS</span></div>
-          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+            How HEIKARO Services Work Together
+          </h2>
+          <p className="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto">
+            Our 8 operating services are designed as modular nodes of a single high-performance brand growth engine. Instead of hiring separate branding agencies, dev houses, video production studios, and performance agencies, HEIKARO integrates these capabilities under a single operational standard.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { label: "QUALITY CONTROL", title: "UNIFIED AUDITS" },
+            { label: "EXECUTION SPEED", title: "AI-ENHANCED WORKFLOWS" },
+            { label: "BRAND UNITY", title: "SINGLE TONE OF VOICE" },
+            { label: "CAPITAL EFFICIENCY", title: "CONSOLIDATED AGENCY FEES" },
+          ].map((item, index) => (
+            <div key={index} className="border border-[#222] p-8 text-center hover:border-[#333] transition-colors">
+              <p className="text-[#b0f200] font-bold tracking-[2px] text-xs uppercase mb-3">{item.label}</p>
+              <h3 className="text-white font-bold text-sm uppercase leading-tight">{item.title}</h3>
+            </div>
+          ))}
         </div>
       </section>
-      <section className="value-section">
-  <div className="value-content">
-    <span className="mini-tag">
-      <span className="icon">⬡</span> INTEGRATED GROWTH OS
-    </span>
-    <h2>ENGINEER YOUR MARKET AUTHORITY.</h2>
-    <p>
-      We connect strategic diagnosis, high-fidelity design, and performance 
-      media under one unified growth operating system. Build your brand architecture today.
-    </p>
-    
-    <div className="value-buttons">
-      <button className="primary-btn">ENGAGE HEIKARO <span>→</span></button>
-      <button className="secondary-btn">REVIEW PROOF SYSTEM</button>
-    </div>
+      {/* Section - Recommended Service Combinations */}
+      <section className="bg-[#0a0a0a] text-white py-24 px-[8%] border-t border-[#111]">
+        <div className="text-center mb-16">
+          <p className="text-[#b0f200] font-bold tracking-[3px] text-xs uppercase mb-4">
+            STRATEGIC BLUEPRINTS
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Recommended Service Combinations
+          </h2>
+          <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
+            Connect complementary capabilities to fast-track specific company milestones.
+          </p>
+        </div>
 
-    <div className="process-steps">
-      <span>01 DIAGNOSE</span>
-      <span>02 STRATEGIZE</span>
-      <span>03 EXECUTE</span>
-      <span>04 OPTIMIZE</span>
-    </div>
-  </div>
-</section>
- <section className="clarity-banner-root">
-        <div className="clarity-banner-container">
-          
-          <div className="clarity-banner-left">
-            <h2 className="clarity-banner-title">
-              START WITH CLARITY.<br />
-              BUILD WITH STRUCTURE.
-            </h2>
-            <p className="clarity-banner-desc">
-              We map the right service system for your growth before a single asset is produced.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              combo: "COMBO 1",
+              title: "The Ultimate Launch Blueprint",
+              target: "EARLY-STAGE OR EXPANDING PRODUCTS",
+              desc: "Establishes institutional market authority with an elite web app, premium product film, and fully packaged branding system ready for investment.",
+              services: "Brand & Identity + Design & Experience + Media & Production",
+            },
+            {
+              combo: "COMBO 2",
+              title: "High-Performance Growth Loop",
+              target: "ACTIVE DIGITAL SCALING BRANDS",
+              desc: "Establishes a high-velocity localized content system driven by performance marketing, hyper-optimized conversion landing pages, and cinematic social ads.",
+              services: "Marketing & Growth + Content & Storytelling + AI-Powered Video & CGI",
+            },
+            {
+              combo: "COMBO 3",
+              title: "Enterprise Transformation Suite",
+              target: "LEGACY CORPORATE BRANDS",
+              desc: "Modernizes organizational reputation, aligns interior team training via state-of-the-art interactive platforms, and deploys milestone hybrid events.",
+              services: "Brand & Identity + Digital Learning Experience + Events & Experiential",
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="border border-[#222] p-8 flex flex-col justify-between min-h-[400px] group hover:border-[#b0f200]/30 transition-colors duration-300 cursor-pointer"
+            >
+              <div>
+                <div className="border border-[#b0f200]/20 px-2 py-[2px] w-fit mb-4">
+                  <span className="text-[#b0f200]/50 text-[10px] tracking-[2px]">{item.combo}</span>
+                </div>
 
-          <div className="clarity-banner-right">
-            <button className="clarity-banner-btn">
-              START YOUR GROWTH
-            </button>
-          </div>
+                <h3 className="text-white group-hover:text-[#007bff] transition-colors duration-300 font-bold text-xl mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-gray-500 text-xs tracking-[2px] uppercase mb-4">{item.target}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+              </div>
 
+              <div className="mt-8 pt-6 border-t border-[#222]">
+                <p className="text-gray-600 text-xs uppercase tracking-[2px] mb-2">COMBINED SERVICES</p>
+                <p className="text-white text-sm font-medium">{item.services}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
-    </>
+      {/* Section - The Creative Growth Operating Standard */}
+      <section className="bg-[#0a0a0a] text-white py-24 px-[8%] border-t border-[#111]">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-white font-bold tracking-[3px] text-xs uppercase mb-8">
+            THE CREATIVE GROWTH OPERATING STANDARD
+          </p>
+          <p className="text-gray-500 text-lg leading-relaxed mb-8">
+            Under HEIKARO's modern operating model, we unify disparate marketing-communication channels into responsive, highly structured platforms. Our approach encompasses Brand Identity development, interactive UI/UX design, full-scale front-end engineering, conversion-focused analytics, production services, and corporate learning experiences in a single, unified workflow.
+          </p>
+          <p className="text-gray-500 text-lg leading-relaxed">
+            By treating content and design as an integrated operating system, we eliminate the operational overhead, communication gaps, and inconsistent executions typical of traditional multi-agency structures. Ambitious companies choose HEIKARO to deploy systematic brand value that translates directly into measurable customer choice.
+          </p>
+        </div>
+      </section>
+      {/* Section - CTA */}
+      <section className="relative bg-[#020818] text-white py-24 px-[8%] border-t border-[#111] overflow-hidden">
+
+        {/* خلفية زرقاء غامقة */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#001233_0%,_#0a0a0a_70%)] z-0" />
+
+        <div className="relative z-10 text-center">
+          {/* البادج */}
+          <div className="border border-[#222] px-4 py-2 w-fit mx-auto mb-8 flex items-center gap-2">
+            <span className="text-[#b0f200] text-xs">⬡</span>
+            <span className="text-white text-xs tracking-[3px] uppercase">INTEGRATED GROWTH OS</span>
+          </div>
+
+          {/* العنوان */}
+          <h2 className="text-5xl md:text-7xl font-extrabold leading-tight mb-8">
+            ENGINEER YOUR<br />
+            <span className="text-[#007bff]">MARKET AUTHORITY.</span>
+          </h2>
+
+          {/* الوصف */}
+          <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto mb-12">
+            We connect strategic diagnosis, high-fidelity design, and performance media under one unified growth operating system. Build your brand architecture today.
+          </p>
+
+          {/* الأزرار */}
+          <div className="flex items-center justify-center gap-4 mb-16">
+            <Link
+              to="/contact"
+              className="bg-white text-black px-10 py-4 font-bold text-sm uppercase tracking-[2px] hover:bg-[#007bff] hover:text-white transition-colors duration-300 flex items-center gap-2"
+            >
+              ENGAGE HEIKARO →
+            </Link>
+            <Link
+              to="/portfolio"
+              className="border border-[#333] text-white px-10 py-4 font-bold text-sm uppercase tracking-[2px] hover:bg-[#007bff] hover:border-[#007bff] transition-colors duration-300"
+            >
+              REVIEW PROOF SYSTEM
+            </Link>
+          </div>
+
+          {/* الخطوات */}
+          <div className="flex items-center justify-center gap-12 text-gray-600 text-xs font-mono uppercase tracking-[3px]">
+            <span>01 DIAGNOSE</span>
+            <span>02 STRATEGIZE</span>
+            <span>03 EXECUTE</span>
+            <span>04 OPTIMIZE</span>
+          </div>
+        </div>
+
+      </section>
+      <StartWithClarity />
+    </div>
   );
-};
-
-export default ServicesHero;
+}
