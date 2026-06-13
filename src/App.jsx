@@ -14,6 +14,7 @@ import DesignExperience from "./pages/DesignExperience";
 import ContentAndStorytelling from "./pages/ContentAndStorytelling";
 import MarketingGrowth from "./pages/MarketingGrowth";
 import DigitalLearning from "./pages/DigitalLearning";
+import AiPowerd from "./pages/AiPowerd";
 
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/services/digital-learning" element={<DigitalLearning />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/design-experience" element={<DesignExperience />} />
+          <Route path="/services/ai-video-cgi" element={<AiPowerd />} />
 
           <Route path="/services/brand-identity" element={<ServiceDetail />} />
           <Route path="/services/content-storytelling" element={<ContentAndStorytelling />} />
