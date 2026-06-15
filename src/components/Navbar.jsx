@@ -68,12 +68,12 @@ const Navbar = () => {
       )}
 
       <div className="social-icons">
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
+        <a href="https://www.facebook.com/heikaro" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+        <a href="https://www.instagram.com/heikaro.agancy/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+        <a href="https://x.com/heikaro_agancy" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
         <a href="https://www.behance.net/heikaroagancy" target="_blank" rel="noopener noreferrer"><FaBehance /></a>
-        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
+        <a href="https://www.youtube.com/@Heikaro.Agancy" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+        <a href="https://www.linkedin.com/company/heikaro/" target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
       </div>
     </nav>
   );

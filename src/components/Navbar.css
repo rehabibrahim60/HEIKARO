@@ -47,6 +47,9 @@ body {
 .services-trigger {
   cursor: pointer;
   user-select: none;
+    display: inline-flex;      /* ← ده اللي ناقص */
+  align-items: center;
+  gap: 5px;
 }
 
 /* المنيو wrapper — يتمدد بعرض الناف بار كاملاً */
