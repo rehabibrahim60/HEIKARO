@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import ContentBuilder from "./ContentBuilder";
+import { Link, useNavigate } from "react-router-dom";
 
 const API = "http://localhost:3000";
 
@@ -109,278 +111,8 @@ function ConfirmDialog({ message, onConfirm, onCancel }) {
 }
 
 // ─── CONTENT BUILDER (shared between Blog & Project) ─────────────────────────
-function ContentBuilder({ entityId, entityType, existingContent = [], onSaved, toast }) {
-  const [blocks, setBlocks] = useState(existingContent);
-  const [saving, setSaving] = useState(false);
-  const fileRef = useRef(null);
-  const [pendingType, setPendingType] = useState(null);
 
-  const addText = () => {
-    setBlocks(p => [...p, { id: Date.now(), type: "text", value: "", isNew: true }]);
-  };
 
-  const triggerFile = (type) => {
-    setPendingType(type);
-    fileRef.current.click();
-  };
-
-  const handleFile = async (e) => {
-    const file = e.target.files[0];
-    if (!file || !entityId) return;
-    const fd = new FormData();
-    fd.append("file", file);
-    fd.append("type", pendingType);
-    setSaving(true);
-    try {
-      const route = entityType === "blog" ? "/blogs" : "/projects";
-      const res = await fetch(`${API}${route}/${entityId}/content`, {
-        method: "POST", headers: authHeaders(), body: fd,
-      });
-      const data = await res.json();
-      setBlocks(data.content || blocks);
-      toast.show("تم رفع الملف بنجاح");
-      onSaved && onSaved(data);
-    } catch { toast.show("فشل رفع الملف", "error"); }
-    finally { setSaving(false); e.target.value = ""; }
-  };
-
-  const saveText = async (block) => {
-    if (!entityId || !block.isNew) return;
-    setSaving(true);
-    try {
-      const route = entityType === "blog" ? "/blogs" : "/projects";
-      const fd = new FormData();
-      fd.append("type", "text");
-      fd.append("value", block.value);
-      const res = await fetch(`${API}${route}/${entityId}/content`, {
-        method: "POST", headers: authHeaders(), body: fd,
-      });
-      const data = await res.json();
-      setBlocks(data.content || blocks);
-      toast.show("تم حفظ النص");
-    } catch { toast.show("فشل حفظ النص", "error"); }
-    finally { setSaving(false); }
-  };
-
-  const deleteBlock = async (idx) => {
-    if (!entityId) { setBlocks(p => p.filter((_, i) => i !== idx)); return; }
-    setSaving(true);
-    try {
-      const route = entityType === "blog" ? "/blogs" : "/projects";
-      await fetch(`${API}${route}/${entityId}/content/${idx}`, {
-        method: "DELETE", headers: authHeaders(),
-      });
-      setBlocks(p => p.filter((_, i) => i !== idx));
-      toast.show("تم حذف البلوك");
-    } catch { toast.show("فشل الحذف", "error"); }
-    finally { setSaving(false); }
-  };
-
-  return (
-    <div>
-      <div style={{
-        display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20,
-        padding: "12px 16px", background: "#111827", borderRadius: 10,
-        border: "1px solid #1f2937", position: "sticky", top: 80, zIndex: 10
-      }}>
-        <button onClick={() => triggerFile("image")} style={toolBtn}><Icon name="image" size={16} /> صورة</button>
-        <button onClick={addText} style={toolBtn}><Icon name="type" size={16} /> نص</button>
-        <button onClick={() => triggerFile("video")} style={toolBtn}><Icon name="video" size={16} /> فيديو</button>
-        {saving && <span style={{ color: "#22d3ee", fontSize: 13, alignSelf: "center" }}>جاري الحفظ...</span>}
-      </div>
-      <input ref={fileRef} type="file"
-        accept={pendingType === "image" ? "image/*" : pendingType === "video" ? "video/*" : "*"}
-        onChange={handleFile} hidden />
-      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-        {blocks.map((block, idx) => (
-          <div key={block._id || block.id || idx} style={{
-            background: "#111827", border: "1px solid #1f2937", borderRadius: 12, padding: 16, position: "relative"
-          }}>
-            {block.type === "image" && <img src={block.src || block.imageUrl} alt="" style={{ width: "100%", borderRadius: 8 }} />}
-            {block.type === "video" && (
-              <video controls style={{ width: "100%", borderRadius: 8 }}>
-                <source src={block.src || block.videoUrl} />
-              </video>
-            )}
-            {block.type === "text" && (
-              <div>
-                <textarea
-                  value={block.value}
-                  onChange={e => setBlocks(p => p.map((b, i) => i === idx ? { ...b, value: e.target.value } : b))}
-                  style={{
-                    width: "100%", minHeight: 100, background: "#0f172a",
-                    border: "1px solid #1f2937", borderRadius: 8, color: "#f1f5f9",
-                    padding: 12, fontSize: 14, resize: "vertical", boxSizing: "border-box"
-                  }}
-                  placeholder="اكتب النص هنا..."
-                />
-                {block.isNew && (
-                  <button onClick={() => saveText(block)} style={{ ...primaryBtn, marginTop: 8, padding: "6px 16px", fontSize: 13 }}>
-                    حفظ النص
-                  </button>
-                )}
-              </div>
-            )}
-            <button onClick={() => deleteBlock(idx)} style={{
-              position: "absolute", top: 10, right: 10,
-              background: "#1f2937", border: "none", borderRadius: "50%",
-              width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center",
-              color: "#f87171", cursor: "pointer"
-            }}>
-              <Icon name="trash" size={14} />
-            </button>
-          </div>
-        ))}
-        {blocks.length === 0 && (
-          <div style={{ textAlign: "center", padding: "40px 20px", color: "#4b5563", fontSize: 14 }}>
-            استخدم الأزرار أعلاه لإضافة محتوى
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// ─── BLOG / PROJECT FORM (shared) ────────────────────────────────────────────
-function ItemForm({ type, item, onClose, onSaved, toast }) {
-  const isEdit = !!item;
-  const [title, setTitle] = useState(item?.title || "");
-  const [coverFile, setCoverFile] = useState(null);
-  const [coverPreview, setCoverPreview] = useState(item?.coverImage || null);
-  const [githubUrl, setGithubUrl] = useState(item?.githubUrl || "");
-  const [liveUrl, setLiveUrl] = useState(item?.liveUrl || "");
-  const [tags, setTags] = useState((item?.tags || []).join(", "));
-  const [savedId, setSavedId] = useState(item?._id || null);
-  const [step, setStep] = useState(isEdit ? 2 : 1);
-  const [loading, setLoading] = useState(false);
-
-  const handleCover = (e) => {
-    const f = e.target.files[0];
-    if (!f) return;
-    setCoverFile(f);
-    setCoverPreview(URL.createObjectURL(f));
-  };
-
-  const saveBasic = async () => {
-    if (!title.trim()) { toast.show("العنوان مطلوب", "error"); return; }
-    setLoading(true);
-    try {
-      const fd = new FormData();
-      fd.append("title", title);
-      if (coverFile) fd.append("coverImage", coverFile);
-      if (type === "project") {
-        if (githubUrl) fd.append("githubUrl", githubUrl);
-        if (liveUrl) fd.append("liveUrl", liveUrl);
-        if (tags) fd.append("tags", JSON.stringify(tags.split(",").map(t => t.trim()).filter(Boolean)));
-      }
-      const route = type === "blog" ? "/blogs" : "/projects";
-      const url = isEdit || savedId ? `${API}${route}/${item?._id || savedId}` : `${API}${route}`;
-      const method = isEdit || savedId ? "PATCH" : "POST";
-      const res = await fetch(url, { method, headers: authHeaders(), body: fd });
-      const data = await res.json();
-      setSavedId(data._id || data.data?._id || savedId);
-      setStep(2);
-      toast.show(isEdit ? "تم التحديث" : "تم الإنشاء، أضف المحتوى الآن");
-      onSaved && onSaved(data);
-    } catch (err) { toast.show("حدث خطأ: " + err.message, "error"); }
-    finally { setLoading(false); }
-  };
-
-  return (
-    <div style={{
-      position: "fixed", inset: 0, background: "rgba(0,0,0,0.7)", zIndex: 8000,
-      display: "flex", alignItems: "flex-start", justifyContent: "center",
-      overflowY: "auto", padding: "40px 16px"
-    }}>
-      <div style={{
-        background: "#0f172a", border: "1px solid #1f2937", borderRadius: 20,
-        width: "100%", maxWidth: 720, padding: 32
-      }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
-          <h2 style={{ color: "#f1f5f9", fontSize: 20, fontWeight: 700, margin: 0 }}>
-            {isEdit ? "تعديل" : "إضافة"} {type === "blog" ? "مقال" : "مشروع"}
-          </h2>
-          <button onClick={onClose} style={iconBtn}><Icon name="x" size={18} /></button>
-        </div>
-
-        {/* Step tabs */}
-        <div style={{ display: "flex", gap: 8, marginBottom: 24 }}>
-          {["المعلومات الأساسية", "المحتوى"].map((label, i) => (
-            <button key={i} onClick={() => (savedId || isEdit) && setStep(i + 1)} style={{
-              padding: "8px 18px", borderRadius: 8, fontSize: 13, fontWeight: 600,
-              border: step === i + 1 ? "none" : "1px solid #1f2937",
-              background: step === i + 1 ? "#22d3ee" : "transparent",
-              color: step === i + 1 ? "#000" : "#6b7280", cursor: "pointer"
-            }}>{i + 1}. {label}</button>
-          ))}
-        </div>
-
-        {step === 1 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div>
-              <label style={labelStyle}>العنوان *</label>
-              <input value={title} onChange={e => setTitle(e.target.value)} style={inputStyle}
-                placeholder={type === "blog" ? "عنوان المقال..." : "اسم المشروع..."} />
-            </div>
-
-            <div>
-              <label style={labelStyle}>صورة الغلاف</label>
-              <div style={{
-                border: "2px dashed #1f2937", borderRadius: 10, padding: 24,
-                textAlign: "center", cursor: "pointer", position: "relative"
-              }} onClick={() => document.getElementById("coverInput").click()}>
-                {coverPreview
-                  ? <img src={coverPreview} alt="" style={{ maxHeight: 160, borderRadius: 8 }} />
-                  : <div style={{ color: "#4b5563", fontSize: 14 }}>
-                    <Icon name="upload" size={28} /><br />اضغط لرفع صورة الغلاف
-                  </div>}
-                <input id="coverInput" type="file" accept="image/*" hidden onChange={handleCover} />
-              </div>
-            </div>
-
-            {type === "project" && (
-              <>
-                <div>
-                  <label style={labelStyle}>رابط GitHub</label>
-                  <input value={githubUrl} onChange={e => setGithubUrl(e.target.value)} style={inputStyle} placeholder="https://github.com/..." />
-                </div>
-                <div>
-                  <label style={labelStyle}>رابط المشروع المباشر</label>
-                  <input value={liveUrl} onChange={e => setLiveUrl(e.target.value)} style={inputStyle} placeholder="https://..." />
-                </div>
-                <div>
-                  <label style={labelStyle}>التقنيات (مفصولة بفواصل)</label>
-                  <input value={tags} onChange={e => setTags(e.target.value)} style={inputStyle} placeholder="React, Node.js, MongoDB" />
-                </div>
-              </>
-            )}
-
-            <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", marginTop: 8 }}>
-              <button onClick={onClose} style={ghostBtn}>إلغاء</button>
-              <button onClick={saveBasic} disabled={loading} style={primaryBtn}>
-                {loading ? "جاري الحفظ..." : "التالي: المحتوى"}
-              </button>
-            </div>
-          </div>
-        )}
-
-        {step === 2 && (
-          <div>
-            <ContentBuilder
-              entityId={savedId || item?._id}
-              entityType={type}
-              existingContent={item?.content || []}
-              toast={toast}
-            />
-            <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 20 }}>
-              <button onClick={onClose} style={primaryBtn}>حفظ وإغلاق</button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 // ─── PAGE: LOGIN ──────────────────────────────────────────────────────────────
 function LoginPage({ onLogin, toast }) {
@@ -485,6 +217,7 @@ function DashboardHome({ navigate }) {
 
 // ─── PAGE: BLOGS ──────────────────────────────────────────────────────────────
 function BlogsPage({ toast }) {
+  const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -518,7 +251,7 @@ function BlogsPage({ toast }) {
           <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>المقالات</h1>
           <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>{blogs.length} مقال</p>
         </div>
-        <button onClick={() => { setEditItem(null); setShowForm(true); }} style={primaryBtn}>
+        <button onClick={() => navigate("/admin/blog/new")} style={primaryBtn}>
           <Icon name="plus" size={16} /> مقال جديد
         </button>
       </div>
@@ -542,11 +275,7 @@ function BlogsPage({ toast }) {
         </div>
       )}
 
-      {showForm && (
-        <ItemForm type="blog" item={editItem} toast={toast}
-          onClose={() => { setShowForm(false); setEditItem(null); load(); }}
-          onSaved={load} />
-      )}
+
       {confirm && (
         <ConfirmDialog message="هل أنت متأكد من حذف هذا المقال؟ لا يمكن التراجع."
           onConfirm={() => deleteBlog(confirm)} onCancel={() => setConfirm(null)} />
@@ -557,6 +286,7 @@ function BlogsPage({ toast }) {
 
 // ─── PAGE: PROJECTS ───────────────────────────────────────────────────────────
 function ProjectsPage({ toast }) {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -590,7 +320,10 @@ function ProjectsPage({ toast }) {
           <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>المشاريع</h1>
           <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>{projects.length} مشروع</p>
         </div>
-        <button onClick={() => { setEditItem(null); setShowForm(true); }} style={primaryBtn}>
+        <button
+          onClick={() => navigate("/admin/project/new")}
+          style={primaryBtn}
+        >
           <Icon name="plus" size={16} /> مشروع جديد
         </button>
       </div>
@@ -624,11 +357,7 @@ function ProjectsPage({ toast }) {
         </div>
       )}
 
-      {showForm && (
-        <ItemForm type="project" item={editItem} toast={toast}
-          onClose={() => { setShowForm(false); setEditItem(null); load(); }}
-          onSaved={load} />
-      )}
+
       {confirm && (
         <ConfirmDialog message="هل أنت متأكد من حذف هذا المشروع؟"
           onConfirm={() => deleteProject(confirm)} onCancel={() => setConfirm(null)} />
@@ -749,7 +478,7 @@ function HeroPage({ toast }) {
   const load = async () => {
     setLoading(true);
     try {
-      const data = await apiFetch("/hero");
+      const data = await apiFetch("/home");
       setSlides(data.slides || data.data?.slides || []);
     } catch { toast.show("فشل تحميل السلايدز", "error"); }
     finally { setLoading(false); }
@@ -1023,6 +752,7 @@ const navItems = [
 ];
 
 function AdminLayout({ children, page, navigate, onLogout }) {
+
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "#030712", direction: "rtl" }}>
       {/* Sidebar */}

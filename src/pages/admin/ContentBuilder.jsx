@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Image, Type, Video, Trash2 } from "lucide-react";
 import TextEditor from "../../components/TextEditor";
+import { useNavigate } from "react-router-dom";
 
 const ContentBuilder = ({
   titlePlaceholder = "Title...",
@@ -10,7 +11,7 @@ const ContentBuilder = ({
 }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState([]);
-
+  const navigate = useNavigate();
   const imageInputRef = useRef(null);
   const videoInputRef = useRef(null);
 
@@ -46,9 +47,11 @@ const ContentBuilder = ({
     const data = { title, content, createdAt: new Date() };
     if (onPublish) {
       onPublish(data);
+      navigate("/admin");
     } else {
       console.log(data);
-      alert("Published Successfully");
+      // alert("Published Successfully");
+      navigate("/admin"); // Redirect to admin panel after publishing
     }
   };
 
