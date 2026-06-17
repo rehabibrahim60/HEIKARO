@@ -132,7 +132,7 @@ function ContentBuilder({ entityId, entityType, existingContent = [], onSaved, t
     fd.append("type", pendingType);
     setSaving(true);
     try {
-      const route = entityType === "blog" ? "/api/blogs" : "/api/projects";
+      const route = entityType === "blog" ? "/blogs" : "/projects";
       const res = await fetch(`${API}${route}/${entityId}/content`, {
         method: "POST", headers: authHeaders(), body: fd,
       });
@@ -148,7 +148,7 @@ function ContentBuilder({ entityId, entityType, existingContent = [], onSaved, t
     if (!entityId || !block.isNew) return;
     setSaving(true);
     try {
-      const route = entityType === "blog" ? "/api/blogs" : "/api/projects";
+      const route = entityType === "blog" ? "/blogs" : "/projects";
       const fd = new FormData();
       fd.append("type", "text");
       fd.append("value", block.value);
@@ -166,7 +166,7 @@ function ContentBuilder({ entityId, entityType, existingContent = [], onSaved, t
     if (!entityId) { setBlocks(p => p.filter((_, i) => i !== idx)); return; }
     setSaving(true);
     try {
-      const route = entityType === "blog" ? "/api/blogs" : "/api/projects";
+      const route = entityType === "blog" ? "/blogs" : "/projects";
       await fetch(`${API}${route}/${entityId}/content/${idx}`, {
         method: "DELETE", headers: authHeaders(),
       });
@@ -273,7 +273,7 @@ function ItemForm({ type, item, onClose, onSaved, toast }) {
         if (liveUrl) fd.append("liveUrl", liveUrl);
         if (tags) fd.append("tags", JSON.stringify(tags.split(",").map(t => t.trim()).filter(Boolean)));
       }
-      const route = type === "blog" ? "/api/blogs" : "/api/projects";
+      const route = type === "blog" ? "/blogs" : "/projects";
       const url = isEdit || savedId ? `${API}${route}/${item?._id || savedId}` : `${API}${route}`;
       const method = isEdit || savedId ? "PATCH" : "POST";
       const res = await fetch(url, { method, headers: authHeaders(), body: fd });
@@ -392,7 +392,7 @@ function LoginPage({ onLogin, toast }) {
     if (!email || !password) { toast.show("ادخل البيانات كاملة", "error"); return; }
     setLoading(true);
     try {
-      const res = await fetch(`${API}/api/auth/login`, {
+      const res = await fetch(`${API}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -494,7 +494,7 @@ function BlogsPage({ toast }) {
   const load = async () => {
     setLoading(true);
     try {
-      const data = await apiFetch("/api/blogs/admin/all");
+      const data = await apiFetch("/blogs/admin/all");
       setBlogs(data.blogs || data.data || data || []);
     } catch { toast.show("فشل تحميل المقالات", "error"); }
     finally { setLoading(false); }
@@ -504,7 +504,7 @@ function BlogsPage({ toast }) {
 
   const deleteBlog = async (id) => {
     try {
-      await fetch(`${API}/api/blogs/${id}`, { method: "DELETE", headers: authHeaders() });
+      await fetch(`${API}/blogs/${id}`, { method: "DELETE", headers: authHeaders() });
       setBlogs(p => p.filter(b => b._id !== id));
       toast.show("تم حذف المقال");
     } catch { toast.show("فشل الحذف", "error"); }
@@ -566,7 +566,7 @@ function ProjectsPage({ toast }) {
   const load = async () => {
     setLoading(true);
     try {
-      const data = await apiFetch("/api/projects/admin/all");
+      const data = await apiFetch("/projects/admin/all");
       setProjects(data.projects || data.data || data || []);
     } catch { toast.show("فشل تحميل المشاريع", "error"); }
     finally { setLoading(false); }
@@ -576,7 +576,7 @@ function ProjectsPage({ toast }) {
 
   const deleteProject = async (id) => {
     try {
-      await fetch(`${API}/api/projects/${id}`, { method: "DELETE", headers: authHeaders() });
+      await fetch(`${API}/projects/${id}`, { method: "DELETE", headers: authHeaders() });
       setProjects(p => p.filter(pr => pr._id !== id));
       toast.show("تم حذف المشروع");
     } catch { toast.show("فشل الحذف", "error"); }
@@ -647,7 +647,7 @@ function ContactsPage({ toast }) {
   const load = async () => {
     setLoading(true);
     try {
-      const data = await apiFetch("/api/contacts");
+      const data = await apiFetch("/contacts");
       setContacts(data.contacts || data.data || data || []);
     } catch { toast.show("فشل تحميل الرسائل", "error"); }
     finally { setLoading(false); }
@@ -657,7 +657,7 @@ function ContactsPage({ toast }) {
 
   const deleteContact = async (id) => {
     try {
-      await fetch(`${API}/api/contacts/${id}`, { method: "DELETE", headers: authHeaders() });
+      await fetch(`${API}/contacts/${id}`, { method: "DELETE", headers: authHeaders() });
       setContacts(p => p.filter(c => c._id !== id));
       if (selected?._id === id) setSelected(null);
       toast.show("تم حذف الرسالة");
@@ -749,7 +749,7 @@ function HeroPage({ toast }) {
   const load = async () => {
     setLoading(true);
     try {
-      const data = await apiFetch("/api/hero");
+      const data = await apiFetch("/hero");
       setSlides(data.slides || data.data?.slides || []);
     } catch { toast.show("فشل تحميل السلايدز", "error"); }
     finally { setLoading(false); }
@@ -759,7 +759,7 @@ function HeroPage({ toast }) {
 
   const toggleSlide = async (id, current) => {
     try {
-      await fetch(`${API}/api/hero/slides/${id}/toggle`, { method: "PATCH", headers: authHeaders() });
+      await fetch(`${API}/hero/slides/${id}/toggle`, { method: "PATCH", headers: authHeaders() });
       setSlides(p => p.map(s => s._id === id ? { ...s, isActive: !current } : s));
       toast.show(current ? "تم إخفاء السلايد" : "تم تفعيل السلايد");
     } catch { toast.show("فشل التغيير", "error"); }
@@ -767,7 +767,7 @@ function HeroPage({ toast }) {
 
   const deleteSlide = async (id) => {
     try {
-      await fetch(`${API}/api/hero/slides/${id}`, { method: "DELETE", headers: authHeaders() });
+      await fetch(`${API}/hero/slides/${id}`, { method: "DELETE", headers: authHeaders() });
       setSlides(p => p.filter(s => s._id !== id));
       toast.show("تم حذف السلايد");
     } catch { toast.show("فشل الحذف", "error"); }
@@ -902,10 +902,10 @@ function SlideForm({ slide, onClose, toast }) {
         buttonLink: overlay.buttonLink,
       }));
       if (isEdit) {
-        await fetch(`${API}/api/hero/slides/${slide._id}`, { method: "PATCH", headers: authHeaders(), body: fd });
+        await fetch(`${API}/hero/slides/${slide._id}`, { method: "PATCH", headers: authHeaders(), body: fd });
         toast.show("تم تحديث السلايد");
       } else {
-        await fetch(`${API}/api/hero/slides`, { method: "POST", headers: authHeaders(), body: fd });
+        await fetch(`${API}/hero/slides`, { method: "POST", headers: authHeaders(), body: fd });
         toast.show("تم إضافة السلايد");
       }
       onClose();
