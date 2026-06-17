@@ -16,6 +16,8 @@ import MarketingGrowth from "./pages/MarketingGrowth";
 import DigitalLearning from "./pages/DigitalLearning";
 import AiPowerd from "./pages/AiPowerd";
 import EventsExperiential from "./pages/EventsExperiential";
+import Blog from "./pages/admin/ContentBuilder";
+import AdminPanel from "./pages/admin/AdminPanel";
 
 
 export default function App() {
@@ -36,7 +38,23 @@ export default function App() {
           <Route path="/services/brand-identity" element={<ServiceDetail />} />
           <Route path="/services/content-storytelling" element={<ContentAndStorytelling />} />
           <Route path="/services/marketing-growth" element={<MarketingGrowth />} />
+          {/* Admin Routes */}
+          {/* <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/blog" element={<ContentBuilder
+            pageTitle="New Blog Post"
+            titlePlaceholder="Blog Title..."
+            publishLabel="Publish Blog"
+            onPublish={(data) => console.log("Blog:", data)}
+          />} />
+          <Route path="/admin/portfolio" element={<ContentBuilder
+            pageTitle="New Project"
+            titlePlaceholder="Project Title..."
+            publishLabel="Add Project"
+            onPublish={(data) => console.log("Project:", data)}
+          />} />
+          <Route path="/admin/contact" element={<ContactAdmin />} /> */}
 
+          <Route path="/admin/*" element={<AdminPanel />} />
 
         </Route>
       </Routes>
