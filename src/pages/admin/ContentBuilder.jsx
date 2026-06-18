@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Image, Type, Video, Trash2 } from "lucide-react";
-import TextEditor from "../../components/TextEditor";
+import TextEditor from "../../components/Admin/TextEditor";
 import { useNavigate } from "react-router-dom";
 
 const ContentBuilder = ({

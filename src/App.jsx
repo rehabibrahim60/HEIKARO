@@ -62,3 +62,57 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
+
+
+
+
+// import { useState } from "react";
+// import { useToast, ToastContainer } from "./components/ui/Toast";
+// import AdminLayout from "./components/layout/AdminLayout";
+// import LoginPage from "./pages/LoginPage";
+// import DashboardHome from "./pages/DashboardHome";
+// import BlogsPage from "./pages/BlogsPage";
+// import ProjectsPage from "./pages/ProjectsPage";
+// import ContactsPage from "./pages/ContactsPage";
+// import HeroPage from "./pages/HeroPage";
+
+// export default function App() {
+//   const [authed, setAuthed] = useState(!!localStorage.getItem("admin_token"));
+//   const [page, setPage] = useState("home");
+//   const toast = useToast();
+
+//   const logout = () => {
+//     localStorage.removeItem("admin_token");
+//     setAuthed(false);
+//     setPage("home");
+//   };
+
+//   return (
+//     <>
+//       <style>{`
+//         * { box-sizing: border-box; font-family: 'Cairo', 'Segoe UI', sans-serif; }
+//         body { margin: 0; }
+//         button { font-family: inherit; }
+//         input, textarea { font-family: inherit; }
+//         @keyframes pulse { 0%,100%{opacity:.6} 50%{opacity:.3} }
+//         @keyframes slideIn { from{transform:translateX(20px);opacity:0} to{transform:none;opacity:1} }
+//         textarea:focus, input:focus { outline: 2px solid #22d3ee !important; border-color: transparent !important; }
+//       `}</style>
+
+//       <ToastContainer toasts={toast.toasts} />
+
+//       {!authed ? (
+//         <LoginPage onLogin={() => setAuthed(true)} toast={toast} />
+//       ) : (
+//         <AdminLayout page={page} navigate={setPage} onLogout={logout}>
+//           {page === "home"     && <DashboardHome navigate={setPage} />}
+//           {page === "blogs"    && <BlogsPage     toast={toast} />}
+//           {page === "projects" && <ProjectsPage  toast={toast} />}
+//           {page === "contacts" && <ContactsPage  toast={toast} />}
+//           {page === "hero"     && <HeroPage      toast={toast} />}
+//         </AdminLayout>
+//       )}
+//     </>
+//   );
+// }
