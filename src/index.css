@@ -1,1 +1,134 @@
 @import "tailwindcss";
+
+:root {
+    --color-blue: #0f33fe;
+    --color-yellow: #bbfe0f;
+}
+
+@font-face {
+    font-family: "Aspekta";
+    src: url("/fonts/Aspekta-300.woff2") format("woff2"),
+        url("/fonts/Aspekta-300.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Aspekta";
+    src: url("/fonts/Aspekta-500.woff2") format("woff2"),
+        url("/fonts/Aspekta-500.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Aspekta";
+    src: url("/fonts/Aspekta-600.woff2") format("woff2"),
+        url("/fonts/Aspekta-600.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Aspekta";
+    src: url("/fonts/Aspekta-750.woff2") format("woff2"),
+        url("/fonts/Aspekta-750.otf") format("opentype");
+    font-weight: 750;
+    font-style: normal;
+    font-display: swap;
+}
+* {
+    font-family: "Aspekta", sans-serif !important;
+}
+
+body {
+    font-family: "Aspekta", sans-serif !important;
+}
+
+*,
+*::before,
+*::after {
+    font-family: "Aspekta", sans-serif;
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+.tiptap-content .ProseMirror {
+    outline: none;
+    color: #e5e7eb;
+    /* gray-200 */
+}
+
+.tiptap-content .ProseMirror h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin: 0.6rem 0;
+    color: #ffffff;
+}
+
+.tiptap-content .ProseMirror h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    color: #ffffff;
+}
+
+.tiptap-content .ProseMirror p {
+    margin: 0.4rem 0;
+    line-height: 1.7;
+}
+
+.tiptap-content .ProseMirror strong {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.tiptap-content .ProseMirror em {
+    font-style: italic;
+}
+
+.tiptap-content .ProseMirror ul,
+.tiptap-content .ProseMirror ol {
+    margin: 0.5rem 0;
+    padding-inline-start: 1.5rem;
+}
+
+.tiptap-content .ProseMirror ul {
+    list-style: disc;
+}
+
+.tiptap-content .ProseMirror ol {
+    list-style: decimal;
+}
+
+.tiptap-content .ProseMirror blockquote {
+    border-inline-start: 3px solid #4b5563;
+    /* gray-600 */
+    padding-inline-start: 1rem;
+    color: #9ca3af;
+    /* gray-400 */
+    font-style: italic;
+    margin: 0.5rem 0;
+}
+
+.tiptap-content .ProseMirror a {
+    color: #22d3ee;
+    /* cyan-400 */
+    text-decoration: underline;
+}
+
+.tiptap-content .ProseMirror p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    color: #6b7280;
+    /* gray-500 */
+    pointer-events: none;
+    float: left;
+    height: 0;
+}

@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import Icon from "../../components/Admin/ui/Icon";
 import ConfirmDialog from "../../components/Admin/ui/ConfirmDialog";
 import { LoadingGrid, EmptyState } from "../../components/Admin/ui/LoadingGrid";
-import SlideForm from "../components/hero/SlideForm";
-import { apiFetch, API, authHeaders } from "../utils/api";
-import { primaryBtn, iconBtn, listCard } from "../styles/shared";
+import SlideForm from "../../components/Admin/SlideForm";
+import { apiFetch, API, authHeaders } from "../../utils/api";
+import { primaryBtn, iconBtn, listCard } from "./../style/shared";
 
 export default function HeroPage({ toast }) {
   const [slides, setSlides] = useState([]);
@@ -73,8 +73,8 @@ export default function HeroPage({ toast }) {
                   : s.type === "video" && s.videoUrl
                     ? <video src={s.videoUrl} style={{ width: "100%", height: "100%", objectFit: "cover" }} muted />
                     : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: "#374151" }}>
-                        <Icon name={s.type === "video" ? "video" : "image"} size={28} />
-                      </div>}
+                      <Icon name={s.type === "video" ? "video" : "image"} size={28} />
+                    </div>}
                 <span style={{
                   position: "absolute", bottom: 4, left: 4, fontSize: 10, padding: "2px 6px",
                   borderRadius: 4, background: s.type === "video" ? "#3b1d8a" : "#083344",

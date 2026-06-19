@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Icon from "../components/ui/Icon";
-import ConfirmDialog from "../components/ui/ConfirmDialog";
-import { LoadingGrid, EmptyState } from "../components/ui/LoadingGrid";
-import { apiFetch, API, authHeaders } from "../utils/api";
-import { primaryBtn, iconBtn, listCard } from "../styles/shared";
+import Icon from "../../components/Admin/ui/Icon";
+import ConfirmDialog from "../../components/Admin/ui/ConfirmDialog";
+import { LoadingGrid, EmptyState } from "../../components/Admin/ui/LoadingGrid";
+import { apiFetch, API, authHeaders } from "../../utils/api";
+import { primaryBtn, iconBtn, listCard } from "./../style/shared";
 
-export default function BlogsPage({ toast }) {
+export default function BlogsPage({ toast, openBuilder }) {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +45,15 @@ export default function BlogsPage({ toast }) {
           <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>المقالات</h1>
           <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>{blogs.length} مقال</p>
         </div>
-        <button onClick={() => navigate("/admin/blog/new")} style={primaryBtn}>
+        <button
+          onClick={() => openBuilder({
+            titlePlaceholder: "Blog Title...",
+            publishLabel: "Publish Blog",
+            returnPage: "blogs",
+            onPublish: (data) => console.log("Blog:", data)
+          })}
+          style={primaryBtn}
+        >
           <Icon name="plus" size={16} /> مقال جديد
         </button>
       </div>

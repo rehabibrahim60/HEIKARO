@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Icon from "../ui/Icon";
+import Icon from "./ui/Icon";
 import { API, authHeaders } from "../../utils/api";
 import { inputStyle, labelStyle, primaryBtn, ghostBtn } from "../../pages/style/shared";
 
@@ -10,13 +10,13 @@ export default function SlideForm({ slide, onClose, toast }) {
   const [preview, setPreview] = useState(slide?.imageUrl || slide?.videoUrl || null);
   const [showOverlay, setShowOverlay] = useState(slide?.showOverlay ?? false);
   const [overlay, setOverlay] = useState({
-    badge:       slide?.overlayText?.badge              || "",
-    prefix:      slide?.overlayText?.heading?.prefix    || "",
-    highlight:   slide?.overlayText?.heading?.highlight || "",
-    suffix:      slide?.overlayText?.heading?.suffix    || "",
-    description: slide?.overlayText?.description        || "",
-    buttonText:  slide?.overlayText?.buttonText         || "",
-    buttonLink:  slide?.overlayText?.buttonLink         || "",
+    badge: slide?.overlayText?.badge || "",
+    prefix: slide?.overlayText?.heading?.prefix || "",
+    highlight: slide?.overlayText?.heading?.highlight || "",
+    suffix: slide?.overlayText?.heading?.suffix || "",
+    description: slide?.overlayText?.description || "",
+    buttonText: slide?.overlayText?.buttonText || "",
+    buttonLink: slide?.overlayText?.buttonLink || "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -104,9 +104,9 @@ export default function SlideForm({ slide, onClose, toast }) {
                   ? <img src={preview} alt="" style={{ maxHeight: 140, borderRadius: 8 }} />
                   : <video src={preview} style={{ maxHeight: 140, borderRadius: 8 }} controls />
                 : <div style={{ color: "#4b5563", fontSize: 13 }}>
-                    <Icon name="upload" size={24} /><br />
-                    اضغط لرفع {type === "image" ? "صورة" : "فيديو"}
-                  </div>}
+                  <Icon name="upload" size={24} /><br />
+                  اضغط لرفع {type === "image" ? "صورة" : "فيديو"}
+                </div>}
               <input id="slideFile" type="file" accept={type === "image" ? "image/*" : "video/*"} hidden onChange={handleFile} />
             </div>
           </div>
@@ -134,9 +134,9 @@ export default function SlideForm({ slide, onClose, toast }) {
               <p style={{ color: "#22d3ee", fontSize: 12, fontWeight: 600, margin: "0 0 4px", textTransform: "uppercase", letterSpacing: 1 }}>نصوص العرض</p>
               <input value={overlay.badge} onChange={e => setOverlay(p => ({ ...p, badge: e.target.value }))} style={inputStyle} placeholder="Badge مثلاً: MARKETING & GROWTH" />
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
-                <input value={overlay.prefix}    onChange={e => setOverlay(p => ({ ...p, prefix:    e.target.value }))} style={inputStyle} placeholder="Prefix: WE" />
+                <input value={overlay.prefix} onChange={e => setOverlay(p => ({ ...p, prefix: e.target.value }))} style={inputStyle} placeholder="Prefix: WE" />
                 <input value={overlay.highlight} onChange={e => setOverlay(p => ({ ...p, highlight: e.target.value }))} style={inputStyle} placeholder="Highlight" />
-                <input value={overlay.suffix}    onChange={e => setOverlay(p => ({ ...p, suffix:    e.target.value }))} style={inputStyle} placeholder="Suffix: BRANDS" />
+                <input value={overlay.suffix} onChange={e => setOverlay(p => ({ ...p, suffix: e.target.value }))} style={inputStyle} placeholder="Suffix: BRANDS" />
               </div>
               <textarea value={overlay.description} onChange={e => setOverlay(p => ({ ...p, description: e.target.value }))}
                 style={{ ...inputStyle, minHeight: 70, resize: "vertical" }} placeholder="وصف..." />

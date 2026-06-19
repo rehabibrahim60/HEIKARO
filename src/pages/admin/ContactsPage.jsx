@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import Icon from "../../components/Admin/ui/Icon";
 import ConfirmDialog from "../../components/Admin/ui/ConfirmDialog";
 import { LoadingGrid, EmptyState } from "../../components/Admin/ui/LoadingGrid";
-import { apiFetch, API, authHeaders } from "../utils/api";
-import { iconBtn, listCard } from "../styles/shared";
+import { apiFetch, API, authHeaders } from "../../utils/api";
+import { iconBtn, listCard } from "./../style/shared";
 
 function Detail({ label, value }) {
   return (
@@ -98,10 +98,10 @@ export default function ContactsPage({ toast }) {
                 <button onClick={() => setSelected(null)} style={iconBtn}><Icon name="x" size={16} /></button>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                <Detail label="الاسم"    value={selected.name} />
-                <Detail label="البريد"   value={selected.email} />
-                {selected.phone   && <Detail label="الهاتف"   value={selected.phone} />}
-                {selected.subject && <Detail label="الموضوع"  value={selected.subject} />}
+                <Detail label="الاسم" value={selected.name} />
+                <Detail label="البريد" value={selected.email} />
+                {selected.phone && <Detail label="الهاتف" value={selected.phone} />}
+                {selected.subject && <Detail label="الموضوع" value={selected.subject} />}
                 <div>
                   <p style={{ color: "#6b7280", fontSize: 11, fontWeight: 600, textTransform: "uppercase", marginBottom: 6, letterSpacing: 1 }}>الرسالة</p>
                   <p style={{ color: "#f1f5f9", fontSize: 14, lineHeight: 1.7, background: "#0f172a", padding: 14, borderRadius: 8, margin: 0 }}>

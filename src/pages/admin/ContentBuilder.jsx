@@ -1,17 +1,16 @@
 import React, { useState, useRef } from "react";
 import { Image, Type, Video, Trash2 } from "lucide-react";
 import TextEditor from "../../components/Admin/TextEditor";
-import { useNavigate } from "react-router-dom";
 
 const ContentBuilder = ({
   titlePlaceholder = "Title...",
   publishLabel = "Publish",
   onPublish,
+  onCancel,
   extraFields = null,
 }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState([]);
-  const navigate = useNavigate();
   const imageInputRef = useRef(null);
   const videoInputRef = useRef(null);
 
@@ -45,14 +44,7 @@ const ContentBuilder = ({
 
   const handlePublish = () => {
     const data = { title, content, createdAt: new Date() };
-    if (onPublish) {
-      onPublish(data);
-      navigate("/admin");
-    } else {
-      console.log(data);
-      // alert("Published Successfully");
-      navigate("/admin"); // Redirect to admin panel after publishing
-    }
+    if (onPublish) onPublish(data);
   };
 
   return (
@@ -105,9 +97,21 @@ const ContentBuilder = ({
         </div>
 
         <div className="mt-10 flex justify-end">
-          <button onClick={handlePublish} className="bg-cyan-500 text-black font-semibold px-8 py-3 rounded-xl hover:bg-cyan-400 transition-colors">
+
+          <button
+            onClick={onCancel}
+            className="px-8 py-3 rounded-xl border border-gray-700 text-gray-300 hover:bg-gray-800 transition-colors"
+          >
+            إلغاء
+          </button>
+          <button
+            onClick={handlePublish}
+            className="bg-cyan-500 text-black font-semibold px-8 py-3 rounded-xl hover:bg-cyan-400 transition-colors"
+          >
             {publishLabel}
           </button>
+
+
         </div>
 
       </div>

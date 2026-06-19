@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Icon from "../components/ui/Icon";
-import ConfirmDialog from "../components/ui/ConfirmDialog";
-import { LoadingGrid, EmptyState } from "../components/ui/LoadingGrid";
-import { apiFetch, API, authHeaders } from "../utils/api";
-import { primaryBtn, iconBtn, listCard } from "../styles/shared";
+import Icon from "../../components/Admin/ui/Icon";
+import ConfirmDialog from "../../components/Admin/ui/ConfirmDialog";
+import { LoadingGrid, EmptyState } from "../../components/Admin/ui/LoadingGrid";
+import { apiFetch, API, authHeaders } from "../../utils/api";
+import { primaryBtn, iconBtn, listCard } from "../../pages/style/shared";
 
 export default function ProjectsPage({ toast }) {
   const navigate = useNavigate();
@@ -58,8 +58,8 @@ export default function ProjectsPage({ toast }) {
               {pr.coverImage
                 ? <img src={pr.coverImage} alt="" style={{ width: "100%", height: 160, objectFit: "cover" }} />
                 : <div style={{ height: 160, background: "#1f2937", display: "flex", alignItems: "center", justifyContent: "center", color: "#374151" }}>
-                    <Icon name="project" size={40} />
-                  </div>}
+                  <Icon name="project" size={40} />
+                </div>}
               <div style={{ padding: "12px 16px 16px" }}>
                 <p style={{ color: "#f1f5f9", fontWeight: 600, fontSize: 15, margin: "0 0 6px" }}>{pr.title}</p>
                 {pr.tags?.length > 0 && (
