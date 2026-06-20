@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../pages/style/portfolio.css";
+import { Link } from "react-router-dom";
 
 
 
@@ -27,8 +28,8 @@ const EngineerYourMarket = () => {
                     </p>
 
                     <div className="value-buttons">
-                        <button className="primary-btn">ENGAGE HEIKARO <span>→</span></button>
-                        <button className="secondary-btn">REVIEW PROOF SYSTEM</button>
+                        <Link to={"/contact"}> <button className="primary-btn text-black">ENGAGE HEIKARO <span>→</span></button> </Link>
+                        <Link to={"/portfolio"}><button className="secondary-btn">REVIEW PROOF SYSTEM</button> </Link>
                     </div>
 
                     <div className="process-steps">

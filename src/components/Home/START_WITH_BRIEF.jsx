@@ -19,7 +19,7 @@ export default function StartWithBrief() {
                     </p>
 
                     <a
-                        href="#contact"
+                        href="contact"
                         className="mt-10 inline-flex items-center justify-center bg-[#0A5BFF] px-10 py-4 text-xs font-black uppercase  text-white transition-all duration-300 hover:bg-[#1C6BFF]"
                     >
                         Start Your Brief
