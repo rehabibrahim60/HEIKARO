@@ -20,7 +20,7 @@ const WhatRenderingSystemIncludes = () => {
 
                 {/* ── Left: text ── */}
                 <div className="flex flex-col justify-center gap-6">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
                         Platform Integration Specs
                     </p>
                     <h2

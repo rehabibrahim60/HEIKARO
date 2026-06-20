@@ -11,7 +11,7 @@ export default function CapabilitiesSection() {
                 <h2 className="max-w-[720px] text-4xl font-black uppercase leading-[0.95] tracking-[-0.04em] text-white lg:text-[44px]">
                     Unified Brand Architecture.
                     <br />
-                    <span className="text-[#065BFF]">8 Strategic Tracks.</span>
+                    <span className="text-[#0f33fe]">8 Strategic Tracks.</span>
                 </h2>
 
                 <div className="mt-24">

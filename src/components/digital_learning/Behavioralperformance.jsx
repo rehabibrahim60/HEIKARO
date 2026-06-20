@@ -25,7 +25,7 @@ const BehavioralPerformance = () => {
     return (
         <section className="w-full bg-[#0d0d0d] px-[6%] py-20">
             {/* Label */}
-            <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1a5fff]">
+            <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0f33fe]">
                 Behavioral Performance
             </p>
 
@@ -53,7 +53,7 @@ const BehavioralPerformance = () => {
                         className="border border-[#1e1e1e] p-8 flex flex-col gap-5"
                     >
                         {/* Icon */}
-                        <span className="text-[#c8ff00]">{card.icon}</span>
+                        <span className="text-[#bbfe0f]">{card.icon}</span>
 
                         {/* Title */}
                         <h3 className="text-[13px] font-bold uppercase tracking-[0.12em] text-white">

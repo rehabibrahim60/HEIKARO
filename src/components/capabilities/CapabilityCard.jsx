@@ -28,7 +28,7 @@ export default function CapabilityCard({
                     }`}
                 >
                     {chapter && (
-                        <p className="mb-4 font-mono text-[11px] font-bold uppercase tracking-tight text-lime-400">
+                        <p className="mb-4 font-mono text-[11px] font-bold uppercase tracking-tight text-[#bbfe0f]">
                             {chapter}
                         </p>
                     )}
@@ -96,7 +96,7 @@ export default function CapabilityCard({
                                     <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600">
                                         {competencyLabel}
                                     </p>
-                                    <p className="font-mono text-[11px] font-bold uppercase leading-5 text-lime-400">
+                                    <p className="font-mono text-[11px] font-bold uppercase leading-5 text-[#bbfe0f]">
                                         {competencyText}
                                     </p>
                                 </div>

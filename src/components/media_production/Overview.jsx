@@ -39,14 +39,14 @@ const Overview = () => {
                 aria-hidden="true"
             />
 
-            {/* ── Inner wrapper — px-[6%] يتطابق مع الهيرو والمنيو ── */}
+            {/* ── Inner wrapper — px-[6%] matches the hero and menu ── */}
             <div className="relative z-10 px-[6%] max-w-[1400px]">
 
                 {/* ── TOP: label + heading + description ── */}
                 <div className="mb-16 md:mb-20">
 
                     {/* Label */}
-                    <p className="text-[#1a5fff] text-[10.5px] font-bold  uppercase mb-5">
+                    <p className="text-[#0f33fe] text-[10.5px] font-bold uppercase mb-5">
                         HIGH-VALUE ASSETS
                     </p>
 
@@ -79,9 +79,9 @@ const Overview = () => {
                         >
                             {/* Icon */}
                             <span
-                                className="text-[#c8ff00] text-[18px] flex items-center justify-center
+                                className="text-[#bbfe0f] text-[18px] flex items-center justify-center
                            w-[42px] h-[42px] shrink-0
-                           bg-[rgba(200,255,0,0.07)] border border-[rgba(200,255,0,0.22)]
+                           bg-[rgba(187,254,15,0.07)] border border-[rgba(187,254,15,0.22)]
                            rounded-[4px]"
                             >
                                 {card.icon}

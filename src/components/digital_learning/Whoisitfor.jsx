@@ -33,7 +33,7 @@ const WhoIsItFor = () => {
             {/* Top centered text */}
             <div className="mb-16 flex flex-col items-center text-center">
                 {/* Label */}
-                <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+                <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
                     Scale Directions
                 </p>
 
@@ -54,7 +54,7 @@ const WhoIsItFor = () => {
                         className="border border-[#1e1e1e] p-7 flex flex-col gap-5"
                     >
                         {/* Icon */}
-                        <span className="flex h-10 w-10 items-center justify-center bg-[#0d1a3a] text-[#1a5fff]">
+                        <span className="flex h-10 w-10 items-center justify-center bg-[#0d1a3a] text-[#0f33fe]">
                             {item.icon}
                         </span>
 
@@ -69,7 +69,7 @@ const WhoIsItFor = () => {
                         </p>
 
                         {/* Dot */}
-                        <span className="mt-2 h-2 w-2 rounded-full bg-[#c8ff00]" />
+                        <span className="mt-2 h-2 w-2 rounded-full bg-[#bbfe0f]" />
                     </div>
                 ))}
             </div>

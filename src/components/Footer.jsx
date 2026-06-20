@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube, FaLinkedinIn, FaBehance } from "react-icons/fa6";
 import logo from "../assets/Logo.png";
+
 const socialLinks = [
   { href: "https://www.facebook.com/heikaro", icon: <FaFacebookF /> },
   { href: "https://www.instagram.com/heikaro.agancy/", icon: <FaInstagram /> },
@@ -12,30 +13,30 @@ const socialLinks = [
 ];
 
 const families = [
-  {href : "/services/brand-identity",item: "Brand & Identity"},
-  {href : "/services/design-experience",item: "Design & Experience"},
-  {href : "/services/content-storytelling",item: "Content & Storytelling"},
-  {href : "/services/marketing-growth",item: "Marketing & Growth"},
-  {href : "/services/media-production",item: "Media & Production"},
-  {href : "/services/digital-learning-experience",item: "Digital Learning Experience"},
-  {href : "/services/ai-video-cgi",item: "AI-Powered Video & CGI"},
-  {href : "/services/events-experiential",item: "Events & Experiential"},
+  { href: "/services/brand-identity", item: "Brand & Identity" },
+  { href: "/services/design-experience", item: "Design & Experience" },
+  { href: "/services/content-storytelling", item: "Content & Storytelling" },
+  { href: "/services/marketing-growth", item: "Marketing & Growth" },
+  { href: "/services/media-production", item: "Media & Production" },
+  { href: "/services/digital-learning-experience", item: "Digital Learning Experience" },
+  { href: "/services/ai-video-cgi", item: "AI-Powered Video & CGI" },
+  { href: "/services/events-experiential", item: "Events & Experiential" },
 ];
 
 const Pages = [
-  {href : "/","item": "Home"},
-  {href : "/about","item": "About"},
-  {href : "/portfolio","item": "Portfolio"},
-  {href : "/blogs","item": "Journal (Blog)"},
-  {href : "/contact","item": "Contact"}
-]
+  { href: "/", item: "Home" },
+  { href: "/about", item: "About" },
+  { href: "/portfolio", item: "Portfolio" },
+  { href: "/blogs", item: "Journal (Blog)" },
+  { href: "/contact", item: "Contact" }
+];
 
 const Footer = () => {
   return (
     <footer className="bg-[#0a0a0a] text-white px-[5%] py-20">
       <div className="grid grid-cols-[2fr_1fr_1.5fr_1.5fr] gap-16">
 
-        {/* العمود الأول: اللوجو والوصف */}
+        {/* First column: logo and description */}
         <div className="flex flex-col gap-4">
           <img src={logo} alt="Heikaro" className="h-9 w-auto object-contain self-start mb-5" />
           <p className="text-[#a0a0a0] text-sm font-normal leading-relaxed pl-1">
@@ -50,20 +51,21 @@ const Footer = () => {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#a0a0a0] text-base transition-colors duration-300 hover:text-blue-500 cursor-pointer"
+                className="text-[#a0a0a0] text-base transition-colors duration-300 hover:text-[#0f33fe] cursor-pointer"
               >
                 {icon}
               </a>
             ))}
           </div>
         </div>
-        {/* العمود الثاني: الروابط */}
+
+        {/* Second column: links */}
         <div className="flex flex-col">
           <h3 className="text-sm font-bold uppercase cking-[2px] text-white mb-6">
             COMPANY
           </h3>
           <ul className="flex flex-col gap-[15px] list-none p-0">
-            {Pages.map(({item, href}) => (
+            {Pages.map(({ item, href }) => (
               <li
                 key={item}
                 className="text-sm text-[#a0a0a0] cursor-pointer hover:text-white transition-colors duration-300"
@@ -76,13 +78,13 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* العمود الثالث: الخدمات */}
+        {/* Third column: services */}
         <div className="flex flex-col">
-          <h3 className="text-sm font-bold uppercase  text-white mb-6">
+          <h3 className="text-sm font-bold uppercase text-white mb-6">
             SERVICES
           </h3>
           <ul className="flex flex-col gap-[15px] list-none p-0">
-            {families.map(({item, href}) => (
+            {families.map(({ item, href }) => (
               <li
                 key={item}
                 className="text-sm text-[#a0a0a0] cursor-pointer hover:text-white transition-colors duration-300"
@@ -95,9 +97,9 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* العمود الرابع: معلومات الاتصال */}
+        {/* Fourth column: contact information */}
         <div className="flex flex-col">
-          <h3 className="text-sm font-bold uppercase  text-white mb-6">
+          <h3 className="text-sm font-bold uppercase text-white mb-6">
             CONTACT
           </h3>
           <p className="text-[#a0a0a0] text-base font-normal leading-relaxed mb-4">

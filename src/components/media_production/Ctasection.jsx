@@ -1,4 +1,5 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+
 const CTASection = () => {
     return (
         <section
@@ -7,7 +8,7 @@ const CTASection = () => {
         >
             <div className="relative z-10 px-[6%] max-w-[1400px] mx-auto flex flex-col items-center text-center">
 
-                <p className="text-[#c8f135] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-6">
+                <p className="text-[#bbfe0f] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-6">
                     Aesthetic Standing
                 </p>
 
@@ -25,7 +26,7 @@ const CTASection = () => {
 
                 <div className="flex flex-col sm:flex-row gap-3">
                     <Link to="/contact">
-                        <button className="group flex items-center gap-3 bg-[#c8f135] px-8 py-4 text-[11px] font-bold tracking-[0.18em] uppercase text-[#0a0a0a] hover:bg-[#d4f94e] transition-colors duration-200 cursor-pointer">
+                        <button className="group flex items-center gap-3 bg-[#bbfe0f] px-8 py-4 text-[11px] font-bold tracking-[0.18em] uppercase text-[#0a0a0a] hover:bg-[#bbfe0f] transition-colors duration-200 cursor-pointer">
                             Request Production Scoping
                             <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                         </button>

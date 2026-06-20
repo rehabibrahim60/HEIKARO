@@ -10,7 +10,7 @@ export default function StartWithBrief() {
                         Brief
                     </h2>
 
-                    <p className="mt-8 text-lg font-bold uppercase  text-[#B8FF57]">
+                    <p className="mt-8 text-lg font-bold uppercase text-[#bbfe0f]">
                         The Stronger The Brief, The Stronger The Output.
                     </p>
 
@@ -20,7 +20,7 @@ export default function StartWithBrief() {
 
                     <a
                         href="#contact"
-                        className="mt-10 inline-flex items-center justify-center bg-[#0A5BFF] px-10 py-4 text-xs font-black uppercase  text-white transition-all duration-300 hover:bg-[#1C6BFF]"
+                        className="mt-10 inline-flex items-center justify-center bg-[#0f33fe] px-10 py-4 text-xs font-black uppercase text-white transition-all duration-300 hover:bg-[#0f33fe]"
                     >
                         Start Your Brief
                     </a>

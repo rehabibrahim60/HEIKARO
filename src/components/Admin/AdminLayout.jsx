@@ -8,6 +8,8 @@ const navItems = [
   { id: "hero", label: "Hero", icon: "hero" },
 ];
 
+const BLUE = "#0f33fe";
+
 export default function AdminLayout({ children, page, navigate, onLogout }) {
   return (
     <div
@@ -41,7 +43,7 @@ export default function AdminLayout({ children, page, navigate, onLogout }) {
         >
           <p
             style={{
-              color: "#22d3ee",
+              color: BLUE,
               fontWeight: 800,
               fontSize: 16,
               margin: 0,
@@ -79,8 +81,8 @@ export default function AdminLayout({ children, page, navigate, onLogout }) {
                 cursor: "pointer",
                 fontSize: 14,
                 fontWeight: 500,
-                background: page === item.id ? "#083344" : "transparent",
-                color: page === item.id ? "#22d3ee" : "#6b7280",
+                background: page === item.id ? "rgba(15, 51, 254, 0.14)" : "transparent",
+                color: page === item.id ? BLUE : "#6b7280",
                 transition: "all 0.15s",
                 textAlign: "left",
               }}

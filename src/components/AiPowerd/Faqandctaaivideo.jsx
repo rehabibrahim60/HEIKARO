@@ -35,10 +35,10 @@ export const FAQSection = () => {
 
         {/* ── Left ── */}
         <div className="flex flex-col gap-6">
-          <span className="flex h-12 w-12 items-center justify-center bg-[#0d1a3a] text-[#1a5fff]">
+          <span className="flex h-12 w-12 items-center justify-center bg-[#0d1a3a] text-[#0f33fe]">
             <MessageCircleQuestion size={22} />
           </span>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
             FAQs
           </p>
           <h2
@@ -95,7 +95,7 @@ export const CTASection = () => {
       <div className="flex flex-col items-center text-center gap-6">
 
         {/* Label */}
-        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#c8ff00]">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#bbfe0f]">
           Unbounded Visual Space
         </p>
 
@@ -116,7 +116,7 @@ export const CTASection = () => {
 
         {/* Buttons */}
         <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-          <button className="flex items-center gap-2 bg-[#c8ff00] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-black transition-opacity hover:opacity-90">
+          <button className="flex items-center gap-2 bg-[#bbfe0f] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-black transition-opacity hover:opacity-90">
             Request Synthetic Briefing
             <ArrowRight size={14} />
           </button>

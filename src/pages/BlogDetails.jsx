@@ -59,7 +59,7 @@ export default function BlogDetails() {
     return (
       <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
         <p className="text-gray-400 mb-4">Blog not found.</p>
-        <Link to="/blogs" className="text-blue-500">
+        <Link to="/blogs" className="text-[#0f33fe]">
           Back to Blogs
         </Link>
       </div>
@@ -97,7 +97,7 @@ export default function BlogDetails() {
 
           {/* Meta */}
           <div className="flex flex-wrap items-center gap-8 mb-8">
-            <span className="bg-blue-600 text-white px-4 py-2 text-sm font-black uppercase tracking-[0.12em] rounded">
+            <span className="bg-[#0f33fe] text-white px-4 py-2 text-sm font-black uppercase tracking-[0.12em] rounded">
               {blog.category}
             </span>
 
@@ -111,7 +111,7 @@ export default function BlogDetails() {
           </div>
 
           {/* Big Title */}
-          <h1 className="max-w-[1050px] text-[46px] md:text-[72px] lg:text-[86px] leading-[0.92] font-black uppercase mb-10 bg-gradient-to-r from-cyan-200 via-lime-200 to-white bg-clip-text text-transparent drop-shadow-[0_0_22px_rgba(163,230,53,0.25)]">
+          <h1 className="max-w-[1050px] text-[46px] md:text-[72px] lg:text-[86px] leading-[0.92] font-black uppercase mb-10 bg-gradient-to-r from-[#0f33fe] via-[#bbfe0f] to-white bg-clip-text text-transparent drop-shadow-[0_0_22px_rgba(187,254,15,0.25)]">
             {blog.title}
           </h1>
 
@@ -125,7 +125,7 @@ export default function BlogDetails() {
                 href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
                 target="_blank"
                 rel="noreferrer"
-                className="border border-white/10 px-5 py-3 text-xs font-black tracking-[0.16em] hover:border-blue-600 hover:text-blue-500 transition"
+                className="border border-white/10 px-5 py-3 text-xs font-black tracking-[0.16em] hover:border-[#0f33fe] hover:text-[#0f33fe] transition"
               >
                 FACEBOOK
               </a>
@@ -134,14 +134,14 @@ export default function BlogDetails() {
                 href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}`}
                 target="_blank"
                 rel="noreferrer"
-                className="border border-white/10 px-5 py-3 text-xs font-black tracking-[0.16em] hover:border-blue-600 hover:text-blue-500 transition"
+                className="border border-white/10 px-5 py-3 text-xs font-black tracking-[0.16em] hover:border-[#0f33fe] hover:text-[#0f33fe] transition"
               >
                 LINKEDIN
               </a>
 
               <button
                 onClick={copyLink}
-                className="border border-white/10 px-5 py-3 text-xs font-black tracking-[0.16em] hover:border-blue-600 hover:text-blue-500 transition"
+                className="border border-white/10 px-5 py-3 text-xs font-black tracking-[0.16em] hover:border-[#0f33fe] hover:text-[#0f33fe] transition"
               >
                 COPY
               </button>
@@ -154,7 +154,7 @@ export default function BlogDetails() {
       <section className="px-6 py-24 bg-black">
         <div className="max-w-4xl mx-auto space-y-12">
           {blog.description && (
-            <div className="border-l-4 border-lime-300 pl-8 mb-16">
+            <div className="border-l-4 border-l-[#bbfe0f] pl-8 mb-16">
               <p className="text-3xl md:text-4xl leading-[1.45] text-gray-200">
                 {blog.description}
               </p>

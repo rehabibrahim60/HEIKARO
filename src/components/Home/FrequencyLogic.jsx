@@ -58,7 +58,7 @@ export default function FrequencyLogic() {
                                         {item.q}
                                     </span>
 
-                                    <span className={isOpen ? "text-[#065BFF]" : "text-white/40"}>
+                                    <span className={isOpen ? "text-[#0f33fe]" : "text-white/40"}>
                                         {isOpen ? "−" : "+"}
                                     </span>
                                 </button>

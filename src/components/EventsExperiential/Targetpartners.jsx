@@ -27,7 +27,7 @@ const TargetPartners = () => {
 
             {/* ── Centered header ── */}
             <div className="mb-14 flex flex-col items-center text-center">
-                <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+                <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
                     Operational Target
                 </p>
                 <h2
@@ -56,7 +56,7 @@ const TargetPartners = () => {
                         </p>
 
                         {/* Dot */}
-                        <span className="mt-2 h-2 w-2 rounded-full bg-[#c8ff00]" />
+                        <span className="mt-2 h-2 w-2 rounded-full bg-[#bbfe0f]" />
                     </div>
                 ))}
             </div>

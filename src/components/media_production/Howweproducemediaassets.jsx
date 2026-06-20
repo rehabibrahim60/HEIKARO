@@ -62,7 +62,7 @@ const HowWeProduceMediaAssets = () => {
             {/* Inner wrapper — same px-[6%] max-w-[1400px] as adjacent sections */}
             <div className="relative z-10 px-[6%] max-w-[1400px]">
                 {/* Header */}
-                <p className="text-[#1a5fff] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-4 text-center">
+                <p className="text-[#0f33fe] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-4 text-center">
                     Systematic Storytelling
                 </p>
                 <h2
@@ -91,9 +91,9 @@ const StepCard = ({ num, title, body }) => {
     return (
         <div className="group relative bg-[#0e1018] border border-[#1a1e2e] px-6 py-7 overflow-hidden transition-colors duration-250 hover:bg-[#121624] hover:border-[#252a3e]">
             {/* Bottom blue line animation on hover */}
-            <span className="absolute bottom-0 left-0 h-[2px] bg-[#1a5fff] w-0 group-hover:w-full transition-[width] duration-[350ms] ease-[cubic-bezier(0.4,0,0.2,1)]" />
+            <span className="absolute bottom-0 left-0 h-[2px] bg-[#0f33fe] w-0 group-hover:w-full transition-[width] duration-[350ms] ease-[cubic-bezier(0.4,0,0.2,1)]" />
 
-            <p className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#2a3060] group-hover:text-[#1a5fff] transition-colors duration-250 mb-[14px]">
+            <p className="text-[9px] font-bold tracking-[0.2em] uppercase text-[#2a3060] group-hover:text-[#0f33fe] transition-colors duration-250 mb-[14px]">
                 {num}
             </p>
             <p className="text-[12px] font-bold tracking-[0.06em] uppercase text-[#cccccc] group-hover:text-white transition-colors duration-250 mb-3 leading-[1.4]">

@@ -2,19 +2,19 @@ import React from "react";
 import "./style/contact.css"; 
 import { Link } from "react-router-dom";
 import "./style/about.css";
- // تأكدي من وجود هذا السطر في أعلى الملف
+// Make sure this line exists at the top of the file
 
 const Contact = () => {
   return (
     <div className="contact-page">
       <section className="contact-hero">
-        {/* تعريف التدرج اللوني هنا ليراه الـ SVG */}
+        {/* Define the color gradient here so the SVG can read it */}
         <svg width="0" height="0">
           <defs>
             <linearGradient id="gradient-fill" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" style={{ stopColor: "#ffffff" }} />
-              <stop offset="50%" style={{ stopColor: "#007bff" }} />
-              <stop offset="100%" style={{ stopColor: "#ffd700" }} />
+              <stop offset="50%" style={{ stopColor: "#0f33fe" }} />
+              <stop offset="100%" style={{ stopColor: "#bbfe0f" }} />
             </linearGradient>
           </defs>
         </svg>
@@ -31,7 +31,7 @@ const Contact = () => {
         </div>
       </section>
      <section className="contact-form-section">
-      {/* جهة اليسار: الفورم */}
+      {/* Left side: form */}
       <div className="form-column">
         <h2 className="section-header">SUBMIT YOUR REQUIREMENTS</h2>
         <form className="main-form">
@@ -83,7 +83,7 @@ const Contact = () => {
         </form>
       </div>
 
-      {/* جهة اليمين: الـ Sidebar */}
+      {/* Right side: sidebar */}
       <aside className="sidebar-column">
       <div className="channels-box">
         <h3 className="sidebar-title">DIRECT CHANNELS</h3>

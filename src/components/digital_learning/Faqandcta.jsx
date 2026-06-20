@@ -32,12 +32,12 @@ export const FAQSection = () => {
                 {/* ── Left ── */}
                 <div className="flex flex-col gap-6">
                     {/* Icon */}
-                    <span className="flex h-12 w-12 items-center justify-center bg-[#0d1a3a] text-[#1a5fff]">
+                    <span className="flex h-12 w-12 items-center justify-center bg-[#0d1a3a] text-[#0f33fe]">
                         <MessageCircleQuestion size={22} />
                     </span>
 
                     {/* Label */}
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
                         FAQs
                     </p>
 
@@ -101,7 +101,7 @@ export const CTASection = () => {
             <div className="flex flex-col items-center text-center gap-6">
 
                 {/* Label */}
-                <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
                     Education Scaled
                 </p>
 
@@ -121,7 +121,7 @@ export const CTASection = () => {
 
                 {/* Buttons */}
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-                    <button className="flex items-center gap-2 bg-[#1a5fff] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90">
+                    <button className="flex items-center gap-2 bg-[#0f33fe] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90">
                         Start Your Academy Brief
                         <ArrowRight size={14} />
                     </button>

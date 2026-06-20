@@ -32,14 +32,13 @@ export default function MarqueeSection() {
     return (
         <section className="relative overflow-hidden bg-[#020306] py-20">
             {/* Background gradients */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(15,118,255,0.12),transparent_40%),radial-gradient(circle_at_bottom_left,_rgba(74,199,255,0.06),transparent_35%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(15,51,254,0.12),transparent_40%),radial-gradient(circle_at_bottom_left,_rgba(15,51,254,0.06),transparent_35%)]" />
 
             {/* Header */}
             <div className="relative z-10 mb-12 px-6 text-center lg:px-10">
 
-
                 <h2 className="mx-auto mb-4 max-w-2xl text-4xl font-black leading-[1.15] text-white sm:text-5xl lg:text-[1.5rem]">
-                    <span className="bg-gradient-to-r from-slate-100 via-cyan-300 to-amber-300 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-slate-100 via-[#0f33fe] to-[#bbfe0f] bg-clip-text text-transparent">
                         Global Brands Powered by HEIKARO OS
                     </span>
                 </h2>
