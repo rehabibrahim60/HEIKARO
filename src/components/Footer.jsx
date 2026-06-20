@@ -26,7 +26,7 @@ const Pages = [
   {href : "/","item": "Home"},
   {href : "/about","item": "About"},
   {href : "/portfolio","item": "Portfolio"},
-  {href : "/blog","item": "Journal (Blog)"},
+  {href : "/blogs","item": "Journal (Blog)"},
   {href : "/contact","item": "Contact"}
 ]
 

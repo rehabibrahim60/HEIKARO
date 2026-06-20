@@ -8,9 +8,22 @@ const ContentBuilder = ({
   onPublish,
   onCancel,
   extraFields = null,
+  showCategory = false,
 }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState([]);
+ const [title, setTitle] = useState("");
+const [category, setCategory] = useState("");
+const [content, setContent] = useState([]);
+
+const categories = [
+  "Brand & Identity",
+  "Branding",
+  "Design & Experience",
+  "Content & Storytelling",
+  "Marketing & Growth",
+  "Media & Production",
+  "AI & CGI",
+  "Events & Experiential",
+];
   const imageInputRef = useRef(null);
   const videoInputRef = useRef(null);
 
@@ -18,19 +31,43 @@ const ContentBuilder = ({
     setContent((prev) => [...prev, { id: Date.now(), type: "text", value: "" }]);
   };
 
-  const addImageFromDevice = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const imageUrl = URL.createObjectURL(file);
-    setContent((prev) => [...prev, { id: Date.now(), type: "image", src: imageUrl }]);
-  };
+ const addImageFromDevice = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
 
-  const addVideoFromDevice = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const videoUrl = URL.createObjectURL(file);
-    setContent((prev) => [...prev, { id: Date.now(), type: "video", src: videoUrl }]);
-  };
+  const imageUrl = URL.createObjectURL(file);
+
+  setContent((prev) => [
+    ...prev,
+    {
+      id: Date.now(),
+      type: "image",
+      src: imageUrl,
+      file: file,
+    },
+  ]);
+
+  e.target.value = "";
+};
+
+const addVideoFromDevice = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const videoUrl = URL.createObjectURL(file);
+
+  setContent((prev) => [
+    ...prev,
+    {
+      id: Date.now(),
+      type: "video",
+      src: videoUrl,
+      file: file,
+    },
+  ]);
+
+  e.target.value = "";
+};
 
   const updateContent = (id, value) => {
     setContent((prev) =>
@@ -42,23 +79,72 @@ const ContentBuilder = ({
     setContent((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const handlePublish = () => {
-    const data = { title, content, createdAt: new Date() };
-    if (onPublish) onPublish(data);
-  };
+ const handlePublish = () => {
+  if (!title.trim()) {
+    alert("Please enter blog title");
+    return;
+  }
 
+  const firstImage = content.find((item) => item.type === "image" && item.file);
+
+  if (!firstImage) {
+    alert("Please add at least one image. The first image will be used as cover image.");
+    return;
+  }
+
+  const firstText = content.find((item) => item.type === "text" && item.value);
+
+  const description = firstText
+    ? firstText.value.replace(/<[^>]+>/g, "").slice(0, 180)
+    : "";
+
+  if (showCategory && !category) {
+  alert("Please select blog category");
+  return;
+}
+
+const data = {
+  title,
+  description,
+  category: showCategory ? category : "General",
+  coverImage: firstImage.file,
+  content,
+  createdAt: new Date(),
+};
+
+  if (onPublish) onPublish(data);
+};
   return (
     <div className="min-h-screen bg-black pt-32 pb-10 px-4">
-      <div className="max-w-5xl mx-auto">
-
+<div className="max-w-5xl mx-auto" dir="ltr">
         <input
           type="text"
           placeholder={titlePlaceholder}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full p-4 text-3xl font-bold border border-gray-800 rounded-xl mb-8 bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-        />
+className="w-full p-4 text-left text-3xl font-bold border border-gray-800 rounded-xl mb-8 bg-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400"        />
+{showCategory && (
+  <select
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+    className="w-full p-4 mb-8 text-left text-lg font-semibold border border-cyan-400 rounded-xl bg-black text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+    dir="ltr"
+  >
+    <option value="" style={{ backgroundColor: "#000", color: "#9ca3af", textAlign: "left" }}>
+      Select Category...
+    </option>
 
+    {categories.map((cat) => (
+      <option
+        key={cat}
+        value={cat}
+        style={{ backgroundColor: "#000", color: "#ffffff", textAlign: "left" }}
+      >
+        {cat}
+      </option>
+    ))}
+  </select>
+)}
         {/* Extra Fields (زي GitHub link في Portfolio) */}
         {extraFields && <div className="mb-8">{extraFields}</div>}
 
