@@ -4,7 +4,7 @@ const EventsCTA = () => {
             <div className="mx-auto flex max-w-[1280px] flex-col items-center text-center">
 
                 {/* Eyebrow */}
-                <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+                <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
                     NARRATIVE PRESENCE
                 </p>
 
@@ -29,7 +29,7 @@ const EventsCTA = () => {
                 <div className="flex flex-wrap items-center justify-center gap-4">
                     <a
                         href="#"
-                        className="flex items-center gap-3 bg-[#1a5fff] px-7 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-90"
+                        className="flex items-center gap-3 bg-[#0f33fe] px-7 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-90"
                     >
                         REQUEST EVENT FORMULATION
                         <span className="text-base leading-none">→</span>

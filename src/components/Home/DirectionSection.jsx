@@ -22,10 +22,10 @@ export default function DirectionSection({
                         {title}
                     </h2>
 
-                    <p className="mt-8 max-w-[650px] text-lg   text-[#0A5BFF]">
+                    <p className="mt-8 max-w-[650px] text-lg text-[#0f33fe]">
                         {subtitle1}
                     </p>
-                    <p className="mt-8 max-w-[650px] text-md   text-[#94A3B8]">
+                    <p className="mt-8 max-w-[650px] text-md text-[#94A3B8]">
                         {subtitle2}
                     </p>
 
@@ -35,7 +35,7 @@ export default function DirectionSection({
 
                     <a
                         href={buttonHref}
-                        className="mt-10 inline-flex border border-[#0A5BFF]/30 px-8 py-4 text-xs font-bold uppercase  transition hover:bg-white hover:text-black hover:border-[#0A5BFF]"
+                        className="mt-10 inline-flex border border-[#0f33fe]/30 px-8 py-4 text-xs font-bold uppercase transition hover:bg-white hover:text-black hover:border-[#0f33fe]"
                     >
                         {buttonText}
                     </a>

@@ -10,7 +10,7 @@ export default function DesignExperience() {
   };
     
     
-  // 1. يجب تعريف المصفوفات هنا بالداخل قبل جملة return
+  // 1. Define the arrays here inside before the return statement
   const services = [
     { id: "s1",title: "UX & UI Service", desc: "Design user journeys...", image: "/path-to-image.jpg" },
     {id: "s2", title: "Website Design", desc: "Create premium, responsive...", image: "/path-to-image.jpg" },
@@ -134,21 +134,21 @@ export default function DesignExperience() {
     <>
 
     <section className="relative w-full h-[80vh] flex items-center px-[8%] text-white overflow-hidden">
-      {/* الخلفية باستخدام Tailwind */}
+      {/* Background using Tailwind */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0" 
-        style={{ backgroundImage: "url('/hero-bg.jpg.jpeg')" }} // تأكدي أن الصورة في public
+        style={{ backgroundImage: "url('/hero-bg.jpg.jpeg')" }} // Make sure the image is in public
       ></div>
       
-      {/* طبقة التعتيم */}
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/70 z-0"></div>
 
-      {/* المحتوى */}
+      {/* Content */}
       <div className="relative z-10 max-w-[700px]">
         <span className="block text-[0.9rem] tracking-[4px] uppercase mb-5 border border-white px-4 py-2 w-fit">
           DIGITAL EXPERIENCE SYSTEMS
         </span>
-        <h1 className="text-[5rem] leading-[0.9] text-[#007bff] font-extrabold mb-8">
+        <h1 className="text-[5rem] leading-[0.9] text-[#0f33fe] font-extrabold mb-8">
           DESIGN & <br /> EXPERIENCE
         </h1>
         <p className="text-[1.25rem] leading-relaxed text-gray-300">
@@ -160,9 +160,9 @@ export default function DesignExperience() {
    <section className="bg-[#0a0a0a] text-white py-24 px-[8%]">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
         
-        {/* العمود الأيسر: النصوص والخدمات (7 أعمدة) */}
+        {/* Left column: text and services (7 columns) */}
         <div className="lg:col-span-7">
-          <p className="text-[#007bff] font-bold tracking-[3px] mb-4 text-sm">CLARITY & ACTION</p>
+          <p className="text-[#0f33fe] font-bold tracking-[3px] mb-4 text-sm">CLARITY & ACTION</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-[1.1]">What Design & Experience Means</h2>
           <p className="text-gray-400 mb-16 text-lg leading-relaxed max-w-2xl">
             Digital design is not just the surface of a screen. It is the way users move, 
@@ -171,9 +171,9 @@ export default function DesignExperience() {
             content hierarchy, and responsive execution into one clear experience system.
           </p>
 
-          {/* شبكة الخدمات (4 كروت) */}
+          {/* Services grid (4 cards) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-            {/* تأثير خلفية الخطوط */}
+            {/* Grid line background effect */}
             <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:32px_32px] opacity-30"></div>
             
             {[
@@ -183,8 +183,8 @@ export default function DesignExperience() {
               { icon: "↗️", title: "CONVERSION EXPERIENCE", desc: "We design landing pages, CTAs, forms, trust sections, and decision flows that support measurable action." }
             ].map((item, index) => (
               <div key={index} className="relative z-10 bg-[#0a0a0a] border border-[#222] p-8 hover:border-[#333] transition-all duration-300 group">
-                <div className="mb-6 text-2xl text-[#b0f200]">{item.icon}</div>
-                <h4 className="text-white font-bold text-sm mb-3 tracking-[1.5px] uppercase group-hover:text-[#007bff] transition-colors">
+                <div className="mb-6 text-2xl text-[#bbfe0f]">{item.icon}</div>
+                <h4 className="text-white font-bold text-sm mb-3 tracking-[1.5px] uppercase group-hover:text-[#0f33fe] transition-colors">
                   {item.title}
                 </h4>
                 <p className="text-gray-500 text-sm leading-relaxed">
@@ -195,7 +195,7 @@ export default function DesignExperience() {
           </div>
         </div>
 
-        {/* العمود الأيمن: الصورة (5 أعمدة) */}
+        {/* Right column: image (5 columns) */}
         <div className="lg:col-span-5 bg-[#111] border border-[#222] h-[600px] sticky top-24 flex flex-col items-center justify-center p-10 text-center">
           
          <img src="/hero-bg.jpg.jpeg" /> 
@@ -204,7 +204,7 @@ export default function DesignExperience() {
       </div>
     </section>
     <section className="bg-[#0a0a0a] text-white py-24 px-[8%] border-t border-[#111]">
-  {/* العنوان العلوي */}
+  {/* Top heading */}
   <div className="text-center mb-16">
     <p className="text-[#ff3b30] font-bold tracking-[3px] text-xs uppercase mb-4">Erosion of Conversion</p>
     <h2 className="text-4xl md:text-5xl font-bold max-w-3xl mx-auto leading-tight">
@@ -215,7 +215,7 @@ export default function DesignExperience() {
     </p>
   </div>
 
-  {/* شبكة المشاكل (3 أعمدة) */}
+  {/* Problems grid (3 columns) */}
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {[
       { num: "01", text: "The website or app looks outdated, weak, or does not match the company's real value." },
@@ -235,18 +235,18 @@ export default function DesignExperience() {
     ))}
   </div>
 
-  {/* الجملة الختامية في الأسفل */}
+  {/* Closing statement at the bottom */}
   <div className="mt-20 text-center max-w-3xl mx-auto">
-    <p className="text-[#b0f200] font-bold tracking-[2px] uppercase text-sm leading-relaxed">
+    <p className="text-[#bbfe0f] font-bold tracking-[2px] uppercase text-sm leading-relaxed">
       WHEN DIGITAL DESIGN HAS NO EXPERIENCE LOGIC, ATTENTION DISAPPEARS. 
       HEIKARO BUILDS DIGITAL EXPERIENCES THAT TURN CLARITY, TRUST, AND USABILITY INTO ACTION.
     </p>
   </div>
 </section>
 <section className="bg-[#0a0a0a] text-white py-24 px-[8%]">
-      {/* العنوان */}
+      {/* Heading */}
     <div className="mb-16 text-center flex flex-col items-center">
-    <p className="text-[#007bff] font-bold tracking-[3px] text-xs uppercase mb-4">
+    <p className="text-[#0f33fe] font-bold tracking-[3px] text-xs uppercase mb-4">
       Unified Capabilities
     </p>
     <h2 className="text-4xl md:text-5xl font-bold">
@@ -254,14 +254,14 @@ export default function DesignExperience() {
     </h2>
   </div>
 
-      {/* الشبكة */}
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {services.map((item, index) => (
           <div 
             key={index} 
-            className="group border border-[#222] bg-[#111] transition-all duration-300 hover:border-[#007bff] cursor-pointer"
+            className="group border border-[#222] bg-[#111] transition-all duration-300 hover:border-[#0f33fe] cursor-pointer"
           >
-            {/* الصورة */}
+            {/* Image */}
             <div className="h-[300px] w-full bg-[#1a1a1a] overflow-hidden">
               <img 
                 src="/path-to-your-image.jpg" 
@@ -270,16 +270,16 @@ export default function DesignExperience() {
               />
             </div>
             
-            {/* المحتوى */}
+            {/* Content */}
             <div className="p-8">
               <h3 className="text-xl font-bold mb-4">{item.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-8">{item.desc}</p>
               
-              {/* الزر التفاعلي */}
-              {/* استبدلي الـ div الخاص بالزر بهذا الكود */}
+              {/* Interactive button */}
+              {/* Replace the button div with this code */}
                 <a 
-                href={`#${item.id}`} // سيذهب إلى الـ ID المطابق
-                className="flex items-center text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#007bff] transition-colors cursor-pointer"
+                href={`#${item.id}`} // will navigate to the matching ID
+                className="flex items-center text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#0f33fe] transition-colors cursor-pointer"
                 >
                 Explore Capabilities <span className="ml-2">→</span>
                 </a>
@@ -290,7 +290,7 @@ export default function DesignExperience() {
     </section>
     <div className="flex flex-col gap-24 py-20 px-[8%] bg-[#0a0a0a]">
         <div className="px-[8%] mb-16">
-  <p className="text-[#007bff] font-bold tracking-[3px] text-xs uppercase mb-4">
+  <p className="text-[#0f33fe] font-bold tracking-[3px] text-xs uppercase mb-4">
     FUNCTIONAL EXPERIENCE ARCHITECTURE
   </p>
   <h2 className="text-4xl md:text-5xl font-bold text-white">
@@ -298,20 +298,20 @@ export default function DesignExperience() {
   </h2>
 </div>
   {servicesData.map((service) => (
-    /* هنا أضفنا البوردر والـ hover للـ section الكبير */
+    /* Added border and hover to the main section */
     <section 
     key={service.id} 
     id={service.id}
-         className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border border-[#222] p-10 transition-all duration-300 hover:border-[#007bff] group"
+         className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border border-[#222] p-10 transition-all duration-300 hover:border-[#0f33fe] group"
     >
       
-      {/* الجانب الأيسر (النصوص) */}
+      {/* Left side (text) */}
       <div className="lg:col-span-7">
-        <p className="text-[#b0f200] text-xs font-bold uppercase tracking-[2px] mb-4">{service.chapter}</p>
+        <p className="text-[#bbfe0f] text-xs font-bold uppercase tracking-[2px] mb-4">{service.chapter}</p>
         <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">{service.title}</h2>
         <p className="text-gray-400 mb-12 text-lg leading-relaxed">{service.desc}</p>
 
-        {/* الشبكة الداخلية */}
+        {/* Inner grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {service.items.map((item, idx) => (
             <div key={idx} className="border-l border-[#222] pl-6">
@@ -322,12 +322,12 @@ export default function DesignExperience() {
         </div>
       </div>
 
-      {/* الجانب الأيمن (الصورة) */}
+      {/* Right side (image) */}
       <div className="lg:col-span-5 h-[500px] sticky top-24">
         <img 
           src={service.img} 
           alt={service.title} 
-          className="w-full h-full object-cover border border-[#222] transition-colors duration-300 group-hover:border-[#007bff]" 
+          className="w-full h-full object-cover border border-[#222] transition-colors duration-300 group-hover:border-[#0f33fe]" 
         />
       </div>
 
@@ -337,9 +337,9 @@ export default function DesignExperience() {
 <section className="bg-[#0a0a0a] text-white py-24 px-[8%] border-t border-[#111]">
   <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
     
-    {/* الجانب الأيسر: النصوص */}
+    {/* Left side: text */}
     <div className="lg:col-span-4">
-      <p className="text-[#007bff] font-bold tracking-[3px] text-xs uppercase mb-4">
+      <p className="text-[#0f33fe] font-bold tracking-[3px] text-xs uppercase mb-4">
         OPERATIONAL ARCHITECTURE
       </p>
       <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-8">
@@ -352,7 +352,7 @@ export default function DesignExperience() {
       </p>
     </div>
 
-    {/* الجانب الأيمن: شبكة الخدمات (3 أعمدة × 5 صفوف) */}
+    {/* Right side: services grid (3 columns × 5 rows) */}
     <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
       {[
         "Business Objective Setup", "User Persona Modeling", "User Journey Flowmapping",
@@ -373,11 +373,11 @@ export default function DesignExperience() {
     
   </div>
 </section>
-{/* سكشن الخطوات الـ 8 */}
+{/* 8-step section */}
 <section className="bg-[#0a0a0a] text-white py-24 px-[8%]">
-  {/* العنوان */}
+  {/* Heading */}
 <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
-    <p className="text-[#007bff] font-bold tracking-[3px] text-xs uppercase mb-4">
+    <p className="text-[#0f33fe] font-bold tracking-[3px] text-xs uppercase mb-4">
       SYSTEMATIC ENGINEERING
     </p>
     <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -389,17 +389,17 @@ export default function DesignExperience() {
     </p>
   </div>
 
-  {/* الشبكة - تأكدي من ضبط المصفوفة (stepsData) في الأعلى */}
+  {/* Grid - make sure stepsData is defined above */}
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
     {stepsData.map((step, index) => (
       <div 
         key={index} 
         className="relative p-8 border border-[#222] bg-[#0a0a0a] overflow-hidden group cursor-pointer transition-colors hover:border-[#333]"
       >
-        {/* الخط الأزرق الذي يتحرك عند الـ Hover */}
-        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#007bff] transition-all duration-500 group-hover:w-full"></div>
+        {/* Blue line that moves on hover */}
+        <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#0f33fe] transition-all duration-500 group-hover:w-full"></div>
         
-        <div className="text-[#007bff] font-mono text-xs mb-4">{step.num}</div>
+        <div className="text-[#0f33fe] font-mono text-xs mb-4">{step.num}</div>
         <h4 className="text-white font-bold text-lg mb-4">{step.title}</h4>
         <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
       </div>
@@ -409,29 +409,29 @@ export default function DesignExperience() {
 <section className="bg-[#0a0a0a] text-white py-24 px-[8%] border-t border-[#111]">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
         
-        {/* العنوان على اليسار */}
+        {/* Title on the left */}
         <div className="lg:col-span-4">
-          <div className="w-12 h-12 border border-[#007bff] flex items-center justify-center mb-6">
-        <span className="text-[#007bff] text-xl">?</span>
+          <div className="w-12 h-12 border border-[#0f33fe] flex items-center justify-center mb-6">
+        <span className="text-[#0f33fe] text-xl">?</span>
       </div>
-          <p className="text-[#007bff] font-bold tracking-[3px] text-xs uppercase mb-4">FAQS</p>
+          <p className="text-[#0f33fe] font-bold tracking-[3px] text-xs uppercase mb-4">FAQS</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h2>
           <p className="text-gray-400 text-lg">Got questions on Figma design templates, mobile scaling setups, or fast load optimizations? Explore answers here.</p>
         </div>
 
-        {/* الأسئلة على اليمين */}
+        {/* Questions on the right */}
         <div className="lg:col-span-8">
           {faqData.map((item, index) => (
             <div key={index} className="border-b border-[#222]">
               <button 
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center py-8 text-left hover:text-[#007bff] transition-colors"
+                className="w-full flex justify-between items-center py-8 text-left hover:text-[#0f33fe] transition-colors"
               >
                 <span className="font-bold text-lg">{item.q}</span>
                 <span className="ml-4 text-xl">{openIndex === index ? '−' : '+'}</span>
               </button>
               
-              {/* تفاصيل الإجابة */}
+              {/* Answer details */}
               <div className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-40 opacity-100 pb-8' : 'max-h-0 opacity-0'}`}>
                 <p className="text-gray-400 leading-relaxed">{item.a}</p>
               </div>
@@ -442,34 +442,34 @@ export default function DesignExperience() {
       </div>
     </section>
     <section className="bg-[#0a0a0a] py-24 px-[8%] text-center">
-  {/* العنوان الصغير العلوي */}
-  <div className="text-[#007bff] font-bold tracking-[4px] text-xs uppercase mb-6">
+  {/* Small top title */}
+  <div className="text-[#0f33fe] font-bold tracking-[4px] text-xs uppercase mb-6">
     STRUCTURED USABILITY
   </div>
 
-  {/* العنوان الرئيسي */}
+  {/* Main title */}
   <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
     CREATE FLUID DIGITAL<br /> EXPERIENCES
   </h1>
 
-  {/* النص الوصفي */}
+  {/* Description text */}
   <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
     Transform outdated platforms. HEIKARO help you design and build web 
     experiences structured purely for high speed, absolute clarity, and 
     maximum action rates.
   </p>
 
-  {/* حاوية الأزرار */}
+  {/* Buttons container */}
   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-    {/* الزر الأول - أزرق */}
+    {/* First button - blue */}
     <a 
       href="/contact" 
-      className="bg-[#007bff] text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300"
+      className="bg-[#0f33fe] text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300"
     >
       START YOUR EXPERIENCE BRIEF →
     </a>
 
-    {/* الزر الثاني - شفاف بحدود */}
+    {/* Second button - transparent with border */}
     <a 
       href="/services" 
       className="bg-transparent border border-[#333] text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300"

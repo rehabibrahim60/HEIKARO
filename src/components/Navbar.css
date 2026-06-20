@@ -4,7 +4,7 @@
   align-items: center;
   padding: 40px 5%;
   width: 100%;
-  position: fixed;        /* ← ثابت دايماً */
+  position: fixed;        /* ← always fixed */
   top: 0;
   left: 0;
   z-index: 1000;
@@ -12,17 +12,18 @@
   box-sizing: border-box;
 }
 
-/* ← اللوجو */
+/* ← logo */
 .logo {
   height: 36px;
   width: auto;
   object-fit: contain;
 }
 
-/* ← عشان المحتوى ميتغطاش بالناف بار الثابت */
+/* ← so the content does not get covered by the fixed navbar */
 body {
   padding-top: 80px;
 }
+
 .nav-links {
   display: flex;
   gap: 50px;
@@ -38,7 +39,7 @@ body {
   cursor: pointer;
 }
 
-/* nav-item-services مش محتاج position هنا */
+/* nav-item-services does not need position here */
 .nav-item-services {
   display: flex;
   align-items: center;
@@ -47,17 +48,17 @@ body {
 .services-trigger {
   cursor: pointer;
   user-select: none;
-    display: inline-flex;      /* ← ده اللي ناقص */
+  display: inline-flex;      /* ← this was the missing part */
   align-items: center;
   gap: 5px;
 }
 
-/* المنيو wrapper — يتمدد بعرض الناف بار كاملاً */
+/* menu wrapper — extends across the full navbar width */
 .mega-menu-wrapper {
   position: absolute;
-  top: 100%;       /* أسفل الناف بار مباشرة */
+  top: 100%;       /* directly below the navbar */
   left: 0;
-  width: 100%;     /* عرض الناف بار = عرض الشاشة */
+  width: 100%;     /* navbar width = screen width */
   z-index: 999;
 }
 
@@ -74,5 +75,5 @@ body {
 }
 
 .social-icons a:hover {
-  color: #007bff;
+  color: #0f33fe;
 }

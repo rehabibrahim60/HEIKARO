@@ -46,7 +46,7 @@ export default function CreativeSynthesis() {
                             key={step.title}
                             className="min-h-[205px] border border-white/10 bg-[#050505] px-8 py-8"
                         >
-                            <div className="flex h-9 w-9 items-center justify-center border border-white/10 bg-white/[0.03] text-xl text-[#065BFF]">
+                            <div className="flex h-9 w-9 items-center justify-center border border-white/10 bg-white/[0.03] text-xl text-[#0f33fe]">
                                 {step.icon}
                             </div>
 

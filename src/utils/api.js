@@ -11,7 +11,9 @@ export async function apiFetch(path, options = {}) {
     ...options,
     headers: { ...authHeaders(), ...options.headers },
   });
+
   if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
+
   return res.json();
 }
 

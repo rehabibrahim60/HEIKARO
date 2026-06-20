@@ -14,15 +14,15 @@ export default function ExecutionLoop() {
                 </h2>
 
                 <div className="relative mt-20 flex items-center justify-between">
-                    <div className="absolute left-0 right-0 top-[17px] h-px bg-[#065BFF]/30" />
+                    <div className="absolute left-0 right-0 top-[17px] h-px bg-[#0f33fe]/30" />
 
                     {loop.map((item) => (
                         <div key={item.num} className="relative z-10 flex flex-col items-center">
                             <div
                                 className={`flex h-8 w-8 items-center justify-center border text-[7px] font-black ${item.active
-                                    ? "border-[#065BFF] text-[#065BFF]"
+                                    ? "border-[#0f33fe] text-[#0f33fe]"
                                     : item.green
-                                        ? "border-[#B8FF57] text-[#B8FF57]"
+                                        ? "border-[#bbfe0f] text-[#bbfe0f]"
                                         : "border-white text-white"
                                     }`}
                             >

@@ -54,7 +54,7 @@ const SERVICES_DATA = {
 
 export default function ServiceDetail() {
   const [openIndex, setOpenIndex] = useState(null);
-  const [isActive, setIsActive] = useState(false); // أضيفي هذا السطر ضروري جداً
+  const [isActive, setIsActive] = useState(false); // Add this line; it is very important
   const service = SERVICES_DATA["brand-identity"];
 
   const ALL_SECTIONS_DATA = [
@@ -187,14 +187,14 @@ export default function ServiceDetail() {
 
     ]
   },
-  // كرري هذا لـ 6 أقسام
+  // Repeat this for 6 sections
 ];
   const [badgeIndex, setBadgeIndex] = useState(0);
 
   const gradients = [
-    "linear-gradient(90deg, #fff 0%, #007bff 50%, #ffd700 100%)",
-    "linear-gradient(90deg, #ffd700 0%, #fff 50%, #007bff 100%)",
-    "linear-gradient(90deg, #007bff 0%, #ffd700 50%, #fff 100%)",
+    "linear-gradient(90deg, #fff 0%, #0f33fe 50%, #bbfe0f 100%)",
+    "linear-gradient(90deg, #bbfe0f 0%, #fff 50%, #0f33fe 100%)",
+    "linear-gradient(90deg, #0f33fe 0%, #bbfe0f 50%, #fff 100%)",
   ];
 
   useEffect(() => {
@@ -208,7 +208,7 @@ export default function ServiceDetail() {
     <div style={{ minHeight: "100vh", background: "#000", display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div style={{ textAlign: "center", color: "#fff" }}>
         <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginBottom: 16 }}>Service not found</p>
-        <Link to="/services" style={{ color: "#007bff", fontSize: 13 }}>← Back to Services</Link>
+        <Link to="/services" style={{ color: "#0f33fe", fontSize: 13 }}>← Back to Services</Link>
       </div>
     </div>
   );
@@ -273,7 +273,7 @@ export default function ServiceDetail() {
         </div>
       </section>
       <section className="second-section">
-      {/* عنوان القسم */}
+      {/* Section title */}
       <div className="section-header">
         <span className="section-label">EROSION OF DIFFERENTIATION</span>
         <h2 className="section-title">Why Most Brands Look Similar</h2>
@@ -283,7 +283,7 @@ export default function ServiceDetail() {
         </p>
       </div>
 
-      {/* شبكة المربعات (4 أعمدة × 2 صفوف) */}
+      {/* Boxes grid (4 columns × 2 rows) */}
       <div className="pillars-grid">
         {[...Array(8)].map((_, i) => (
           <div key={i} className="pillar-card">
@@ -303,7 +303,7 @@ export default function ServiceDetail() {
 
   <div className="capabilities-grid">
     {capabilities.map((item, i) => (
-      // الربط يتم عبر الـ ID المسمى section-cap-01 وهكذا
+      // Linking is handled through the ID named section-cap-01 and so on
       <a href={`#section-cap-0${i + 1}`} key={i} className="capability-card">
         <span className="card-number">0{i + 1}</span>
         <h3 className="card-title">{item.title}</h3>
@@ -315,13 +315,13 @@ export default function ServiceDetail() {
   </div>
 </section>
     {ALL_SECTIONS_DATA.map((section, index) => (
-  /* هنا التعديل: سنضع الـ id ليطابق ما كتبناه في الرابط (section-cap-01, 02...) 
-     استخدمنا (index + 1) ليكون الترقيم ديناميكياً (1, 2, 3...)
+  /* Here is the update: we add the ID to match what we wrote in the link (section-cap-01, 02...)
+     We used (index + 1) so the numbering is dynamic (1, 2, 3...)
   */
   <section key={section.id} id={`section-cap-0${index + 1}`} className="detail-section">
     <div className="section-container">
       
-      {/* العنوان الرئيسي يظهر فقط في أول قسم */}
+      {/* Main title appears only in the first section */}
       {index === 0 && (
         <>
           <span className="deep-label">DEEP ARCHITECTURAL CAPABILITIES</span>
@@ -356,7 +356,7 @@ export default function ServiceDetail() {
 ))}
 <section className="operational-section">
   <div className="section-container">
-    {/* عنوان السيكشن */}
+    {/* Section title */}
     <div className="operational-header">
       <span className="section-label">OPERATIONAL METHODOLOGY</span>
       <h2 className="section-title">Our 8-Step Brand & Identity Systems Framework</h2>
@@ -366,7 +366,7 @@ export default function ServiceDetail() {
       </p>
     </div>
 
-    {/* الشبكة (4 أعمدة × 2 صف) */}
+    {/* Grid (4 columns × 2 rows) */}
     <div className="operational-grid">
       {operationalSteps.map((step, i) => (
         <div key={i} className="op-card">
@@ -384,7 +384,7 @@ export default function ServiceDetail() {
   <div className="site-container">
     <div className="split-layout">
       
-      {/* جهة اليسار: النص */}
+      {/* Left side: text */}
       <div className="text-side">
         <span className="section-label">ANATOMY OF A MARKET LEADER</span>
         <h2 className="section-title">What A Complete Brand System Includes</h2>
@@ -395,7 +395,7 @@ export default function ServiceDetail() {
         </p>
       </div>
 
-      {/* جهة اليمين: المصفوفات (4x4) */}
+      {/* Right side: matrix (4x4) */}
       <div className="grid-side">
         {["Brand Purpose", "Audience Definition", "Market Positioning", "Competitive Differentiation", 
           "Brand Promise", "Brand Personality", "Naming System", "Messaging Framework",
@@ -414,7 +414,7 @@ export default function ServiceDetail() {
   <div className="site-container">
     <div className="split-layout">
       
-      {/* جهة اليسار: النص */}
+      {/* Left side: text */}
       <div className="text-side">
         <span className="section-label">DESIGN LOGIC & MARKET PEDIGREE</span>
         <h2 className="section-title">Elite Creative Grounded In Pure Strategic Purpose</h2>
@@ -426,7 +426,7 @@ export default function ServiceDetail() {
         </p>
       </div>
 
-      {/* جهة اليمين: الـ 4 كروت */}
+      {/* Right side: 4 cards */}
       <div className="grid-side-pillars">
         {pillarsData.map((item, i) => (
           <div key={i} className="pillar-card">
@@ -443,7 +443,7 @@ export default function ServiceDetail() {
 <section className="faq-section">
       <div className="site-container split-layout">
         <div className="text-side">
-          <span className="section-label" style={{ color: "#aaff00" }}>FAQS</span>
+          <span className="section-label" style={{ color: "#bbfe0f" }}>FAQS</span>
           <h2 className="section-title">Got Questions? We Have Answers.</h2>
           <p className="section-description">
             Got questions about positioning logic, asset licensing rules, or transition workflows? Discover details here, or reach out for custom scoping.  
@@ -474,20 +474,20 @@ export default function ServiceDetail() {
     </p>
     
    <div className="hero-buttons">
-      {/* الزر الأول: للـ Contact مع تغيير اللون */}
+      {/* First button: Contact with color change */}
       <button 
         className={`custom-btn ${isActive ? "active" : ""}`} 
         onClick={() => {
           setIsActive(true); 
           setTimeout(() => {
             window.location.href = "/contact";
-          }, 200); // تأخير بسيط جداً ليظهر اللون الأزرق قبل الانتقال
+          }, 200); // Very slight delay so the blue color appears before navigation
         }}
       >
         REQUEST BRAND SCOPING →
       </button>
 
-      {/* الزر الثاني: للـ Services */}
+      {/* Second button: Services */}
       <Link to="/services" className="btn-outline">
         BROWSE ALL SERVICES
       </Link>

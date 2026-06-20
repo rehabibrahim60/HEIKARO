@@ -20,7 +20,7 @@ const EventPackIncludes = () => {
 
                 {/* ── Left: text block ── */}
                 <div className="flex flex-col justify-center lg:w-[34%]">
-                    <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+                    <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
                         OPERATIONAL SPECS
                     </p>
                     <h2

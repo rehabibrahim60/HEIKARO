@@ -10,7 +10,7 @@ export default function StartWithBrief() {
                         Brief
                     </h2>
 
-                    <p className="mt-8 text-lg font-bold uppercase  text-[#B8FF57]">
+                    <p className="mt-8 text-lg font-bold uppercase text-[#bbfe0f]">
                         The Stronger The Brief, The Stronger The Output.
                     </p>
 

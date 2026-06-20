@@ -6,13 +6,13 @@
     align-items: center;
     padding-left: 5%;
     
-    /* إضافة الصورة هنا */
-    background-image: url('C:\Users\mena\Downloads\hekaro-site\public\hero-bg.jpg.jpeg'); /* ضعي مسار صورتك هنا */
-    background-size: cover;          /* لتغطية كامل المساحة */
-    background-position: center;     /* توسيط الصورة */
+    /* Add the image here */
+    background-image: url('C:\Users\mena\Downloads\hekaro-site\public\hero-bg.jpg.jpeg'); /* Put your image path here */
+    background-size: cover;          /* To cover the full area */
+    background-position: center;     /* Center the image */
     background-repeat: no-repeat;
     
-    /* إضافة طبقة تعتيم فوق الصورة ليكون النص واضحاً */
+    /* Add a dark overlay above the image so the text stays clear */
     background-color: rgba(5, 5, 5, 0.85); 
     background-blend-mode: overlay;
 }
@@ -25,22 +25,22 @@
     font-size: 80px;
     font-weight: 900;
     font-family: sans-serif;
-    fill: url(#gradient-fill); /* يربط النص بالتدرج اللوني */
-    filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.5)); /* توهج خفيف */
+    fill: url(#gradient-fill); /* Links the text to the color gradient */
+    filter: drop-shadow(0 0 10px rgba(15, 51, 254, 0.5)); /* Subtle glow */
 }
 
 .contact-subtitle {
     color: #888 !important;
     
-    /* فرض تغيير حجم الخط */
+    /* Force font size change */
     font-size: 24px !important; 
     
     margin-top: 20px !important;
     
-    /* التحريك باستخدام التحويل (أقوى من المارجن) */
-    transform: translateX(150px); /* حركي الرقم 150 لضبط المسافة لليمين */
+    /* Move using transform, which is stronger than margin */
+    transform: translateX(150px); /* Adjust the number 150 to control the spacing to the right */
     
-    /* لضمان أن التغيير يظهر */
+    /* To make sure the change appears */
     display: block !important;
     letter-spacing: 1px;
 }
@@ -84,34 +84,34 @@ input, select, textarea {
     border: none;
     cursor: pointer;
     width: 100%;
-    margin-top: 30px; /* هذه هي المسافة التي ستفصل الزر عما فوقه */
+    margin-top: 30px; /* This is the spacing that separates the button from what is above it */
     transition: all 0.3s ease;
 }
-/* تأثير الـ Hover */
+/* Hover effect */
 .submit-btn:hover {
-    background-color: #007bff; /* يتحول للأزرق */
-    color: #ffffff;            /* النص يتحول للأبيض */
+    background-color: #0f33fe; /* Turns blue */
+    color: #ffffff;            /* Text turns white */
 }
 .field input, 
 .field select, 
 .field textarea {
-    background-color: #0a0a0a; /* لون داكن قليلاً للمدخل */
-    border: 1px solid #333;   /* إطار خفيف */
+    background-color: #0a0a0a; /* Slightly dark input color */
+    border: 1px solid #333;   /* Light border */
     padding: 15px;
     color: #ffffff;
     width: 100%;
     transition: border-color 0.3s ease;
 }
 
-/* إضافة تأثير عند الضغط داخل المربع */
+/* Add an effect when focusing inside the field */
 .field input:focus, 
 .field textarea:focus {
-    border-color: #007bff;    /* الإطار يتحول للأزرق عند التركيز */
+    border-color: #0f33fe;    /* Border turns blue on focus */
     outline: none;
 }
 
 .field textarea {
-    min-height: 120px; /* لضمان كبر مساحة النص */
+    min-height: 120px; /* To make sure the text area is large enough */
     resize: vertical;
 }
 
@@ -131,17 +131,17 @@ input, select, textarea { background: transparent; border: 1px solid #333; paddi
 
 .submit-btn { background: white; color: black; padding: 15px; font-weight: bold; border: none; cursor: pointer; width: 100%; }
 
-/* الصندوق الخارجي (الخلفية الداكنة والحدود) */
+/* Outer box styling with dark background and border */
 .channels-box {
-    background: #0a0a0a; /* لون داكن جداً */
+    background: #0a0a0a; /* Very dark color */
     border: 1px solid #222;
     padding: 40px 30px;
     margin-bottom: 30px;
 }
 .strategic-box {
-    background: #050a14; /* خلفية داكنة جداً */
+    background: #050a14; /* Very dark background */
     padding: 30px;
-    border: 1px solid #003366; /* حدود زرقاء خفيفة */
+    border: 1px solid #0f33fe; /* Light blue border */
     color: #e0e0e0;
 }
 
@@ -157,30 +157,30 @@ input, select, textarea { background: transparent; border: 1px solid #333; paddi
     margin-bottom: 25px;
 }
 
-/* تنسيق القائمة (اللون الأخضر الليموني مع السهم) */
+/* List styling with lime green color and arrow */
 .tracks-list {
     list-style: none;
     padding: 0;
 }
 
 .tracks-list li {
-    color: #bfff00; /* اللون الأخضر الليموني */
+    color: #bbfe0f; /* Lime green color */
     font-size: 14px;
     margin-bottom: 15px;
     display: flex;
     align-items: center;
 }
 
-/* السهم الأزرق قبل النص */
+/* Blue arrow before the text */
 .tracks-list li::before {
     content: "→";
-    color: #007bff; /* السهم أزرق */
+    color: #0f33fe; /* Blue arrow */
     margin-right: 10px;
 }
 
-/* زر العرض في الأسفل */
+/* View link at the bottom */
 .view-all {
-    color: #007bff;
+    color: #0f33fe;
     font-weight: bold;
     text-decoration: none;
     display: flex;
@@ -193,7 +193,7 @@ input, select, textarea { background: transparent; border: 1px solid #333; paddi
     margin-left: 8px;
 }
 
-/* عنوان القسم */
+/* Section title */
 .sidebar-title {
     font-size: 12px;
     color: #666;
@@ -202,23 +202,23 @@ input, select, textarea { background: transparent; border: 1px solid #333; paddi
     font-weight: 700;
 }
 
-/* العنصر الواحد (الأيقونة + النص) */
+/* Single item: icon + text */
 .channel-item {
     display: flex;
-    align-items: flex-start; /* الأيقونة في الأعلى والنص تحتها */
+    align-items: flex-start; /* Icon at the top and text below it */
     gap: 15px;
     margin-bottom: 30px;
     color: #fff;
 }
 
-/* تنسيق الأيقونة */
+/* Icon styling */
 .channel-item span {
     font-size: 20px;
-    color: #555151; /* اللون الأزرق للأيقونات */
+    color: #555151; /* Icon color */
     margin-top: 5px;
 }
 
-/* تنسيق النص (العنوان الصغير + القيمة البارزة) */
+/* Text styling: small label + highlighted value */
 .channel-item div {
     display: flex;
     flex-direction: column;
@@ -237,14 +237,14 @@ input, select, textarea { background: transparent; border: 1px solid #333; paddi
         color: #555;
 
 }
-/* إجبار كل النصوص داخل الـ Channels على أن تكون بيضاء وإزالة أي تنسيق روابط */
+/* Force all text inside Channels to be white and remove any link styling */
 .channel-item a, 
 .channel-item span {
     color: #ffffff !important;
     text-decoration: none !important;
 }
 
-/* التأكد من أن العنوان الصغير (EMAIL/PRESENCE) يظل رمادياً */
+/* Make sure the small title (EMAIL/PRESENCE) stays gray */
 .label-small {
     color: #666666 !important;
 }
@@ -252,12 +252,12 @@ input, select, textarea { background: transparent; border: 1px solid #333; paddi
     width: 100%;
     height: 450px;
     border: 0;
-    /* هذا الفلتر يحول ألوان الخريطة الملونة إلى درجات الأسود والرمادي */
+    /* This filter converts the colored map into black and gray tones */
     filter: grayscale(100%) invert(90%) contrast(110%);
 }
 .map-section {
-    padding: 50px 5%; /* مسافة من الأعلى والأسفل والجوانب */
-    background-color: #050505; /* نفس لون خلفية الموقع */
+    padding: 50px 5%; /* Spacing from top, bottom, and sides */
+    background-color: #050505; /* Same as the site background color */
 }
 .map-section {
   padding: 0 5% 50px 5%;
@@ -269,13 +269,13 @@ input, select, textarea { background: transparent; border: 1px solid #333; paddi
   border: 1px solid #222;
 }
 
-/* تحويل الخريطة العادية إلى خريطة داكنة */
+/* Convert the normal map into a dark map */
 .dark-map {
   border: 0;
   filter: grayscale(1) invert(1) contrast(0.9) brightness(0.8);
 }
 
-/* مربع النص فوق الخريطة */
+/* Text box above the map */
 .location-overlay {
   position: absolute;
   bottom: 40px;
@@ -285,7 +285,7 @@ input, select, textarea { background: transparent; border: 1px solid #333; paddi
 .overlay-box {
   background: rgba(0, 0, 0, 0.85);
   padding: 20px 30px;
-  border-left: 2px solid #007bff; /* خط أزرق للهوية */
+  border-left: 2px solid #0f33fe; /* Blue identity line */
   color: white;
 }
 
@@ -302,3 +302,4 @@ input, select, textarea { background: transparent; border: 1px solid #333; paddi
   font-weight: bold;
   margin: 5px 0 0 0;
 }
+

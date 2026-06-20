@@ -32,7 +32,7 @@ export default function SpatialNarratives() {
 
             {/* ── Top text ── */}
             <div className="mb-16">
-                <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+                <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
                     Spatial Narratives
                 </p>
                 <h2
@@ -57,7 +57,7 @@ export default function SpatialNarratives() {
                         key={index}
                         className="border border-[#1e1e1e] p-7 flex flex-col gap-5"
                     >
-                        <span className="text-[#c8ff00]">{card.icon}</span>
+                        <span className="text-[#bbfe0f]">{card.icon}</span>
                         <h3 className="text-[12px] font-bold uppercase tracking-[0.1em] text-white">
                             {card.title}
                         </h3>

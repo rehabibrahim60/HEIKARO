@@ -38,7 +38,7 @@ const Audiences = () => {
 
                 {/* ── Header — centered ── */}
                 <div className="text-center mb-16 md:mb-20">
-                    <p className="text-[#1a5fff] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-5">
+                    <p className="text-[#0f33fe] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-5">
                         OPERATIONAL TARGET
                     </p>
                     <h2
@@ -69,7 +69,7 @@ const Audiences = () => {
                             </div>
 
                             {/* Bottom: lime dot */}
-                            <span className="w-[8px] h-[8px] rounded-full bg-[#c8ff00] shrink-0" />
+                            <span className="w-[8px] h-[8px] rounded-full bg-[#bbfe0f] shrink-0" />
                         </div>
                     ))}
                 </div>

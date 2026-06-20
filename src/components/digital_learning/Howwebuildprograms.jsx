@@ -47,7 +47,7 @@ const HowWeBuildPrograms = () => {
 
             {/* ── Centered header ── */}
             <div className="mb-16 flex flex-col items-center text-center">
-                <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#c8ff00]">
+                <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#bbfe0f]">
                     Operational Methodology
                 </p>
                 <h2
@@ -70,7 +70,7 @@ const HowWeBuildPrograms = () => {
                         className="border border-[#1e1e1e] p-7 flex flex-col gap-4"
                     >
                         {/* Step label */}
-                        <span className="text-[11px] font-bold tracking-[0.15em] text-[#1a5fff]">
+                        <span className="text-[11px] font-bold tracking-[0.15em] text-[#0f33fe]">
                             {item.step}
                         </span>
 

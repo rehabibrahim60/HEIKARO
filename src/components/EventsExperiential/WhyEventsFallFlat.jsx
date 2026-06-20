@@ -1,75 +1,68 @@
-export default function WhyEventsFallFlat() {
+const partners = [
+    {
+        title: "Product Launchers",
+        description:
+            "Brands introducing products or services requiring massive market attention.",
+    },
+    {
+        title: "Enterprise Corps",
+        description:
+            "Companies detailing key developments, conferences, or milestones directly to clients.",
+    },
+    {
+        title: "Exhibition Leaders",
+        description:
+            "Exhibitors requiring customized luxury booths, interactivity, and engagement.",
+    },
+    {
+        title: "Cultural & NGOs",
+        description:
+            "Institutions deploying capacity-building programs, galas, and community initiatives.",
+    },
+];
 
-    const problems = [
-        {
-            number: "01",
-            description:
-                "Events are planned around boring logistics instead of strategic growth purpose.",
-        },
-        {
-            number: "02",
-            description:
-                "The audience attends but forgets the core campaign message within hours.",
-        },
-        {
-            number: "03",
-            description:
-                "The physical space looks good but tells zero cohesive brand stories.",
-        },
-        {
-            number: "04",
-            description:
-                "The program agenda feels random and disconnected from target client conversions.",
-        },
-        {
-            number: "05",
-            description:
-                "Staff stand passively behind booths instead of systematically guiding guest actions.",
-        },
-        {
-            number: "06",
-            description:
-                "The event ends without gathering dynamic customer leads, feedback, or follow-up pathways.",
-        },
-    ];
-
+const TargetPartners = () => {
     return (
         <section className="w-full bg-[#0d0d0d] px-[6%] py-24">
 
             {/* ── Centered header ── */}
-            <div className="mb-16 flex flex-col items-center text-center">
-                <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#cc2200]">
-                    Operational Gaps
+            <div className="mb-14 flex flex-col items-center text-center">
+                <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
+                    Operational Target
                 </p>
                 <h2
-                    className="mb-6 max-w-2xl font-bold leading-[1.1] text-white"
-                    style={{ fontSize: "clamp(28px, 4vw, 56px)" }}
+                    className="max-w-2xl font-bold leading-[1.1] text-white"
+                    style={{ fontSize: "clamp(28px, 4vw, 54px)" }}
                 >
-                    Why Traditional Events Fall Flat
+                    Target Partners For This Service
                 </h2>
-                <p className="max-w-xl text-sm leading-relaxed text-[#777777]">
-                    Relying purely on operational coordinates results in flat, forgettable meetings
-                    that fail to trigger target buyer conversions.
-                </p>
             </div>
 
-            {/* ── Cards grid 3x2 ── */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {problems.map((item) => (
+            {/* ── Cards ── */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {partners.map((item, index) => (
                     <div
-                        key={item.number}
+                        key={index}
                         className="border border-[#1e1e1e] p-7 flex flex-col gap-4"
                     >
-                        <span className="text-[13px] font-bold text-[#cc2200]">
-                            {item.number}
-                        </span>
-                        <p className="text-sm leading-relaxed text-[#aaaaaa]">
+                        {/* Title */}
+                        <h3 className="text-[12px] font-bold uppercase tracking-[0.1em] text-white">
+                            {item.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="flex-1 text-[12.5px] leading-relaxed text-[#666666]">
                             {item.description}
                         </p>
+
+                        {/* Dot */}
+                        <span className="mt-2 h-2 w-2 rounded-full bg-[#bbfe0f]" />
                     </div>
                 ))}
             </div>
 
         </section>
     );
-}
+};
+
+export default TargetPartners;

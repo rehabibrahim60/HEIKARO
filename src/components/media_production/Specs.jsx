@@ -39,7 +39,7 @@ const MediaProductionSpecs = () => {
 
                     {/* ── LEFT: label + heading + desc ── */}
                     <div className="lg:w-[36%] shrink-0">
-                        <p className="text-[#1a5fff] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-5">
+                        <p className="text-[#0f33fe] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-5">
                             ASSET BLUEPRINT SPECS
                         </p>
                         <h2

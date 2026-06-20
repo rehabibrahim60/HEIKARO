@@ -2,7 +2,7 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
 // ─────────────────────────────────────────────────
-//  USAGE EXAMPLE (في كل page بتمرر data مختلفة):
+//  USAGE EXAMPLE (pass different data in each page):
 //
 //  import IncludedCapabilities from "@/components/IncludedCapabilities";
 //
@@ -12,7 +12,7 @@ import { FaArrowRight } from "react-icons/fa";
 //      title: "Commercial Production",
 //      desc:  "Promotional film assets...",
 //      tag:   "Cinema-grade commercial ads",
-//      image: null,                          // أو "/images/commercial.jpg"
+//      image: null,                          // or "/images/commercial.jpg"
 //    },
 //    { id: "02", title: "...", desc: "...", tag: "...", image: "/images/x.jpg" },
 //  ];
@@ -70,7 +70,7 @@ const CapabilityCard = ({ id, title, desc, tag, image, anchor }) => {
                     <FaArrowRight
                         className={`text-[12px] transition-all duration-200
                         ${anchor
-                                ? "text-[#1a5fff] group-hover:translate-x-1"
+                                ? "text-[#0f33fe] group-hover:translate-x-1"
                                 : "text-[#333]"
                             }`}
                     />
@@ -88,7 +88,7 @@ const CapabilityCard = ({ id, title, desc, tag, image, anchor }) => {
 
                 {/* Tag — lime reference text */}
                 {tag && (
-                    <span className="text-[#c8ff00] text-[11px] font-semibold tracking-[0.04em] mt-2 italic">
+                    <span className="text-[#bbfe0f] text-[11px] font-semibold tracking-[0.04em] mt-2 italic">
                         {tag}
                     </span>
                 )}
@@ -112,7 +112,7 @@ const IncludedCapabilities = ({
 
                 {/* ── Header — centered ── */}
                 <div className="text-center mb-16 md:mb-20">
-                    <p className="text-[#c8ff00] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-4">
+                    <p className="text-[#bbfe0f] text-[10.5px] font-bold tracking-[0.22em] uppercase mb-4">
                         {label}
                     </p>
                     <h2
@@ -136,3 +136,4 @@ const IncludedCapabilities = ({
 };
 
 export default IncludedCapabilities;
+

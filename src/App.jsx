@@ -23,6 +23,8 @@ import ProjectsPage from "./pages/admin/ProjectsPage";
 import ContactsPage from "./pages/admin/ContactsPage";
 import HeroPage from "./pages/admin/HeroPage";
 import ContentBuilder from "./pages/admin/ContentBuilder";
+import Blogs from "./pages/Blogs";
+import BlogDetails from "./pages/BlogDetails";
 
 // ── Admin wrapper (handles auth + sidebar navigation) ──────────────────────
 function AdminApp() {
@@ -97,6 +99,8 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogDetails />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/media-production" element={<MediaProduction />} />
           <Route path="/services/digital-learning" element={<DigitalLearning />} />

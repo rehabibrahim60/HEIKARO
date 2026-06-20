@@ -1,3 +1,4 @@
+
 import CapabilityCard from "./CapabilityCard";
 
 export default function CapabilitiesSection({
@@ -13,7 +14,7 @@ export default function CapabilitiesSection({
             <div className="relative mx-auto max-w-[1280px]">
                 <div className="mb-16">
                     {eyebrow && (
-                        <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.28em] text-blue-600">
+                        <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.28em] text-[#0f33fe]">
                             {eyebrow}
                         </p>
                     )}

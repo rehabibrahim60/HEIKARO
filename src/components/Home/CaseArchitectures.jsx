@@ -17,7 +17,7 @@ export default function CaseArchitectures() {
     return (
         <section className="bg-[#050505] px-6 py-24 text-white lg:px-20">
             <div className="mx-auto max-w-[980px]">
-                <p className="text-[10px] font-black uppercase tracking-[0.35em] text-[#B8FF57]">
+                <p className="text-[10px] font-black uppercase tracking-[0.35em] text-[#bbfe0f]">
                     The Proof
                 </p>
 
@@ -45,7 +45,7 @@ export default function CaseArchitectures() {
                             </div>
 
                             <div className="absolute bottom-5 left-5 right-5">
-                                <p className="text-[8px] font-black uppercase tracking-[0.35em] text-[#065BFF]">
+                                <p className="text-[8px] font-black uppercase tracking-[0.35em] text-[#0f33fe]">
                                     {item.tag}
                                 </p>
 

@@ -1,4 +1,4 @@
-/* تنسيق الجملة بالكامل */
+/* Full sentence styling */
 html {
   scroll-behavior: smooth;
 }
@@ -78,7 +78,7 @@ html {
 }
 
 .sd-subtitle-label {
-  color: #aaff00;
+  color: #bbfe0f;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2.5px;
@@ -100,7 +100,7 @@ html {
 }
 
 .sd-pillar-icon {
-  color: #aaff00;
+  color: #bbfe0f;
   font-size: 20px;
   display: block;
   margin-bottom: 12px;
@@ -123,7 +123,7 @@ html {
     color: #fff;
     opacity: 0.7;
 }
-/* هذا الكود يضمن أن التنسيقات لن تؤثر إلا على صفحة التفاصيل */
+/* This code ensures the styles only affect the detail page */
 .service-detail-page .section-title {
     font-size: 48px;
     color: #fff;
@@ -131,12 +131,12 @@ html {
 }
 
 .service-detail-page .section-label {
-    color: #aaff00;
+    color: #bbfe0f;
     font-size: 12px;
     text-transform: uppercase;
 }
 
-/* حل مشكلة الصور العملاقة داخل صفحة التفاصيل */
+/* Fix oversized images inside the detail page */
 .service-detail-page img {
     max-width: 100%;
     height: auto;
@@ -146,11 +146,11 @@ html {
 .service-detail-page .pillars-grid,
 .service-detail-page .capabilities-grid {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important; /* أو 3 حسب رغبتك */
+    grid-template-columns: repeat(3, 1fr) !important; /* Or 3 depending on your preference */
     gap: 20px !important;
 }
 
-/* لضمان استجابة الموبايل */
+/* To ensure mobile responsiveness */
 @media (max-width: 768px) {
     .service-detail-page .operational-grid,
     .service-detail-page .pillars-grid {
@@ -159,16 +159,16 @@ html {
 }
 
 .sd-badge-gradient {
-    /* هنا نضع التدرج اللوني الذي تريده */
-    background: linear-gradient(90deg, #fff 0%, #007bff 50%, #ffd700 100%);
+    /* Put the desired gradient here */
+    background: linear-gradient(90deg, #fff 0%, #0f33fe 50%, #bbfe0f 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-    display: inline-block; /* ضروري جداً ليعمل الـ Gradient */
+    display: inline-block; /* Very important for the gradient to work */
     white-space: nowrap;
 }
-/* 1. الحاوية الأساسية للقسم بالكامل */
+/* 1. Main container for the entire section */
 .sd-content-section {
   display: flex !important;
   flex-direction: row !important;
@@ -177,22 +177,22 @@ html {
   min-height: 600px;
 }
 
-/* 2. الجزء الأيسر (النص + المربعات) - يأخذ 65% من العرض */
+/* 2. Left part: text + boxes, takes 65% of the width */
 .sd-content-left {
   flex: 0 0 65% !important;
   display: flex !important;
   flex-direction: column !important;
 }
 
-/* 3. شبكة المربعات (يجب أن تكون 2x2) */
+/* 3. Boxes grid must be 2x2 */
 .sd-pillars {
   display: grid !important;
-  grid-template-columns: 1fr 1fr !important; /* هذا السطر يجبرهم أن يكونوا عمودين */
+  grid-template-columns: 1fr 1fr !important; /* This line forces them into two columns */
   width: 100% !important;
   border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* 4. تنسيق المربع الواحد */
+/* 4. Single box styling */
 .sd-pillar {
   padding: 40px !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -200,13 +200,13 @@ html {
   box-sizing: border-box !important;
 }
 
-/* إزالة الخطوط اليمنى للمربعات في العمود الثاني */
+/* Remove right borders for boxes in the second column */
 .sd-pillar:nth-child(2), 
 .sd-pillar:nth-child(4) {
   border-right: none !important;
 }
 
-/* 5. الجزء الأيمن (الصورة) - يأخذ 35% من العرض */
+/* 5. Right part: image, takes 35% of the width */
 .sd-content-right {
   flex: 0 0 35% !important;
   display: flex !important;
@@ -219,21 +219,21 @@ html {
 .sd-side-img {
   width: 100% !important;
   height: auto !important;
-  max-height: 400px !important; /* هذا سيجعل الصورة أصغر */
+  max-height: 400px !important; /* This will make the image smaller */
   object-fit: contain !important;
 }
 
 
 .second-section {
   padding: 80px 40px;
-  background-color: #0a0a0a; /* لون الخلفية الداكن */
+  background-color: #0a0a0a; /* Dark background color */
   color: #fff;
 }
 
 
 
 .section-label {
-  color: #ff3333; /* اللون الأحمر للعنوان الفرعي */
+  color: #ff3333; /* Red color for the subtitle */
   font-size: 12px;
   letter-spacing: 2px;
   font-weight: 700;
@@ -246,32 +246,32 @@ html {
   max-width: 600px;
   font-size: 15px;
   
-  /* هذا هو الجزء الذي سيقوم بالتوسيط */
+  /* This is the part that handles centering */
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
-/* التنسيق الأساسي للشبكة */
+/* Base grid styling */
 
 
-/* شبكة المربعات المحدثة */
+/* Updated boxes grid */
 .pillars-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 أعمدة */
-    gap: 20px; /* هذه هي المسافة التي طلبتها بين الكارد والتاني */
-    background-color: transparent; /* إلغاء لون الخلفية الموحد */
-    border: none; /* إلغاء الحدود الخارجية للشبكة */
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px; /* This is the spacing you requested between each card */
+    background-color: transparent; /* Remove unified background color */
+    border: none; /* Remove the outer border of the grid */
     padding: 20px 0;
 }
 
 .pillar-card {
-    background-color: #0d0d0d; /* خلفية الكارد نفسه */
-    padding: 30px; /* تصغير الـ padding قليلاً ليصغر حجم الكارد */
-    border: 1px solid rgba(255, 255, 255, 0.08); /* إضافة حدود خفيفة للكارد */
+    background-color: #0d0d0d; /* Card background itself */
+    padding: 30px; /* Slightly reduced padding to make the card smaller */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Add a light border to the card */
     transition: border 0.3s ease;
 }
 
-/* تأثير عند مرور الماوس (اختياري لجمالية التصميم) */
+/* Mouse hover effect, optional for better design */
 .pillar-card:hover {
     border-color: rgba(74, 6, 6, 0.2);
 }
@@ -279,36 +279,36 @@ html {
 .pillar-number {
     display: block;
     color: #ff3333;
-    font-size: 12px; /* تصغير الخط قليلاً */
+    font-size: 12px; /* Slightly smaller font */
     font-weight: bold;
     margin-bottom: 15px;
 }
 
 .pillar-text {
     color: #fff;
-    font-size: 13px; /* تصغير النص قليلاً ليكون أنيقاً */
+    font-size: 13px; /* Slightly smaller text for a cleaner look */
     line-height: 1.5;
     opacity: 0.8;
 }
 
 
-/* تنسيق القسم الجديد */
-/* تنسيق القسم العام */
+/* New section styling */
+/* General section styling */
 .capabilities-section {
     padding: 100px 40px;
-    background-color: #050505; /* أسود داكن جداً خلفية الصفحة */
+    background-color: #050505; /* Very dark black page background */
     color: #fff;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* تنسيق العناوين (Modular Competency / Our Included Capabilities) */
+/* Heading styling: Modular Competency / Our Included Capabilities */
 .section-header {
-    text-align: center; /* توسيط العناوين */
+    text-align: center; /* Center headings */
     margin-bottom: 80px;
 }
 
 .section-label {
-    color: #aaff00; /* أخضر فسفوري */
+    color: #bbfe0f; /* Neon green */
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 2.5px;
@@ -316,31 +316,31 @@ html {
 }
 
 .section-title {
-    font-size: 56px; /* عنوان كبير */
+    font-size: 56px; /* Large title */
     margin: 20px 0;
     line-height: 1.1;
     font-weight: 800;
 }
 
-/* شبكة الكروت */
+/* Cards grid */
 .capabilities-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة */
-    gap: 24px; /* مسافة بين الكروت */
-    max-width: 1400px; /* تحديد عرض الشبكة */
-    margin: 0 auto; /* توسيط الشبكة في الصفحة */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 24px; /* Spacing between cards */
+    max-width: 1400px; /* Define grid width */
+    margin: 0 auto; /* Center the grid on the page */
 }
 
-/* --- التغييرات عند الـ Hover (الوقوف بالماوس) --- */
+/* --- Hover changes --- */
 .capability-card:hover {
-    border-color: #007bff; /* البوردر بيتحول للأزرق */
-    background-color: #0d0d0d; /* الخلفية بتفتح سنة */
-    transform: translateY(-5px); /* الكارد بيترفع للأعلى */
+    border-color: #0f33fe; /* Border turns blue */
+    background-color: #0d0d0d; /* Background becomes slightly lighter */
+    transform: translateY(-5px); /* Card moves up */
 }
 
-/* الرقم (01) */
+/* Number 01 */
 .card-number {
-    color: #555; /* لون رمادي في الهدوء */
+    color: #555; /* Gray color in default state */
     font-size: 14px;
     font-weight: bold;
     display: block;
@@ -349,9 +349,9 @@ html {
 }
 
 
-/* العنوان (Brand Strategy & Positioning) */
+/* Title: Brand Strategy & Positioning */
 .card-title {
-    color: #ccc; /* لون رمادي فاتح في الهدوء */
+    color: #ccc; /* Light gray in default state */
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 18px;
@@ -406,19 +406,19 @@ html {
 }
 
 .card-footer {
-    color: #aaff00;
+    color: #bbfe0f;
     font-size: 12px;
     font-family: monospace;
     letter-spacing: 0.5px;
 }
 
-/* السهم في الكوشة */
+/* Arrow in the corner */
 .capability-card::after {
     content: "→";
     position: absolute;
     top: 40px;
     right: 40px;
-    color: #007bff;
+    color: #0f33fe;
     font-size: 16px;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -427,41 +427,41 @@ html {
 .capability-card:hover::after {
     opacity: 1;
 }
-/* عند الـ Hover: الجملة السفلية بتتحول للأزرق برضه */
+/* On hover: the bottom line also turns blue */
 .capability-card:hover .card-footer {
-    color: #aaff00;
+    color: #bbfe0f;
 }
 
-/* السهم (→) */
+/* Arrow */
 .card-arrow {
     position: absolute;
     top: 50px;
     right: 40px;
-    color: #007bff; /* أزرق ثابت */
+    color: #0f33fe; /* Fixed blue */
     font-size: 18px;
-    opacity: 0; /* مخفي في الهدوء */
-    transform: translateX(10px); /* متحرك لليمين سنة */
-    transition: all 0.3s ease; /* نعومة الحركة */
+    opacity: 0; /* Hidden in default state */
+    transform: translateX(10px); /* Slightly moved to the right */
+    transition: all 0.3s ease; /* Smooth movement */
 }
 
-/* عند الـ Hover: السهم بيظهر وبيتحرك لمكانه */
+/* On hover: the arrow appears and moves into place */
 .capability-card:hover .card-arrow {
     opacity: 1;
     transform: translateX(0);
 }
 
-/* الخط الفاصل */
+/* Divider line */
 .card-divider {
     height: 1px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.08); /* لون خافت في الوضع العادي */
-    margin: 20px 0; /* مسافة بين الخط وما فوقه وما تحته */
+    background-color: rgba(255, 255, 255, 0.08); /* Soft color in default state */
+    margin: 20px 0; /* Space above and below the line */
     transition: background-color 0.3s ease;
 }
 
-/* عند الوقوف بالماوس، الخط يتحول للأزرق ليطابق التصميم */
+/* On mouse hover, the line turns blue to match the design */
 .capability-card:hover .card-divider {
-    background-color: #007bff;
+    background-color: #0f33fe;
 }
 
 
@@ -472,7 +472,7 @@ html {
     border-top: 1px solid #1a1a1a;
 }
 
-.chapter-label { color: #aaff00; font-size: 11px; font-weight: 700; letter-spacing: 2px; }
+.chapter-label { color: #bbfe0f; font-size: 11px; font-weight: 700; letter-spacing: 2px; }
 
 .header-flex { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; }
 
@@ -482,7 +482,7 @@ html {
 
 .detail-desc { color: #888; line-height: 1.6; font-size: 16px; }
 
-/* المربع الجانبي */
+/* Side box */
 .core-focus {
     border: 1px solid #1a1a1a;
     padding: 30px;
@@ -491,9 +491,9 @@ html {
 }
 
 .focus-label { display: block; font-size: 10px; color: #555; margin-bottom: 10px; }
-.focus-value { color: #aaff00; font-weight: bold; font-size: 14px; }
+.focus-value { color: #bbfe0f; font-weight: bold; font-size: 14px; }
 
-/* الشبكة السفلية */
+/* Bottom grid */
 .detail-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -505,7 +505,7 @@ html {
 
 .item-number { display: block; color: #fff; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
 .item-desc { color: #666; font-size: 13px; line-height: 1.5; }
-/* هذا التنسيق يطبق على أي عنصر تأخذ كلاس interactive-card */
+/* This style applies to any element with the interactive-card class */
 .interactive-card {
     border: 1px solid rgba(255, 255, 255, 0.05);
     background-color: #0a0a0a;
@@ -513,41 +513,41 @@ html {
     padding: 30px;
 }
 
-/* التأثير عند الهوفر لكل الأجزاء */
+/* Hover effect for all parts */
 .interactive-card:hover {
-    border-color: #007bff; /* اللون الأزرق */
+    border-color: #0f33fe; /* Blue color */
     background-color: #0d0d0d;
 }
 
-/* تنسيق خاص للعنوان داخل الكارد عند الهوفر */
+/* Special title styling inside the card on hover */
 .interactive-card:hover .detail-title, 
 .interactive-card:hover .item-number {
-    color: #007bff; /* تحويل العناوين للأزرق عند الوقوف عليها */
+    color: #0f33fe; /* Turn titles blue on hover */
 }
 
-/* تنسيق خاص للفقرات (نص الشرح) */
+/* Special paragraph styling */
 .detail-desc {
     color: #888;
     transition: color 0.3s;
 }
 
 .interactive-card:hover .detail-desc {
-    color: #ccc; /* يفتح لون النص عند الهوفر */
+    color: #ccc; /* Lightens the text color on hover */
 }
-/* الكارت الكبير الذي يجمع كل المحتوى */
+/* Large card that wraps all content */
 .main-detail-card {
     background-color: #0a0a0a;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 60px; /* مساحة داخلية مريحة */
+    padding: 60px; /* Comfortable inner spacing */
     transition: border 0.3s ease;
 }
 
-/* التأثير التفاعلي عند الوقوف بالماوس على الكارت الكبير */
+/* Interactive effect when hovering over the large card */
 .main-detail-card:hover {
-    border-color: #007bff; /* البوردر يصبح أزرق عند الهوفر */
+    border-color: #0f33fe; /* Border becomes blue on hover */
 }
 
-/* نضمن أن الشبكة الرباعية داخل الكارت تأخذ مساحتها */
+/* Make sure the four-card grid inside the card takes its space */
 .detail-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -559,9 +559,9 @@ html {
 .main-detail-title {
     text-transform: none;
     font-size: 40px;
-    font-weight: 400; /* سيجعل الحروف تظهر بشكل طبيعي (أول حرف كبير فقط) */
+    font-weight: 400; /* Makes letters appear normally, only first letter uppercase */
 }
-/* تنسيق الـ header-flex ليكون متوافقاً مع الكارت */
+/* Make header-flex compatible with the card */
 .header-flex {
     display: flex;
     justify-content: space-between;
@@ -569,29 +569,29 @@ html {
 }
 
 
-/* توزيع الـ Grid الأساسي */
+/* Main grid distribution */
 .content-layout {
     display: grid;
-    grid-template-columns: 1fr 400px; /* النص يأخذ المساحة المتاحة، الصورة تأخذ 400px */
+    grid-template-columns: 1fr 400px; /* Text takes available space, image takes 400px */
     gap: 40px;
     align-items: start;
 }
 
-/* ترتيب الكروت الأربعة (2x2) */
+/* Four cards layout: 2x2 */
 .grid-2x2 {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* عمودين */
+    grid-template-columns: 1fr 1fr; /* Two columns */
     gap: 20px;
     margin-top: 30px;
 }
 
-/* تنسيق الكارت الصغير */
+/* Small card styling */
 .small-card {
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 20px;
 }
 
-/* تنسيق الصورة */
+/* Image styling */
 .image-side img {
     width: 100%;
     height: 100%;
@@ -601,7 +601,7 @@ html {
 
 .operational-section {
   padding: 80px 0;
-  background: #000; /* خلفية سوداء مثل التصميم */
+  background: #000; /* Black background like the design */
 }
 
 .operational-header {
@@ -611,60 +611,60 @@ html {
 
 .operational-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 أعمدة */
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
   gap: 20px;
 }
 
-/* --- الكارت في حالته الطبيعية --- */
+/* --- Card in its default state --- */
 .op-card {
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* الحدود العادية */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Default border */
   padding: 30px;
   background: #0a0a0a;
   
-  /* ترانزيشن عام لتغير الحدود والخلفية (الثلاث جهات) */
+  /* General transition for border and background changes on three sides */
   transition: border-color 0.4s ease, background 0.4s ease;
-  overflow: hidden; /* عشان الخط العلوي ميطلعش برا الكارت */
+  overflow: hidden; /* So the top line does not go outside the card */
   cursor: pointer;
 }
 
-/* --- الخط العلوي الأزرق (الذي سيتحرك من اليسار) --- */
+/* --- Blue top line that moves from the left --- */
 .op-card::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px; /* سمك الخط */
-  background: #007bff; /* لون الخط الأزرق */
+  height: 3px; /* Line thickness */
+  background: #0f33fe; /* Blue line color */
   
-  /* الحالة الطبيعية: الخط "منكمش" لليسار (0% عرض) */
+  /* Default state: the line is collapsed to the left, 0% width */
   transform: scaleX(0);
-  transform-origin: left; /* الحركة تبدأ من الشمال */
+  transform-origin: left; /* Movement starts from the left */
   
-  /* ترانزيشن ناعم للحركة */
+  /* Smooth transition for the movement */
   transition: transform 0.4s ease-out;
 }
 
-/* --- تأثير الـ Hover على الـ Pseudo-element (الخط العلوي) --- */
+/* --- Hover effect on the pseudo-element: top line --- */
 .op-card:hover::before {
-  /* عند الـ Hover: الخط يمتد للعرض الكامل (من الشمال لليمين) */
+  /* On hover: line extends to full width from left to right */
   transform: scaleX(1);
 }
 
-/* --- تأثير الـ Hover على باقي الحدود والخلفية (الثلاث جهات واللون الأصفر) --- */
+/* --- Hover effect on the remaining borders and background: three sides and yellow color --- */
 .op-card:hover {
-  /* الحدود الثلاثة الأخرى تتلون باللون الأصفر المائل للبرتقالي (ffd700) */
-  border-color: #aaff00;
+  /* The other three borders turn yellow-lime */
+  border-color: #bbfe0f;
   
-  /* الخط العلوي يظل شفافاً في هذا الكلاس لتجنب تكراره */
+  /* Top border stays transparent in this class to avoid duplication */
   border-top-color: transparent; 
   
-  /* تغيير لون الخلفية بسيط لإعطاء عمق (اختياري) */
+  /* Slight background change for depth, optional */
   background: #111; 
 }
 .op-number {
-  color: #007bff; /* اللون الأزرق */
+  color: #0f33fe; /* Blue color */
   font-size: 11px;
   letter-spacing: 1px;
   margin-bottom: 15px;
@@ -695,9 +695,9 @@ html {
 
 .anatomy-grid {
   display: grid;
-  /* تقسيم 4 أعمدة متساوية */
+  /* Split into 4 equal columns */
   grid-template-columns: repeat(4, 1fr); 
-  gap: 15px; /* المسافة بين المربعات */
+  gap: 15px; /* Spacing between boxes */
   margin-top: 40px;
 }
 
@@ -711,44 +711,44 @@ html {
   transition: border-color 0.3s ease;
 }
 
-/* تأثير عند الوقوف بالماوس */
+/* Hover effect */
 .anatomy-card:hover {
-  border-color: #007bff; /* أو اللون الذي تفضلينه */
+  border-color: #0f33fe; /* Or your preferred color */
   cursor: pointer;
 }
 .split-layout {
   display: flex;
-  gap: 60px; /* مسافة بين النص والشبكة */
+  gap: 60px; /* Spacing between text and grid */
   align-items: flex-start;
 }
 
-/* النص يأخذ حوالي 35% من العرض */
+/* Text takes around 35% of the width */
 .text-side {
   flex: 0 0 35%;
 }
 
 .grid-side {
   display: grid;
-  /* 1fr يعني توزيع المساحة بالتساوي بغض النظر عن طول النص */
+  /* 1fr distributes the space evenly regardless of text length */
   grid-template-columns: repeat(4, 1fr); 
   gap: 15px;
-  width: 100%; /* تأكدي أنها تأخذ كامل عرض حاويتها */
+  width: 100%; /* Make sure it takes the full width of its container */
 }
 
 .anatomy-card {
-  /* تأكدي من أن المربع لا يحاول توسيع نفسه بناءً على المحتوى */
+  /* Make sure the box does not try to expand itself based on content */
   width: 100%;
-  box-sizing: border-box; /* هام جداً لجعل الـ padding جزءاً من العرض */
+  box-sizing: border-box; /* Very important to make padding part of the width */
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: #0a0a0a;
   
-  /* إذا كان النص طويلاً جداً، دعي السطر ينكسر بدلاً من توسيع المربع */
+  /* If the text is too long, let the line break instead of expanding the box */
   word-wrap: break-word;
 }
 
 .anatomy-card:hover {
-  border-color: #007bff; /* اللون الأصفر عند الـ Hover */
+  border-color: #0f33fe; /* Yellow color on hover */
   cursor: pointer;
 }
 
@@ -759,7 +759,7 @@ html {
 
 .grid-side-pillars {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* شبكة 2×2 */
+  grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
   gap: 20px;
 }
 
@@ -771,11 +771,11 @@ html {
 }
 
 .pillar-card:hover {
-  border-color: #007bff; /* اللون الأصفر عند الوقوف بالماوس */
+  border-color: #0f33fe; /* Yellow color on mouse hover */
 }
 
 .pillar-icon {
-  color: #aaff00; /* لون علامة الصح */
+  color: #bbfe0f; /* Check mark color */
   font-size: 20px;
   display: block;
   margin-bottom: 15px;
@@ -803,7 +803,7 @@ html {
   transition: border-color 0.3s;
 }
 
-.faq-item.active { border-color: #aaff00; }
+.faq-item.active { border-color: #bbfe0f; }
 
 .faq-header { 
   padding: 25px; 
@@ -815,9 +815,9 @@ html {
 
 .faq-header h3 { font-size: 16px; margin: 0; }
 
-.faq-arrow { color: #aaff00; font-size: 20px; }
+.faq-arrow { color: #bbfe0f; font-size: 20px; }
 
-/* إخفاء وإظهار المحتوى */
+/* Hide and show content */
 .faq-content {
   max-height: 0;
   overflow: hidden;
@@ -828,19 +828,19 @@ html {
 }
 
 .faq-item.active .faq-content {
-  max-height: 200px; /* الارتفاع المناسب للنص */
+  max-height: 200px; /* Suitable height for the text */
   padding: 0 25px 25px 25px;
 }
 
 
-/* التنسيق العام للسيكشن */
+/* General section styling */
 .site-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* تنسيق الـ Hero Section (مطابق للصور) */
+/* Hero Section styling, matching the images */
 .hero-section {
   background-color: #000;
   padding: 100px 0;
@@ -849,7 +849,7 @@ html {
 }
 
 .hero-label {
-  color: #aaff00; /* اللون الليموني المستخدم في التصميم */
+  color: #bbfe0f; /* Lime color used in the design */
   font-size: 12px;
   letter-spacing: 3px;
   margin-bottom: 20px;
@@ -871,9 +871,9 @@ html {
   margin-top: 40px;
 }
 
-/* الأزرار كما في الصور */
+/* Buttons like in the images */
 .btn-lime {
-  background-color: #677c38;
+  background-color: #bbfe0f;
   color: #000;
   padding: 20px 40px;
   font-weight: bold;
@@ -890,20 +890,20 @@ html {
   text-transform: uppercase;
   cursor: pointer;
 }
-/* التنسيق الأساسي للزر */
+/* Base button styling */
 .custom-btn {
   padding: 18px 35px;
-  background-color: #aaff00; /* اللون الليموني الأصلي */
+  background-color: #bbfe0f; /* Original lime color */
   color: #000;
   border: none;
   cursor: pointer;
   font-weight: bold;
   text-transform: uppercase;
-  transition: all 0.3s ease; /* حركة ناعمة عند تغيير اللون */
+  transition: all 0.3s ease; /* Smooth motion when the color changes */
 }
 
-/* تنسيق الزر عند الضغط عليه (يصبح أزرق وكلام أبيض) */
+/* Button styling when clicked: becomes blue with white text */
 .custom-btn.active {
-  background-color: #007bff; /* اللون الأزرق */
-  color: #ffffff; /* الكتابة باللون الأبيض */
+  background-color: #0f33fe; /* Blue color */
+  color: #ffffff; /* White text */
 }

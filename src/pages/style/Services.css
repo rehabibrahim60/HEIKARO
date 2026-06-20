@@ -5,7 +5,7 @@
   background-color: #050505;
   display: flex;
   align-items: center;
-  /* إزالة justify-content: flex-end لأننا سنستخدم التموضع المطلق للمحتوى */
+  /* Remove justify-content: flex-end because we will use absolute positioning for the content */
   box-sizing: border-box;
   overflow: hidden;
     top: 40% !important; 
@@ -14,7 +14,7 @@
 
 .services-hero-content {
   position: absolute !important;
-  /* غيّري 50% إلى 40% مثلاً لرفع المحتوى للأعلى */
+  /* Change 50% to 40%, for example, to move the content upward */
   top: 40% !important; 
   left: 10% !important;
   transform: translateY(-50%) !important;
@@ -37,20 +37,20 @@
   padding: 8px 16px;
   animation: colorChange 6s infinite alternate;
   margin-bottom: 10px;
-  /* البادج يبدأ من اليسار الآن */
+  /* Badge now starts from the left */
   align-self: flex-start; 
 }
 
 .services-hero-title {
   font-size: clamp(50px, 10vw, 120px);
   font-weight: 900;
-  color: #3b82f6;
+  color: #0f33fe;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   margin: 0;
   line-height: 1;
-  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-  /* العنوان يبدأ من اليسار */
+  text-shadow: 0 0 20px rgba(15, 51, 254, 0.5);
+  /* Title starts from the left */
   text-align: left;
 }
 
@@ -64,10 +64,10 @@
   max-width: none !important;
   text-align: left !important;
   
-  /* الحل النهائي: إزاحة العنصر نفسه بصرياً */
-  margin-left: 100px !important; /* زيدي الرقم لـ 100px إذا أردتِ تحريكها أكثر لليمين */
+  /* Final solution: visually shift the element itself */
+  margin-left: 100px !important; /* Increase the number to 100px if you want to move it more to the right */
 }
-/* لا تنسي تعديل الـ bg-text ليظهر بشكل جميل مع المحتوى الجديد */
+/* Do not forget to adjust the bg-text so it appears nicely with the new content */
 .services-hero-bg-text {
   position: absolute;
   right: 5%; 
@@ -86,8 +86,8 @@
 
 @keyframes colorChange {
   0% { color: #ffffff; border-color: #ffffff; }
-  50% { color: #3b82f6; border-color: #3b82f6; }
-  100% { color: #facc15; border-color: #facc15; }
+  50% { color: #0f33fe; border-color: #0f33fe; }
+  100% { color: #bbfe0f; border-color: #bbfe0f; }
 }
 
 
@@ -129,7 +129,7 @@
   overflow: hidden;
 }
 
-/* الخط الأزرق العلوي — يظهر كله مرة واحدة */
+/* Top blue line — appears all at once */
 .sc-card::before {
   content: '';
   position: absolute;
@@ -137,14 +137,14 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: #3b82f6;
+  background: #0f33fe;
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.3s ease;
 }
 
 .sc-card:hover {
-  border-color: #3b82f6;
+  border-color: #0f33fe;
 }
 
 .sc-card:hover::before {
@@ -184,11 +184,11 @@
 }
 
 .sc-card:hover .sc-icon {
-  border-color: #3b82f6;
+  border-color: #0f33fe;
 }
 
 .sc-card:hover .sc-icon svg {
-  stroke: #3b82f6;
+  stroke: #0f33fe;
 }
 
 /* ---- Body ---- */
@@ -208,7 +208,7 @@
 }
 
 .sc-card:hover .sc-title {
-  color: #3b82f6;
+  color: #0f33fe;
 }
 
 .sc-desc {
@@ -251,7 +251,7 @@
 }
 
 .sc-card:hover .sc-items li svg {
-  stroke: #3b82f6;
+  stroke: #0f33fe;
 }
 
 /* ---- CTA Link ---- */
@@ -279,11 +279,11 @@
 }
 
 .sc-card:hover .sc-link {
-  color: #3b82f6;
+  color: #0f33fe;
 }
 
 .sc-card:hover .sc-link svg {
-  stroke: #3b82f6;
+  stroke: #0f33fe;
   transform: translateX(4px);
 }
 

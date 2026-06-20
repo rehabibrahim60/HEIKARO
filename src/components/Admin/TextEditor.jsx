@@ -29,7 +29,7 @@ export default function TextEditor({ value, onChange }) {
       Link.configure({
         openOnClick: true,
         HTMLAttributes: {
-          class: "text-cyan-400 underline cursor-pointer",
+          class: "text-[#0f33fe] underline cursor-pointer",
         },
       }),
     ],
@@ -50,7 +50,7 @@ export default function TextEditor({ value, onChange }) {
       onClick={onClick}
       title={title}
       className={`p-2 rounded-lg transition-colors ${
-        active ? "bg-cyan-500 text-black" : "text-gray-300 hover:bg-gray-700"
+        active ? "bg-[#0f33fe] text-white" : "text-gray-300 hover:bg-gray-700"
       }`}
     >
       {children}

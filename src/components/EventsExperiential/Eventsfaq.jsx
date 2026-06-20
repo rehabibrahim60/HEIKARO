@@ -56,14 +56,14 @@ const EventsFAQ = () => {
                 <div className="flex flex-col lg:w-[34%]">
 
                     {/* Icon box */}
-                    <div className="mb-7 flex h-11 w-11 items-center justify-center border border-[#1a5fff]">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a5fff" strokeWidth="1.8">
+                    <div className="mb-7 flex h-11 w-11 items-center justify-center border border-[#0f33fe]">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f33fe" strokeWidth="1.8">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M12 16v-4M12 8h.01" strokeLinecap="round" />
                         </svg>
                     </div>
 
-                    <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#1a5fff]">
+                    <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0f33fe]">
                         FAQS
                     </p>
 

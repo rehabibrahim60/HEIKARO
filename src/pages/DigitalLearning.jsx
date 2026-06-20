@@ -44,6 +44,7 @@ const includedCapabilities = [
         anchor: "learning-platforms-ux",
     },
 ];
+
 const digitalLearningCapabilities = [
     {
         id: 1,

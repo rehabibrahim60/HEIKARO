@@ -111,26 +111,16 @@ export default function SlideForm({ slide, toast, onClose }) {
         order,
       };
 
-      const url = isEdit
-        ? `${API}/home/slides/${slide._id}`
-        : `${API}/home/slides`;
-
-      await fetch(url, {
-        method: isEdit ? 'PATCH' : 'POST',
-        headers: { ...authHeaders(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-
-      await fetch(`${API}/home/visible-slides`, {
-        method: 'PATCH',
-        headers: { ...authHeaders(), 'Content-Type': 'application/json' },
-        body: JSON.stringify({ visibleContentSlides: allVisible ? [] : selectedVisible }),
-      });
-
-      toast.show(isEdit ? 'تم التعديل' : 'تم الإضافة');
+      if (isEdit) {
+        await fetch(`${API}/hero/slides/${slide._id}`, { method: "PATCH", headers: authHeaders(), body: fd });
+        toast.show("تم تحديث السلايد");
+      } else {
+        await fetch(`${API}/hero/slides`, { method: "POST", headers: authHeaders(), body: fd });
+        toast.show("تم إضافة السلايد");
+      }
       onClose();
-    } catch {
-      toast.show('حدث خطأ', 'error');
+    } catch (err) {
+      toast.show("حدث خطأ: " + err.message, "error");
     } finally {
       setLoading(false);
     }
@@ -141,116 +131,60 @@ export default function SlideForm({ slide, toast, onClose }) {
       position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)',
       display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
     }}>
-      <div style={{
-        background: '#0f172a', borderRadius: 16, padding: 28, width: '100%',
-        maxWidth: 500, maxHeight: '90vh', overflowY: 'auto',
-        border: '1px solid #1e293b', display: 'flex', flexDirection: 'column', gap: 20
-      }}>
-        {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 style={{ color: '#f1f5f9', fontSize: 18, fontWeight: 700, margin: 0 }}>
-            {isEdit ? 'تعديل سلايد' : 'إضافة سلايد جديد'}
+      <div style={{ background: "#0f172a", border: "1px solid #1f2937", borderRadius: 20, width: "100%", maxWidth: 600, padding: 32 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 24 }}>
+          <h2 style={{ color: "#f1f5f9", fontSize: 18, fontWeight: 700, margin: 0 }}>
+            {isEdit ? "تعديل سلايد" : "إضافة سلايد جديد"}
           </h2>
           <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#6b7280', cursor: 'pointer', fontSize: 20 }}>✕</button>
         </div>
 
-        {/* Type Toggle */}
-        <div>
-          <p style={sectionTitle}>نوع السلايد</p>
-          <div style={{ display: 'flex', gap: 8 }}>
-            {['image', 'video'].map(t => (
-              <button key={t} onClick={() => setType(t)} style={{
-                flex: 1, padding: '10px', borderRadius: 8, cursor: 'pointer',
-                border: `1px solid ${type === t ? '#1a5fff' : '#1f2937'}`,
-                background: type === t ? '#1a3a7a' : '#111827',
-                color: type === t ? '#60a5fa' : '#6b7280', fontSize: 13, fontWeight: 600
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          {/* Type selector */}
+          <div>
+            <label style={labelStyle}>نوع السلايد</label>
+            <div style={{ display: "flex", gap: 8 }}>
+              {["image", "video"].map(t => (
+                <button key={t} onClick={() => setType(t)} style={{
+                  flex: 1, padding: "10px", borderRadius: 8, fontSize: 14, fontWeight: 500,
+                  border: type === t ? "none" : "1px solid #1f2937",
+                  background: type === t ? "#22d3ee" : "transparent",
+                  color: type === t ? "#000" : "#6b7280", cursor: "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 6
+                }}>
+                  <Icon name={t} size={16} /> {t === "image" ? "صورة" : "فيديو"}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {type === 'image' && (
+            <div>
+              <label style={labelStyle}>{type === "image" ? "الصورة" : "الفيديو"}</label>
+              <div style={{
+                border: "2px dashed #1f2937", borderRadius: 10, padding: 20,
+                textAlign: "center", cursor: "pointer"
+              }} onClick={() => document.getElementById("slideFile").click()}>
+                {preview
+                  ? type === "image"
+                    ? <img src={preview} alt="" style={{ maxHeight: 140, borderRadius: 8 }} />
+                    : <video src={preview} style={{ maxHeight: 140, borderRadius: 8 }} controls />
+                  : <div style={{ color: "#4b5563", fontSize: 13 }}>
+                    <Icon name="upload" size={24} /><br />
+                    اضغط لرفع {type === "image" ? "صورة" : "فيديو"}
+                  </div>}
+                <input id="slideFile" type="file" accept={type === "image" ? "image/*" : "video/*"} hidden onChange={handleFile} />
+              </div>
+            </div>
+
+          {/* Show overlay toggle (images only) */}
+          {type === "image" && (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", background: "#111827", borderRadius: 10 }}>
+              <span style={{ color: "#f1f5f9", fontSize: 14 }}>إظهار النصوص فوق الصورة</span>
+              <button onClick={() => setShowOverlay(p => !p)} style={{
+                background: showOverlay ? "#22d3ee" : "#374151", border: "none", borderRadius: 20,
+                width: 44, height: 24, cursor: "pointer", position: "relative", transition: "background 0.2s"
               }}>
-                {t === 'image' ? '🖼 صورة' : '🎬 فيديو'}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {type === 'image' && (
-          <div>
-            <label style={labelStyle}>الصورة</label>
-
-            {/* Preview */}
-            {imagePreview && (
-              <div style={{ position: 'relative', marginBottom: 10 }}>
-                <img src={imagePreview} alt="preview"
-                  style={{ width: '100%', height: 160, objectFit: 'cover', borderRadius: 8 }} />
-                <button onClick={() => { setImagePreview(''); setImageFile(null); }} style={{
-                  position: 'absolute', top: 6, left: 6, background: '#cc2200',
-                  border: 'none', borderRadius: '50%', width: 24, height: 24,
-                  color: '#fff', cursor: 'pointer', fontSize: 14, lineHeight: 1
-                }}>✕</button>
-              </div>
-            )}
-
-            {/* Upload Area */}
-            {!imagePreview && (
-              <label style={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                border: '2px dashed #1f2937', borderRadius: 8, padding: '32px 16px', cursor: 'pointer',
-                background: '#0a0f1a', gap: 8, transition: 'border-color 0.2s'
-              }}
-                onDragOver={e => e.preventDefault()}
-                onDrop={e => {
-                  e.preventDefault();
-                  const file = e.dataTransfer.files[0];
-                  if (file) { setImageFile(file); setImagePreview(URL.createObjectURL(file)); }
-                }}
-              >
-                <span style={{ fontSize: 32 }}>🖼</span>
-                <span style={{ color: '#6b7280', fontSize: 13 }}>اسحب صورة هنا أو</span>
-                <span style={{
-                  background: '#1a5fff', color: '#fff', padding: '6px 16px',
-                  borderRadius: 6, fontSize: 12, fontWeight: 600
-                }}>اختر من جهازك</span>
-                <span style={{ color: '#374151', fontSize: 11 }}>JPG, PNG, WEBP — max 100MB</span>
-                <input type="file" accept="image/*" style={{ display: 'none' }}
-                  onChange={e => {
-                    const file = e.target.files[0];
-                    if (file) { setImageFile(file); setImagePreview(URL.createObjectURL(file)); }
-                  }} />
-              </label>
-            )}
-          </div>
-        )}
-        {type === 'video' && (
-          <div>
-            <label style={labelStyle}>الفيديو</label>
-
-            {/* Preview */}
-            {videoPreview && (
-              <div style={{ position: 'relative', marginBottom: 10 }}>
-                <video src={videoPreview} controls
-                  style={{ width: '100%', height: 160, objectFit: 'cover', borderRadius: 8 }} />
-                <button onClick={() => { setVideoPreview(''); setVideoFile(null); }} style={{
-                  position: 'absolute', top: 6, left: 6, background: '#cc2200',
-                  border: 'none', borderRadius: '50%', width: 24, height: 24,
-                  color: '#fff', cursor: 'pointer', fontSize: 14, lineHeight: 1
-                }}>✕</button>
-              </div>
-            )}
-
-            {/* Upload Area */}
-            {!videoPreview && (
-              <label style={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                border: '2px dashed #1f2937', borderRadius: 8, padding: '32px 16px', cursor: 'pointer',
-                background: '#0a0f1a', gap: 8
-              }}
-                onDragOver={e => e.preventDefault()}
-                onDrop={e => {
-                  e.preventDefault();
-                  const file = e.dataTransfer.files[0];
-                  if (file) { setVideoFile(file); setVideoPreview(URL.createObjectURL(file)); }
-                }}
-              >
-                <span style={{ fontSize: 32 }}>🎬</span>
-                <span style={{ color: '#6b7280', fontSize: 13 }}>اسحب فيديو هنا أو</span>
                 <span style={{
                   background: '#1a5fff', color: '#fff', padding: '6px 16px',
                   borderRadius: 6, fontSize: 12, fontWeight: 600
@@ -263,134 +197,52 @@ export default function SlideForm({ slide, toast, onClose }) {
                   }} />
               </label>
             )}
-          </div>
-        )}
-
-        {/* Show Overlay Toggle - image only */}
-        {type === 'image' && (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ color: '#cbd5e1', fontSize: 13 }}>إظهار النصوص فوق الصورة؟</span>
-            <button onClick={() => setShowOverlay(p => !p)} style={{
-              width: 44, height: 24, borderRadius: 12, border: 'none', cursor: 'pointer',
-              background: showOverlay ? '#1a5fff' : '#374151',
-              position: 'relative', transition: 'background 0.2s'
-            }}>
-              <span style={{
-                position: 'absolute', top: 3, left: showOverlay ? 22 : 3,
-                width: 18, height: 18, borderRadius: '50%', background: '#fff',
-                transition: 'left 0.2s'
-              }} />
-            </button>
-          </div>
-        )}
-
-        {/* اختيار النص - image + showOverlay */}
-        {type === 'image' && showOverlay && (
-          <div>
-            <p style={sectionTitle}>اختر النص اللي هيظهر فوق الصورة</p>
-            {loadingContent ? (
-              <p style={{ color: '#6b7280', fontSize: 12 }}>جاري التحميل...</p>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {contentSlides.map(cs => (
-                  <button key={cs._id} onClick={() => setSelectedContentId(cs._id)} style={{
-                    padding: '10px 14px', borderRadius: 8, cursor: 'pointer', textAlign: 'right',
-                    border: `1px solid ${selectedContentId === cs._id ? '#1a5fff' : '#1f2937'}`,
-                    background: selectedContentId === cs._id ? '#0f2a5e' : '#111827',
-                    display: 'flex', alignItems: 'center', gap: 10
-                  }}>
-                    <span style={{
-                      minWidth: 28, height: 28, borderRadius: 6, display: 'flex',
-                      alignItems: 'center', justifyContent: 'center', fontWeight: 700,
-                      fontSize: 12, flexShrink: 0,
-                      background: selectedContentId === cs._id ? '#1a5fff' : '#1f2937',
-                      color: selectedContentId === cs._id ? '#fff' : '#6b7280'
-                    }}>{cs.order}</span>
-                    <div style={{ flex: 1 }}>
-                      <p style={{ color: '#f1f5f9', fontSize: 13, fontWeight: 600, margin: 0 }}>{cs.label}</p>
-                      <p style={{
-                        color: '#6b7280', fontSize: 11, margin: '2px 0 0',
-                        overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis',
-                        maxWidth: 300
-                      }}>{cs.heading}</p>
-                    </div>
-                    {selectedContentId === cs._id && (
-                      <span style={{ color: '#1a5fff', fontSize: 16 }}>✓</span>
-                    )}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Divider */}
-        <hr style={{ border: 'none', borderTop: '1px solid #1e293b' }} />
-
-        {/* اختيار الـ content slides اللي هتظهر في الهيرو */}
-        <div>
-          <p style={sectionTitle}>السلايدز النصية اللي هتظهر في الهيرو</p>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-            <button onClick={() => setAllVisible(true)} style={{
-              flex: 1, padding: '8px', borderRadius: 8, cursor: 'pointer',
-              border: `1px solid ${allVisible ? '#1a5fff' : '#1f2937'}`,
-              background: allVisible ? '#1a3a7a' : '#111827',
-              color: allVisible ? '#60a5fa' : '#6b7280', fontSize: 12, fontWeight: 600
-            }}>كل السلايدز (الـ 6)</button>
-            <button onClick={() => setAllVisible(false)} style={{
-              flex: 1, padding: '8px', borderRadius: 8, cursor: 'pointer',
-              border: `1px solid ${!allVisible ? '#1a5fff' : '#1f2937'}`,
-              background: !allVisible ? '#1a3a7a' : '#111827',
-              color: !allVisible ? '#60a5fa' : '#6b7280', fontSize: 12, fontWeight: 600
-            }}>اختر معين</button>
-          </div>
-
-          {!allVisible && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              {contentSlides.map(cs => (
-                <button key={cs._id} onClick={() => toggleVisibleSlide(cs._id)} style={{
-                  padding: '8px 14px', borderRadius: 8, cursor: 'pointer', textAlign: 'right',
-                  border: `1px solid ${selectedVisible.includes(cs._id) ? '#c8ff00' : '#1f2937'}`,
-                  background: selectedVisible.includes(cs._id) ? '#1a2a00' : '#111827',
-                  display: 'flex', alignItems: 'center', gap: 10
-                }}>
-                  <span style={{
-                    minWidth: 28, height: 28, borderRadius: 6, display: 'flex',
-                    alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 12,
-                    flexShrink: 0,
-                    background: selectedVisible.includes(cs._id) ? '#c8ff00' : '#1f2937',
-                    color: selectedVisible.includes(cs._id) ? '#000' : '#6b7280'
-                  }}>{cs.order}</span>
-                  <span style={{ color: '#f1f5f9', fontSize: 13, fontWeight: 600 }}>{cs.label}</span>
-                  {selectedVisible.includes(cs._id) && (
-                    <span style={{ color: '#c8ff00', fontSize: 16, marginRight: 'auto' }}>✓</span>
-                  )}
-                </button>
-              ))}
             </div>
           )}
-        </div>
 
-        {/* Order */}
-        <div>
-          <label style={labelStyle}>الترتيب</label>
-          <input type="number" value={order} onChange={e => setOrder(Number(e.target.value))}
-            style={{ ...inputStyle, width: 80 }} />
-        </div>
+          {/* Show Overlay Toggle - image only */}
+          {type === 'image' && (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ color: '#cbd5e1', fontSize: 13 }}>إظهار النصوص فوق الصورة؟</span>
+              <button onClick={() => setShowOverlay(p => !p)} style={{
+                width: 44, height: 24, borderRadius: 12, border: 'none', cursor: 'pointer',
+                background: showOverlay ? '#1a5fff' : '#374151',
+                position: 'relative', transition: 'background 0.2s'
+              }}>
+                <span style={{
+                  position: 'absolute', top: 3, left: showOverlay ? 22 : 3,
+                  width: 18, height: 18, borderRadius: '50%', background: '#fff',
+                  transition: 'left 0.2s'
+                }} />
+              </button>
+            </div>
+          )}
 
-        {/* Actions */}
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={handleSubmit} disabled={loading} style={{
-            flex: 1, padding: '12px', borderRadius: 8, border: 'none',
-            background: '#1a5fff', color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer'
-          }}>
-            {loading ? 'جاري الحفظ...' : isEdit ? 'حفظ التعديلات' : 'إضافة'}
-          </button>
-          <button onClick={onClose} style={{
-            flex: 1, padding: '12px', borderRadius: 8,
-            border: '1px solid #1f2937', background: 'transparent',
-            color: '#6b7280', fontSize: 14, cursor: 'pointer'
-          }}>إلغاء</button>
+          {/* Overlay text fields */}
+          {(showOverlay || type === "video") && (
+            <div style={{ background: "#111827", borderRadius: 12, padding: 16, display: "flex", flexDirection: "column", gap: 12 }}>
+              <p style={{ color: "#22d3ee", fontSize: 12, fontWeight: 600, margin: "0 0 4px", textTransform: "uppercase", letterSpacing: 1 }}>نصوص العرض</p>
+              <input value={overlay.badge} onChange={e => setOverlay(p => ({ ...p, badge: e.target.value }))} style={inputStyle} placeholder="Badge مثلاً: MARKETING & GROWTH" />
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
+                <input value={overlay.prefix} onChange={e => setOverlay(p => ({ ...p, prefix: e.target.value }))} style={inputStyle} placeholder="Prefix: WE" />
+                <input value={overlay.highlight} onChange={e => setOverlay(p => ({ ...p, highlight: e.target.value }))} style={inputStyle} placeholder="Highlight" />
+                <input value={overlay.suffix} onChange={e => setOverlay(p => ({ ...p, suffix: e.target.value }))} style={inputStyle} placeholder="Suffix: BRANDS" />
+              </div>
+              <textarea value={overlay.description} onChange={e => setOverlay(p => ({ ...p, description: e.target.value }))}
+                style={{ ...inputStyle, minHeight: 70, resize: "vertical" }} placeholder="وصف..." />
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                <input value={overlay.buttonText} onChange={e => setOverlay(p => ({ ...p, buttonText: e.target.value }))} style={inputStyle} placeholder="نص الزرار" />
+                <input value={overlay.buttonLink} onChange={e => setOverlay(p => ({ ...p, buttonLink: e.target.value }))} style={inputStyle} placeholder="رابط الزرار" />
+              </div>
+            </div>
+          )}
+
+          <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", marginTop: 4 }}>
+            <button onClick={onClose} style={ghostBtn}>إلغاء</button>
+            <button onClick={save} disabled={loading} style={primaryBtn}>
+              {loading ? "جاري الحفظ..." : isEdit ? "تحديث" : "إضافة"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
