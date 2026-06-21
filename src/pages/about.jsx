@@ -1,4 +1,6 @@
 import './style/about.css';
+import { Link } from "react-router-dom";
+
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -201,10 +203,15 @@ export default function HeroSection() {
             brands move from scattered ideas to clear strategy, distinctive
             identity, powerful content, digital experiences, and measurable growth.
           </p>
-          <div className="hk-btns">
-            <button className="hk-btn-primary">Start Your Brief</button>
-            <button className="hk-btn-outline">Explore Our Services</button>
-          </div>
+        <div>
+          <Link to="/contact" className="hk-btn-primary">
+            Start Your Brief
+          </Link>
+
+          <Link to="/services" className="hk-btn-outline">
+            Explore Our Services
+          </Link>
+        </div>
         </div>
         <div className="hk-divider" />
       </section>
@@ -329,7 +336,9 @@ export default function HeroSection() {
         <Tracks/>
 
         <div className="services-footer">
-          <button className="services-btn">VIEW ALL SERVICES</button>
+        <Link to="/Services" className="services-btn">
+          VIEW ALL SERVICES
+        </Link>
         </div>
       </section>
 
@@ -507,10 +516,15 @@ export default function HeroSection() {
             execution path.
           </p>
 
-          <div className="briefing-actions">
-            <button className="briefing-btn-primary">START YOUR BRIEF</button>
-            <button className="briefing-btn-outline">VIEW SERVICES</button>
-          </div>
+          <div>
+          <Link to="/contact" className="hk-btn-primary">
+            Start Your Brief
+          </Link>
+
+          <Link to="/services" className="hk-btn-outline">
+            Explore Our Services
+          </Link>
+        </div>
         </div>
       </section>
 
@@ -528,11 +542,12 @@ export default function HeroSection() {
             </p>
           </div>
 
-          <div className="clarity-banner-right">
-            <button className="clarity-banner-btn">
-              START YOUR GROWTH
-            </button>
-          </div>
+
+        <div className="clarity-banner-right">
+          <Link to="/contact" className="clarity-banner-btn">
+            START YOUR GROWTH
+          </Link>
+        </div>
 
         </div>
       </section>
