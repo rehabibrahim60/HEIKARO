@@ -65,8 +65,17 @@ function Icon({ name, size = 16 }) {
   );
 }
 
-export default function SlideForm({ slide, toast, onClose }) {
+export default function SlideForm({
+  slide,
+  toast,
+  onClose,
+  allVisible = false,
+  selectedVisible = []
+}) {
   const isEdit = !!slide;
+  const overlayData = typeof slide?.overlayText === 'object'
+    ? slide.overlayText
+    : slide?.overlay || {};
 
   const [type, setType] = useState(slide?.type || 'image');
   const [imageFile, setImageFile] = useState(null);
@@ -77,6 +86,15 @@ export default function SlideForm({ slide, toast, onClose }) {
   const [selectedContentId, setSelectedContentId] = useState(
     slide?.overlayText?._id || slide?.overlayText || ''
   );
+  const [overlay, setOverlay] = useState({
+    badge: overlayData?.badge || slide?.badge || '',
+    prefix: overlayData?.prefix || slide?.prefix || '',
+    highlight: overlayData?.highlight || slide?.highlight || '',
+    suffix: overlayData?.suffix || slide?.suffix || '',
+    description: overlayData?.description || slide?.description || '',
+    buttonText: overlayData?.buttonText || slide?.buttonText || '',
+    buttonLink: overlayData?.buttonLink || slide?.buttonLink || ''
+  });
   const [order, setOrder] = useState(slide?.order ?? 0);
   const [loading, setLoading] = useState(false);
   const [contentSlides, setContentSlides] = useState([]);
@@ -131,6 +149,16 @@ export default function SlideForm({ slide, toast, onClose }) {
 
     setLoading(true);
 
+    let body = {
+      type,
+      imageUrl: type === 'image' ? imagePreview : undefined,
+      videoUrl: type === 'video' ? videoPreview : undefined,
+      showOverlay: type === 'image' ? showOverlay : false,
+      overlayTextId: type === 'image' && showOverlay ? selectedContentId : null,
+      overlay,
+      order: Number(order) || 0,
+    };
+
     try {
       // Upload only if there is a new file
       let imageUrl = imagePreview;
@@ -138,12 +166,13 @@ export default function SlideForm({ slide, toast, onClose }) {
       if (imageFile) imageUrl = await uploadFile(imageFile);
       if (videoFile) videoUrl = await uploadFile(videoFile);
 
-      const body = {
+      body = {
         type,
         imageUrl: type === 'image' ? imageUrl : undefined,
         videoUrl: type === 'video' ? videoUrl : undefined,
         showOverlay: type === 'image' ? showOverlay : false,
         overlayTextId: type === 'image' && showOverlay ? selectedContentId : null,
+        overlay,
         order: Number(order) || 0,
       };
 
@@ -166,31 +195,30 @@ export default function SlideForm({ slide, toast, onClose }) {
       toast.show(isEdit ? 'تم التعديل' : 'تم الإضافة');
       onClose();
     } catch (err) {
-      toast.show("Error: " + err.message, "error");
-      const headers = { ...authHeaders(), 'Content-Type': 'application/json' };
+      try {
+        toast.show('Error: ' + err.message, 'error');
+        const headers = { ...authHeaders(), 'Content-Type': 'application/json' };
 
-      const res = await fetch(
-        isEdit ? `${API}/hero/slides/${slide._id}` : `${API}/hero/slides`,
-        {
-          method: isEdit ? 'PATCH' : 'POST',
-          headers: {
-            ...authHeaders(),
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(body),
+        const res = await fetch(
+          isEdit ? `${API}/hero/slides/${slide._id}` : `${API}/hero/slides`,
+          {
+            method: isEdit ? 'PATCH' : 'POST',
+            headers,
+            body: JSON.stringify(body),
+          }
+        );
+
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok) {
+          throw new Error(data?.message || `${res.status}: ${res.statusText}`);
         }
-      );
 
-      const data = await res.json().catch(() => null);
-
-      if (!res.ok) {
-        throw new Error(data?.message || `${res.status}: ${res.statusText}`);
+        toast.show(isEdit ? 'تم تحديث السلايد' : 'تم إضافة السلايد');
+        onClose();
+      } catch (err) {
+        toast.show('حدث خطأ: ' + err.message, 'error');
       }
-
-      toast.show(isEdit ? 'تم تحديث السلايد' : 'تم إضافة السلايد');
-      onClose();
-    } catch (err) {
-      toast.show('حدث خطأ: ' + err.message, 'error');
     } finally {
       setLoading(false);
     }
@@ -198,19 +226,23 @@ export default function SlideForm({ slide, toast, onClose }) {
 
   // الـ preview الصح حسب النوع
   const preview = type === 'image' ? imagePreview : videoPreview;
+  const save = handleSubmit;
 
   return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      background: 'rgba(0,0,0,0.7)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 1000,
-      padding: 20,
-      boxSizing: 'border-box'
-    }}>
+    <div
+      data-preview={preview ? 'true' : 'false'}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(0,0,0,0.7)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 1000,
+        padding: 20,
+        boxSizing: 'border-box'
+      }}
+    >
       <div style={{
         background: '#0f172a',
         border: '1px solid #1f2937',
@@ -238,6 +270,7 @@ export default function SlideForm({ slide, toast, onClose }) {
           </h2>
 
           <button
+            type="button"
             onClick={onClose}
             style={{
               background: 'none',
@@ -372,168 +405,179 @@ export default function SlideForm({ slide, toast, onClose }) {
                 />
               </div>
             </div>
+          )}
+
+          {/* Order */}
+          <div>
+            <label style={labelStyle}>ترتيب السلايد</label>
+            <input
+              type="number"
+              value={order}
+              onChange={(e) => setOrder(e.target.value)}
+              style={inputStyle}
+              placeholder="0"
+            />
           </div>
 
-        {/* Order */}
-        <div>
-          <label style={labelStyle}>ترتيب السلايد</label>
-          <input
-            type="number"
-            value={order}
-            onChange={(e) => setOrder(e.target.value)}
-            style={inputStyle}
-            placeholder="0"
-          />
-        </div>
+          {/* Show overlay toggle - image only */}
+          {type === 'image' && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '12px 16px',
+              background: '#111827',
+              borderRadius: 10
+            }}>
+              <span style={{ color: '#cbd5e1', fontSize: 13 }}>
+                إظهار النصوص فوق الصورة؟
+              </span>
 
-        {/* Show overlay toggle - image only */}
-        {type === 'image' && (
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '12px 16px',
-            background: '#111827',
-            borderRadius: 10
-          }}>
-            <span style={{ color: '#cbd5e1', fontSize: 13 }}>
-              إظهار النصوص فوق الصورة؟
-            </span>
+              <button
+                type="button"
+                onClick={() => setShowOverlay((p) => !p)}
+                style={{
+                  width: 44,
+                  height: 24,
+                  borderRadius: 12,
+                  border: 'none',
+                  cursor: 'pointer',
+                  background: showOverlay ? '#0f33fe' : '#374151',
+                  position: 'relative',
+                  transition: 'background 0.2s'
+                }}
+              >
+                <span style={{
+                  position: 'absolute',
+                  top: 3,
+                  left: showOverlay ? 22 : 3,
+                  width: 18,
+                  height: 18,
+                  borderRadius: '50%',
+                  background: '#fff',
+                  transition: 'left 0.2s'
+                }} />
+              </button>
+            </div>
+          )}
 
-            <button
-              type="button"
-              onClick={() => setShowOverlay((p) => !p)}
-              style={{
-                width: 44,
-                height: 24,
+          {/* Show Overlay Toggle - image only */}
+          {type === 'image' && (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ color: '#cbd5e1', fontSize: 13 }}>إظهار النصوص فوق الصورة؟</span>
+              <button
+                type="button"
+                onClick={() => setShowOverlay(p => !p)}
+                style={{
+                  width: 44,
+                  height: 24,
+                  borderRadius: 12,
+                  border: 'none',
+                  cursor: 'pointer',
+                  background: showOverlay ? '#1a5fff' : '#374151',
+                  position: 'relative',
+                  transition: 'background 0.2s'
+                }}
+              >
+                <span style={{
+                  position: 'absolute',
+                  top: 3,
+                  left: showOverlay ? 22 : 3,
+                  width: 18,
+                  height: 18,
+                  borderRadius: '50%',
+                  background: '#fff',
+                  transition: 'left 0.2s'
+                }} />
+              </button>
+            </div>
+          )}
+
+          {/* Overlay text fields */}
+          {(showOverlay || type === 'video') && (
+            <div style={{ background: '#111827', borderRadius: 12, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <p style={{ color: '#22d3ee', fontSize: 12, fontWeight: 600, margin: '0 0 4px', textTransform: 'uppercase', letterSpacing: 1 }}>نصوص العرض</p>
+              <input value={overlay.badge} onChange={e => setOverlay(p => ({ ...p, badge: e.target.value }))} style={inputStyle} placeholder="Badge مثلاً: MARKETING & GROWTH" />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
+                <input value={overlay.prefix} onChange={e => setOverlay(p => ({ ...p, prefix: e.target.value }))} style={inputStyle} placeholder="Prefix: WE" />
+                <input value={overlay.highlight} onChange={e => setOverlay(p => ({ ...p, highlight: e.target.value }))} style={inputStyle} placeholder="Highlight" />
+                <input value={overlay.suffix} onChange={e => setOverlay(p => ({ ...p, suffix: e.target.value }))} style={inputStyle} placeholder="Suffix: BRANDS" />
+              </div>
+              <textarea
+                value={overlay.description}
+                onChange={e => setOverlay(p => ({ ...p, description: e.target.value }))}
+                style={{ ...inputStyle, minHeight: 70, resize: 'vertical' }}
+                placeholder="وصف..."
+              />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                <input value={overlay.buttonText} onChange={e => setOverlay(p => ({ ...p, buttonText: e.target.value }))} style={inputStyle} placeholder="نص الزرار" />
+                <input value={overlay.buttonLink} onChange={e => setOverlay(p => ({ ...p, buttonLink: e.target.value }))} style={inputStyle} placeholder="رابط الزرار" />
+              </div>
+            </div>
+          )}
+
+          <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', marginTop: 4 }}>
+            <button type="button" onClick={onClose} style={ghostBtn}>إلغاء</button>
+            <button type="button" onClick={save} disabled={loading} style={primaryBtn}>
+              {loading ? 'جاري الحفظ...' : isEdit ? 'تحديث' : 'إضافة'}
+            </button>
+
+            {/* Overlay text selector */}
+            {type === 'image' && showOverlay && (
+              <div style={{
+                background: '#111827',
                 borderRadius: 12,
-                border: 'none',
-                cursor: 'pointer',
-                background: showOverlay ? '#0f33fe' : '#374151',
-                position: 'relative',
-                transition: 'background 0.2s'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ color: '#cbd5e1', fontSize: 13 }}>إظهار النصوص فوق الصورة؟</span>
-                <button onClick={() => setShowOverlay(p => !p)} style={{
-                  width: 44, height: 24, borderRadius: 12, border: 'none', cursor: 'pointer',
-                  background: showOverlay ? '#1a5fff' : '#374151', position: 'relative'
-                }}>
-                  <span style={{
-                    position: 'absolute',
-                    top: 3,
-                    left: showOverlay ? 22 : 3,
-                    width: 18,
-                    height: 18,
-                    borderRadius: '50%',
-                    background: '#fff',
-                    transition: 'left 0.2s'
-                  }} />
-                </label>
-            )}
-              </div>
-        )}
+                padding: 16
+              }}>
+                <p style={sectionTitle}>نصوص العرض</p>
 
-              {/* Show Overlay Toggle - image only */}
-              {type === 'image' && (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{ color: '#cbd5e1', fontSize: 13 }}>إظهار النصوص فوق الصورة؟</span>
-                  <button onClick={() => setShowOverlay(p => !p)} style={{
-                    width: 44, height: 24, borderRadius: 12, border: 'none', cursor: 'pointer',
-                    background: showOverlay ? '#1a5fff' : '#374151',
-                    position: 'relative', transition: 'background 0.2s'
-                  }}>
-                    <span style={{
-                      position: 'absolute', top: 3, left: showOverlay ? 22 : 3,
-                      width: 18, height: 18, borderRadius: '50%', background: '#fff',
-                      transition: 'left 0.2s'
-                    }} />
-                  </button>
-                </div>
-              )}
-
-              {/* Overlay text fields */}
-              {(showOverlay || type === "video") && (
-                <div style={{ background: "#111827", borderRadius: 12, padding: 16, display: "flex", flexDirection: "column", gap: 12 }}>
-                  <p style={{ color: "#22d3ee", fontSize: 12, fontWeight: 600, margin: "0 0 4px", textTransform: "uppercase", letterSpacing: 1 }}>نصوص العرض</p>
-                  <input value={overlay.badge} onChange={e => setOverlay(p => ({ ...p, badge: e.target.value }))} style={inputStyle} placeholder="Badge مثلاً: MARKETING & GROWTH" />
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
-                    <input value={overlay.prefix} onChange={e => setOverlay(p => ({ ...p, prefix: e.target.value }))} style={inputStyle} placeholder="Prefix: WE" />
-                    <input value={overlay.highlight} onChange={e => setOverlay(p => ({ ...p, highlight: e.target.value }))} style={inputStyle} placeholder="Highlight" />
-                    <input value={overlay.suffix} onChange={e => setOverlay(p => ({ ...p, suffix: e.target.value }))} style={inputStyle} placeholder="Suffix: BRANDS" />
-                  </div>
-                  <textarea value={overlay.description} onChange={e => setOverlay(p => ({ ...p, description: e.target.value }))}
-                    style={{ ...inputStyle, minHeight: 70, resize: "vertical" }} placeholder="وصف..." />
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-                    <input value={overlay.buttonText} onChange={e => setOverlay(p => ({ ...p, buttonText: e.target.value }))} style={inputStyle} placeholder="نص الزرار" />
-                    <input value={overlay.buttonLink} onChange={e => setOverlay(p => ({ ...p, buttonLink: e.target.value }))} style={inputStyle} placeholder="رابط الزرار" />
-                  </div>
-                </div>
-              )}
-
-              <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", marginTop: 4 }}>
-                <button onClick={onClose} style={ghostBtn}>إلغاء</button>
-                <button onClick={save} disabled={loading} style={primaryBtn}>
-                  {loading ? "جاري الحفظ..." : isEdit ? "تحديث" : "إضافة"}
-                </button>
-                {/* Overlay text selector */}
-                {type === 'image' && showOverlay && (
-                  <div style={{
-                    background: '#111827',
-                    borderRadius: 12,
-                    padding: 16
-                  }}>
-                    <p style={sectionTitle}>نصوص العرض</p>
-
-                    {loadingContent ? (
-                      <p style={{ color: '#9ca3af', fontSize: 13, margin: 0 }}>
-                        جاري تحميل النصوص...
-                      </p>
-                    ) : (
-                      <select
-                        value={selectedContentId}
-                        onChange={(e) => setSelectedContentId(e.target.value)}
-                        style={inputStyle}
-                      >
-                        <option value="">اختاري النص اللي هيظهر فوق الصورة</option>
-                        {contentSlides.map((item) => (
-                          <option key={item._id} value={item._id}>
-                            {item.badge || item.title || item.highlight || item._id}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-                  </div>
-                )}
-
-                <div style={{
-                  display: 'flex',
-                  gap: 10,
-                  justifyContent: 'flex-end',
-                  marginTop: 4
-                }}>
-                  <button type="button" onClick={onClose} style={ghostBtn}>
-                    إلغاء
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={handleSubmit}
-                    disabled={loading}
-                    style={{
-                      ...primaryBtn,
-                      opacity: loading ? 0.7 : 1,
-                      cursor: loading ? 'not-allowed' : 'pointer'
-                    }}
+                {loadingContent ? (
+                  <p style={{ color: '#9ca3af', fontSize: 13, margin: 0 }}>
+                    جاري تحميل النصوص...
+                  </p>
+                ) : (
+                  <select
+                    value={selectedContentId}
+                    onChange={(e) => setSelectedContentId(e.target.value)}
+                    style={inputStyle}
                   >
-                    {loading ? 'جاري الحفظ...' : isEdit ? 'تحديث' : 'إضافة'}
-                  </button>
-                </div>
-
+                    <option value="">اختاري النص اللي هيظهر فوق الصورة</option>
+                    {contentSlides.map((item) => (
+                      <option key={item._id} value={item._id}>
+                        {item.badge || item.title || item.highlight || item._id}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
+            )}
+
+            <div style={{
+              display: 'flex',
+              gap: 10,
+              justifyContent: 'flex-end',
+              marginTop: 4
+            }}>
+              <button type="button" onClick={onClose} style={ghostBtn}>
+                إلغاء
+              </button>
+
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={loading}
+                style={{
+                  ...primaryBtn,
+                  opacity: loading ? 0.7 : 1,
+                  cursor: loading ? 'not-allowed' : 'pointer'
+                }}
+              >
+                {loading ? 'جاري الحفظ...' : isEdit ? 'تحديث' : 'إضافة'}
+              </button>
+            </div>
           </div>
+        </div>
+      </div>
     </div>
-    </div >
   );
 }
