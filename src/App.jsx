@@ -66,8 +66,8 @@ function AdminApp() {
         {page === "builder" && builderConfig && (
           <ContentBuilder
             {...builderConfig}
-            onPublish={(data) => {
-              builderConfig.onPublish?.(data);
+            onPublish={async (data) => {
+              await builderConfig.onPublish?.(data);
               setPage(builderConfig.returnPage || "home");
             }}
             onCancel={() => setPage(builderConfig.returnPage || "home")}

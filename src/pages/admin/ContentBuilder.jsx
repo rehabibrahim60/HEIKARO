@@ -79,7 +79,7 @@ const addVideoFromDevice = (e) => {
     setContent((prev) => prev.filter((item) => item.id !== id));
   };
 
- const handlePublish = () => {
+ const handlePublish = async () => {
   if (!title.trim()) {
     alert("Please enter blog title");
     return;
@@ -112,7 +112,7 @@ const data = {
   createdAt: new Date(),
 };
 
-  if (onPublish) onPublish(data);
+  if (onPublish) await onPublish(data);
 };
   return (
     <div className="min-h-screen bg-black pt-32 pb-10 px-4">
