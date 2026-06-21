@@ -1,66 +1,120 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./style/Portfolio.css";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
 import EngineerYourMarket from "../components/common/ENGINEER_YOUR_MARKET";
 
+const API = "http://localhost:3000";
 
+const filters = [
+  "ALL SYSTEMS",
+  "IDENTITY",
+  "UX/UI",
+  "CONTENT",
+  "GROWTH",
+  "FILM",
+  "LEARNING",
+  "AI/CGI",
+  "EVENTS",
+];
+
+const categoryMap = {
+  IDENTITY: "Brand & Identity",
+  "UX/UI": "Design & Experience",
+  CONTENT: "Content & Storytelling",
+  GROWTH: "Marketing & Growth",
+  FILM: "Media & Production",
+  "AI/CGI": "AI & CGI",
+  EVENTS: "Events & Experiential",
+  LEARNING: "Digital Learning",
+};
 
 const Portfolio = () => {
-  // --- ضيفي المنطق ده هنا (جوه الكومبوننت وقبل الـ return) ---
   const [activeFilter, setActiveFilter] = useState("ALL SYSTEMS");
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
-  const filters = ["ALL SYSTEMS", "IDENTITY", "UX/UI", "CONTENT", "GROWTH", "FILM", "LEARNING", "AI/CGI", "EVENTS"];
+  const getImageUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("http")) return url;
+    return `${API}${url}`;
+  };
 
-  // داتا المشاريع (هنا بنحدد 20 مشروع ثابتين بدل العشوائي)
-  const projects = [
-    { id: 1, title: "Brand & Identity", description: " Global BrandArchitecture Evolution", category: "IDENTITY" },
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        setLoading(true);
 
-    { id: 2, title: "Design & Experience", description: " Enterprise SaaSPerformance Portal", category: "UX/UI" },
+        const buildUrl = (categoryValue) => {
+          const params = new URLSearchParams();
 
-    { id: 3, title: "Marketing & Growth", description: "D2C MarketDominance Campaign", category: "GROWTH" },
+          if (categoryValue) {
+            params.append("category", categoryValue);
+          }
 
-    { id: 4, title: "AI-Powered Video & CGI", description: "AI Synthesis &Future Film Production", category: "AI/CGI" },
+          if (search.trim()) {
+            params.append("search", search.trim());
+          }
 
-    { id: 5, title: "Brand & Identity", description: "Project Name05", category: "IDENTITY" },
+          params.append("limit", "100");
 
-    { id: 6, title: "Design & Experience", description: "Project Name06", category: "UX/UI" },
+          return `${API}/projects?${params.toString()}`;
+        };
 
+        let url;
 
-    { id: 7, title: "Content & Storytelling", description: "Project Name07", category: "CONTENT" },
+        if (activeFilter === "ALL SYSTEMS") {
+          url = buildUrl(null);
+        } else {
+          url = buildUrl(categoryMap[activeFilter] || activeFilter);
+        }
 
+        let res = await fetch(url, {
+          cache: "no-store",
+        });
 
-    { id: 8, title: "Marketing & Growth", description: "Project Name08", category: "GROWTH" },
+        let data = await res.json();
 
-    { id: 9, title: " Media & Production", description: "Project Name09", category: "FILM" },
+        if (!res.ok) {
+          throw new Error(data?.message || "Failed to load projects");
+        }
 
-    { id: 10, title: "Brand & Identity", description: "Project Name10", category: "IDENTITY " },
+        /*
+          Fallback:
+          لو بعتنا Brand & Identity ومرجعش حاجة،
+          نجرب نبعت IDENTITY مباشرة،
+          عشان لو الداتا في MongoDB متسجلة بالاسم المختصر.
+        */
+        if (
+          activeFilter !== "ALL SYSTEMS" &&
+          (data.data || []).length === 0 &&
+          categoryMap[activeFilter]
+        ) {
+          const fallbackUrl = buildUrl(activeFilter);
 
-    { id: 11, title: "Design & Experience", description: "Project Name11", category: "UX/UI" },
+          res = await fetch(fallbackUrl, {
+            cache: "no-store",
+          });
 
-    { id: 12, title: "Content & Storytelling", description: "Project Name12", category: "CONTENT" },
+          data = await res.json();
 
-    { id: 13, title: "Marketing & Growth", description: "Project Name13", category: "GROWTH" },
+          if (!res.ok) {
+            throw new Error(data?.message || "Failed to load projects");
+          }
+        }
 
-    { id: 14, title: "Media & Production", description: "Project Name14", category: "FILM" },
+        setProjects(data.data || []);
+      } catch (error) {
+        console.error("Failed to load projects:", error);
+        setProjects([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    { id: 15, title: " Brand & Identity", description: "Project Name15", category: "IDENTITY" },
-
-    { id: 16, title: "Design & Experience", description: " Project Name16", category: "UX/UI" },
-
-    { id: 17, title: "Content & Storytelling", description: " Project Name17", category: "CONTENT" },
-    { id: 18, title: "Marketing & Growth", description: "Project Name18", category: "GROWTH" },
-    { id: 19, title: "Media & Production", description: " Project Name19", category: "FILM" },
-
-    { id: 20, title: "Brand & Identity", description: " Project Name20", category: "IDENTITY" },
-  ];
-
-
-
-  const filteredProjects = activeFilter === "ALL SYSTEMS"
-    ? projects
-    : projects.filter(p => p.category.includes(activeFilter));
-
-  // -----------------------------------------------------------
+    loadProjects();
+  }, [activeFilter, search]);
 
   return (
     <div className="portfolio-page">
@@ -68,7 +122,9 @@ const Portfolio = () => {
         <div className="hero-content">
           <span className="proof-tag">PROOF SYSTEM</span>
           <h1>THE PORTFOLIO</h1>
-          <p className="portfolio-desc">Selected work, visual systems, campaigns, and creative case studies.</p>
+          <p className="portfolio-desc">
+            Selected work, visual systems, campaigns, and creative case studies.
+          </p>
         </div>
       </section>
 
@@ -77,6 +133,7 @@ const Portfolio = () => {
           {filters.map((filter) => (
             <button
               key={filter}
+              type="button"
               className={`filter-btn ${activeFilter === filter ? "active" : ""}`}
               onClick={() => setActiveFilter(filter)}
             >
@@ -84,42 +141,70 @@ const Portfolio = () => {
             </button>
           ))}
         </div>
-        <input type="text" placeholder="SEARCH PROJECTS..." className="search-input" />
+
+        <input
+          type="text"
+          placeholder="SEARCH PROJECTS..."
+          className="search-input"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </section>
 
-      {/* هنا بنعرض المشاريع اللي تم تصفيتها */}
       <section className="projects-grid">
-        {filteredProjects.map((project) => (
-          <div key={project.id} className="project-card">
-            <div className="project-img-wrapper">
-              <span className="asset-text">HEIKARO ASSET</span>
-            </div>
-            <div className="project-info">
-              <span className="project-cat">{project.category}</span>
-              <h3>{project.title}</h3>
+        {loading ? (
+          <p className="text-center text-gray-400 py-20">Loading projects...</p>
+        ) : projects.length === 0 ? (
+          <p className="text-center text-gray-400 py-20">No projects found.</p>
+        ) : (
+          projects.map((project) => (
+            <Link
+              to={`/projects/${project.slug}`}
+              key={project._id}
+              className="project-card"
+            >
+              <div className="project-img-wrapper">
+                {project.coverImage ? (
+                  <img
+                    src={getImageUrl(project.coverImage)}
+                    alt={project.title}
+                    className="project-img"
+                  />
+                ) : (
+                  <span className="asset-text">HEIKARO ASSET</span>
+                )}
+              </div>
 
-              {/* أضيفي هذا السطر هنا ليظهر الوصف */}
-              {project.description && <p className="project-desc">{project.description}</p>}
-            </div>
-          </div>
-        ))}
+              <div className="project-info">
+                <span className="project-cat">{project.category}</span>
+                <h3>{project.title}</h3>
+
+                {project.description && (
+                  <p className="project-desc">{project.description}</p>
+                )}
+              </div>
+            </Link>
+          ))
+        )}
       </section>
+
       <section className="cta-section">
         <div className="cta-content">
           <h2>LOOKING FOR DEEP-LAYER CASES?</h2>
           <p>
             BECAUSE WE WORK AT THE CORE ORGANIZATIONAL LEVEL, SOME OF OUR MOST
-            IMPACTFUL STRATEGIC DIAGNOSTIC AND AI IMPLEMENTATION CASES ARE UNDER STRICT NDA.
+            IMPACTFUL STRATEGIC DIAGNOSTIC AND AI IMPLEMENTATION CASES ARE UNDER
+            STRICT NDA.
           </p>
-          <button className="cta-button">
+          <button className="cta-button" type="button">
             REQUEST CASE STUDY PACK <span>→</span>
           </button>
         </div>
       </section>
+
       <EngineerYourMarket />
       <StartWithClarity />
     </div>
-
   );
 };
 

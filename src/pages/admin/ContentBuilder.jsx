@@ -15,14 +15,14 @@ const ContentBuilder = ({
   const [content, setContent] = useState([]);
 
   const categories = [
-    "Brand & Identity",
+    "Brand&Identity",
     "Branding",
-    "Design & Experience",
-    "Content & Storytelling",
-    "Marketing & Growth",
-    "Media & Production",
-    "AI & CGI",
-    "Events & Experiential",
+    "Design&Experience",
+    "Content&Storytelling",
+    "Marketing&Growth",
+    "Media&Production",
+    "AI&CGI",
+    "Events&Experiential",
   ];
 
   const imageInputRef = useRef(null);
@@ -117,13 +117,13 @@ const ContentBuilder = ({
   };
 
   return (
-<div className="min-h-screen bg-black pt-[480px] pb-10 px-4">
-        <div className="max-w-5xl mx-auto" dir="ltr">
+    <div className="min-h-screen bg-black pt-[480px] pb-10 px-4">
+      <div className="max-w-5xl mx-auto" dir="ltr">
 
         {/* Fixed top editor controls */}
 
-<div className="fixed top-[130px] left-[244px] right-0 h-[320px] z-[9999] bg-black px-8 pt-4 pb-4 border-b border-gray-900 overflow-hidden">
-    <div className="max-w-5xl mx-auto bg-[#050505] border border-gray-800 rounded-2xl p-4 shadow-2xl">
+        <div className="fixed top-[130px] left-[244px] right-0 h-[320px] z-[9999] bg-black px-8 pt-4 pb-4 border-b border-gray-900 overflow-hidden">
+          <div className="max-w-5xl mx-auto bg-[#050505] border border-gray-800 rounded-2xl p-4 shadow-2xl">
             <input
               type="text"
               placeholder={titlePlaceholder}
