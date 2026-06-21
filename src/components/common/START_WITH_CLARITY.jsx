@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "../../pages/style/portfolio.css"; 
 import { Link } from "react-router-dom";
-import "../../pages/style/portfolio.css";
+
 
 
 
@@ -28,12 +29,10 @@ const StartWithClarity = () => {
                     </div>
 
                     <div className="clarity-banner-right">
-                        <Link to={"/contact"}>
-                            <button className="clarity-banner-btn">
-                                START YOUR GROWTH
-                            </button>
-                        </Link>
-                    </div>
+  <Link to="/contact" className="clarity-banner-btn">
+    START YOUR GROWTH
+  </Link>
+</div>
 
                 </div>
             </section>
