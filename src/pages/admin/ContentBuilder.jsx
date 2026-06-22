@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Image, Type, Video, Trash2 } from "lucide-react";
+import { Image, Type, Video, Trash2, Send, X } from "lucide-react";
 import TextEditor from "../../components/Admin/TextEditor";
 
 const ContentBuilder = ({
@@ -9,9 +9,12 @@ const ContentBuilder = ({
   onCancel,
   extraFields = null,
   showCategory = false,
+  initialTitle = "",
+  initialCategory = "",
+  existingCoverImage = "",
 }) => {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
+const [title, setTitle] = useState(initialTitle);
+const [category, setCategory] = useState(initialCategory);
   const [content, setContent] = useState([]);
 
   const categories = [
@@ -29,7 +32,10 @@ const ContentBuilder = ({
   const videoInputRef = useRef(null);
 
   const addText = () => {
-    setContent((prev) => [...prev, { id: Date.now(), type: "text", value: "" }]);
+    setContent((prev) => [
+      ...prev,
+      { id: Date.now(), type: "text", value: "" },
+    ]);
   };
 
   const addImageFromDevice = (e) => {
@@ -44,7 +50,7 @@ const ContentBuilder = ({
         id: Date.now(),
         type: "image",
         src: imageUrl,
-        file: file,
+        file,
       },
     ]);
 
@@ -63,7 +69,7 @@ const ContentBuilder = ({
         id: Date.now(),
         type: "video",
         src: videoUrl,
-        file: file,
+        file,
       },
     ]);
 
@@ -86,14 +92,20 @@ const ContentBuilder = ({
       return;
     }
 
-    const firstImage = content.find((item) => item.type === "image" && item.file);
+    const firstImage = content.find(
+      (item) => item.type === "image" && item.file
+    );
 
-    if (!firstImage) {
-      alert("Please add at least one image. The first image will be used as cover image.");
-      return;
-    }
+   if (!firstImage && !existingCoverImage) {
+  alert(
+    "Please add at least one image. The first image will be used as cover image."
+  );
+  return;
+}
 
-    const firstText = content.find((item) => item.type === "text" && item.value);
+    const firstText = content.find(
+      (item) => item.type === "text" && item.value
+    );
 
     const description = firstText
       ? firstText.value.replace(/<[^>]+>/g, "").slice(0, 180)
@@ -104,128 +116,275 @@ const ContentBuilder = ({
       return;
     }
 
-    const data = {
-      title,
-      description,
-      category: showCategory ? category : "General",
-      coverImage: firstImage.file,
-      content,
-      createdAt: new Date(),
-    };
+   const data = {
+  title,
+  description,
+  category: showCategory ? category : "General",
+  coverImage: firstImage ? firstImage.file : null,
+  content,
+  createdAt: new Date(),
+};
 
     if (onPublish) onPublish(data);
   };
 
   return (
-    <div className="min-h-screen bg-black pt-[480px] pb-10 px-4">
-      <div className="max-w-5xl mx-auto" dir="ltr">
+    <div className="min-h-screen bg-[#020202] px-6 py-10 text-white">
+      <div
+        className="mx-auto grid max-w-[1320px] grid-cols-1 gap-8 lg:grid-cols-[1fr_390px]"
+        dir="ltr"
+      >
+        {/* LEFT CONTENT AREA */}
+        <main className="min-h-[720px] rounded-[22px] border border-white/10 bg-black p-6 lg:p-8">
+          <div className="mb-8 border-b border-white/10 pb-6">
+            <p className="mb-3 text-[12px] font-black uppercase tracking-[3px] text-[#0f33fe]">
+              Content Workspace
+            </p>
 
-        {/* Fixed top editor controls */}
+            <h1 className="m-0 text-[34px] font-black uppercase tracking-[-0.04em] text-white">
+              Build Your Content
+            </h1>
 
-        <div className="fixed top-[130px] left-[244px] right-0 h-[320px] z-[9999] bg-black px-8 pt-4 pb-4 border-b border-gray-900 overflow-hidden">
-          <div className="max-w-5xl mx-auto bg-[#050505] border border-gray-800 rounded-2xl p-4 shadow-2xl">
-            <input
-              type="text"
-              placeholder={titlePlaceholder}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-4 text-left text-3xl font-bold border border-gray-800 rounded-xl mb-4 bg-black text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#0f33fe]"
-            />
+            <p className="mt-3 max-w-[680px] text-[15px] leading-[1.8] text-slate-400">
+              Add text, images, and videos here. The first uploaded image will
+              be used as the cover image.
+            </p>
+          </div>
+
+          <input
+            type="file"
+            accept="image/*"
+            ref={imageInputRef}
+            onChange={addImageFromDevice}
+            hidden
+          />
+
+          <input
+            type="file"
+            accept="video/*"
+            ref={videoInputRef}
+            onChange={addVideoFromDevice}
+            hidden
+          />
+
+          {content.length === 0 ? (
+            <div className="flex min-h-[420px] flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#050505] p-8 text-center">
+              <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-[#0f33fe]">
+                <Type size={28} />
+              </div>
+
+              <h2 className="text-[24px] font-black uppercase tracking-[-0.03em] text-white">
+                No content added yet
+              </h2>
+
+              <p className="mt-3 max-w-[460px] text-[15px] leading-[1.8] text-slate-500">
+                Use the side panel to add image, text, or video blocks. Your
+                blocks will appear here without being hidden by the controls.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {content.map((item, index) => (
+                <div
+                  key={item.id}
+                  className="relative rounded-2xl border border-white/10 bg-[#080808] p-5 shadow-xl"
+                >
+                  <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+                    <div>
+                      <p className="m-0 text-[11px] font-black uppercase tracking-[2px] text-slate-500">
+                        Block {String(index + 1).padStart(2, "0")}
+                      </p>
+
+                      <h3 className="mt-1 text-[16px] font-black uppercase text-white">
+                        {item.type}
+                      </h3>
+                    </div>
+
+                    <button
+                      onClick={() => deleteContent(item.id)}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-red-500/30 bg-red-500/10 text-red-400 transition hover:bg-red-500 hover:text-white"
+                      type="button"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+
+                  {item.type === "image" && (
+                    <img
+                      src={item.src}
+                      alt=""
+                      className="w-full rounded-xl border border-white/10 object-cover"
+                    />
+                  )}
+
+                  {item.type === "video" && (
+                    <video
+                      controls
+                      className="w-full rounded-xl border border-white/10"
+                    >
+                      <source src={item.src} />
+                    </video>
+                  )}
+
+                  {item.type === "text" && (
+                    <TextEditor
+                      value={item.value}
+                      onChange={(value) => updateContent(item.id, value)}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </main>
+
+        {/* RIGHT CONTROL PANEL */}
+        <aside className="h-fit rounded-[22px] border border-white/10 bg-[#050505] p-5 shadow-2xl lg:sticky lg:top-8">
+          <div className="mb-6 border-b border-white/10 pb-5">
+            <p className="mb-3 text-[12px] font-black uppercase tracking-[3px] text-[#bbfe0f]">
+              Publish Settings
+            </p>
+
+            <h2 className="text-[24px] font-black uppercase tracking-[-0.03em] text-white">
+              Blog Setup
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="mb-2 block text-[12px] font-black uppercase tracking-[2px] text-slate-500">
+                Title
+              </label>
+
+              <input
+                type="text"
+                placeholder={titlePlaceholder}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full rounded-xl border border-white/10 bg-black p-4 text-left text-[18px] font-bold text-white placeholder-slate-600 outline-none transition focus:border-[#0f33fe] focus:ring-2 focus:ring-[#0f33fe]/20"
+              />
+            </div>
 
             {showCategory && (
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="w-full p-4 mb-4 text-left text-lg font-semibold border border-gray-800 rounded-xl bg-black text-white focus:outline-none focus:ring-2 focus:ring-[#0f33fe]"
-                dir="ltr"
-              >
-                <option value="" style={{ backgroundColor: "#000", color: "#9ca3af", textAlign: "left" }}>
-                  Select Category...
-                </option>
+              <div>
+                <label className="mb-2 block text-[12px] font-black uppercase tracking-[2px] text-slate-500">
+                  Category
+                </label>
 
-                {categories.map((cat) => (
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="w-full rounded-xl border border-white/10 bg-black p-4 text-left text-[15px] font-semibold text-white outline-none transition focus:border-[#0f33fe] focus:ring-2 focus:ring-[#0f33fe]/20"
+                  dir="ltr"
+                >
                   <option
-                    key={cat}
-                    value={cat}
-                    style={{ backgroundColor: "#000", color: "#ffffff", textAlign: "left" }}
+                    value=""
+                    style={{
+                      backgroundColor: "#000",
+                      color: "#9ca3af",
+                      textAlign: "left",
+                    }}
                   >
-                    {cat}
+                    Select Category...
                   </option>
-                ))}
-              </select>
+
+                  {categories.map((cat) => (
+                    <option
+                      key={cat}
+                      value={cat}
+                      style={{
+                        backgroundColor: "#000",
+                        color: "#ffffff",
+                        textAlign: "left",
+                      }}
+                    >
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+              </div>
             )}
 
-            {extraFields && <div className="mb-4">{extraFields}</div>}
+            {extraFields && <div>{extraFields}</div>}
 
-            <div className="flex flex-wrap gap-3 bg-gray-900/90 backdrop-blur border border-gray-800 p-4 rounded-xl shadow">
+            <div className="rounded-2xl border border-white/10 bg-[#0f172a]/70 p-4">
+              <p className="mb-4 text-[12px] font-black uppercase tracking-[2px] text-slate-400">
+                Add Blocks
+              </p>
+
+              <div className="grid grid-cols-1 gap-3">
+                <button
+                  onClick={() => imageInputRef.current.click()}
+                  className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
+                  type="button"
+                >
+                  <span className="flex items-center gap-3">
+                    <Image size={18} /> Image
+                  </span>
+                  <span>+</span>
+                </button>
+
+                <button
+                  onClick={addText}
+                  className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
+                  type="button"
+                >
+                  <span className="flex items-center gap-3">
+                    <Type size={18} /> Text
+                  </span>
+                  <span>+</span>
+                </button>
+
+                <button
+                  onClick={() => videoInputRef.current.click()}
+                  className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
+                  type="button"
+                >
+                  <span className="flex items-center gap-3">
+                    <Video size={18} /> Video
+                  </span>
+                  <span>+</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-black p-4">
+              <p className="text-[13px] leading-[1.7] text-slate-500">
+                Blocks added:{" "}
+                <span className="font-black text-white">{content.length}</span>
+              </p>
+
+              <p className="mt-1 text-[13px] leading-[1.7] text-slate-500">
+                Cover image:{" "}
+                <span className="font-black text-white">
+                  {content.some((item) => item.type === "image")
+                    ? "Ready"
+                    : "Required"}
+                </span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 pt-2">
               <button
-                onClick={() => imageInputRef.current.click()}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-700 rounded-lg text-gray-200 hover:bg-gray-800 transition-colors"
+                onClick={handlePublish}
+                className="flex items-center justify-center gap-2 rounded-xl bg-[#0f33fe] px-8 py-4 text-[15px] font-black text-white transition hover:bg-[#0d2bd9]"
+                type="button"
               >
-                <Image size={18} /> Image
+                <Send size={17} />
+                {publishLabel}
               </button>
 
               <button
-                onClick={addText}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-700 rounded-lg text-gray-200 hover:bg-gray-800 transition-colors"
+                onClick={onCancel}
+                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 px-8 py-4 text-[15px] font-bold text-gray-300 transition hover:bg-white hover:text-black"
+                type="button"
               >
-                <Type size={18} /> Text
-              </button>
-
-              <button
-                onClick={() => videoInputRef.current.click()}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-700 rounded-lg text-gray-200 hover:bg-gray-800 transition-colors"
-              >
-                <Video size={18} /> Video
+                <X size={17} />
+                Cancel
               </button>
             </div>
           </div>
-        </div>
-
-        <input type="file" accept="image/*" ref={imageInputRef} onChange={addImageFromDevice} hidden />
-        <input type="file" accept="video/*" ref={videoInputRef} onChange={addVideoFromDevice} hidden />
-
-        <div className="space-y-6">
-          {content.map((item) => (
-            <div key={item.id} className="bg-gray-900 border border-gray-800 rounded-xl shadow p-4 relative">
-              {item.type === "image" && <img src={item.src} alt="" className="w-full rounded-xl" />}
-
-              {item.type === "video" && (
-                <video controls className="w-full rounded-xl">
-                  <source src={item.src} />
-                </video>
-              )}
-
-              {item.type === "text" && (
-                <TextEditor value={item.value} onChange={(value) => updateContent(item.id, value)} />
-              )}
-
-              <button
-                onClick={() => deleteContent(item.id)}
-                className="absolute top-4 right-4 text-red-400 bg-gray-800 rounded-full p-1 shadow hover:bg-gray-700 transition-colors"
-              >
-                <Trash2 size={20} />
-              </button>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 flex justify-end gap-3">
-          <button
-            onClick={onCancel}
-            className="px-8 py-3 rounded-xl border border-gray-700 text-gray-300 hover:bg-gray-800 transition-colors"
-          >
-            إلغاء
-          </button>
-
-          <button
-            onClick={handlePublish}
-            className="bg-[#0f33fe] text-white font-semibold px-8 py-3 rounded-xl hover:bg-[#0d2bd9] transition-colors"
-          >
-            {publishLabel}
-          </button>
-        </div>
-
+        </aside>
       </div>
     </div>
   );

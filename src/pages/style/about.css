@@ -1,9 +1,12 @@
 /* ==========================================
    1. HERO SECTION
 ========================================== */
+/* ==========================================
+   1. HERO SECTION
+========================================== */
 .hk-root {
   background: #0a0d14;
-  background-image: url('/hero-bg.jpg.jpeg'); /* Fix extension */
+  background-image: url('/hero-bg.jpg.jpeg');
   background-size: cover;
   background-position: center;
   font-family: 'Barlow', sans-serif;
@@ -15,7 +18,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding-top: 150px; /* Increase this number until the content moves below the header properly */
+  padding-top: 150px;
 }
 
 .container {
@@ -1249,5 +1252,308 @@
   .clarity-banner-btn {
     width: 100%;
     text-align: center;
+  }
+}
+
+/* ===== About Hero Section Size Adjustment Only ===== */
+
+.hk-root {
+  min-height: 82vh !important;
+  padding-top: 110px !important;
+  padding-bottom: 55px !important;
+}
+
+.hk-content {
+  padding: 45px 80px !important;
+  max-width: 720px !important;
+}
+
+.hk-badge {
+  margin-bottom: 22px !important;
+}
+
+.hk-title {
+  font-size: clamp(40px, 5vw, 70px) !important;
+  margin-bottom: 22px !important;
+}
+
+.hk-sub {
+  font-size: 14px !important;
+  margin-bottom: 22px !important;
+  max-width: 520px !important;
+}
+
+.hk-headline {
+  font-size: 19px !important;
+  margin-bottom: 12px !important;
+}
+
+.hk-body {
+  font-size: 14px !important;
+  margin-bottom: 32px !important;
+  max-width: 520px !important;
+}
+
+@media (max-width: 768px) {
+  .hk-root {
+    min-height: 620px !important;
+    padding-top: 100px !important;
+    padding-bottom: 45px !important;
+  }
+
+  .hk-content {
+    padding: 35px 24px !important;
+  }
+
+  .hk-title {
+    font-size: clamp(34px, 10vw, 50px) !important;
+  }
+}
+
+/* ===== About Page Typography Fix - All Sections Except Hero ===== */
+
+/* يخلي باقي صفحة About على نفس فونت الموقع */
+.ab-root,
+.beliefs-root,
+.services-root,
+.model-root,
+.edge-root,
+.statement-root,
+.eco-root,
+.val-root,
+.pers-root,
+.briefing-root,
+.clarity-banner-root {
+  font-family: "Aspekta", sans-serif !important;
+}
+
+/* Labels / Small titles */
+.ab-label,
+.eco-label,
+.services-label,
+.model-label,
+.edge-label,
+.val-label,
+.pers-label,
+.briefing-label,
+.belief-label,
+.service-track,
+.step-tag,
+.pers-attr,
+.val-card-num,
+.belief-id,
+.belief-category,
+.clarity-banner-btn {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2.5px !important;
+  text-transform: uppercase !important;
+}
+
+/* Main section titles */
+.ab-title,
+.eco-title,
+.services-title,
+.model-title,
+.edge-title,
+.val-title,
+.pers-title {
+  font-family: "Aspekta", sans-serif !important;
+  font-size: clamp(32px, 4vw, 46px) !important;
+  font-weight: 900 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -1.2px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 22px !important;
+}
+
+/* Section subtitles / main paragraphs */
+.ab-body,
+.services-sub,
+.model-sub,
+.edge-sub,
+.eco-sub,
+.pers-sub,
+.briefing-desc,
+.clarity-banner-desc {
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+  color: #a3a3a3 !important;
+  max-width: 720px !important;
+}
+
+/* About quote */
+.ab-quote {
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+}
+
+/* Card titles */
+.belief-title,
+.service-title,
+.step-title,
+.eco-card-title,
+.val-card-title,
+.pers-card-title {
+  font-size: 19px !important;
+  font-weight: 900 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.3px !important;
+  text-transform: uppercase !important;
+}
+
+/* Card descriptions */
+.belief-desc,
+.service-desc,
+.step-desc,
+.eco-card-desc,
+.val-card-desc,
+.pers-desc,
+.typical-desc,
+.heikaro-desc {
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+  color: #8f8f8f !important;
+}
+
+/* Strategic Edge text */
+.typical-desc {
+  font-weight: 500 !important;
+}
+
+.heikaro-desc {
+  font-weight: 800 !important;
+  color: #ffffff !important;
+}
+
+/* Statement section */
+.statement-text {
+  font-family: "Aspekta", sans-serif !important;
+  font-size: clamp(30px, 4vw, 46px) !important;
+  font-weight: 900 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -1px !important;
+}
+
+/* Briefing section */
+.briefing-title {
+  font-family: "Aspekta", sans-serif !important;
+  font-size: clamp(34px, 4.5vw, 54px) !important;
+  font-weight: 900 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -1px !important;
+}
+
+/* Clarity banner */
+.clarity-banner-title {
+  font-family: "Aspekta", sans-serif !important;
+  font-size: clamp(34px, 4.5vw, 54px) !important;
+  font-weight: 900 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -1px !important;
+}
+
+.clarity-banner-desc {
+  font-size: 17px !important;
+  line-height: 1.8 !important;
+}
+
+/* Card inner small text */
+.ab-card-tag,
+.ab-card-meta,
+.col-top-tag,
+.stage-num,
+.stage-text,
+.val-footer-text {
+  font-size: 11px !important;
+  letter-spacing: 1.5px !important;
+}
+
+/* ظبط المسافات العامة للسيكشنات */
+.beliefs-root,
+.services-root,
+.model-root,
+.edge-root,
+.eco-root,
+.val-root,
+.pers-root {
+  padding-top: 90px !important;
+  padding-bottom: 90px !important;
+}
+
+.briefing-root {
+  padding-top: 110px !important;
+  padding-bottom: 110px !important;
+}
+
+.clarity-banner-root {
+  padding-top: 85px !important;
+  padding-bottom: 85px !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .ab-title,
+  .eco-title,
+  .services-title,
+  .model-title,
+  .edge-title,
+  .val-title,
+  .pers-title {
+    font-size: 30px !important;
+    line-height: 1.15 !important;
+  }
+
+  .ab-body,
+  .services-sub,
+  .model-sub,
+  .edge-sub,
+  .eco-sub,
+  .pers-sub,
+  .briefing-desc,
+  .clarity-banner-desc {
+    font-size: 15px !important;
+    line-height: 1.75 !important;
+  }
+
+  .belief-title,
+  .service-title,
+  .step-title,
+  .eco-card-title,
+  .val-card-title,
+  .pers-card-title {
+    font-size: 18px !important;
+  }
+
+  .belief-desc,
+  .service-desc,
+  .step-desc,
+  .eco-card-desc,
+  .val-card-desc,
+  .pers-desc,
+  .typical-desc,
+  .heikaro-desc {
+    font-size: 14px !important;
+  }
+
+  .statement-text,
+  .briefing-title,
+  .clarity-banner-title {
+    font-size: 30px !important;
+  }
+
+  .beliefs-root,
+  .services-root,
+  .model-root,
+  .edge-root,
+  .eco-root,
+  .val-root,
+  .pers-root,
+  .briefing-root,
+  .clarity-banner-root {
+    padding-top: 70px !important;
+    padding-bottom: 70px !important;
   }
 }

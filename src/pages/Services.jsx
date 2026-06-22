@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import StartWithClarity from '../components/common/START_WITH_CLARITY';
-
+import React from "react";
+import { Link } from "react-router-dom";
+import StartWithClarity from "../components/common/START_WITH_CLARITY";
+import "./style/pageHero.css";
 
 const servicesData = [
   {
@@ -73,104 +73,114 @@ const servicesData = [
     title: "EVENTS & EXPERIENTIAL",
     desc: "We shape events as designed experience systems that connect audience emotion with brand purpose.",
     capabilities: 8,
-    tags: ["MEMORABLE AUDIENCE EXPERIENCES", "STRONGER BRAND STORYTELLING", "DIRECT STAKEHOLDER TRUST"],
+    tags: [
+      "MEMORABLE AUDIENCE EXPERIENCES",
+      "STRONGER BRAND STORYTELLING",
+      "DIRECT STAKEHOLDER TRUST",
+    ],
     link: "/services/events-experiential",
   },
 ];
 
 export default function Services() {
   return (
-    <div className="bg-[#0a0a0a] min-h-screen text-white">
-
+    <div className="bg-[#0a0a0a] min-h-screen text-white font-sans">
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex flex-col justify-center px-[8%] overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center z-0" style={{ backgroundImage: "url('/hero-bg.jpg.jpeg')" }} />
-        <div className="absolute inset-0 bg-black/80 z-0" />
-        <div className="absolute bottom-0 right-0 z-0 text-[8rem] md:text-[14rem] font-extrabold text-white/5 select-none pointer-events-none leading-none">
-          HEIKARO ASSET
-        </div>
-        <div className="relative z-10">
-          <div className="border border-white/30 px-4 py-2 w-fit mb-8">
-            <span className="text-white text-xs tracking-[3px] uppercase">CAPABILITIES ARCHITECTURE</span>
-          </div>
-          <h1 className="text-[6rem] md:text-[10rem] font-extrabold leading-[0.9] text-[#0f33fe] mb-8">
-            SERVICES
-          </h1>
-          <p className="text-gray-400 text-lg leading-relaxed max-w-[500px]">
+      <section
+        className="unified-page-hero"
+        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+      >
+        <div className="unified-page-hero-content">
+          <h1 className="unified-page-title">SERVICES</h1>
+
+          <p className="unified-page-desc">
             Strategic creative services designed as systems, not isolated outputs.
           </p>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="bg-[#0a0a0a] py-24 px-[8%]">
+      <section className="bg-[#0a0a0a] py-20 px-[8%]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-l border-t border-[#222]">
           {servicesData.map((item, index) => (
             <div
               key={index}
-              className="relative border-r border-b border-[#222] p-8 flex flex-col justify-between min-h-[500px] overflow-hidden group"
+              className="relative border-r border-b border-[#222] p-7 flex flex-col justify-between min-h-[480px] overflow-hidden group"
             >
-              {/* Border that comes from left to right */}
               <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#0f33fe] transition-all duration-500 group-hover:w-full z-10" />
 
               <div>
-                {/* Icon and number */}
-                <div className="flex items-center justify-between mb-8">
-                  <div className="w-12 h-12 border border-[#222] group-hover:border-[#0f33fe] transition-colors duration-300 flex items-center justify-center text-xl">
+                <div className="flex items-center justify-between mb-7">
+                  <div className="w-11 h-11 border border-[#222] group-hover:border-[#0f33fe] transition-colors duration-300 flex items-center justify-center text-lg">
                     {item.icon}
                   </div>
-                  <span className="text-gray-600 group-hover:text-[#bbfe0f] font-mono text-sm transition-colors duration-300">{item.num}</span>
+
+                  <span className="text-gray-600 group-hover:text-[#bbfe0f] font-mono text-[13px] transition-colors duration-300">
+                    {item.num}
+                  </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-white group-hover:text-[#0f33fe] transition-colors duration-300 font-bold text-xl uppercase leading-tight mb-4">
+                <h3 className="text-white group-hover:text-[#0f33fe] transition-colors duration-300 font-extrabold text-[19px] uppercase leading-[1.25] mb-4 tracking-[-0.02em]">
                   {item.title}
                 </h3>
 
-                {/* Description */}
-                <p className="text-gray-500 text-sm leading-relaxed mb-6">{item.desc}</p>
+                <p className="text-gray-500 text-[15px] leading-[1.8] mb-6">
+                  {item.desc}
+                </p>
 
-                {/* Capabilities count */}
-                <div className="border border-[#222] px-3 py-1 w-fit mb-8">
-                  <span className="text-gray-500 text-xs tracking-[2px]">{item.capabilities} CAPABILITIES</span>
+                <div className="border border-[#222] px-3 py-1 w-fit mb-7">
+                  <span className="text-gray-500 text-[11px] tracking-[2px] uppercase">
+                    {item.capabilities} CAPABILITIES
+                  </span>
                 </div>
               </div>
 
               <div>
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex flex-wrap gap-2 mb-7">
                   {item.tags.map((tag, i) => (
-                    <span key={i} className="border border-[#bbfe0f] px-2 py-1 text-[10px] text-[#bbfe0f] tracking-[1px]">
+                    <span
+                      key={i}
+                      className="border border-[#bbfe0f] px-2 py-1 text-[10px] text-[#bbfe0f] tracking-[1px] leading-tight"
+                    >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                {/* Button */}
                 <Link
                   to={item.link}
-                  className="flex items-center gap-2 text-xs font-bold uppercase tracking-[2px] text-gray-500 group-hover:text-[#0f33fe] transition-all duration-300"
+                  className="flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[2px] text-gray-500 group-hover:text-[#0f33fe] transition-all duration-300"
                 >
-                  <span className="group-hover:translate-x-2 transition-transform duration-300">EXPLORE TRACK</span>
-                  <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+                  <span className="group-hover:translate-x-2 transition-transform duration-300">
+                    EXPLORE TRACK
+                  </span>
+                  <span className="group-hover:translate-x-2 transition-transform duration-300">
+                    →
+                  </span>
                 </Link>
               </div>
-
             </div>
           ))}
         </div>
       </section>
+
       {/* Section - How Services Work Together */}
-      <section className="bg-[#0a0a0a] text-white py-24 px-[8%] border-t border-[#111]">
-        <div className="text-center mb-16">
-          <p className="text-[#0f33fe] font-bold tracking-[3px] text-xs uppercase mb-4">
+      <section className="bg-[#0a0a0a] text-white py-20 px-[8%] border-t border-[#111]">
+        <div className="text-center mb-14">
+          <p className="text-[#0f33fe] font-extrabold tracking-[3px] text-[12px] uppercase mb-4">
             UNIFIED OPERATING MODEL
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+
+          <h2 className="text-[34px] md:text-[46px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-6">
             How HEIKARO Services Work Together
           </h2>
-          <p className="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto">
-            Our 8 operating services are designed as modular nodes of a single high-performance brand growth engine. Instead of hiring separate branding agencies, dev houses, video production studios, and performance agencies, HEIKARO integrates these capabilities under a single operational standard.
+
+          <p className="text-gray-400 text-[16px] md:text-[18px] leading-[1.85] max-w-3xl mx-auto">
+            Our 8 operating services are designed as modular nodes of a single
+            high-performance brand growth engine. Instead of hiring separate
+            branding agencies, dev houses, video production studios, and
+            performance agencies, HEIKARO integrates these capabilities under a
+            single operational standard.
           </p>
         </div>
 
@@ -181,24 +191,36 @@ export default function Services() {
             { label: "BRAND UNITY", title: "SINGLE TONE OF VOICE" },
             { label: "CAPITAL EFFICIENCY", title: "CONSOLIDATED AGENCY FEES" },
           ].map((item, index) => (
-            <div key={index} className="border border-[#222] p-8 text-center hover:border-[#333] transition-colors">
-              <p className="text-[#bbfe0f] font-bold tracking-[2px] text-xs uppercase mb-3">{item.label}</p>
-              <h3 className="text-white font-bold text-sm uppercase leading-tight">{item.title}</h3>
+            <div
+              key={index}
+              className="border border-[#222] p-7 text-center hover:border-[#333] transition-colors"
+            >
+              <p className="text-[#bbfe0f] font-extrabold tracking-[2px] text-[11px] uppercase mb-3">
+                {item.label}
+              </p>
+
+              <h3 className="text-white font-extrabold text-[14px] uppercase leading-[1.35]">
+                {item.title}
+              </h3>
             </div>
           ))}
         </div>
       </section>
+
       {/* Section - Recommended Service Combinations */}
-      <section className="bg-[#0a0a0a] text-white py-24 px-[8%] border-t border-[#111]">
-        <div className="text-center mb-16">
-          <p className="text-[#bbfe0f] font-bold tracking-[3px] text-xs uppercase mb-4">
+      <section className="bg-[#0a0a0a] text-white py-20 px-[8%] border-t border-[#111]">
+        <div className="text-center mb-14">
+          <p className="text-[#bbfe0f] font-extrabold tracking-[3px] text-[12px] uppercase mb-4">
             STRATEGIC BLUEPRINTS
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+
+          <h2 className="text-[34px] md:text-[46px] font-extrabold leading-[1.1] tracking-[-0.03em] mb-6">
             Recommended Service Combinations
           </h2>
-          <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
-            Connect complementary capabilities to fast-track specific company milestones.
+
+          <p className="text-gray-400 text-[16px] md:text-[18px] leading-[1.85] max-w-2xl mx-auto">
+            Connect complementary capabilities to fast-track specific company
+            milestones.
           </p>
         </div>
 
@@ -209,111 +231,139 @@ export default function Services() {
               title: "The Ultimate Launch Blueprint",
               target: "EARLY-STAGE OR EXPANDING PRODUCTS",
               desc: "Establishes institutional market authority with an elite web app, premium product film, and fully packaged branding system ready for investment.",
-              services: "Brand & Identity + Design & Experience + Media & Production",
+              services:
+                "Brand & Identity + Design & Experience + Media & Production",
             },
             {
               combo: "COMBO 2",
               title: "High-Performance Growth Loop",
               target: "ACTIVE DIGITAL SCALING BRANDS",
               desc: "Establishes a high-velocity localized content system driven by performance marketing, hyper-optimized conversion landing pages, and cinematic social ads.",
-              services: "Marketing & Growth + Content & Storytelling + AI-Powered Video & CGI",
+              services:
+                "Marketing & Growth + Content & Storytelling + AI-Powered Video & CGI",
             },
             {
               combo: "COMBO 3",
               title: "Enterprise Transformation Suite",
               target: "LEGACY CORPORATE BRANDS",
               desc: "Modernizes organizational reputation, aligns interior team training via state-of-the-art interactive platforms, and deploys milestone hybrid events.",
-              services: "Brand & Identity + Digital Learning Experience + Events & Experiential",
+              services:
+                "Brand & Identity + Digital Learning Experience + Events & Experiential",
             },
           ].map((item, index) => (
             <div
               key={index}
-              className="border border-[#222] p-8 flex flex-col justify-between min-h-[400px] group hover:border-[#bbfe0f]/30 transition-colors duration-300 cursor-pointer"
+              className="border border-[#222] p-7 flex flex-col justify-between min-h-[390px] group hover:border-[#bbfe0f]/30 transition-colors duration-300 cursor-pointer"
             >
               <div>
                 <div className="border border-[#bbfe0f]/20 px-2 py-[2px] w-fit mb-4">
-                  <span className="text-[#bbfe0f]/50 text-[10px] tracking-[2px]">{item.combo}</span>
+                  <span className="text-[#bbfe0f]/60 text-[10px] tracking-[2px]">
+                    {item.combo}
+                  </span>
                 </div>
 
-                <h3 className="text-white group-hover:text-[#0f33fe] transition-colors duration-300 font-bold text-xl mb-4">
+                <h3 className="text-white group-hover:text-[#0f33fe] transition-colors duration-300 font-extrabold text-[20px] leading-[1.25] mb-4 tracking-[-0.02em]">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-xs tracking-[2px] uppercase mb-4">{item.target}</p>
-                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+
+                <p className="text-gray-500 text-[11px] tracking-[2px] uppercase mb-4 leading-relaxed">
+                  {item.target}
+                </p>
+
+                <p className="text-gray-400 text-[15px] leading-[1.8]">
+                  {item.desc}
+                </p>
               </div>
 
               <div className="mt-8 pt-6 border-t border-[#222]">
-                <p className="text-gray-600 text-xs uppercase tracking-[2px] mb-2">COMBINED SERVICES</p>
-                <p className="text-white text-sm font-medium">{item.services}</p>
+                <p className="text-gray-600 text-[11px] uppercase tracking-[2px] mb-2">
+                  COMBINED SERVICES
+                </p>
+
+                <p className="text-white text-[15px] leading-[1.65] font-medium">
+                  {item.services}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </section>
+
       {/* Section - The Creative Growth Operating Standard */}
-      <section className="bg-[#0a0a0a] text-white py-24 px-[8%] border-t border-[#111]">
+      <section className="bg-[#0a0a0a] text-white py-20 px-[8%] border-t border-[#111]">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-white font-bold tracking-[3px] text-xs uppercase mb-8">
-            THE CREATIVE GROWTH OPERATING STANDARD
+          <h2 className="text-white font-extrabold text-[28px] md:text-[42px] leading-[1.15] tracking-[-0.03em] uppercase mb-7">
+  THE CREATIVE GROWTH OPERATING STANDARD
+</h2>
+
+          <p className="text-gray-500 text-[16px] md:text-[18px] leading-[1.85] mb-7">
+            Under HEIKARO&apos;s modern operating model, we unify disparate
+            marketing-communication channels into responsive, highly structured
+            platforms. Our approach encompasses Brand Identity development,
+            interactive UI/UX design, full-scale front-end engineering,
+            conversion-focused analytics, production services, and corporate
+            learning experiences in a single, unified workflow.
           </p>
-          <p className="text-gray-500 text-lg leading-relaxed mb-8">
-            Under HEIKARO's modern operating model, we unify disparate marketing-communication channels into responsive, highly structured platforms. Our approach encompasses Brand Identity development, interactive UI/UX design, full-scale front-end engineering, conversion-focused analytics, production services, and corporate learning experiences in a single, unified workflow.
-          </p>
-          <p className="text-gray-500 text-lg leading-relaxed">
-            By treating content and design as an integrated operating system, we eliminate the operational overhead, communication gaps, and inconsistent executions typical of traditional multi-agency structures. Ambitious companies choose HEIKARO to deploy systematic brand value that translates directly into measurable customer choice.
+
+          <p className="text-gray-500 text-[16px] md:text-[18px] leading-[1.85]">
+            By treating content and design as an integrated operating system, we
+            eliminate the operational overhead, communication gaps, and
+            inconsistent executions typical of traditional multi-agency
+            structures. Ambitious companies choose HEIKARO to deploy systematic
+            brand value that translates directly into measurable customer choice.
           </p>
         </div>
       </section>
-      {/* Section - CTA */}
-      <section className="relative bg-[#020818] text-white py-24 px-[8%] border-t border-[#111] overflow-hidden">
 
-        {/* Dark blue background */}
+      {/* Section - CTA */}
+      <section className="relative bg-[#020818] text-white py-20 px-[8%] border-t border-[#111] overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#001233_0%,_#0a0a0a_70%)] z-0" />
 
         <div className="relative z-10 text-center">
-          {/* Badge */}
-          <div className="border border-[#222] px-4 py-2 w-fit mx-auto mb-8 flex items-center gap-2">
-            <span className="text-[#bbfe0f] text-xs">⬡</span>
-            <span className="text-white text-xs tracking-[3px] uppercase">INTEGRATED GROWTH OS</span>
+          <div className="border border-[#222] px-4 py-2 w-fit mx-auto mb-7 flex items-center gap-2">
+            <span className="text-[#bbfe0f] text-[12px]">⬡</span>
+            <span className="text-white text-[11px] font-extrabold tracking-[3px] uppercase">
+              INTEGRATED GROWTH OS
+            </span>
           </div>
 
-          {/* Title */}
-          <h2 className="text-5xl md:text-7xl font-extrabold leading-tight mb-8">
-            ENGINEER YOUR<br />
+          <h2 className="text-[38px] md:text-[58px] font-extrabold leading-[1.06] tracking-[-0.04em] mb-7">
+            ENGINEER YOUR
+            <br />
             <span className="text-[#0f33fe]">MARKET AUTHORITY.</span>
           </h2>
 
-          {/* Description */}
-          <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto mb-12">
-            We connect strategic diagnosis, high-fidelity design, and performance media under one unified growth operating system. Build your brand architecture today.
+          <p className="text-gray-400 text-[16px] md:text-[18px] leading-[1.85] max-w-2xl mx-auto mb-10">
+            We connect strategic diagnosis, high-fidelity design, and performance
+            media under one unified growth operating system. Build your brand
+            architecture today.
           </p>
 
-          {/* Buttons */}
-          <div className="flex items-center justify-center gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
             <Link
               to="/contact"
-              className="bg-white text-black px-10 py-4 font-bold text-sm uppercase tracking-[2px] hover:bg-[#0f33fe] hover:text-white transition-colors duration-300 flex items-center gap-2"
+              className="bg-white text-black px-8 py-4 font-extrabold text-[13px] uppercase tracking-[2px] hover:bg-[#0f33fe] hover:text-white transition-colors duration-300 flex items-center gap-2"
             >
               ENGAGE HEIKARO →
             </Link>
+
             <Link
               to="/portfolio"
-              className="border border-[#333] text-white px-10 py-4 font-bold text-sm uppercase tracking-[2px] hover:bg-[#0f33fe] hover:border-[#0f33fe] transition-colors duration-300"
+              className="border border-[#333] text-white px-8 py-4 font-extrabold text-[13px] uppercase tracking-[2px] hover:bg-[#0f33fe] hover:border-[#0f33fe] transition-colors duration-300"
             >
               REVIEW PROOF SYSTEM
             </Link>
           </div>
 
-          {/* Steps */}
-          <div className="flex items-center justify-center gap-12 text-gray-600 text-xs font-mono uppercase tracking-[3px]">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-gray-600 text-[11px] font-mono uppercase tracking-[3px]">
             <span>01 DIAGNOSE</span>
             <span>02 STRATEGIZE</span>
             <span>03 EXECUTE</span>
             <span>04 OPTIMIZE</span>
           </div>
         </div>
-
       </section>
+
       <StartWithClarity />
     </div>
   );

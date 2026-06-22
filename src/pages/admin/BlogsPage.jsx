@@ -188,12 +188,54 @@ export default function BlogsPage({ toast, openBuilder }) {
               </div>
 
               <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
-                <button
-                  onClick={() => navigate(`/admin/blog/edit/${b._id}`)}
-                  style={iconBtn}
-                >
-                  <Icon name="edit" size={16} />
-                </button>
+               <button
+  onClick={() =>
+    openBuilder({
+      titlePlaceholder: "Blog Title...",
+      publishLabel: "Update Blog",
+      returnPage: "blogs",
+      showCategory: true,
+      initialTitle: b.title || "",
+      initialCategory: b.category || "",
+      existingCoverImage: b.coverImage || "",
+
+      onPublish: async (data) => {
+        try {
+          const formData = new FormData();
+
+          formData.append("title", data.title);
+          formData.append("category", data.category || "General");
+          formData.append("description", data.description || "");
+
+          if (data.coverImage) {
+            formData.append("coverImage", data.coverImage);
+          }
+
+          const res = await fetch(`${API}/blogs/${b._id}`, {
+            method: "PATCH",
+            headers: authHeaders(),
+            body: formData,
+          });
+
+          const result = await res.json();
+
+          if (!res.ok) {
+            throw new Error(result.message || "Failed to update blog");
+          }
+
+          toast.show("Blog updated successfully");
+          load();
+        } catch (error) {
+          console.error(error);
+          toast.show(error.message || "Failed to update blog", "error");
+        }
+      },
+    })
+  }
+  style={iconBtn}
+>
+  <Icon name="edit" size={16} />
+</button>
 
                 <button
                   onClick={() => setConfirm(b._id)}

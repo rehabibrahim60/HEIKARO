@@ -141,63 +141,13 @@ export default function ProjectDetails() {
                         </div>
                     )}
 
-                    <div className="border-t border-white/10 pt-8">
-                        <div className="flex flex-wrap items-center gap-4">
-                            <span className="text-gray-500 font-black tracking-[0.22em] uppercase text-sm">
-                                SHARE CASE STUDY
-                            </span>
-
-                            <a
-                                href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="border border-white/10 px-5 py-3 text-xs font-black tracking-[0.16em] hover:border-[#0f33fe] hover:text-[#0f33fe] transition"
-                            >
-                                FACEBOOK
-                            </a>
-
-                            <a
-                                href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="border border-white/10 px-5 py-3 text-xs font-black tracking-[0.16em] hover:border-[#0f33fe] hover:text-[#0f33fe] transition"
-                            >
-                                LINKEDIN
-                            </a>
-
-                            <button
-                                onClick={copyLink}
-                                className="border border-white/10 px-5 py-3 text-xs font-black tracking-[0.16em] hover:border-[#0f33fe] hover:text-[#0f33fe] transition"
-                            >
-                                COPY
-                            </button>
-
-                            {project.projectUrl && (
-                                <a
-                                    href={project.projectUrl}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="bg-[#0f33fe] text-white px-5 py-3 text-xs font-black tracking-[0.16em] hover:bg-white hover:text-black transition"
-                                >
-                                    VISIT PROJECT →
-                                </a>
-                            )}
-                        </div>
-                    </div>
+                   
                 </div>
             </section>
 
             {/* Content */}
             <section className="px-6 py-24 bg-black">
                 <div className="max-w-4xl mx-auto space-y-12">
-                    {project.description && (
-                        <div className="border-l-4 border-l-[#bbfe0f] pl-8 mb-16">
-                            <p className="text-3xl md:text-4xl leading-[1.45] text-gray-200">
-                                {project.description}
-                            </p>
-                        </div>
-                    )}
-
                     {sortedContent.map((block, index) => (
                         <div key={index}>
                             {block.type === "text" && (

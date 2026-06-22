@@ -92,18 +92,18 @@ function ConfirmDialog({ message, onConfirm, onCancel }) {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
           <div style={{ color: "#f87171" }}><Icon name="alert" size={24} /></div>
-          <p style={{ color: "#f1f5f9", fontSize: 16, fontWeight: 500, margin: 0 }}>تأكيد الحذف</p>
+          <p style={{ color: "#f1f5f9", fontSize: 16, fontWeight: 500, margin: 0 }}>Confirm Delete</p>
         </div>
         <p style={{ color: "#94a3b8", fontSize: 14, marginBottom: 24, lineHeight: 1.6 }}>{message}</p>
         <div style={{ display: "flex", gap: 10, justifyContent: "flex-end" }}>
           <button onClick={onCancel} style={{
             padding: "8px 20px", borderRadius: 8, border: "1px solid #374151",
             background: "transparent", color: "#9ca3af", cursor: "pointer", fontSize: 14
-          }}>إلغاء</button>
+          }}>Cancel</button>
           <button onClick={onConfirm} style={{
             padding: "8px 20px", borderRadius: 8, border: "none",
             background: "#dc2626", color: "#fff", cursor: "pointer", fontSize: 14, fontWeight: 600
-          }}>حذف</button>
+          }}>Delete</button>
         </div>
       </div>
     </div>
@@ -121,7 +121,7 @@ function LoginPage({ onLogin, toast }) {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    if (!email || !password) { toast.show("ادخل البيانات كاملة", "error"); return; }
+    if (!email || !password) { toast.show("Please enter all required fields", "error"); return; }
     setLoading(true);
     try {
       const res = await fetch(`${API}/login`, {
@@ -129,11 +129,11 @@ function LoginPage({ onLogin, toast }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-      if (!res.ok) throw new Error("بيانات خاطئة");
+      if (!res.ok) throw new Error("Invalid credentials");
       const data = await res.json();
       localStorage.setItem("admin_token", data.token);
       onLogin();
-      toast.show("مرحباً بك في لوحة التحكم");
+      toast.show("Welcome to the admin dashboard");
     } catch (err) { toast.show(err.message, "error"); }
     finally { setLoading(false); }
   };
@@ -156,24 +156,24 @@ function LoginPage({ onLogin, toast }) {
           }}>
             <Icon name="lock" size={24} />
           </div>
-          <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 6px" }}>لوحة التحكم</h1>
-          <p style={{ color: "#6b7280", fontSize: 14, margin: 0 }}>سجّل دخولك للمتابعة</p>
+          <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 6px" }}>Admin Dashboard</h1>
+          <p style={{ color: "#6b7280", fontSize: 14, margin: 0 }}>Sign in to continue</p>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           <div>
-            <label style={labelStyle}>البريد الإلكتروني</label>
+            <label style={labelStyle}>Email Address</label>
             <input type="email" value={email} onChange={e => setEmail(e.target.value)}
               style={inputStyle} placeholder="admin@example.com"
               onKeyDown={e => e.key === "Enter" && handleSubmit()} />
           </div>
           <div>
-            <label style={labelStyle}>كلمة المرور</label>
+            <label style={labelStyle}>Password</label>
             <input type="password" value={password} onChange={e => setPassword(e.target.value)}
               style={inputStyle} placeholder="••••••••"
               onKeyDown={e => e.key === "Enter" && handleSubmit()} />
           </div>
           <button onClick={handleSubmit} disabled={loading} style={{ ...primaryBtn, width: "100%", marginTop: 8, padding: "12px", fontSize: 15 }}>
-            {loading ? "جاري الدخول..." : "دخول"}
+            {loading ? "Signing in..." : "Login"}
           </button>
         </div>
       </div>
@@ -184,16 +184,16 @@ function LoginPage({ onLogin, toast }) {
 // ─── PAGE: DASHBOARD HOME ─────────────────────────────────────────────────────
 function DashboardHome({ navigate }) {
   const cards = [
-    { label: "المقالات", icon: "blog", page: "blogs", color: "#0891b2" },
-    { label: "المشاريع", icon: "project", page: "projects", color: "#7c3aed" },
-    { label: "رسائل التواصل", icon: "contact", page: "contacts", color: "#059669" },
-    { label: "الهيرو", icon: "hero", page: "hero", color: "#d97706" },
+    { label: "Blogs", icon: "blog", page: "blogs", color: "#0891b2" },
+    { label: "Projects", icon: "project", page: "projects", color: "#7c3aed" },
+    { label: "Contact Messages", icon: "contact", page: "contacts", color: "#059669" },
+    { label: "Hero", icon: "hero", page: "hero", color: "#d97706" },
   ];
 
   return (
     <div>
-      <h1 style={{ color: "#f1f5f9", fontSize: 26, fontWeight: 700, marginBottom: 8 }}>لوحة التحكم</h1>
-      <p style={{ color: "#6b7280", fontSize: 14, marginBottom: 36 }}>مرحباً بك — اختر القسم الذي تريد إدارته</p>
+      <h1 style={{ color: "#f1f5f9", fontSize: 26, fontWeight: 700, marginBottom: 8 }}>Admin Dashboard</h1>
+      <p style={{ color: "#6b7280", fontSize: 14, marginBottom: 36 }}>Welcome — choose the section you want to manage</p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
         {cards.map(c => (
           <button key={c.page} onClick={() => navigate(c.page)} style={{
@@ -206,7 +206,7 @@ function DashboardHome({ navigate }) {
             <div style={{ color: c.color }}><Icon name={c.icon} size={28} /></div>
             <span style={{ color: "#f1f5f9", fontSize: 16, fontWeight: 600 }}>{c.label}</span>
             <span style={{ color: "#6b7280", fontSize: 12, display: "flex", alignItems: "center", gap: 4 }}>
-              إدارة {c.label} <Icon name="chevron-right" size={14} />
+              Manage {c.label} <Icon name="chevron-right" size={14} />
             </span>
           </button>
         ))}
@@ -229,7 +229,7 @@ function BlogsPage({ toast }) {
     try {
       const data = await apiFetch("/blogs/admin/all");
       setBlogs(data.blogs || data.data || data || []);
-    } catch { toast.show("فشل تحميل المقالات", "error"); }
+    } catch { toast.show("Failed to load blogs", "error"); }
     finally { setLoading(false); }
   };
 
@@ -239,8 +239,8 @@ function BlogsPage({ toast }) {
     try {
       await fetch(`${API}/blogs/${id}`, { method: "DELETE", headers: authHeaders() });
       setBlogs(p => p.filter(b => b._id !== id));
-      toast.show("تم حذف المقال");
-    } catch { toast.show("فشل الحذف", "error"); }
+      toast.show("Blog deleted successfully");
+    } catch { toast.show("Failed to delete", "error"); }
     finally { setConfirm(null); }
   };
 
@@ -248,23 +248,23 @@ function BlogsPage({ toast }) {
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
         <div>
-          <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>المقالات</h1>
-          <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>{blogs.length} مقال</p>
+          <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>Blogs</h1>
+          <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>{blogs.length} blog</p>
         </div>
         <button onClick={() => navigate("/admin/blog/new")} style={primaryBtn}>
-          <Icon name="plus" size={16} /> مقال جديد
+          <Icon name="plus" size={16} /> New Blog
         </button>
       </div>
 
       {loading ? <LoadingGrid /> : (
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          {blogs.length === 0 && <EmptyState icon="blog" label="لا توجد مقالات بعد" />}
+          {blogs.length === 0 && <EmptyState icon="blog" label="No blogs yet" />}
           {blogs.map(b => (
             <div key={b._id} style={listCard}>
               {b.coverImage && <img src={b.coverImage} alt="" style={{ width: 72, height: 52, objectFit: "cover", borderRadius: 8, flexShrink: 0 }} />}
               <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{ color: "#f1f5f9", fontWeight: 600, fontSize: 15, margin: "0 0 4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{b.title}</p>
-                <p style={{ color: "#6b7280", fontSize: 12, margin: 0 }}>{new Date(b.createdAt).toLocaleDateString("ar-EG")}</p>
+                <p style={{ color: "#6b7280", fontSize: 12, margin: 0 }}>{new Date(b.createdAt).toLocaleDateString("en-US")}</p>
               </div>
               <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
                 <button onClick={() => { setEditItem(b); setShowForm(true); }} style={iconBtn}><Icon name="edit" size={16} /></button>
@@ -277,7 +277,7 @@ function BlogsPage({ toast }) {
 
 
       {confirm && (
-        <ConfirmDialog message="هل أنت متأكد من حذف هذا المقال؟ لا يمكن التراجع."
+        <ConfirmDialog message="Are you sure you want to delete this blog? This action cannot be undone."
           onConfirm={() => deleteBlog(confirm)} onCancel={() => setConfirm(null)} />
       )}
     </div>
@@ -298,7 +298,7 @@ function ProjectsPage({ toast }) {
     try {
       const data = await apiFetch("/projects/admin/all");
       setProjects(data.projects || data.data || data || []);
-    } catch { toast.show("فشل تحميل المشاريع", "error"); }
+    } catch { toast.show("Failed to load projects", "error"); }
     finally { setLoading(false); }
   };
 
@@ -308,8 +308,8 @@ function ProjectsPage({ toast }) {
     try {
       await fetch(`${API}/projects/${id}`, { method: "DELETE", headers: authHeaders() });
       setProjects(p => p.filter(pr => pr._id !== id));
-      toast.show("تم حذف المشروع");
-    } catch { toast.show("فشل الحذف", "error"); }
+      toast.show("Project deleted successfully");
+    } catch { toast.show("Failed to delete", "error"); }
     finally { setConfirm(null); }
   };
 
@@ -317,20 +317,20 @@ function ProjectsPage({ toast }) {
     <div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
         <div>
-          <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>المشاريع</h1>
-          <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>{projects.length} مشروع</p>
+          <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>Projects</h1>
+          <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>{projects.length} project</p>
         </div>
         <button
           onClick={() => navigate("/admin/project/new")}
           style={primaryBtn}
         >
-          <Icon name="plus" size={16} /> مشروع جديد
+          <Icon name="plus" size={16} /> New Project
         </button>
       </div>
 
       {loading ? <LoadingGrid /> : (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 14 }}>
-          {projects.length === 0 && <EmptyState icon="project" label="لا توجد مشاريع بعد" />}
+          {projects.length === 0 && <EmptyState icon="project" label="No projects yet" />}
           {projects.map(pr => (
             <div key={pr._id} style={{ ...listCard, flexDirection: "column", gap: 12, padding: 0, overflow: "hidden", alignItems: "stretch" }}>
               {pr.coverImage
@@ -348,7 +348,7 @@ function ProjectsPage({ toast }) {
                   </div>
                 )}
                 <div style={{ display: "flex", gap: 8 }}>
-                  <button onClick={() => { setEditItem(pr); setShowForm(true); }} style={{ ...iconBtn, flex: 1, justifyContent: "center" }}><Icon name="edit" size={15} /> تعديل</button>
+                  <button onClick={() => { setEditItem(pr); setShowForm(true); }} style={{ ...iconBtn, flex: 1, justifyContent: "center" }}><Icon name="edit" size={15} /> Edit</button>
                   <button onClick={() => setConfirm(pr._id)} style={{ ...iconBtn, color: "#f87171" }}><Icon name="trash" size={15} /></button>
                 </div>
               </div>
@@ -359,7 +359,7 @@ function ProjectsPage({ toast }) {
 
 
       {confirm && (
-        <ConfirmDialog message="هل أنت متأكد من حذف هذا المشروع؟"
+        <ConfirmDialog message="Are you sure you want to delete this project?"
           onConfirm={() => deleteProject(confirm)} onCancel={() => setConfirm(null)} />
       )}
     </div>
@@ -378,7 +378,7 @@ function ContactsPage({ toast }) {
     try {
       const data = await apiFetch("/contacts");
       setContacts(data.contacts || data.data || data || []);
-    } catch { toast.show("فشل تحميل الرسائل", "error"); }
+    } catch { toast.show("Failed to load messages", "error"); }
     finally { setLoading(false); }
   };
 
@@ -389,22 +389,22 @@ function ContactsPage({ toast }) {
       await fetch(`${API}/contacts/${id}`, { method: "DELETE", headers: authHeaders() });
       setContacts(p => p.filter(c => c._id !== id));
       if (selected?._id === id) setSelected(null);
-      toast.show("تم حذف الرسالة");
-    } catch { toast.show("فشل الحذف", "error"); }
+      toast.show("Message deleted successfully");
+    } catch { toast.show("Failed to delete", "error"); }
     finally { setConfirm(null); }
   };
 
   return (
     <div>
       <div style={{ marginBottom: 28 }}>
-        <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>رسائل التواصل</h1>
-        <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>{contacts.length} رسالة</p>
+        <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>Contact Messages</h1>
+        <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>{contacts.length} message</p>
       </div>
 
       {loading ? <LoadingGrid /> : (
         <div style={{ display: "grid", gridTemplateColumns: selected ? "1fr 1fr" : "1fr", gap: 14 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {contacts.length === 0 && <EmptyState icon="contact" label="لا توجد رسائل" />}
+            {contacts.length === 0 && <EmptyState icon="contact" label="No messages" />}
             {contacts.map(c => (
               <div key={c._id} onClick={() => setSelected(c)} style={{
                 ...listCard, cursor: "pointer",
@@ -422,7 +422,7 @@ function ContactsPage({ toast }) {
                   <p style={{ color: "#6b7280", fontSize: 12, margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.email}</p>
                 </div>
                 <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
-                  <span style={{ color: "#6b7280", fontSize: 11 }}>{new Date(c.createdAt).toLocaleDateString("ar-EG")}</span>
+                  <span style={{ color: "#6b7280", fontSize: 11 }}>{new Date(c.createdAt).toLocaleDateString("en-US")}</span>
                   <button onClick={e => { e.stopPropagation(); setConfirm(c._id); }} style={{ ...iconBtn, color: "#f87171", padding: 4 }}><Icon name="trash" size={14} /></button>
                 </div>
               </div>
@@ -432,16 +432,16 @@ function ContactsPage({ toast }) {
           {selected && (
             <div style={{ background: "#111827", border: "1px solid #1f2937", borderRadius: 14, padding: 24, position: "sticky", top: 80, alignSelf: "start" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
-                <p style={{ color: "#22d3ee", fontSize: 13, fontWeight: 600, margin: 0 }}>تفاصيل الرسالة</p>
+                <p style={{ color: "#22d3ee", fontSize: 13, fontWeight: 600, margin: 0 }}>Message Details</p>
                 <button onClick={() => setSelected(null)} style={iconBtn}><Icon name="x" size={16} /></button>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                <Detail label="الاسم" value={selected.name} />
-                <Detail label="البريد" value={selected.email} />
-                {selected.phone && <Detail label="الهاتف" value={selected.phone} />}
-                {selected.subject && <Detail label="الموضوع" value={selected.subject} />}
+                <Detail label="Name" value={selected.name} />
+                <Detail label="Email" value={selected.email} />
+                {selected.phone && <Detail label="Phone" value={selected.phone} />}
+                {selected.subject && <Detail label="Subject" value={selected.subject} />}
                 <div>
-                  <p style={{ color: "#6b7280", fontSize: 11, fontWeight: 600, textTransform: "uppercase", marginBottom: 6, letterSpacing: 1 }}>الرسالة</p>
+                  <p style={{ color: "#6b7280", fontSize: 11, fontWeight: 600, textTransform: "uppercase", marginBottom: 6, letterSpacing: 1 }}>Message</p>
                   <p style={{ color: "#f1f5f9", fontSize: 14, lineHeight: 1.7, background: "#0f172a", padding: 14, borderRadius: 8, margin: 0 }}>{selected.message}</p>
                 </div>
               </div>
@@ -451,7 +451,7 @@ function ContactsPage({ toast }) {
       )}
 
       {confirm && (
-        <ConfirmDialog message="هل أنت متأكد من حذف هذه الرسالة؟"
+        <ConfirmDialog message="Are you sure you want to delete this message?"
           onConfirm={() => deleteContact(confirm)} onCancel={() => setConfirm(null)} />
       )}
     </div>
@@ -480,7 +480,7 @@ function HeroPage({ toast }) {
     try {
       const data = await apiFetch("/home");
       setSlides(data.slides || data.data?.slides || []);
-    } catch { toast.show("فشل تحميل السلايدز", "error"); }
+    } catch { toast.show("Failed to load slides", "error"); }
     finally { setLoading(false); }
   };
 
@@ -490,16 +490,16 @@ function HeroPage({ toast }) {
     try {
       await fetch(`${API}/hero/slides/${id}/toggle`, { method: "PATCH", headers: authHeaders() });
       setSlides(p => p.map(s => s._id === id ? { ...s, isActive: !current } : s));
-      toast.show(current ? "تم إخفاء السلايد" : "تم تفعيل السلايد");
-    } catch { toast.show("فشل التغيير", "error"); }
+      toast.show(current ? "Slide hidden successfully" : "Slide activated successfully");
+    } catch { toast.show("Failed to update status", "error"); }
   };
 
   const deleteSlide = async (id) => {
     try {
       await fetch(`${API}/hero/slides/${id}`, { method: "DELETE", headers: authHeaders() });
       setSlides(p => p.filter(s => s._id !== id));
-      toast.show("تم حذف السلايد");
-    } catch { toast.show("فشل الحذف", "error"); }
+      toast.show("Slide deleted successfully");
+    } catch { toast.show("Failed to delete", "error"); }
     finally { setConfirm(null); }
   };
 
@@ -508,16 +508,16 @@ function HeroPage({ toast }) {
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28 }}>
         <div>
           <h1 style={{ color: "#f1f5f9", fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>Hero Section</h1>
-          <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>إدارة السلايدر الرئيسي للموقع</p>
+          <p style={{ color: "#6b7280", fontSize: 13, margin: 0 }}>Manage the main website hero slider</p>
         </div>
         <button onClick={() => { setEditSlide(null); setShowAdd(true); }} style={primaryBtn}>
-          <Icon name="plus" size={16} /> إضافة سلايد
+          <Icon name="plus" size={16} /> Add Slide
         </button>
       </div>
 
       {loading ? <LoadingGrid /> : (
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          {slides.length === 0 && <EmptyState icon="hero" label="لا توجد سلايدز" />}
+          {slides.length === 0 && <EmptyState icon="hero" label="No slides yet" />}
           {slides.map((s, idx) => (
             <div key={s._id} style={{ ...listCard, alignItems: "flex-start", gap: 16 }}>
               {/* Preview */}
@@ -533,24 +533,24 @@ function HeroPage({ toast }) {
                   position: "absolute", bottom: 4, left: 4, fontSize: 10, padding: "2px 6px",
                   borderRadius: 4, background: s.type === "video" ? "#3b1d8a" : "#083344",
                   color: s.type === "video" ? "#a78bfa" : "#22d3ee", fontWeight: 600
-                }}>{s.type === "video" ? "فيديو" : "صورة"}</span>
+                }}>{s.type === "video" ? "Video" : "Image"}</span>
               </div>
 
               {/* Info */}
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                   <span style={{ color: "#f1f5f9", fontWeight: 600, fontSize: 14 }}>
-                    {s.overlayText?.heading?.highlight || s.overlayText?.badge || `سلايد ${idx + 1}`}
+                    {s.overlayText?.heading?.highlight || s.overlayText?.badge || `Slide ${idx + 1}`}
                   </span>
                   <span style={{
                     fontSize: 11, padding: "2px 8px", borderRadius: 20, fontWeight: 600,
                     background: s.isActive ? "#064e3b" : "#1f2937",
                     color: s.isActive ? "#34d399" : "#6b7280"
-                  }}>{s.isActive ? "مفعّل" : "مخفي"}</span>
+                  }}>{s.isActive ? "Active" : "Hidden"}</span>
                 </div>
                 {s.type === "image" && (
                   <p style={{ color: "#6b7280", fontSize: 12, margin: 0 }}>
-                    الكلام: {s.showOverlay ? "يظهر" : "مخفي"}
+                    Text: {s.showOverlay ? "Visible" : "Hidden"}
                   </p>
                 )}
                 {s.overlayText?.description && (
@@ -585,7 +585,7 @@ function HeroPage({ toast }) {
       )}
 
       {confirm && (
-        <ConfirmDialog message="هل أنت متأكد من حذف هذا السلايد؟"
+        <ConfirmDialog message="Are you sure you want to delete this slide?"
           onConfirm={() => deleteSlide(confirm)} onCancel={() => setConfirm(null)} />
       )}
     </div>
@@ -632,13 +632,13 @@ function SlideForm({ slide, onClose, toast }) {
       }));
       if (isEdit) {
         await fetch(`${API}/hero/slides/${slide._id}`, { method: "PATCH", headers: authHeaders(), body: fd });
-        toast.show("تم تحديث السلايد");
+        toast.show("Slide updated successfully");
       } else {
         await fetch(`${API}/hero/slides`, { method: "POST", headers: authHeaders(), body: fd });
-        toast.show("تم إضافة السلايد");
+        toast.show("Slide added successfully");
       }
       onClose();
-    } catch (err) { toast.show("حدث خطأ: " + err.message, "error"); }
+    } catch (err) { toast.show("Error: " + err.message, "error"); }
     finally { setLoading(false); }
   };
 
@@ -651,7 +651,7 @@ function SlideForm({ slide, onClose, toast }) {
       <div style={{ background: "#0f172a", border: "1px solid #1f2937", borderRadius: 20, width: "100%", maxWidth: 600, padding: 32 }}>
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 24 }}>
           <h2 style={{ color: "#f1f5f9", fontSize: 18, fontWeight: 700, margin: 0 }}>
-            {isEdit ? "تعديل سلايد" : "إضافة سلايد جديد"}
+            {isEdit ? "Edit Slide" : "Add New Slide"}
           </h2>
           <button onClick={onClose} style={iconBtn}><Icon name="x" size={18} /></button>
         </div>
@@ -659,7 +659,7 @@ function SlideForm({ slide, onClose, toast }) {
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {/* Type */}
           <div>
-            <label style={labelStyle}>نوع السلايد</label>
+            <label style={labelStyle}>Slide Type</label>
             <div style={{ display: "flex", gap: 8 }}>
               {["image", "video"].map(t => (
                 <button key={t} onClick={() => setType(t)} style={{
@@ -669,7 +669,7 @@ function SlideForm({ slide, onClose, toast }) {
                   color: type === t ? "#000" : "#6b7280", cursor: "pointer",
                   display: "flex", alignItems: "center", justifyContent: "center", gap: 6
                 }}>
-                  <Icon name={t} size={16} /> {t === "image" ? "صورة" : "فيديو"}
+                  <Icon name={t} size={16} /> {t === "image" ? "Image" : "Video"}
                 </button>
               ))}
             </div>
@@ -677,7 +677,7 @@ function SlideForm({ slide, onClose, toast }) {
 
           {/* File upload */}
           <div>
-            <label style={labelStyle}>{type === "image" ? "الصورة" : "الفيديو"}</label>
+            <label style={labelStyle}>{type === "image" ? "Image" : "Video"}</label>
             <div style={{
               border: "2px dashed #1f2937", borderRadius: 10, padding: 20,
               textAlign: "center", cursor: "pointer"
@@ -688,7 +688,7 @@ function SlideForm({ slide, onClose, toast }) {
                   : <video src={preview} style={{ maxHeight: 140, borderRadius: 8 }} controls />
                 : <div style={{ color: "#4b5563", fontSize: 13 }}>
                   <Icon name="upload" size={24} /><br />
-                  اضغط لرفع {type === "image" ? "صورة" : "فيديو"}
+                  Click to upload {type === "image" ? "Image" : "Video"}
                 </div>}
               <input id="slideFile" type="file" accept={type === "image" ? "image/*" : "video/*"} hidden onChange={handleFile} />
             </div>
@@ -697,7 +697,7 @@ function SlideForm({ slide, onClose, toast }) {
           {/* Show overlay toggle (images only) */}
           {type === "image" && (
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", background: "#111827", borderRadius: 10 }}>
-              <span style={{ color: "#f1f5f9", fontSize: 14 }}>إظهار النصوص فوق الصورة</span>
+              <span style={{ color: "#f1f5f9", fontSize: 14 }}>Show text over image</span>
               <button onClick={() => setShowOverlay(p => !p)} style={{
                 background: showOverlay ? "#22d3ee" : "#374151", border: "none", borderRadius: 20,
                 width: 44, height: 24, cursor: "pointer", position: "relative", transition: "background 0.2s"
@@ -714,26 +714,26 @@ function SlideForm({ slide, onClose, toast }) {
           {/* Overlay text fields */}
           {(showOverlay || type === "video") && (
             <div style={{ background: "#111827", borderRadius: 12, padding: 16, display: "flex", flexDirection: "column", gap: 12 }}>
-              <p style={{ color: "#22d3ee", fontSize: 12, fontWeight: 600, margin: "0 0 4px", textTransform: "uppercase", letterSpacing: 1 }}>نصوص العرض</p>
-              <input value={overlay.badge} onChange={e => setOverlay(p => ({ ...p, badge: e.target.value }))} style={inputStyle} placeholder="Badge مثلاً: MARKETING & GROWTH" />
+              <p style={{ color: "#22d3ee", fontSize: 12, fontWeight: 600, margin: "0 0 4px", textTransform: "uppercase", letterSpacing: 1 }}>Overlay Text</p>
+              <input value={overlay.badge} onChange={e => setOverlay(p => ({ ...p, badge: e.target.value }))} style={inputStyle} placeholder="Badge e.g. MARKETING & GROWTH" />
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
                 <input value={overlay.prefix} onChange={e => setOverlay(p => ({ ...p, prefix: e.target.value }))} style={inputStyle} placeholder="Prefix: WE" />
                 <input value={overlay.highlight} onChange={e => setOverlay(p => ({ ...p, highlight: e.target.value }))} style={inputStyle} placeholder="Highlight" />
                 <input value={overlay.suffix} onChange={e => setOverlay(p => ({ ...p, suffix: e.target.value }))} style={inputStyle} placeholder="Suffix: BRANDS" />
               </div>
               <textarea value={overlay.description} onChange={e => setOverlay(p => ({ ...p, description: e.target.value }))}
-                style={{ ...inputStyle, minHeight: 70, resize: "vertical" }} placeholder="وصف..." />
+                style={{ ...inputStyle, minHeight: 70, resize: "vertical" }} placeholder="Description..." />
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-                <input value={overlay.buttonText} onChange={e => setOverlay(p => ({ ...p, buttonText: e.target.value }))} style={inputStyle} placeholder="نص الزرار" />
-                <input value={overlay.buttonLink} onChange={e => setOverlay(p => ({ ...p, buttonLink: e.target.value }))} style={inputStyle} placeholder="رابط الزرار" />
+                <input value={overlay.buttonText} onChange={e => setOverlay(p => ({ ...p, buttonText: e.target.value }))} style={inputStyle} placeholder="Button Text" />
+                <input value={overlay.buttonLink} onChange={e => setOverlay(p => ({ ...p, buttonLink: e.target.value }))} style={inputStyle} placeholder="Button Link" />
               </div>
             </div>
           )}
 
           <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", marginTop: 4 }}>
-            <button onClick={onClose} style={ghostBtn}>إلغاء</button>
+            <button onClick={onClose} style={ghostBtn}>Cancel</button>
             <button onClick={save} disabled={loading} style={primaryBtn}>
-              {loading ? "جاري الحفظ..." : isEdit ? "تحديث" : "إضافة"}
+              {loading ? "Saving..." : isEdit ? "Update" : "Add"}
             </button>
           </div>
         </div>
@@ -744,10 +744,10 @@ function SlideForm({ slide, onClose, toast }) {
 
 // ─── LAYOUT ───────────────────────────────────────────────────────────────────
 const navItems = [
-  { id: "home", label: "الرئيسية", icon: "project" },
-  { id: "blogs", label: "المقالات", icon: "blog" },
-  { id: "projects", label: "المشاريع", icon: "project" },
-  { id: "contacts", label: "التواصل", icon: "contact" },
+  { id: "home", label: "Home", icon: "project" },
+  { id: "blogs", label: "Blogs", icon: "blog" },
+  { id: "projects", label: "Projects", icon: "project" },
+  { id: "contacts", label: "Contacts", icon: "contact" },
   { id: "hero", label: "Hero", icon: "hero" },
 ];
 
@@ -763,7 +763,7 @@ function AdminLayout({ children, page, navigate, onLogout }) {
       }}>
         <div style={{ padding: "0 20px 28px", borderBottom: "1px solid #1f2937" }}>
           <p style={{ color: "#22d3ee", fontWeight: 800, fontSize: 16, margin: 0, letterSpacing: 1 }}>ADMIN</p>
-          <p style={{ color: "#4b5563", fontSize: 11, margin: "4px 0 0" }}>لوحة التحكم</p>
+          <p style={{ color: "#4b5563", fontSize: 11, margin: "4px 0 0" }}>Admin Dashboard</p>
         </div>
         <nav style={{ padding: "16px 10px", flex: 1 }}>
           {navItems.map(item => (
@@ -789,7 +789,7 @@ function AdminLayout({ children, page, navigate, onLogout }) {
           }}
             onMouseEnter={e => e.currentTarget.style.color = "#f87171"}
             onMouseLeave={e => e.currentTarget.style.color = "#6b7280"}>
-            <Icon name="logout" size={17} /> تسجيل الخروج
+            <Icon name="logout" size={17} /> Logout
           </button>
         </div>
       </aside>

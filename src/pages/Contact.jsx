@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style/contact.css";
 import { Link } from "react-router-dom";
-import "./style/about.css";
+import "./style/pageHero.css";
 
 const API = "http://localhost:3000";
 
@@ -76,9 +76,6 @@ const SOLUTIONS_MAP = {
 };
 
 const Contact = () => {
-  /* =======================
-     Form State
-  ======================= */
   const [form, setForm] = useState({
     fullName: "",
     organization: "",
@@ -92,9 +89,6 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  /* =======================
-     Handlers
-  ======================= */
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -138,33 +132,22 @@ const Contact = () => {
     }
   };
 
-  const specificSolutions =
-    SOLUTIONS_MAP[form.serviceFamily] || [];
+  const specificSolutions = SOLUTIONS_MAP[form.serviceFamily] || [];
 
-  /* =======================
-     JSX (UNTOUCHED STRUCTURE)
-  ======================= */
   return (
     <div className="contact-page">
       {/* ================= HERO ================= */}
-      <section className="contact-hero">
-        <svg width="0" height="0">
-          <defs>
-            <linearGradient id="gradient-fill" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" style={{ stopColor: "#ffffff" }} />
-              <stop offset="50%" style={{ stopColor: "#0f33fe" }} />
-              <stop offset="100%" style={{ stopColor: "#bbfe0f" }} />
-            </linearGradient>
-          </defs>
-        </svg>
+      <section
+        className="unified-page-hero"
+        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+      >
+        <div className="unified-page-hero-content">
+          <h1 className="unified-page-title">
+            CONNECT <br />
+            & CONVERT.
+          </h1>
 
-        <div className="contact-container">
-          <svg viewBox="0 0 600 250" className="gradient-svg">
-            <text x="0" y="80" className="text-content">CONNECT</text>
-            <text x="0" y="170" className="text-content">& CONVERT.</text>
-          </svg>
-
-          <p className="contact-subtitle">
+          <p className="unified-page-desc">
             — Connect with HEIKARO to shape the next iteration of your brand.
           </p>
         </div>
@@ -183,6 +166,7 @@ const Contact = () => {
                   name="fullName"
                   value={form.fullName}
                   onChange={handleChange}
+                  placeholder="Ex: John Wick"
                 />
               </div>
 
@@ -192,6 +176,7 @@ const Contact = () => {
                   name="organization"
                   value={form.organization}
                   onChange={handleChange}
+                  placeholder="Ex: Continental"
                 />
               </div>
             </div>
@@ -204,6 +189,7 @@ const Contact = () => {
                   name="workEmail"
                   value={form.workEmail}
                   onChange={handleChange}
+                  placeholder="Ex: john@wick.com"
                 />
               </div>
 
@@ -216,7 +202,9 @@ const Contact = () => {
                 >
                   <option value="">Select Track</option>
                   {Object.keys(SOLUTIONS_MAP).map((track) => (
-                    <option key={track} value={track}>{track}</option>
+                    <option key={track} value={track}>
+                      {track}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -235,8 +223,11 @@ const Contact = () => {
                     ? "Select Specific Solution"
                     : "Please select a service family first"}
                 </option>
-                {specificSolutions.map((s) => (
-                  <option key={s} value={s}>{s}</option>
+
+                {specificSolutions.map((solution) => (
+                  <option key={solution} value={solution}>
+                    {solution}
+                  </option>
                 ))}
               </select>
             </div>
@@ -247,19 +238,51 @@ const Contact = () => {
                 name="inquiryBrief"
                 value={form.inquiryBrief}
                 onChange={handleChange}
+                placeholder="Tell us about your project goals and timeline..."
               />
             </div>
 
-            <div className="checkbox-field">
-              <input
-                type="checkbox"
-                name="agreedToPrivacyPolicy"
-                checked={form.agreedToPrivacyPolicy}
-                onChange={handleChange}
-              />
-              <label>I agree to the Privacy Policy</label>
-            </div>
+       <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "14px",
+    marginTop: "18px",
+    marginBottom: "8px",
+  }}
+>
+  <input
+    id="privacy"
+    type="checkbox"
+    name="agreedToPrivacyPolicy"
+    checked={form.agreedToPrivacyPolicy}
+    onChange={handleChange}
+    style={{
+      width: "18px",
+      height: "18px",
+      minWidth: "22px",
+      margin: 0,
+      accentColor: "#0f33fe",
+      cursor: "pointer",
+    }}
+  />
 
+  <label
+    htmlFor="privacy"
+    style={{
+      fontSize: "14px",
+      lineHeight: "1.45",
+      color: "#ffffff",
+      fontWeight: 700,
+      letterSpacing: "0px",
+      textTransform: "none",
+      margin: 0,
+      cursor: "pointer",
+    }}
+  >
+    I agree to the Privacy Policy and allow HEIKARO to contact me.
+  </label>
+</div>
             {message && <p className="form-message">{message}</p>}
 
             <button className="submit-btn" disabled={loading}>
@@ -268,10 +291,60 @@ const Contact = () => {
           </form>
         </div>
 
-        {/* ============ SIDEBAR (UNCHANGED) ============ */}
+        {/* ================= SIDEBAR ================= */}
         <aside className="sidebar-column">
-          {/* نفس الكود القديم بدون أي تغيير */}
-          {/* … */}
+          <div className="channels-box">
+            <h3 className="sidebar-title">DIRECT CHANNELS</h3>
+
+            <div className="channel-item">
+              <span className="channel-icon">📧</span>
+              <div>
+                <span className="label-small">EMAIL</span>
+                <span className="value-bold">hallo@heikaro.com</span>
+              </div>
+            </div>
+
+            <div className="channel-item">
+              <span className="channel-icon">📍</span>
+              <div>
+                <span className="label-small">PRESENCE</span>
+                <span className="value-bold">CAIRO, EGYPT</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="ecosystem-box">
+            <h3 className="sidebar-title">ECOSYSTEM</h3>
+
+            <div className="social-grid">
+              <div className="social-item">FACEBOOK</div>
+              <div className="social-item">INSTAGRAM</div>
+              <div className="social-item">TWITTER</div>
+              <div className="social-item">YOUTUBE</div>
+              <div className="social-item">LINKEDIN</div>
+              <div className="social-item">BEHANCE</div>
+            </div>
+          </div>
+
+          <div className="strategic-box">
+            <h3>STRATEGIC TRACKS</h3>
+
+            <p>
+              We operate across 8 specialized service families. Select your
+              primary track in the form to begin discovery.
+            </p>
+
+            <ul className="tracks-list">
+              <li>BRAND & IDENTITY</li>
+              <li>DESIGN & EXPERIENCE</li>
+              <li>CONTENT & STORYTELLING</li>
+              <li>MARKETING & GROWTH</li>
+            </ul>
+
+            <Link to="/services" className="view-all">
+              VIEW ALL 8 TRACKS
+            </Link>
+          </div>
         </aside>
       </section>
     </div>
@@ -279,4 +352,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style/Portfolio.css";
+import "./style/pageHero.css";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
 import EngineerYourMarket from "../components/common/ENGINEER_YOUR_MARKET";
 
@@ -80,12 +81,6 @@ const Portfolio = () => {
           throw new Error(data?.message || "Failed to load projects");
         }
 
-        /*
-          Fallback:
-          لو بعتنا Brand & Identity ومرجعش حاجة،
-          نجرب نبعت IDENTITY مباشرة،
-          عشان لو الداتا في MongoDB متسجلة بالاسم المختصر.
-        */
         if (
           activeFilter !== "ALL SYSTEMS" &&
           (data.data || []).length === 0 &&
@@ -118,44 +113,58 @@ const Portfolio = () => {
 
   return (
     <div className="portfolio-page">
-      <section className="portfolio-hero">
-        <div className="hero-content">
-          <span className="proof-tag">PROOF SYSTEM</span>
-          <h1>THE PORTFOLIO</h1>
-          <p className="portfolio-desc">
-            Selected work, visual systems, campaigns, and creative case studies.
+      <section
+        className="unified-page-hero"
+        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+      >
+        <div className="unified-page-hero-content">
+
+          <h1 className="unified-page-title">
+            THE <br />
+            PORTFOLIO
+          </h1>
+
+          <p className="unified-page-desc">
+            — Selected work, visual systems, campaigns, and creative case
+            studies.
           </p>
         </div>
       </section>
 
-      <section className="filter-bar">
-        <div className="filter-buttons">
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              type="button"
-              className={`filter-btn ${activeFilter === filter ? "active" : ""}`}
-              onClick={() => setActiveFilter(filter)}
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
+      <section className="portfolio-blog-filter-wrap">
+  <div className="portfolio-blog-filter-inner">
+    <div className="portfolio-blog-filter-buttons">
+      {filters.map((filter) => (
+        <button
+          key={filter}
+          type="button"
+          className={`portfolio-blog-filter-btn ${
+            activeFilter === filter ? "active" : ""
+          }`}
+          onClick={() => setActiveFilter(filter)}
+        >
+          {filter}
+        </button>
+      ))}
+    </div>
 
-        <input
-          type="text"
-          placeholder="SEARCH PROJECTS..."
-          className="search-input"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </section>
+    <div className="portfolio-blog-search-box">
+      <input
+        type="text"
+        placeholder="SEARCH PROJECTS..."
+        className="portfolio-blog-search-input"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+    </div>
+  </div>
+</section>
 
       <section className="projects-grid">
         {loading ? (
-          <p className="text-center text-gray-400 py-20">Loading projects...</p>
+          <p className="portfolio-message">Loading projects...</p>
         ) : projects.length === 0 ? (
-          <p className="text-center text-gray-400 py-20">No projects found.</p>
+          <p className="portfolio-message">No projects found.</p>
         ) : (
           projects.map((project) => (
             <Link
@@ -177,6 +186,7 @@ const Portfolio = () => {
 
               <div className="project-info">
                 <span className="project-cat">{project.category}</span>
+
                 <h3>{project.title}</h3>
 
                 {project.description && (
@@ -191,14 +201,16 @@ const Portfolio = () => {
       <section className="cta-section">
         <div className="cta-content">
           <h2>LOOKING FOR DEEP-LAYER CASES?</h2>
+
           <p>
             BECAUSE WE WORK AT THE CORE ORGANIZATIONAL LEVEL, SOME OF OUR MOST
             IMPACTFUL STRATEGIC DIAGNOSTIC AND AI IMPLEMENTATION CASES ARE UNDER
             STRICT NDA.
           </p>
-          <button className="cta-button" type="button">
+
+          <Link to="/contact" className="cta-button">
             REQUEST CASE STUDY PACK <span>→</span>
-          </button>
+          </Link>
         </div>
       </section>
 

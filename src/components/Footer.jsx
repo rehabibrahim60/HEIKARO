@@ -1,6 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube, FaLinkedinIn, FaBehance } from "react-icons/fa6";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaXTwitter,
+  FaYoutube,
+  FaLinkedinIn,
+  FaBehance,
+} from "react-icons/fa6";
 import logo from "../assets/Logo.png";
 
 const socialLinks = [
@@ -18,40 +25,52 @@ const families = [
   { href: "/services/content-storytelling", item: "Content & Storytelling" },
   { href: "/services/marketing-growth", item: "Marketing & Growth" },
   { href: "/services/media-production", item: "Media & Production" },
-  { href: "/services/digital-learning-experience", item: "Digital Learning Experience" },
+  {
+    href: "/services/digital-learning-experience",
+    item: "Digital Learning Experience",
+  },
   { href: "/services/ai-video-cgi", item: "AI-Powered Video & CGI" },
   { href: "/services/events-experiential", item: "Events & Experiential" },
 ];
 
-const Pages = [
+const pages = [
   { href: "/", item: "Home" },
   { href: "/about", item: "About" },
   { href: "/portfolio", item: "Portfolio" },
   { href: "/blogs", item: "Journal (Blog)" },
-  { href: "/contact", item: "Contact" }
+  { href: "/contact", item: "Contact" },
 ];
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0a0a0a] text-white px-[5%] py-20">
-      <div className="grid grid-cols-[2fr_1fr_1.5fr_1.5fr] gap-16">
-
-        {/* First column: logo and description */}
+    <footer
+      className="site-footer mt-0 bg-[#0a0a0a] px-[5%] pt-12 pb-10 text-white border-t border-white/10"
+      style={{ fontFamily: "Aspekta, sans-serif" }}
+    >
+      <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1.5fr_1.5fr] lg:gap-16">
+        {/* Logo and description */}
         <div className="flex flex-col gap-4">
-          <img src={logo} alt="Heikaro" className="h-9 w-auto object-contain self-start mb-5" />
-          <p className="text-[#a0a0a0] text-sm font-normal leading-relaxed pl-1">
+          <img
+            src={logo}
+            alt="Heikaro"
+            className="mb-4 h-9 w-auto object-contain self-start"
+          />
+
+          <p className="max-w-[430px] text-[16px] font-medium leading-[1.85] text-[#a0a0a0]">
             HEIKARO is a premium creative agency connecting brand strategy,
             visual identity, UX/UI design, media production, and AI-powered
-            storytelling into one unified growth operating system for global brands.
+            storytelling into one unified growth operating system for global
+            brands.
           </p>
-          <div className="flex gap-4 mt-1 pl-1">
+
+          <div className="mt-2 flex gap-5">
             {socialLinks.map(({ href, icon }) => (
               <a
                 key={href}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#a0a0a0] text-base transition-colors duration-300 hover:text-[#0f33fe] cursor-pointer"
+                className="text-[18px] text-[#a0a0a0] transition-colors duration-300 hover:text-[#0f33fe]"
               >
                 {icon}
               </a>
@@ -59,18 +78,19 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Second column: links */}
+        {/* Company links */}
         <div className="flex flex-col">
-          <h3 className="text-sm font-bold uppercase cking-[2px] text-white mb-6">
-            COMPANY
+          <h3 className="mb-6 text-[14px] font-black uppercase tracking-[2px] text-white">
+            Company
           </h3>
-          <ul className="flex flex-col gap-[15px] list-none p-0">
-            {Pages.map(({ item, href }) => (
-              <li
-                key={item}
-                className="text-sm text-[#a0a0a0] cursor-pointer hover:text-white transition-colors duration-300"
-              >
-                <Link to={href}>
+
+          <ul className="flex list-none flex-col gap-4 p-0 m-0">
+            {pages.map(({ item, href }) => (
+              <li key={item}>
+                <Link
+                  to={href}
+                  className="text-[15px] font-medium text-[#a0a0a0] transition-colors duration-300 hover:text-white"
+                >
                   {item}
                 </Link>
               </li>
@@ -78,18 +98,19 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Third column: services */}
+        {/* Services */}
         <div className="flex flex-col">
-          <h3 className="text-sm font-bold uppercase text-white mb-6">
-            SERVICES
+          <h3 className="mb-6 text-[14px] font-black uppercase tracking-[2px] text-white">
+            Services
           </h3>
-          <ul className="flex flex-col gap-[15px] list-none p-0">
+
+          <ul className="flex list-none flex-col gap-4 p-0 m-0">
             {families.map(({ item, href }) => (
-              <li
-                key={item}
-                className="text-sm text-[#a0a0a0] cursor-pointer hover:text-white transition-colors duration-300"
-              >
-                <Link to={href}>
+              <li key={item}>
+                <Link
+                  to={href}
+                  className="text-[15px] font-medium text-[#a0a0a0] transition-colors duration-300 hover:text-white"
+                >
                   {item}
                 </Link>
               </li>
@@ -97,21 +118,28 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Fourth column: contact information */}
+        {/* Contact */}
         <div className="flex flex-col">
-          <h3 className="text-sm font-bold uppercase text-white mb-6">
-            CONTACT
+          <h3 className="mb-6 text-[14px] font-black uppercase tracking-[2px] text-white">
+            Contact
           </h3>
-          <p className="text-[#a0a0a0] text-base font-normal leading-relaxed mb-4">
-            EMAIL:<br />
-            <strong className="text-white font-bold">HALLO@HEIKARO.COM</strong>
+
+          <p className="mb-5 text-[15px] font-medium leading-[1.8] text-[#a0a0a0]">
+            EMAIL:
+            <br />
+            <strong className="text-[15px] font-black text-white">
+              HALLO@HEIKARO.COM
+            </strong>
           </p>
-          <p className="text-[#a0a0a0] text-base font-normal leading-relaxed mb-4">
-            LOCATION:<br />
-            <strong className="text-white font-bold">CAIRO, EGYPT</strong>
+
+          <p className="text-[15px] font-medium leading-[1.8] text-[#a0a0a0]">
+            LOCATION:
+            <br />
+            <strong className="text-[15px] font-black text-white">
+              CAIRO, EGYPT
+            </strong>
           </p>
         </div>
-
       </div>
     </footer>
   );

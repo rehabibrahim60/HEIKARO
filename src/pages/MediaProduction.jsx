@@ -1,16 +1,13 @@
-import Hero from "../components/media_production/Hero";
 import Overview from "../components/media_production/Overview";
 import Failures from "../components/media_production/Failures";
 import Audiences from "../components/media_production/Audiences";
-import IncludedCapabilities from "../components/common/IncludedCapabilities";
 import CapabilitiesSection from "../components/capabilities/CapabilitiesSection";
 import Specs from "../components/media_production/Specs";
 import HowWeProduceMediaAssets from "../components/media_production/Howweproducemediaassets";
 import FAQSection from "../components/media_production/Faqsection";
 import CTASection from "../components/media_production/Ctasection";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
-
-
+import "./style/pageHero.css";
 
 const includedCapabilities = [
   {
@@ -18,7 +15,6 @@ const includedCapabilities = [
     title: "Commercial Production",
     desc: "Promotional film assets engineered to carry bold message directions, setting off product and brand launches cleanly.",
     tag: "Cinema-grade commercial ads",
-    image: null,
     anchor: "commercial-production",
   },
   {
@@ -26,7 +22,6 @@ const includedCapabilities = [
     title: "Corporate & Brand Videos",
     desc: "Highlighting operational spaces, company culture, team stories, trust interviews, and core corporate capability summaries.",
     tag: "Executive interview profiles",
-    image: null,
     anchor: "corporate-brand-videos",
   },
   {
@@ -34,7 +29,6 @@ const includedCapabilities = [
     title: "Motion Graphics",
     desc: "Custom branded static-to-animated layout systems designed to illustrate technical data and concepts smoothly.",
     tag: "2D/3D dynamic visual diagrams",
-    image: null,
     anchor: "motion-graphics",
   },
   {
@@ -42,7 +36,6 @@ const includedCapabilities = [
     title: "Commercial Photography",
     desc: "High-contrast product, space, and lifestyle photography styled to elevate catalogs and website banners.",
     tag: "Studio assets & environmental shoots",
-    image: null,
     anchor: "commercial-photography",
   },
   {
@@ -50,7 +43,6 @@ const includedCapabilities = [
     title: "Virtual Tour 360",
     desc: "Interactive spatial scanning capturing clinics, offices, and real estate properties in high detail.",
     tag: "Responsive spatial interface packages",
-    image: null,
     anchor: "virtual-tour-360",
   },
   {
@@ -58,13 +50,11 @@ const includedCapabilities = [
     title: "Media Production Management",
     desc: "Full strategic planning, concept storyboarding, crew logistics, and modular content-library organization.",
     tag: "Comprehensive production oversight",
-    image: null,
     anchor: "media-production-management",
   },
 ];
 
 export default function MediaProduction() {
-
   const mediaProductionCapabilities = [
     {
       id: 1,
@@ -74,7 +64,7 @@ export default function MediaProduction() {
       description:
         "Promotional film assets engineered to carry bold message directions, setting off product and brand launches cleanly. By structuring dynamic opening hooks and high-persuasion visual storytelling sequences, we make sure pay-per-click traffic converts.",
       competencyText: "LAUNCH ADS & PRODUCT FILMS",
-      image: "./../../public/images/media-production/hero-bg.jpg.jpeg",
+      image: "/hero-bg.jpg.jpeg",
       imageAlt: "Commercial Production",
       imagePosition: "right",
       details: [
@@ -279,27 +269,208 @@ export default function MediaProduction() {
   ];
 
   return (
-    <>
-      <Hero />
+    <div
+      className="media-production-page bg-[#0a0a0a] min-h-screen text-white"
+      style={{ fontFamily: "Aspekta, sans-serif" }}
+    >
+      <style>
+        {`
+          .media-production-page,
+          .media-production-page * {
+            font-family: "Aspekta", sans-serif !important;
+          }
+
+          .media-production-page h1 {
+            font-size: clamp(44px, 6vw, 78px) !important;
+            line-height: 0.95 !important;
+            font-weight: 900 !important;
+            letter-spacing: -0.04em !important;
+            text-transform: uppercase !important;
+          }
+
+          .media-production-page h2 {
+            font-size: clamp(34px, 4.2vw, 52px) !important;
+            line-height: 1.12 !important;
+            font-weight: 900 !important;
+            letter-spacing: -0.035em !important;
+            text-transform: uppercase !important;
+          }
+
+          .media-production-page h3,
+          .media-production-page h4 {
+            font-size: 21px !important;
+            line-height: 1.3 !important;
+            font-weight: 900 !important;
+            letter-spacing: -0.02em !important;
+            text-transform: uppercase !important;
+          }
+
+          .media-production-page p {
+            font-size: 18px !important;
+            line-height: 1.9 !important;
+            font-weight: 500 !important;
+          }
+
+          .media-production-page li {
+            font-size: 16px !important;
+            line-height: 1.8 !important;
+          }
+
+          .media-production-page .text-sm,
+          .media-production-page [class*="text-sm"] {
+            font-size: 16px !important;
+            line-height: 1.85 !important;
+          }
+
+          .media-production-page .text-xs,
+          .media-production-page [class*="text-xs"] {
+            font-size: 13px !important;
+            line-height: 1.5 !important;
+            font-weight: 900 !important;
+          }
+
+          .media-production-page .text-lg,
+          .media-production-page [class*="text-lg"] {
+            font-size: 18px !important;
+            line-height: 1.9 !important;
+          }
+
+          .media-production-page a p {
+            font-size: 16px !important;
+            line-height: 1.85 !important;
+          }
+
+          .media-production-page a h3 {
+            font-size: 20px !important;
+            line-height: 1.3 !important;
+          }
+
+          .media-production-page a,
+          .media-production-page button {
+            font-size: 14px !important;
+            font-weight: 900 !important;
+            letter-spacing: 1.5px !important;
+          }
+
+          .media-production-page .unified-page-title {
+            font-size: clamp(44px, 7vw, 90px) !important;
+          }
+
+          .media-production-page .unified-page-desc {
+            font-size: clamp(16px, 2vw, 21px) !important;
+            line-height: 1.7 !important;
+          }
+
+          @media (max-width: 768px) {
+            .media-production-page h1 {
+              font-size: clamp(38px, 11vw, 56px) !important;
+            }
+
+            .media-production-page h2 {
+              font-size: 31px !important;
+            }
+
+            .media-production-page h3,
+            .media-production-page h4 {
+              font-size: 19px !important;
+            }
+
+            .media-production-page p {
+              font-size: 16px !important;
+              line-height: 1.8 !important;
+            }
+
+            .media-production-page .text-sm,
+            .media-production-page [class*="text-sm"] {
+              font-size: 15px !important;
+            }
+          }
+        `}
+      </style>
+
+      {/* HERO زي Services */}
+      <section
+        className="unified-page-hero"
+        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+      >
+        <div className="unified-page-hero-content">
+
+          <h1 className="unified-page-title">
+            MEDIA <br /> PRODUCTION
+          </h1>
+
+          <p className="unified-page-desc">
+            — Cinema-grade visual assets designed to turn products, spaces,
+            people, and brand stories into premium high-performing media systems.
+          </p>
+        </div>
+      </section>
+
       <Overview />
       <Failures />
       <Audiences />
-      <IncludedCapabilities
-        label="PRODUCTION COMPETENCY"
-        title="Included Capabilities"
-        capabilities={includedCapabilities}
-      />
+
+      {/* Included Capabilities - بدون صور */}
+      <section className="bg-[#0a0a0a] text-white py-[95px] px-[8%] border-t border-[#111]">
+        <div className="text-center mb-16">
+          <p className="text-[#bbfe0f] font-black tracking-[4px] text-[12px] uppercase mb-5">
+            CAPABILITIES SPECTRUM
+          </p>
+
+          <h2 className="text-[36px] md:text-[58px] font-black leading-[1.05] tracking-[-0.04em] text-white">
+            Included Capabilities
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {includedCapabilities.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.anchor}`}
+              className="group min-h-[360px] border border-[#222] bg-[#080808] p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-12">
+                  <span className="text-[#8da2c0] text-[13px] font-mono">
+                    {item.id}
+                  </span>
+
+                  <span className="text-[#8da2c0] text-2xl group-hover:text-[#0f33fe] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">
+                    ↗
+                  </span>
+                </div>
+
+                <h3 className="text-white text-[18px] leading-[1.3] font-black mb-5 tracking-[-0.02em] group-hover:text-[#0f33fe] transition-colors">
+                  {item.title}
+                </h3>
+
+                <p className="text-[#8b9bb3] text-[15px] leading-[1.75]">
+                  {item.desc}
+                </p>
+              </div>
+
+              <div className="pt-7 mt-8 border-t border-[#222]">
+                <p className="text-[#bbfe0f] text-[13px] leading-[1.5] font-black">
+                  {item.tag}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <CapabilitiesSection
         id="capabilities-section"
         eyebrow="TACTICAL PRODUCTIONS"
         title="Capabilities In Detail"
         cards={mediaProductionCapabilities}
       />
+
       <Specs />
       <HowWeProduceMediaAssets />
       <FAQSection />
       <CTASection />
       <StartWithClarity />
-    </>
+    </div>
   );
 }

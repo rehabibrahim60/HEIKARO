@@ -1,45 +1,72 @@
+/* ===============================
+   Navbar
+================================ */
+
 .navbar {
+  width: 100%;
+  height: 96px;
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 5%;
-  width: 100%;
-  position: fixed;        /* ← always fixed */
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  background-color: rgba(5, 5, 5, 0.95);
+  background: #050505;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-sizing: border-box;
+  font-family: "Aspekta", sans-serif;
 }
 
-/* ← logo */
+/* مهم: متحطيش padding على body */
+body {
+  padding-top: 0 !important;
+  margin: 0;
+  background: #000;
+}
+
+/* كل الصفحات تبدأ بعد الهيدر */
+.site-main {
+  padding-top: 96px;
+  background: #000;
+}
+
+/* Logo */
 .logo {
-  height: 36px;
+  height: 38px;
   width: auto;
   object-fit: contain;
+  display: block;
 }
 
-/* ← so the content does not get covered by the fixed navbar */
-body {
-  padding-top: 80px;
-}
-
+/* Links */
 .nav-links {
   display: flex;
-  gap: 50px;
+  gap: 46px;
   align-items: center;
 }
 
 .nav-link {
-  color: rgb(99, 96, 96);
+  color: rgba(255, 255, 255, 0.42);
   text-decoration: none;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 900;
   text-transform: uppercase;
   cursor: pointer;
+  transition: 0.3s ease;
+  letter-spacing: -0.02em;
 }
 
-/* nav-item-services does not need position here */
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-link.active {
+  color: #ffffff;
+}
+
+/* Services */
 .nav-item-services {
   display: flex;
   align-items: center;
@@ -48,20 +75,21 @@ body {
 .services-trigger {
   cursor: pointer;
   user-select: none;
-  display: inline-flex;      /* ← this was the missing part */
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 
-/* menu wrapper — extends across the full navbar width */
+/* Mega menu */
 .mega-menu-wrapper {
   position: absolute;
-  top: 100%;       /* directly below the navbar */
+  top: 96px;
   left: 0;
-  width: 100%;     /* navbar width = screen width */
+  width: 100%;
   z-index: 999;
 }
 
+/* Social Icons */
 .social-icons {
   display: flex;
   gap: 20px;
@@ -69,11 +97,65 @@ body {
 }
 
 .social-icons a {
-  color: white;
-  font-size: 16px;
-  transition: 0.3s;
+  color: #ffffff;
+  font-size: 17px;
+  transition: 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .social-icons a:hover {
   color: #0f33fe;
+}
+
+/* Mobile */
+@media (max-width: 1024px) {
+  .navbar {
+    height: 86px;
+    padding: 0 6%;
+  }
+
+  .site-main {
+    padding-top: 86px;
+  }
+
+  .nav-links {
+    gap: 24px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+
+  .social-icons {
+    gap: 14px;
+  }
+
+  .logo {
+    height: 34px;
+  }
+
+  .mega-menu-wrapper {
+    top: 86px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    height: 78px;
+  }
+
+  .site-main {
+    padding-top: 78px;
+  }
+
+  .nav-links,
+  .social-icons {
+    display: none;
+  }
+
+  .logo {
+    height: 32px;
+  }
 }

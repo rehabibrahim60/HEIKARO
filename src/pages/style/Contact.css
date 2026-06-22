@@ -1,305 +1,363 @@
-.contact-page { width: 100%; overflow-x: hidden; }
-
-.contact-hero {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    padding-left: 5%;
-    
-    /* Add the image here */
-    background-image: url('C:\Users\mena\Downloads\hekaro-site\public\hero-bg.jpg.jpeg'); /* Put your image path here */
-    background-size: cover;          /* To cover the full area */
-    background-position: center;     /* Center the image */
-    background-repeat: no-repeat;
-    
-    /* Add a dark overlay above the image so the text stays clear */
-    background-color: rgba(5, 5, 5, 0.85); 
-    background-blend-mode: overlay;
-}
-.gradient-svg {
-    width: 600px;
-    height: 250px;
-}
-
-.text-content {
-    font-size: 80px;
-    font-weight: 900;
-    font-family: sans-serif;
-    fill: url(#gradient-fill); /* Links the text to the color gradient */
-    filter: drop-shadow(0 0 10px rgba(15, 51, 254, 0.5)); /* Subtle glow */
-}
-
-.contact-subtitle {
-    color: #888 !important;
-    
-    /* Force font size change */
-    font-size: 24px !important; 
-    
-    margin-top: 20px !important;
-    
-    /* Move using transform, which is stronger than margin */
-    transform: translateX(150px); /* Adjust the number 150 to control the spacing to the right */
-    
-    /* To make sure the change appears */
-    display: block !important;
-    letter-spacing: 1px;
-}
-
-.contact-form-section {
-    display: flex;
-    gap: 40px;
-    padding: 80px 5%;
-    background-color: #050505;
-    color: white;
-}
-
-.form-column { flex: 2; }
-.sidebar-column { flex: 1; }
-
-.section-header { font-size: 32px; margin-bottom: 30px; text-transform: uppercase; }
-
-.form-row { display: flex; gap: 20px; }
-.field { flex: 1; margin-bottom: 20px; display: flex; flex-direction: column; }
-
-label { font-size: 12px; color: #666; margin-bottom: 8px; font-weight: bold; }
-input, select, textarea {
-    background: transparent;
-    border: 1px solid #333;
-    padding: 12px;
-    color: white;
-}
-
-.channels-box {
-    background: #111;
-    padding: 25px;
-    margin-bottom: 20px;
-    border: 1px solid #222;
-}
-
-.submit-btn {
-    background: white;
-    color: black;
-    padding: 15px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 30px; /* This is the spacing that separates the button from what is above it */
-    transition: all 0.3s ease;
-}
-/* Hover effect */
-.submit-btn:hover {
-    background-color: #0f33fe; /* Turns blue */
-    color: #ffffff;            /* Text turns white */
-}
-.field input, 
-.field select, 
-.field textarea {
-    background-color: #0a0a0a; /* Slightly dark input color */
-    border: 1px solid #333;   /* Light border */
-    padding: 15px;
-    color: #ffffff;
-    width: 100%;
-    transition: border-color 0.3s ease;
-}
-
-/* Add an effect when focusing inside the field */
-.field input:focus, 
-.field textarea:focus {
-    border-color: #0f33fe;    /* Border turns blue on focus */
-    outline: none;
-}
-
-.field textarea {
-    min-height: 120px; /* To make sure the text area is large enough */
-    resize: vertical;
-}
-
-.contact-form-section { display: flex; gap: 40px; padding: 60px 5%; background-color: #050505; color: white; }
-.form-column { flex: 2; }
-.sidebar-column { flex: 1; }
-
-.section-header { font-size: 32px; margin-bottom: 30px; }
-.form-row { display: flex; gap: 20px; }
-.field { flex: 1; margin-bottom: 20px; display: flex; flex-direction: column; }
-label { font-size: 11px; color: #666; margin-bottom: 8px; }
-input, select, textarea { background: transparent; border: 1px solid #333; padding: 12px; color: white; }
-
-.channels-box, .ecosystem-box { background: #111; padding: 20px; margin-bottom: 20px; border: 1px solid #222; }
-.social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.social-item { background: #1a1a1a; padding: 15px; font-size: 12px; font-weight: bold; }
-
-.submit-btn { background: white; color: black; padding: 15px; font-weight: bold; border: none; cursor: pointer; width: 100%; }
-
-/* Outer box styling with dark background and border */
-.channels-box {
-    background: #0a0a0a; /* Very dark color */
-    border: 1px solid #222;
-    padding: 40px 30px;
-    margin-bottom: 30px;
-}
-.strategic-box {
-    background: #050a14; /* Very dark background */
-    padding: 30px;
-    border: 1px solid #0f33fe; /* Light blue border */
-    color: #e0e0e0;
-}
-
-.strategic-box h3 {
-    color: white;
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-.strategic-box p {
-    font-size: 14px;
-    color: #a0a0a0;
-    margin-bottom: 25px;
-}
-
-/* List styling with lime green color and arrow */
-.tracks-list {
-    list-style: none;
-    padding: 0;
-}
-
-.tracks-list li {
-    color: #bbfe0f; /* Lime green color */
-    font-size: 14px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-}
-
-/* Blue arrow before the text */
-.tracks-list li::before {
-    content: "→";
-    color: #0f33fe; /* Blue arrow */
-    margin-right: 10px;
-}
-
-/* View link at the bottom */
-.view-all {
-    color: #0f33fe;
-    font-weight: bold;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.view-all::after {
-    content: "→";
-    margin-left: 8px;
-}
-
-/* Section title */
-.sidebar-title {
-    font-size: 12px;
-    color: #666;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-/* Single item: icon + text */
-.channel-item {
-    display: flex;
-    align-items: flex-start; /* Icon at the top and text below it */
-    gap: 15px;
-    margin-bottom: 30px;
-    color: #fff;
-}
-
-/* Icon styling */
-.channel-item span {
-    font-size: 20px;
-    color: #555151; /* Icon color */
-    margin-top: 5px;
-}
-
-/* Text styling: small label + highlighted value */
-.channel-item div {
-    display: flex;
-    flex-direction: column;
-}
-
-.label-small {
-    font-size: 10px;
-    color: #555;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-}
-
-.value-bold {
-    font-size: 16px;
-    font-weight: 600;
-        color: #555;
-
-}
-/* Force all text inside Channels to be white and remove any link styling */
-.channel-item a, 
-.channel-item span {
-    color: #ffffff !important;
-    text-decoration: none !important;
-}
-
-/* Make sure the small title (EMAIL/PRESENCE) stays gray */
-.label-small {
-    color: #666666 !important;
-}
-.map-container iframe {
-    width: 100%;
-    height: 450px;
-    border: 0;
-    /* This filter converts the colored map into black and gray tones */
-    filter: grayscale(100%) invert(90%) contrast(110%);
-}
-.map-section {
-    padding: 50px 5%; /* Spacing from top, bottom, and sides */
-    background-color: #050505; /* Same as the site background color */
-}
-.map-section {
-  padding: 0 5% 50px 5%;
+.contact-page {
+  width: 100%;
+  overflow-x: hidden;
   background-color: #050505;
+  color: #ffffff;
 }
 
-.map-wrapper {
-  position: relative;
-  border: 1px solid #222;
+/* =========================
+   Contact Form Layout
+========================= */
+.contact-form-section {
+  display: flex;
+  gap: 42px;
+  padding: 80px 5%;
+  background-color: #050505;
+  color: #ffffff;
 }
 
-/* Convert the normal map into a dark map */
-.dark-map {
-  border: 0;
-  filter: grayscale(1) invert(1) contrast(0.9) brightness(0.8);
+.form-column {
+  flex: 2;
+  min-width: 0;
 }
 
-/* Text box above the map */
-.location-overlay {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
+.sidebar-column {
+  flex: 1;
+  min-width: 320px;
 }
 
-.overlay-box {
-  background: rgba(0, 0, 0, 0.85);
-  padding: 20px 30px;
-  border-left: 2px solid #0f33fe; /* Blue identity line */
-  color: white;
+/* =========================
+   Titles
+========================= */
+.section-header {
+  font-size: clamp(30px, 3.5vw, 44px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  margin: 0 0 34px;
+  color: #ffffff;
 }
 
-.overlay-box .subtitle {
-  font-size: 10px;
-  color: #888;
+/* =========================
+   Form
+========================= */
+.main-form {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.field {
+  flex: 1;
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-page label {
+  font-size: 11px;
+  color: #777777;
+  margin-bottom: 9px;
+  font-weight: 900;
   letter-spacing: 2px;
-  margin: 0;
   text-transform: uppercase;
 }
 
-.overlay-box .title {
+.contact-page input:not([type="checkbox"]),
+.contact-page select,
+.contact-page textarea {
+  width: 100%;
+  background-color: #0a0a0a;
+  border: 1px solid #333333;
+  padding: 15px 16px;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.6;
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.contact-page input::placeholder,
+.contact-page textarea::placeholder {
+  color: #565656;
+}
+
+.contact-page input:focus,
+.contact-page select:focus,
+.contact-page textarea:focus {
+  border-color: #0f33fe;
+  background-color: #090b12;
+}
+
+.contact-page select {
+  cursor: pointer;
+}
+
+.contact-page select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.contact-page textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.checkbox-field input {
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  accent-color: #0f33fe;
+  flex-shrink: 0;
+}
+
+
+
+.form-message {
+  margin: 22px 0 0;
+  color: #bbfe0f;
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 700;
+}
+
+/* =========================
+   Submit Button
+========================= */
+.submit-btn {
+  background: #ffffff;
+  color: #000000;
+  padding: 16px 20px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 28px;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0f33fe;
+  color: #ffffff;
+}
+
+.submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* =========================
+   Sidebar Boxes
+========================= */
+.channels-box,
+.ecosystem-box {
+  background: #0a0a0a;
+  padding: 30px;
+  margin-bottom: 24px;
+  border: 1px solid #222222;
+}
+
+.sidebar-title {
+  font-size: 12px;
+  color: #666666;
+  letter-spacing: 2.5px;
+  margin: 0 0 28px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.channel-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 26px;
+  color: #ffffff;
+}
+
+.channel-item:last-child {
+  margin-bottom: 0;
+}
+
+.channel-icon {
+  font-size: 20px;
+  color: #ffffff;
+  margin-top: 4px;
+}
+
+.channel-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-small {
+  font-size: 10px;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  margin-bottom: 6px;
+  font-weight: 900;
+}
+
+.value-bold {
   font-size: 16px;
-  font-weight: bold;
-  margin: 5px 0 0 0;
+  line-height: 1.5;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* =========================
+   Social Grid
+========================= */
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.social-item {
+  background: #151515;
+  border: 1px solid #222222;
+  padding: 14px 12px;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  color: #bdbdbd;
+  transition: all 0.3s ease;
+}
+
+.social-item:hover {
+  border-color: #0f33fe;
+  color: #ffffff;
+}
+
+/* =========================
+   Strategic Box
+========================= */
+.strategic-box {
+  background: #050a14;
+  padding: 30px;
+  border: 1px solid #0f33fe;
+  color: #e0e0e0;
+}
+
+.strategic-box h3 {
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.strategic-box p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #a0a0a0;
+  margin: 0 0 24px;
+}
+
+.tracks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tracks-list li {
+  color: #bbfe0f;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.tracks-list li::before {
+  content: "→";
+  color: #0f33fe;
+  margin-right: 10px;
+}
+
+.view-all {
+  color: #0f33fe;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 18px;
+  transition: color 0.3s ease;
+}
+
+.view-all::after {
+  content: "→";
+  margin-left: 8px;
+}
+
+.view-all:hover {
+  color: #bbfe0f;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 1024px) {
+  .contact-form-section {
+    flex-direction: column;
+    padding: 70px 5%;
+  }
+
+  .sidebar-column {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-form-section {
+    padding: 55px 5%;
+    gap: 32px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .section-header {
+    font-size: 28px;
+  }
+
+  .channels-box,
+  .ecosystem-box,
+  .strategic-box {
+    padding: 24px;
+  }
+
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-page input,
+  .contact-page select,
+  .contact-page textarea {
+    font-size: 20px;
+  }
 }
 
