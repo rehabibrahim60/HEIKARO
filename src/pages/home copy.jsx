@@ -158,11 +158,12 @@ export default function Home() {
           heading: '',
           description: '',
           buttons: [],
-          type: s.type,                    // "image" | "video"
+          type: s.type,
           mediaUrl: s.imageUrl || s.videoUrl,
-          showLogo: s.showLogo ?? true,    // show IconFleeCursor or not
-          showOverlay: s.showOverlay,      // show text over image or not
-          overlayText: s.overlayText,      // populated contentSlide object
+          showOverlay: s.showOverlay,
+          overlayText: s.overlayText,
+          showLogo: s.showLogo ?? true,
+          overlayMode: s.overlayMode, 
           order: s.order,
           isMediaSlide: true,
         }));
@@ -197,49 +198,38 @@ export default function Home() {
 
   const slide = slides[currentSlide] || defaultSlides[0];
 
-  // ─── Resolve what text to show ───────────────────────────────────────────
-  // • video slide          → displaySlide = null  (no text, no logo)
-  // • image slide + overlay → displaySlide = overlayText data
-  // • image slide no overlay → displaySlide = null (no text)
-  // • text slide (default) → displaySlide = slide itself
-  let displaySlide = null;
-  if (!slide.isMediaSlide) {
-    // normal text slide
-    displaySlide = slide;
-  } else if (slide.type === 'image' && slide.showOverlay && slide.overlayText) {
-    // image with overlay text
-    displaySlide = {
-      label: slide.overlayText.label || '',
-      heading: slide.overlayText.heading || '',
-      description: slide.overlayText.description || '',
-      buttons: slide.overlayText.buttons || [],
-    };
-  }
-  // video slide or image-without-overlay → displaySlide stays null
-
-  // ─── Whether to show the H logo card ─────────────────────────────────────
-  // • text slides: always show
-  // • video slides: never show
-  // • image slides: respect showLogo flag
-  const showLogoCard = !slide.isMediaSlide
-    ? true
-    : slide.type === 'image'
-      ? (slide.showLogo ?? true)
-      : false;
+  // ✅ displaySlide برا الـ JSX — مفيش IIFE
+  const displaySlide = slide.isMediaSlide
+  ? (slide.showOverlay && slide.overlayText)
+    ? slide.overlayMode === "custom"
+      ? {                                          // ← custom overlay
+          label: slide.overlayText.label || '',
+          heading: slide.overlayText.heading || '',
+          description: slide.overlayText.description || '',
+          buttons: slide.overlayText.buttons || [],
+        }
+      : {                                          // ← preset overlay (object populated by backend)
+          label: slide.overlayText.label || '',
+          heading: slide.overlayText.heading || '',
+          description: slide.overlayText.description || '',
+          buttons: slide.overlayText.buttons || [],
+        }
+    : null
+  : slide;
 
   return (
     <>
       <div className="relative min-h-screen overflow-hidden bg-[#020306] text-white pt-[110px]">
 
-        {/* Gradient — lighter for media slides */}
+        {/* Gradient — خفيف لما يكون media slide */}
         <div className={`pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top_right,_rgba(15,118,255,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,_rgba(74,199,255,0.08),transparent_25%),linear-gradient(180deg,${slide.isMediaSlide ? 'rgba(7,9,16,0.3),rgba(3,3,8,0.4)' : 'rgba(7,9,16,0.92),rgba(3,3,8,0.98)'})]`} />
 
-        {/* Static background — only for text slides */}
+        {/* Static background — بس لو مش media slide */}
         {!slide.isMediaSlide && (
           <div className="absolute inset-0 z-[1] bg-[url('https://images.unsplash.com/photo-1500534623283-312aade485b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10" />
         )}
 
-        {/* Media background — image or video */}
+        {/* Media background */}
         {slide.isMediaSlide && slide.mediaUrl && (
           slide.type === 'video'
             ? <video
@@ -257,7 +247,7 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-110px)] max-w-[1240px] flex-col items-stretch gap-0 px-6 py-10 lg:flex-row lg:items-center lg:gap-12 lg:px-10">
 
-          {/* ── Left Content ── */}
+          {/* Left Content */}
           <div key={currentSlide} className="hero-slide-content max-w-2xl space-y-8 flex-1">
             {loadingSlides ? (
               <div style={{ color: '#6b7280' }}>...</div>
@@ -301,7 +291,7 @@ export default function Home() {
                 )}
               </>
             ) : (
-              /* placeholder — keeps layout when media slide has no text */
+              /* placeholder لما media slide بدون نص — يحافظ على المساحة */
               <div className="space-y-8">
                 <div style={{ height: 32 }} />
                 <div className="space-y-6">
@@ -312,7 +302,7 @@ export default function Home() {
               </div>
             )}
 
-            {/* Dots — always visible */}
+            {/* Dots دايماً */}
             <div className="flex items-center gap-2 pt-4">
               <div className="flex gap-2">
                 {slides.map((_, index) => (
@@ -330,23 +320,33 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ── Right: H Logo Card — only when showLogoCard is true ── */}
-          {showLogoCard && (
+          {/* Right Icon with Flee Animation — hidden when showLogo is false on image slides */}
+          {(!slide.isMediaSlide || slide.showLogo !== false) && (
             <div className="flex-1 flex justify-center lg:justify-end">
               <IconFleeCursor />
             </div>
           )}
         </div>
 
-        {/* Arrow Buttons */}
+        {/* Arrow Buttons at Far Right - Aligned with Hero */}
         <div className="absolute bottom-10 right-6 lg:right-10 z-20 flex items-center gap-4">
           <button
             onClick={prevSlide}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition duration-300 hover:border-blue-400 hover:bg-blue-500/10"
             aria-label="Previous slide"
           >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
             </svg>
           </button>
 
@@ -355,8 +355,18 @@ export default function Home() {
             className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition duration-300 hover:border-blue-400 hover:bg-blue-500/10"
             aria-label="Next slide"
           >
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </button>
         </div>
