@@ -160,15 +160,15 @@ export default function Home() {
         const heroData = await heroRes.json();
         const heroSlides = heroData.slides || [];
         const visibleIds = (heroData.visibleContentSlides || []).map(
-          (v) => v._id || v
+          (v) => v._id || v,
         );
 
         const textSlides =
           allContentSlides.length === 0
             ? defaultSlides
             : visibleIds.length > 0
-            ? allContentSlides.filter((s) => visibleIds.includes(s._id))
-            : allContentSlides;
+              ? allContentSlides.filter((s) => visibleIds.includes(s._id))
+              : allContentSlides;
 
         const mediaSlides = heroSlides.map((s) => ({
           _id: s._id,
@@ -186,7 +186,7 @@ export default function Home() {
         }));
 
         const combined = [...textSlides, ...mediaSlides].sort(
-          (a, b) => (a.order ?? 99) - (b.order ?? 99)
+          (a, b) => (a.order ?? 99) - (b.order ?? 99),
         );
 
         setSlides(combined.length > 0 ? combined : defaultSlides);
@@ -234,27 +234,36 @@ export default function Home() {
   const showLogoCard = !slide.isMediaSlide
     ? true
     : slide.type === "image"
-    ? slide.showLogo ?? true
-    : false;
+      ? (slide.showLogo ?? true)
+      : false;
 
   return (
     <div
-  id="homePageFontFix"
-  className="home-page bg-[#020306] min-h-screen text-white"
-  style={{ fontFamily: "Aspekta, sans-serif" }}
->
-<div className="relative min-h-screen overflow-hidden bg-[#020306] text-white">        <div
+      id="homePageFontFix"
+      className="home-page bg-[#020306] min-h-screen text-white"
+      style={{ fontFamily: "Aspekta, sans-serif" }}
+    >
+      <div className="relative min-h-screen overflow-hidden bg-[#020306] text-white">
+        {" "}
+        <div
           className={`pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top_right,_rgba(15,118,255,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,_rgba(74,199,255,0.08),transparent_25%),linear-gradient(180deg,${
             slide.isMediaSlide
               ? "rgba(7,9,16,0.3),rgba(3,3,8,0.4)"
               : "rgba(7,9,16,0.92),rgba(3,3,8,0.98)"
           })]`}
         />
-
-        {!slide.isMediaSlide && (
+        {!slide.isMediaSlide && slide.backgroundImage ? (
+          <div
+            className="absolute inset-0 z-[1] opacity-55"
+            style={{
+              backgroundImage: `url(${slide.backgroundImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        ) : !slide.isMediaSlide ? (
           <div className="absolute inset-0 z-[1] bg-[url('https://images.unsplash.com/photo-1500534623283-312aade485b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10" />
-        )}
-
+        ) : null}
         {slide.isMediaSlide &&
           slide.mediaUrl &&
           (slide.type === "video" ? (
@@ -278,7 +287,6 @@ export default function Home() {
               }}
             />
           ))}
-
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-110px)] max-w-[1240px] flex-col items-stretch gap-0 px-6 py-10 lg:flex-row lg:items-center lg:gap-12 lg:px-10">
           <div
             key={currentSlide}
@@ -383,7 +391,6 @@ export default function Home() {
             </div>
           )}
         </div>
-
         <div className="absolute bottom-10 right-6 lg:right-10 z-20 flex items-center gap-4">
           <button
             onClick={prevSlide}
