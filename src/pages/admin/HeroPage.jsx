@@ -31,9 +31,9 @@ export default function HeroPage({ toast }) {
     try {
       await fetch(`${API}/hero/slides/${id}/toggle`, { method: "PATCH", headers: authHeaders() });
       setSlides(p => p.map(s => s._id === id ? { ...s, isActive: !current } : s));
-      toast.show(current ? "تم إخفاء السلايد" : "تم تفعيل السلايد");
+      toast.show(current ? "slide disabled" : "slide enabled");
     } catch {
-      toast.show("فشل التغيير", "error");
+      toast.show("changes failled", "error");
     }
   };
 
