@@ -81,13 +81,24 @@ h1 {
 
 .projects-grid {
     display: grid;
-    /* This update prevents unwanted stretching */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-    gap: 20px;
-    padding: 40px 5%;
-    
-    /* This line centers the card if there is only one item */
-    justify-items: center; 
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 80px 24px;
+}
+
+
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .project-card {
@@ -286,12 +297,7 @@ h1 {
 }
 
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Fully flexible distribution */
-    gap: 20px;
-    padding: 40px 5%;
-}
+
 .value-content {
     display: flex;
     flex-direction: column;
@@ -515,3 +521,110 @@ h1 {
     font-size: 11px !important;
   }
 }
+
+
+.portfolio-pagination {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+}
+
+.portfolio-pagination-btn,
+.portfolio-pagination-number {
+    border: 1px solid #2a2a2a;
+    background: #111;
+    color: #9ca3af;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 16px;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.portfolio-pagination-number.active {
+    background: #0f33fe;
+    border-color: #0f33fe;
+    color: #fff;
+}
+
+.portfolio-pagination-btn:hover:not(:disabled),
+.portfolio-pagination-number:hover:not(.active) {
+    border-color: #0f33fe;
+    color: #0f33fe;
+}
+
+.portfolio-pagination-btn:disabled {
+    border-color: #1f1f1f;
+    color: #444;
+    cursor: not-allowed;
+}
+
+/* ===== Force Portfolio Cards To Match Blog Layout ===== */
+
+.portfolio-page .projects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+    max-width: 1500px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 80px 24px !important;
+    box-sizing: border-box !important;
+}
+
+.portfolio-page .project-card {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.portfolio-page .project-info {
+    min-width: 0 !important;
+}
+
+.portfolio-page .project-info h3,
+.portfolio-page .project-desc,
+.portfolio-page .project-cat {
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+}
+
+.portfolio-page .project-desc {
+    max-width: 100% !important;
+    overflow: hidden !important;
+}
+
+.portfolio-page .project-img-wrapper {
+    width: 100% !important;
+}
+
+.portfolio-page .project-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+
+@media (max-width: 1024px) {
+    .portfolio-page .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .portfolio-page .projects-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
