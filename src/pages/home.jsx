@@ -57,15 +57,17 @@ function IconFleeCursor() {
       <div className="absolute -bottom-14 left-10 h-44 w-44 rounded-full border border-cyan-400/10 bg-cyan-500/5 blur-2xl" />
 
       <div
-        className="relative flex h-[380px] w-[320px] flex-col items-center justify-center rounded-[40px] border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(17,24,39,0.95),rgba(5,7,13,0.8))] p-6 shadow-[0_40px_120px_-60px_rgba(0,0,0,0.9)] transition-transform duration-300 ease-out"
+        className="relative flex h-[380px] w-[320px] flex-col items-center justify-center rounded-[30px] border border-white/1 bg-[radial-gradient(circle_at_top,_rgba(17,24,39,0.95),rgba(5, 7, 13, 0.0))] p-6 shadow-[0_40px_120px_-60px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out"
         style={{
           transform: `translate(${offset.x}px, ${offset.y}px)`,
         }}
       >
-        <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-[24px] bg-blue-500/15 ring-2 ring-blue-300/20 backdrop-blur-xl">
-          <span className="text-4xl font-black tracking-tight text-cyan-200">
-            H
-          </span>
+        <div className="mx-auto flex h-[380px] w[320px] items-center justify-center rounded-[24px]  overflow-hidden">
+          <img
+            src="/images/home/hero-icon-01.png"
+            alt="Heikaro Logo"
+            className="h-full w-full object-contain"
+          />
         </div>
       </div>
     </div>
@@ -246,11 +248,10 @@ export default function Home() {
       <div className="relative min-h-screen overflow-hidden bg-[#020306] text-white">
         {" "}
         <div
-          className={`pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top_right,_rgba(15,118,255,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,_rgba(74,199,255,0.08),transparent_25%),linear-gradient(180deg,${
-            slide.isMediaSlide
-              ? "rgba(7,9,16,0.3),rgba(3,3,8,0.4)"
-              : "rgba(7,9,16,0.92),rgba(3,3,8,0.98)"
-          })]`}
+          className={`pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top_right,_rgba(15,118,255,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,_rgba(74,199,255,0.08),transparent_25%),linear-gradient(180deg,${slide.isMediaSlide
+            ? "rgba(7,9,16,0.3),rgba(3,3,8,0.4)"
+            : "rgba(7,9,16,0.92),rgba(3,3,8,0.98)"
+            })]`}
         />
         {!slide.isMediaSlide && slide.backgroundImage ? (
           <div
@@ -318,21 +319,19 @@ export default function Home() {
 
                 {displaySlide.buttons?.length > 0 && (
                   <div
-                    className={`hero-buttons flex flex-col gap-4 ${
-                      displaySlide.buttons.length === 1
-                        ? "sm:w-fit"
-                        : "sm:flex-row"
-                    }`}
+                    className={`hero-buttons flex flex-col gap-4 ${displaySlide.buttons.length === 1
+                      ? "sm:w-fit"
+                      : "sm:flex-row"
+                      }`}
                   >
                     {displaySlide.buttons.map((btn, idx) => (
                       <a
                         key={idx}
                         href={btn.href}
-                        className={`inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase transition duration-300 ${
-                          btn.variant === "primary"
-                            ? "bg-[#065bff] text-white hover:bg-white hover:text-black"
-                            : "border border-white/30 bg-transparent text-white hover:border-blue-400 hover:text-blue-200"
-                        }`}
+                        className={`inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase transition duration-300 ${btn.variant === "primary"
+                          ? "bg-[#065bff] text-white hover:bg-white hover:text-black"
+                          : "border border-white/30 bg-transparent text-white hover:border-blue-400 hover:text-blue-200"
+                          }`}
                       >
                         {btn.text}
 
@@ -373,11 +372,10 @@ export default function Home() {
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      index === currentSlide
-                        ? "w-8 bg-blue-500"
-                        : "w-2 bg-white/30 hover:bg-white/50"
-                    }`}
+                    className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide
+                      ? "w-8 bg-blue-500"
+                      : "w-2 bg-white/30 hover:bg-white/50"
+                      }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
@@ -442,6 +440,7 @@ export default function Home() {
         subtitle2="HEIKARO transforms ideas into structured brand, design, content, and digital experiences."
         buttonText="Start Your Brief"
         buttonHref="services"
+        imagePath="/images/home/DirectionBeforeDesign.jpg"
         imagePosition="right"
       />
 
@@ -451,6 +450,7 @@ export default function Home() {
         subtitle2="HEIKARO organizes creative work into connected tracks that help brands move with clarity."
         buttonText="Explore Services"
         buttonHref="services"
+        imagePath="/images/home/OneCreativeSystem.jpg"
         imagePosition="right"
       />
 
@@ -460,6 +460,7 @@ export default function Home() {
         subtitle2="From strategy to launch, HEIKARO builds the system, the message, the visuals, and the experience."
         buttonText="View Portfolio"
         buttonHref="portfolio"
+        imagePath="/images/home/fullCreativeOperatingModelForModernBrands.jpg"
         imagePosition="left"
       />
 

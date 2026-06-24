@@ -5,6 +5,7 @@ export default function DirectionSection({
   description,
   buttonText,
   buttonHref,
+  imagePath,
   imagePosition = "right",
 }) {
   const finalHref = buttonHref?.startsWith("/") ? buttonHref : `/${buttonHref}`;
@@ -17,7 +18,13 @@ export default function DirectionSection({
       <div className="mx-auto grid max-w-[1200px] items-center gap-14 lg:grid-cols-2">
         {imagePosition === "left" && (
           <div className="flex justify-start hover:scale-105 active:scale-95 transition duration-300">
-            <div className="h-[350px] w-full border border-white/10 bg-white/[0.02]" />
+            <div className="h-[450px] w-full border border-white/10 bg-white/[0.02] overflow-hidden">
+              <img
+                src={imagePath}
+                alt="description"
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
         )}
 
@@ -56,7 +63,13 @@ export default function DirectionSection({
 
         {imagePosition === "right" && (
           <div className="flex justify-end hover:scale-105 active:scale-95 transition duration-300">
-            <div className="h-[350px] w-full border border-white/10 bg-white/[0.02]" />
+            <div className="h-[450px] w-full border border-white/10 bg-white/[0.02] overflow-hidden">
+              <img
+                src={imagePath}
+                alt="description"
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
         )}
       </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import freqImg from "/images/home/FrequencyAndLogic.jpg"; // ← غيري المسار
 
 const faqs = [
   {
@@ -28,26 +29,37 @@ export default function FrequencyLogic() {
 
   return (
     <section
-      className="bg-[#050505] px-6 py-28 text-white lg:px-20"
+      className="bg-[#050505] text-white"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
-      <div className="mx-auto max-w-[820px]">
-        <div className="text-center">
-          <p className="text-[13px] font-black uppercase tracking-[0.35em] text-white/40">
+      {/* Image Header */}
+      <div className="relative h-[500px] w-full overflow-hidden">
+        <img
+          src={freqImg}
+          alt="Frequency visual"
+          className="h-full w-full object-cover opacity-70"
+        />
+        {/* gradient overlay من الأسفل عشان يتمزج مع الباقي */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/40 to-[#050505]" />
+
+        {/* العنوان فوق الصورة */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <p className="text-[13px] font-black uppercase tracking-[0.35em] text-white/50">
             Intelligence Disclosure
           </p>
-
           <h2 className="mt-5 text-[38px] font-black uppercase leading-[1.08] tracking-[-0.05em] text-white md:text-[48px] lg:text-[58px]">
             Frequency & Logic.
           </h2>
-
-          <p className="mx-auto mt-7 max-w-[680px] text-[19px] font-medium leading-[1.9] text-slate-400">
+          <p className="mx-auto mt-5 max-w-[620px] text-[17px] font-medium leading-[1.9] text-slate-300">
             Providing clarity on our operating model, technical standards, and
             strategic approach to brand scaling.
           </p>
         </div>
+      </div>
 
-        <div className="mt-16 space-y-4">
+      {/* FAQs */}
+      <div className="mx-auto max-w-[820px] px-6 pb-28 pt-10 lg:px-20">
+        <div className="space-y-4">
           {faqs.map((item, index) => {
             const isOpen = openIndex === index;
 
@@ -65,9 +77,8 @@ export default function FrequencyLogic() {
                   </span>
 
                   <span
-                    className={`text-[28px] font-light ${
-                      isOpen ? "text-[#0f33fe]" : "text-white/40"
-                    }`}
+                    className={`text-[28px] font-light ${isOpen ? "text-[#0f33fe]" : "text-white/40"
+                      }`}
                   >
                     {isOpen ? "−" : "+"}
                   </span>
@@ -83,6 +94,7 @@ export default function FrequencyLogic() {
           })}
         </div>
       </div>
+
     </section>
   );
 }
