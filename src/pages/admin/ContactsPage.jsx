@@ -27,6 +27,21 @@ function Detail({ label, value }) {
   );
 }
 
+const formatDateTime = (value) => {
+  if (!value) return "—";
+
+  return new Intl.DateTimeFormat("en-GB", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+    timeZone: "Africa/Cairo",
+  }).format(new Date(value));
+};
+
 export default function ContactsPage({ toast }) {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,14 +52,18 @@ export default function ContactsPage({ toast }) {
     setLoading(true);
     try {
       const data = await apiFetch("/contacts");
-      setContacts(data.data || []);
+
+      const sortedContacts = (data.data || []).sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+      );
+
+      setContacts(sortedContacts);
     } catch {
       toast.show("Failed to load inquiries", "error");
     } finally {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     load();
   }, []);
@@ -172,8 +191,14 @@ export default function ContactsPage({ toast }) {
                     alignItems: "center",
                   }}
                 >
-                  <span style={{ color: "#6b7280", fontSize: 11 }}>
-                    {new Date(c.createdAt).toLocaleDateString("en-US")}
+                  <span
+                    style={{
+                      color: "#6b7280",
+                      fontSize: 11,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {formatDateTime(c.createdAt)}
                   </span>
 
                   <button
@@ -220,10 +245,7 @@ export default function ContactsPage({ toast }) {
                 >
                   Inquiry Details
                 </p>
-                <button
-                  onClick={() => setSelected(null)}
-                  style={iconBtn}
-                >
+                <button onClick={() => setSelected(null)} style={iconBtn}>
                   <Icon name="x" size={16} />
                 </button>
               </div>
@@ -238,6 +260,10 @@ export default function ContactsPage({ toast }) {
                 <Detail
                   label="Specific Solution"
                   value={selected.specificSolution}
+                />
+                <Detail
+                  label="Received At"
+                  value={formatDateTime(selected.createdAt)}
                 />
 
                 <div>

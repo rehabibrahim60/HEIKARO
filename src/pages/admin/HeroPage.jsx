@@ -376,6 +376,16 @@ export default function HeroPage({ toast }) {
                         </p>
                       )}
 
+                      <p
+                        style={{
+                          color: "#6b7280",
+                          fontSize: 12,
+                          margin: "4px 0 0",
+                        }}
+                      >
+                        Duration: {slide.durationSeconds || 10}s
+                      </p>
+
                       {description && (
                         <p
                           style={{

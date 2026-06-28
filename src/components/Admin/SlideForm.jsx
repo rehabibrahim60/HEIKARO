@@ -104,6 +104,9 @@ export default function SlideForm({
 
   const [type, setType] = useState(slide?.type || "image");
   const [order, setOrder] = useState(slide?.order ?? 0);
+  const [durationSeconds, setDurationSeconds] = useState(
+    slide?.durationSeconds ?? 10,
+  );
 
   // image-only options
   const [showLogo, setShowLogo] = useState(slide?.showLogo ?? true);
@@ -218,6 +221,27 @@ export default function SlideForm({
 
   const removeContentButton = (idx) => {
     setContentButtons((prev) => prev.filter((_, index) => index !== idx));
+  };
+
+  const getVideoDuration = (file) => {
+    return new Promise((resolve, reject) => {
+      const video = document.createElement("video");
+      const url = URL.createObjectURL(file);
+
+      video.preload = "metadata";
+
+      video.onloadedmetadata = () => {
+        URL.revokeObjectURL(url);
+        resolve(Math.ceil(video.duration));
+      };
+
+      video.onerror = () => {
+        URL.revokeObjectURL(url);
+        reject(new Error("Failed to read video duration"));
+      };
+
+      video.src = url;
+    });
   };
 
   /* ---------- Submit ---------- */
@@ -335,6 +359,7 @@ export default function SlideForm({
         showLogo: type === "image" ? showLogo : false,
         showOverlay: type === "image" ? showOverlay : false,
         overlayTextId: type === "image" && showOverlay ? overlayTextId : null,
+        durationSeconds: Number(durationSeconds) || 10,
       };
 
       await fetch(
@@ -669,6 +694,34 @@ export default function SlideForm({
               style={inputStyle}
             />
 
+            {/* ── Duration ── */}
+            <div style={{ marginTop: 16 }}>
+              <label style={labelStyle}>
+                {type === "video"
+                  ? "Slide Duration Auto Detected From Video"
+                  : "Slide Duration In Seconds"}
+              </label>
+
+              <input
+                type="number"
+                min="1"
+                value={durationSeconds}
+                disabled={type === "video"}
+                onChange={(e) => setDurationSeconds(e.target.value)}
+                style={{
+                  ...inputStyle,
+                  opacity: type === "video" ? 0.6 : 1,
+                  cursor: type === "video" ? "not-allowed" : "text",
+                }}
+              />
+
+              <p style={{ color: "#6b7280", fontSize: 11, marginTop: 6 }}>
+                {type === "video"
+                  ? "Video slides use the full video duration automatically."
+                  : "Example: 10 means this image will stay visible for 10 seconds."}
+              </p>
+            </div>
+
             {/* ── IMAGE upload ── */}
             {type === "image" && (
               <div style={{ marginTop: 16 }}>
@@ -749,11 +802,22 @@ export default function SlideForm({
                     type="file"
                     accept="video/*"
                     hidden
-                    onChange={(e) => {
+                    onChange={async (e) => {
                       const file = e.target.files[0];
+
                       if (file) {
                         setVideoFile(file);
                         setVideoPreview(URL.createObjectURL(file));
+
+                        try {
+                          const seconds = await getVideoDuration(file);
+                          setDurationSeconds(seconds);
+                        } catch {
+                          toast.show(
+                            "Could not detect video duration",
+                            "error",
+                          );
+                        }
                       }
                     }}
                   />

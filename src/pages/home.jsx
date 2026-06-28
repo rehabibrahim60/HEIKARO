@@ -172,6 +172,14 @@ export default function Home() {
               ? allContentSlides.filter((s) => visibleIds.includes(s._id))
               : allContentSlides;
 
+        const normalizedTextSlides = textSlides.map((s) => ({
+          ...s,
+          durationSeconds: s.durationSeconds || 10,
+        }));
+
+        const combined = [...normalizedTextSlides, ...mediaSlides].sort(
+          (a, b) => (a.order ?? 99) - (b.order ?? 99),
+        );
         const mediaSlides = heroSlides.map((s) => ({
           _id: s._id,
           label: "",
@@ -184,6 +192,7 @@ export default function Home() {
           showOverlay: s.showOverlay,
           overlayText: s.overlayText,
           order: s.order,
+          durationSeconds: s.durationSeconds || 10,
           isMediaSlide: true,
         }));
 
@@ -211,13 +220,15 @@ export default function Home() {
   useEffect(() => {
     if (slides.length === 0) return;
 
-    const interval = setInterval(() => {
+    const activeSlide = slides[currentSlide];
+    const seconds = Number(activeSlide?.durationSeconds) || 10;
+
+    const timer = setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 10000);
+    }, seconds * 1000);
 
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
+    return () => clearTimeout(timer);
+  }, [slides, currentSlide]);
   const slide = slides[currentSlide] || defaultSlides[0];
 
   let displaySlide = null;
@@ -248,10 +259,11 @@ export default function Home() {
       <div className="relative min-h-screen overflow-hidden bg-[#020306] text-white">
         {" "}
         <div
-          className={`pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top_right,_rgba(15,118,255,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,_rgba(74,199,255,0.08),transparent_25%),linear-gradient(180deg,${slide.isMediaSlide
-            ? "rgba(7,9,16,0.3),rgba(3,3,8,0.4)"
-            : "rgba(7,9,16,0.92),rgba(3,3,8,0.98)"
-            })]`}
+          className={`pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top_right,_rgba(15,118,255,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,_rgba(74,199,255,0.08),transparent_25%),linear-gradient(180deg,${
+            slide.isMediaSlide
+              ? "rgba(7,9,16,0.3),rgba(3,3,8,0.4)"
+              : "rgba(7,9,16,0.92),rgba(3,3,8,0.98)"
+          })]`}
         />
         {!slide.isMediaSlide && slide.backgroundImage ? (
           <div
@@ -273,14 +285,13 @@ export default function Home() {
               src={slide.mediaUrl}
               autoPlay
               muted
-              loop
               playsInline
               className="absolute inset-0 z-[1] w-full h-full object-cover opacity-80"
             />
           ) : (
             <div
-              key={slide.mediaUrl}
-              className="absolute inset-0 z-[1] opacity-80"
+              key={`${slide.mediaUrl}-${currentSlide}`}
+              className="hero-media-animate absolute inset-0 z-[1] opacity-80"
               style={{
                 backgroundImage: `url(${slide.mediaUrl})`,
                 backgroundSize: "cover",
@@ -291,7 +302,7 @@ export default function Home() {
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-110px)] max-w-[1240px] flex-col items-stretch gap-0 px-6 py-10 lg:flex-row lg:items-center lg:gap-12 lg:px-10">
           <div
             key={currentSlide}
-            className="hero-slide-content max-w-2xl space-y-8 flex-1"
+            className="hero-slide-content hero-content-animate max-w-2xl space-y-8 flex-1"
           >
             {loadingSlides ? (
               <div style={{ color: "#6b7280" }}>...</div>
@@ -319,19 +330,21 @@ export default function Home() {
 
                 {displaySlide.buttons?.length > 0 && (
                   <div
-                    className={`hero-buttons flex flex-col gap-4 ${displaySlide.buttons.length === 1
-                      ? "sm:w-fit"
-                      : "sm:flex-row"
-                      }`}
+                    className={`hero-buttons flex flex-col gap-4 ${
+                      displaySlide.buttons.length === 1
+                        ? "sm:w-fit"
+                        : "sm:flex-row"
+                    }`}
                   >
                     {displaySlide.buttons.map((btn, idx) => (
                       <a
                         key={idx}
                         href={btn.href}
-                        className={`inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase transition duration-300 ${btn.variant === "primary"
-                          ? "bg-[#065bff] text-white hover:bg-white hover:text-black"
-                          : "border border-white/30 bg-transparent text-white hover:border-blue-400 hover:text-blue-200"
-                          }`}
+                        className={`inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase transition duration-300 ${
+                          btn.variant === "primary"
+                            ? "bg-[#065bff] text-white hover:bg-white hover:text-black"
+                            : "border border-white/30 bg-transparent text-white hover:border-blue-400 hover:text-blue-200"
+                        }`}
                       >
                         {btn.text}
 
@@ -372,10 +385,11 @@ export default function Home() {
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide
-                      ? "w-8 bg-blue-500"
-                      : "w-2 bg-white/30 hover:bg-white/50"
-                      }`}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      index === currentSlide
+                        ? "w-8 bg-blue-500"
+                        : "w-2 bg-white/30 hover:bg-white/50"
+                    }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
