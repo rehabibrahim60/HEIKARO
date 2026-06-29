@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 import Link from "@tiptap/extension-link";
+import { API } from "../../utils/api";
 import {
   Bold,
   Italic,
   Heading1,
   Heading2,
   Link2,
+  FileText,
   AlignLeft,
   AlignCenter,
   AlignRight,
@@ -19,17 +21,25 @@ import {
 
 export default function TextEditor({ value, onChange }) {
   const [isFocused, setIsFocused] = useState(false);
+  const documentInputRef = useRef(null);
+  const savedSelectionRef = useRef(null);
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        link: false,
+      }),
+
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
+
       Link.configure({
         openOnClick: true,
         HTMLAttributes: {
           class: "text-[#0f33fe] underline cursor-pointer",
+          target: "_blank",
+          rel: "noopener noreferrer",
         },
       }),
     ],
@@ -57,6 +67,74 @@ export default function TextEditor({ value, onChange }) {
     </button>
   );
 
+  const handleDocumentUpload = async (e) => {
+    console.log("DOCUMENT FILE CHANGED");
+
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch(`${API}/upload/document`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Document upload failed");
+        e.target.value = "";
+        return;
+      }
+
+      const savedSelection = savedSelectionRef.current;
+
+      if (savedSelection && savedSelection.from !== savedSelection.to) {
+        const { from, to } = savedSelection;
+
+        const linkMark = editor.schema.marks.link.create({
+          href: data.url,
+          target: "_blank",
+          rel: "noopener noreferrer",
+        });
+
+        const tr = editor.state.tr.addMark(from, to, linkMark);
+        editor.view.dispatch(tr);
+        editor.view.focus();
+      } else {
+        const linkText = window.prompt("Enter link text", file.name);
+
+        if (!linkText) {
+          e.target.value = "";
+          return;
+        }
+
+        editor
+          .chain()
+          .focus()
+          .insertContent(
+            `<a href="${data.url}" target="_blank" rel="noopener noreferrer">${linkText}</a>`
+          )
+          .run();
+      }
+
+      const html = editor.getHTML();
+      console.log("FINAL EDITOR HTML:", html);
+      onChange(html);
+
+      savedSelectionRef.current = null;
+      alert("Document uploaded successfully");
+      e.target.value = "";
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong while uploading the document");
+      e.target.value = "";
+    }
+  };
+
   return (
     <div>
       {isFocused && (
@@ -80,7 +158,9 @@ export default function TextEditor({ value, onChange }) {
           <div className="w-px h-6 bg-gray-600 mx-1" />
 
           <ToolbarButton
-            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 1 }).run()
+            }
             active={editor.isActive("heading", { level: 1 })}
             title="Heading 1"
           >
@@ -88,7 +168,9 @@ export default function TextEditor({ value, onChange }) {
           </ToolbarButton>
 
           <ToolbarButton
-            onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 2 }).run()
+            }
             active={editor.isActive("heading", { level: 2 })}
             title="Heading 2"
           >
@@ -126,8 +208,17 @@ export default function TextEditor({ value, onChange }) {
           <ToolbarButton
             onClick={() => {
               const url = window.prompt("Enter URL");
+
               if (url) {
-                editor.chain().focus().setLink({ href: url }).run();
+                editor
+                  .chain()
+                  .focus()
+                  .setLink({
+                    href: url,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })
+                  .run();
               } else {
                 editor.chain().focus().unsetLink().run();
               }
@@ -136,6 +227,23 @@ export default function TextEditor({ value, onChange }) {
             title="Link"
           >
             <Link2 size={18} />
+          </ToolbarButton>
+
+          <ToolbarButton
+            onClick={() => {
+              savedSelectionRef.current = {
+                from: editor.state.selection.from,
+                to: editor.state.selection.to,
+              };
+
+              console.log("DOCUMENT BUTTON CLICKED");
+
+              documentInputRef.current?.click();
+            }}
+            active={false}
+            title="Upload Document"
+          >
+            <FileText size={18} />
           </ToolbarButton>
 
           <div className="w-px h-6 bg-gray-600 mx-1" />
@@ -165,6 +273,14 @@ export default function TextEditor({ value, onChange }) {
           </ToolbarButton>
         </div>
       )}
+
+      <input
+        ref={documentInputRef}
+        type="file"
+        accept=".pdf,.doc,.docx"
+        hidden
+        onChange={handleDocumentUpload}
+      />
 
       <EditorContent
         editor={editor}

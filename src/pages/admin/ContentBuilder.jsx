@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
-import { Image, Type, Video, Trash2, Send, X } from "lucide-react";
+import { Image, Type, Video, FileText, Trash2, Send, X } from "lucide-react";
 import TextEditor from "../../components/Admin/TextEditor";
+import { API } from "../../utils/api";
 
 const ContentBuilder = ({
   titlePlaceholder = "Title...",
@@ -30,6 +31,7 @@ const [category, setCategory] = useState(initialCategory);
 
   const imageInputRef = useRef(null);
   const videoInputRef = useRef(null);
+  const documentInputRef = useRef(null);
 
   const addText = () => {
     setContent((prev) => [
@@ -75,6 +77,48 @@ const [category, setCategory] = useState(initialCategory);
 
     e.target.value = "";
   };
+  const addDocumentFromDevice = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  try {
+    const res = await fetch(`${API}/upload/document`, {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Document upload failed");
+      return;
+    }
+
+    const linkText = window.prompt("Enter link text", file.name);
+
+    if (!linkText) {
+      e.target.value = "";
+      return;
+    }
+
+    setContent((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        type: "text",
+        value: `<p><a href="${data.url}" target="_blank" download>${linkText}</a></p>`,
+      },
+    ]);
+
+    e.target.value = "";
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong while uploading the document");
+  }
+};
 
   const updateContent = (id, value) => {
     setContent((prev) =>
@@ -166,6 +210,13 @@ const [category, setCategory] = useState(initialCategory);
             onChange={addVideoFromDevice}
             hidden
           />
+          <input
+  type="file"
+  accept=".pdf,.doc,.docx"
+  ref={documentInputRef}
+  onChange={addDocumentFromDevice}
+  hidden
+/>
 
           {content.length === 0 ? (
             <div className="flex min-h-[420px] flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#050505] p-8 text-center">
@@ -345,6 +396,16 @@ const [category, setCategory] = useState(initialCategory);
                   </span>
                   <span>+</span>
                 </button>
+                <button
+  onClick={() => documentInputRef.current.click()}
+  className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
+  type="button"
+>
+  <span className="flex items-center gap-3">
+    <FileText size={18} /> Document
+  </span>
+  <span>+</span>
+</button>
               </div>
             </div>
 

@@ -78,14 +78,15 @@ export default function BlogDetails() {
     <div className="min-h-screen bg-black text-white font-sans">
       {/* Hero Details */}
       <section className="relative overflow-hidden border-b border-white/10 px-6 pt-24 pb-16 md:pt-28 md:pb-20">
-        {/* Cover image as faint background */}
-        {blog.coverImage && (
+        {/* Cover image as faint background 
+          {blog.coverImage && (
           <img
             src={getMediaUrl(blog.coverImage)}
             alt={blog.title}
             className="absolute right-10 md:right-20 top-1/2 -translate-y-1/2 w-[300px] md:w-[420px] h-[240px] md:h-[320px] object-cover opacity-10 grayscale pointer-events-none"
           />
-        )}
+        )}*/}
+      
 
         <div className="relative z-10 max-w-[1500px] mx-auto">
           {/* Breadcrumb */}
