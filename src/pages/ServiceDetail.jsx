@@ -112,7 +112,7 @@ const SERVICES_DATA = {
         desc: "We turn identity into guidelines, rules, files, templates, and scalable systems so the brand can stay consistent over time.",
       },
     ],
-    image: "/hero-bg.jpg.jpeg",
+    image: "/images/Brand-identity/Brand-identity-is-not-the-surface-of-the-business.-It-is-the-core-operating-system..jpg",
   },
 };
 
@@ -396,7 +396,7 @@ export default function ServiceDetail() {
       description:
         "Most brands fail due to unclear market logic instead of structured positioning frameworks. At HEIKARO, we combine analytical foundations, category insights, creative intelligence, and commercial narrative mapping to build brands that own meaningful lanes inside noisy markets.",
       competencyText: "STRATEGIC BRAND FOUNDATION",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/Brand-identity/BRANDSTRATEGY.jpg",
       imageAlt: "Brand Strategy and Positioning",
       imagePosition: "right",
       details: [
@@ -431,7 +431,7 @@ export default function ServiceDetail() {
       description:
         "We engineer names, brand taglines, editorial tone of voice manuals, and language design systems. By defining emotional codes and verbal architecture, we turn positioning into memorable, repeatable, and scalable brand communication.",
       competencyText: "NAMING & MESSAGE SYSTEMS",
-      image: "",
+      image: "/images/Brand-identity/BRANDNAMING.jpg",
       imageAlt: "Brand Naming and Messaging",
       imagePosition: "right",
       details: [
@@ -466,7 +466,7 @@ export default function ServiceDetail() {
       description:
         "Designing distinctive, flexible logos and comprehensive visual language. We create logo logic, geometric color systems, typography grids, digital signage usage, hierarchy standards, and asset rules that help brands look aligned across websites, apps, and tangible print surfaces.",
       competencyText: "LOGO & VISUAL LANGUAGE",
-      image: "",
+      image: "/images/Brand-identity/LOGODESIGN.jpg",
       imageAlt: "Logo Design and Visual Identity",
       imagePosition: "right",
       details: [
@@ -501,7 +501,7 @@ export default function ServiceDetail() {
       description:
         "Identity is useless without control, consistency, and implementation flows. We compile your brand strategy, visual language, applications, templates, and content direction into a comprehensive digital brand system that helps internal teams and external vendors execute the identity accurately.",
       competencyText: "BRAND CONTROL SYSTEMS",
-      image: "",
+      image: "/images/Brand-identity/BRANDGUIDELINES.jpg",
       imageAlt: "Brand Guidelines and Systems",
       imagePosition: "right",
       details: [
@@ -536,7 +536,7 @@ export default function ServiceDetail() {
       description:
         "Updating tired brands without erasing their existing memory. Through diagnosis, audience realignment, brand repositioning, logo system upgrades, verbal refresh, and roll-out mapping, we modernize legacy brands without disconnecting recognizable assets from loyal audiences.",
       competencyText: "BRAND REFRESH & REALIGNMENT",
-      image: "",
+      image: "/images/Brand-identity/REBRANDING.jpg",
       imageAlt: "Rebranding and Brand Refresh",
       imagePosition: "right",
       details: [
@@ -571,7 +571,7 @@ export default function ServiceDetail() {
       description:
         "Building premium product shelf presence and digital label systems. We turn strategy into tactile packaging, label designs, adaptive product grids, unboxing-led emotional profiles, structural form logic, and e-commerce-ready product layouts that support brand value in physical and digital environments.",
       competencyText: "PRODUCT & PACKAGING SYSTEMS",
-      image: "",
+      image: "/images/Brand-identity/PACKAGING.jpg",
       imageAlt: "Packaging and Product Branding",
       imagePosition: "right",
       details: [
@@ -661,8 +661,8 @@ export default function ServiceDetail() {
 
         {/* Hero */}
         <section
-          className="sd-hero unified-page-hero"
-          style={{ "--hero-bg": `url(${service.image})` }}
+          className="operational-section has-bg-image"
+          style={{ "--hero-bg": `url("/images/Brand-identity/brand-idinty-cover-page.jpg")` }}
         >
           <div className="sd-hero-overlay" />
           <div className="sd-hero-content unified-page-hero-content">
@@ -768,7 +768,9 @@ export default function ServiceDetail() {
           cards={brandIdentityCapabilities}
         />
 
-        <section className="operational-section">
+        <section className="operational-section"
+          style={{ "--hero-bg": `url("/images/Brand-identity/Step-Brand-&-Identity-Systems-Framework.jpg")` }}
+        >
           <div className="section-container">
             {/* Section title */}
             <div className="operational-header">
