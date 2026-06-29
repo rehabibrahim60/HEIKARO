@@ -2,160 +2,152 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
 import "./style/pageHero.css";
+import CapabilitiesSection from "../components/capabilities/CapabilitiesSection";
 
 export default function MarketingGrowth() {
-  const servicesData = [
+  const marketingGrowthCapabilities = [
     {
-      id: "c1",
+      id: 1,
+      anchorId: "social-media-strategy-management",
       chapter: "CAPABILITY 01 // SOCIAL MEDIA STRATEGY",
       title: "Social Media Strategy & Management",
-      desc: "Developing and deploying a custom organic workflow that builds community influence. We establish clear visual grids, premium message hooks, platform moderation protocols, and direct cross-track content systems that turn casual organic channels into highly leveraged brand media systems.",
-      img: "/hero-bg.jpg.jpeg",
-      items: [
+      description:
+        "Developing and deploying a custom organic workflow that builds community influence. We establish clear visual grids, premium message hooks, platform moderation protocols, and direct cross-track content systems that turn casual organic channels into highly leveraged brand media systems.",
+      competencyText: "SOCIAL MEDIA STRATEGY",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "Social Media Strategy and Management",
+      imagePosition: "right",
+      details: [
         {
-          n: "01",
-          t: "Strategic Approach",
-          d: "We construct platform content blueprints and aesthetic visual grids. By aligning active community response procedures, we translate daily social feeds into structured, compounding brand equity.",
+          title: "01 // Strategic Approach",
+          text: "We construct platform content blueprints and aesthetic visual grids. By aligning active community response procedures, we translate daily social feeds into structured, compounding brand equity.",
         },
         {
-          n: "02",
-          t: "Key Metrics",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Net Organic Follower Growth</li>
-              <li>Profile Interactions & CTR</li>
-              <li>Audience Engagement Statistics</li>
-            </ul>
-          ),
+          title: "02 // Key Metrics",
+          list: [
+            "Net Organic Follower Growth",
+            "Profile Interactions & CTR",
+            "Audience Engagement Statistics",
+          ],
         },
         {
-          n: "03",
-          t: "Platform Coverage",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>LinkedIn (Corporate influence)</li>
-              <li>Instagram & TikTok (B2C)</li>
-              <li>YouTube (Thought leadership)</li>
-            </ul>
-          ),
+          title: "03 // Platform Coverage",
+          list: [
+            "LinkedIn (Corporate influence)",
+            "Instagram & TikTok (B2C)",
+            "YouTube (Thought leadership)",
+          ],
         },
       ],
     },
     {
-      id: "c2",
+      id: 2,
+      anchorId: "digital-advertising",
       chapter: "CAPABILITY 02 // PAID MEDIA ACQUISITION",
       title: "Digital Advertising",
-      desc: "Surgical paid traffic programs running across major global advertising networks. We structure campaigns around rigorous testing models: finding winning hooks, optimizing dynamic bids, configuring system offline APIs (CAPI), and scaling target ad budgets globally to secure clear acquisitions.",
-      img: "/hero-bg.jpg.jpeg",
-      items: [
+      description:
+        "Surgical paid traffic programs running across major global advertising networks. We structure campaigns around rigorous testing models: finding winning hooks, optimizing dynamic bids, configuring system offline APIs (CAPI), and scaling target ad budgets globally to secure clear acquisitions.",
+      competencyText: "PAID MEDIA ACQUISITION",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "Digital Advertising",
+      imagePosition: "right",
+      details: [
         {
-          n: "01",
-          t: "Strategic Approach",
-          d: "We audit ad networks surgically and configure Conversions API (CAPI) integrations. By mapping dynamic exclusion lists, we focus ad spend on net-new premium user targets.",
+          title: "01 // Strategic Approach",
+          text: "We audit ad networks surgically and configure Conversion API (CAPI) integrations. By mapping dynamic exclusion lists, we focus ad spend on net-new premium user targets.",
         },
         {
-          n: "02",
-          t: "Key Metrics",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Return On Ad Spend (ROAS)</li>
-              <li>Customer Acquisition Cost (CAC)</li>
-              <li>Lead-to-Conversion Funnel Rates</li>
-            </ul>
-          ),
+          title: "02 // Key Metrics",
+          list: [
+            "Return On Ad Spend (ROAS)",
+            "Customer Acquisition Cost (CAC)",
+            "Lead-to-Conversion Funnel Rates",
+          ],
         },
         {
-          n: "03",
-          t: "Scale Protocols",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Budget Multipliers (+20% increments)</li>
-              <li>Lookalike Custom Audience Builds</li>
-              <li>Retargeting Suppression Models</li>
-            </ul>
-          ),
+          title: "03 // Scale Protocols",
+          list: [
+            "Budget Multipliers (+20% increments)",
+            "Lookalike Custom Audience Builds",
+            "Retargeting Suppression Models",
+          ],
         },
       ],
     },
     {
-      id: "c3",
+      id: 3,
+      anchorId: "campaign-strategy-performance-analytics",
       chapter: "CAPABILITY 03 // DATA ATTRIBUTION",
       title: "Campaign Strategy & Performance Analytics",
-      desc: "Granular tracking and dynamic dashboards custom configured for complete visibility. We build robust systems that attribute exact multi-channel purchases, map client long-term values, track cohort margins, and run rigorous statistical tests to eliminate poor spend models.",
-      img: "/hero-bg.jpg.jpeg",
-      items: [
+      description:
+        "Granular tracking and dynamic dashboards custom configured for complete visibility. We build robust systems that attribute exact multi-channel purchases, map client long-term values, track cohort margins, and run rigorous statistical tests to eliminate poor spend models.",
+      competencyText: "DATA ATTRIBUTION",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "Campaign Strategy and Performance Analytics",
+      imagePosition: "right",
+      details: [
         {
-          n: "01",
-          t: "Strategic Approach",
-          d: "We model customer lifetime values (LTV) and build custom Google Tag Manager attribution tunnels that feed into live dashboards, enabling clear cohort margin analysis.",
+          title: "01 // Strategic Approach",
+          text: "We model customer lifetime values (LTV) and build custom Google Tag Manager attribution tunnels that feed into live dashboards, enabling clear cohort margin analysis.",
         },
         {
-          n: "02",
-          t: "Key Metrics",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Cohort Retention Rates</li>
-              <li>Margin-Adjusted CAC ratios</li>
-              <li>First-Party Data Attributions</li>
-            </ul>
-          ),
+          title: "02 // Key Metrics",
+          list: [
+            "Cohort Retention Rates",
+            "Margin-Adjusted CAC ratios",
+            "First-Party Data Attributions",
+          ],
         },
         {
-          n: "03",
-          t: "Technology Systems",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Looker Studio Custom Panels</li>
-              <li>Segment and Mixpanel APIs</li>
-              <li>UTM Schema Standardization Sheets</li>
-            </ul>
-          ),
+          title: "03 // Technology Systems",
+          list: [
+            "Looker Studio Custom Panels",
+            "Segment and Mixpanel APIs",
+            "UTM Schema Standardization Sheets",
+          ],
         },
       ],
     },
     {
-      id: "c4",
+      id: 4,
+      anchorId: "end-to-end-marketing-campaigns",
       chapter: "CAPABILITY 04 // 360° OMNICHANNEL LAUNCHES",
       title: "End-to-End Marketing Campaigns",
-      desc: "Complete multi-format campaign orchestration aligned for maximum impact. We design the launch schedule from strategy blueprint and offer design to unified ad asset creation, media planning, and cross-channel optimization to secure immediate market choices.",
-      img: "/hero-bg.jpg.jpeg",
-      items: [
+      description:
+        "Complete multi-format campaign orchestration aligned for maximum impact. We design the launch schedule from strategy blueprint and offer design to unified asset creation, media planning, and cross-channel optimization to secure immediate market choices.",
+      competencyText: "360° OMNICHANNEL LAUNCHES",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "End-to-End Marketing Campaigns",
+      imagePosition: "right",
+      details: [
         {
-          n: "01",
-          t: "Strategic Approach",
-          d: "We plan multi-channel media buys and compile cohesive brand asset libraries. Hand-in-hand with conversion-optimized landing pages, we build high-momentum launch programs.",
+          title: "01 // Strategic Approach",
+          text: "We plan multi-channel media buys and compile cohesive brand asset libraries. Hand-in-hand with conversion-optimized landing pages, we build high-momentum launch programs.",
         },
         {
-          n: "02",
-          t: "Key Metrics",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Total Campaign Revenue</li>
-              <li>New Customer Share Growth</li>
-              <li>Brand Mentions & Organic Shares</li>
-            </ul>
-          ),
+          title: "02 // Key Metrics",
+          list: [
+            "Total Campaign Revenue",
+            "New Customer Share Growth",
+            "Brand Mentions & Organic Shares",
+          ],
         },
         {
-          n: "03",
-          t: "Channels Engaged",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Paid Acquisition (Meta/TikTok/Google)</li>
-              <li>Public Relations & Organic Channels</li>
-              <li>Strategic Email Newsletters</li>
-            </ul>
-          ),
+          title: "03 // Channels Engaged",
+          list: [
+            "Paid Acquisition (Meta/TikTok/Google)",
+            "Public Relations & Organic Channels",
+            "Strategic Email Newsletters",
+          ],
         },
       ],
     },
   ];
-
   const [openFaq, setOpenFaq] = useState(null);
 
   return (
     <div
-      className="marketing-growth-page bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page marketing-growth-page bg-[#0a0a0a] min-h-screen text-white"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       <style>
@@ -280,9 +272,8 @@ export default function MarketingGrowth() {
         style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
       >
         <div className="unified-page-hero-content">
-
           <h1 className="unified-page-title">
-            MARKETING <br /> & GROWTH
+            MARKETING &<br /> GROWTH
           </h1>
 
           <p className="unified-page-desc">
@@ -325,9 +316,8 @@ export default function MarketingGrowth() {
         </h2>
 
         <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mb-16">
-          Standard marketing approaches are broken in post-privacy,
-          AI-saturated platform spaces. Traditional setups fail in critical
-          spots:
+          Standard marketing approaches are broken in post-privacy, AI-saturated
+          platform spaces. Traditional setups fail in critical spots:
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -506,61 +496,12 @@ export default function MarketingGrowth() {
       </section>
 
       {/* Capabilities Details */}
-      <div className="flex flex-col gap-24 py-20 px-[8%] bg-[#0a0a0a]">
-        <div className="px-[8%] mb-16">
-          <p className="text-[#0f33fe] font-black tracking-[3px] text-xs uppercase mb-4">
-            FUNCTIONAL EXPERIENCE ARCHITECTURE
-          </p>
-
-          <h2 className="text-4xl md:text-5xl font-black text-white">
-            Capabilities In Detail
-          </h2>
-        </div>
-
-        {servicesData.map((service) => (
-          <section
-            key={service.id}
-            id={service.id}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border border-[#222] p-10 transition-all duration-300 hover:border-[#0f33fe] group"
-          >
-            <div className="lg:col-span-7">
-              <p className="text-[#bbfe0f] text-xs font-black uppercase tracking-[2px] mb-4">
-                {service.chapter}
-              </p>
-
-              <h2 className="text-4xl md:text-5xl font-black mb-8 text-white">
-                {service.title}
-              </h2>
-
-              <p className="text-gray-400 mb-12 text-lg leading-relaxed">
-                {service.desc}
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {service.items.map((item, idx) => (
-                  <div key={idx} className="border-l border-[#222] pl-6">
-                    <div className="text-white font-mono text-sm mb-2">
-                      {item.n} // {item.t}
-                    </div>
-
-                    <div className="text-gray-500 text-sm leading-relaxed">
-                      {item.d}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 h-[500px] sticky top-24">
-              <img
-                src={service.img}
-                alt={service.title}
-                className="w-full h-full object-cover border border-[#222] transition-colors duration-300 group-hover:border-[#0f33fe]"
-              />
-            </div>
-          </section>
-        ))}
-      </div>
+      <CapabilitiesSection
+        id="capabilities-section"
+        eyebrow="MARKETING & GROWTH"
+        title="Capabilities In Detail"
+        cards={marketingGrowthCapabilities}
+      />
 
       {/* Section 6 - 4-Phase Framework */}
       <section className="bg-[#0a0a0a] text-white py-24 px-[8%]">

@@ -1,6 +1,7 @@
 import WhyEventsFallFlat from "../components/EventsExperiential/WhyEventsFallFlat";
 import SpatialNarratives from "../components/EventsExperiential/SpatialNarratives";
 import CapabilitiesSection from "../components/capabilities/CapabilitiesSection";
+import IncludedCapabilities from "../components/common/IncludedCapabilities";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
 import EventPackIncludes from "../components/EventsExperiential/EventPackIncludes";
 import EventsFAQ from "../components/EventsExperiential/Eventsfaq";
@@ -14,6 +15,7 @@ export default function EventsExperiential() {
       title: "Event Strategy & Concept",
       desc: "Define the event objective, creative idea, audience journey, experience structure, and strategic direction.",
       tag: "Strategic event blueprints",
+
       anchor: "event-strategy-concept",
     },
     {
@@ -21,6 +23,7 @@ export default function EventsExperiential() {
       title: "Corporate Events",
       desc: "Design professional corporate experiences for teams, partners, clients, leadership, launches, and internal culture.",
       tag: "Enterprise event systems",
+
       anchor: "corporate-events",
     },
     {
@@ -28,6 +31,7 @@ export default function EventsExperiential() {
       title: "Exhibitions & Booths",
       desc: "Create exhibition and booth experiences that attract visitors, explain value, guide interaction, and support sales.",
       tag: "Trade show & expo builds",
+
       anchor: "exhibitions-booths",
     },
     {
@@ -42,6 +46,7 @@ export default function EventsExperiential() {
       title: "Conferences",
       desc: "Develop conference experiences with strong agendas, stage logic, content flow, and participant journeys.",
       tag: "Summit & speaker programs",
+
       anchor: "conferences",
     },
     {
@@ -49,6 +54,7 @@ export default function EventsExperiential() {
       title: "Product Launch Events",
       desc: "Create launch experiences that introduce products, build anticipation, explain value, and generate market attention.",
       tag: "Launch event productions",
+
       anchor: "product-launch-events",
     },
     {
@@ -56,6 +62,7 @@ export default function EventsExperiential() {
       title: "Cultural & Development Events",
       desc: "Design cultural, social, public, community, NGO, institutional, and development-focused events with meaningful narratives.",
       tag: "Community & cultural programs",
+
       anchor: "cultural-development-events",
     },
     {
@@ -63,6 +70,7 @@ export default function EventsExperiential() {
       title: "Hybrid & Digital Events",
       desc: "Create digital and hybrid event experiences that connect physical and remote audiences through content and interaction.",
       tag: "Digital event platforms",
+
       anchor: "hybrid-digital-events",
     },
   ];
@@ -76,7 +84,8 @@ export default function EventsExperiential() {
       description:
         "Defining high-value targets, brand narratives, spatial configurations, and visual concept blueprints before physical setups begin. We build concrete plans to make sure every event touches its commercial target.",
       competencyText: "EXPERIENTIAL MASTER PLANS",
-      image: "",
+      image: "/images/event/EVENTSTRATEGY.jpg",
+
       imageAlt: "Event Strategy & Concept",
       imagePosition: "right",
       details: [
@@ -111,7 +120,7 @@ export default function EventsExperiential() {
       description:
         "Designing and orchestrating professional corporate summits, culture galas, board summits, and partner networking networks. We weave corporate brand standards seamlessly into fluid, high-engagement room agendas.",
       competencyText: "PREMIUM EVENTS & GALAS",
-      image: "",
+      image: "/images/event/CORPRATEEVENTS.jpg",
       imageAlt: "Corporate Events",
       imagePosition: "right",
       details: [
@@ -146,7 +155,7 @@ export default function EventsExperiential() {
       description:
         "Building premium, structurally optimized exhibition stands, booth architecture, wayfinding systems, and interactive panels that stand out from adjacent trade-hall noise.",
       competencyText: "BESPOKE EXHIBITION STANDS",
-      image: "",
+      image: "/images/event/BOOTHS.jpg",
       imageAlt: "Exhibitions & Booths",
       imagePosition: "right",
       details: [
@@ -181,7 +190,7 @@ export default function EventsExperiential() {
       description:
         "We code and deploy physical interactive experiences that compel visitors to touch, configure, and share elements. We create memorable physical brand loops designed to foster audience participation.",
       competencyText: "UNIVERSAL BRAND ACTIVATIONS",
-      image: "",
+      image: "/images/event/ACTIVATIONS.jpg",
       imageAlt: "Experiential Activations",
       imagePosition: "right",
       details: [
@@ -216,7 +225,7 @@ export default function EventsExperiential() {
       description:
         "Developing multi-day summit experiences. We set key panel segments, construct speaker slide guidelines, map stage visual sequences, and schedule networking blocks.",
       competencyText: "STRUCTURED PANEL ORCHESTRATION",
-      image: "",
+      image: "/images/event/CONFERENCES.jpg",
       imageAlt: "Conferences",
       imagePosition: "right",
       details: [
@@ -251,7 +260,7 @@ export default function EventsExperiential() {
       description:
         "Creating a product launch reveal that introduces investors, builds immersive anticipation, highlights key product benefits, and commands market attention.",
       competencyText: "HIGH-IMPACT REVEALS",
-      image: "",
+      image: "/images/event/PRODUCTLANCH.jpg",
       imageAlt: "Product Launch Events",
       imagePosition: "right",
       details: [
@@ -286,7 +295,7 @@ export default function EventsExperiential() {
       description:
         "Designing public social forums, community, NGO, and cause-focused programs combining impactful storytelling with smooth logistics.",
       competencyText: "NARRATIVE SOCIAL SPACES",
-      image: "",
+      image: "/images/event/CULTURAL.jpg",
       imageAlt: "Cultural and Development Events",
       imagePosition: "right",
       details: [
@@ -321,7 +330,7 @@ export default function EventsExperiential() {
       description:
         "Developing seamless virtual portals, interactive keynote streams, dynamic spatial Q&A lobbies, and real-time remote voting interfaces.",
       competencyText: "EPIC VIRTUAL PLATFORMS",
-      image: "",
+      image: "/images/event/HYBRID.jpg",
       imageAlt: "Hybrid and Digital Events",
       imagePosition: "right",
       details: [
@@ -352,7 +361,7 @@ export default function EventsExperiential() {
 
   return (
     <div
-      className="events-experiential-page bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page events-experiential-page bg-[#0a0a0a] min-h-screen text-white"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       <style>
@@ -464,18 +473,16 @@ export default function EventsExperiential() {
       {/* HERO زي Services */}
       <section
         className="unified-page-hero"
-        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+        style={{ "--hero-bg": "url('/images/event/COVER.jpg')" }}
       >
         <div className="unified-page-hero-content">
-
           <h1 className="unified-page-title">
-            EVENTS <br /> & EXPERIENTIAL
+            EVENTS &<br /> EXPERIENTIAL
           </h1>
 
           <p className="unified-page-desc">
-            — Live experience systems designed to transform events,
-            activations, exhibitions, and launches into strategic audience
-            moments.
+            — Live experience systems designed to transform events, activations,
+            exhibitions, and launches into strategic audience moments.
           </p>
         </div>
       </section>
@@ -484,7 +491,7 @@ export default function EventsExperiential() {
       <WhyEventsFallFlat />
 
       {/* Included Capabilities - بدون صور */}
-      <section className="bg-[#0a0a0a] text-white py-[95px] px-[8%] border-t border-[#111]">
+      {/* <section className="bg-[#0a0a0a] text-white py-[95px] px-[8%] border-t border-[#111]">
         <div className="text-center mb-16">
           <p className="text-[#bbfe0f] font-black tracking-[4px] text-[12px] uppercase mb-5">
             CAPABILITIES SPECTRUM
@@ -530,7 +537,13 @@ export default function EventsExperiential() {
             </a>
           ))}
         </div>
-      </section>
+      </section> */}
+
+      <IncludedCapabilities
+        label="CAPABILITIES SPECTRUM"
+        title="Included Capabilities"
+        capabilities={eventsCapabilities}
+      />
 
       <CapabilitiesSection
         id="event-capabilities-section"

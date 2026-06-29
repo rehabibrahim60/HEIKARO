@@ -92,7 +92,7 @@ export default function Blogs() {
         {/* Hero Section */}
         <section
           className="unified-page-hero"
-          style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+          style={{ "--hero-bg": "url('/images/Blog/COVER.jpg')" }}
         >
           <div className="unified-page-hero-content">
             <h1 className="unified-page-title">
@@ -182,12 +182,13 @@ export default function Blogs() {
               </p>
             ) : (
               <>
-<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {currentBlogs.map((blog) => (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {currentBlogs.map((blog) => (
                     <Link
                       to={`/blogs/${blog.slug}`}
                       key={blog._id}
-className="group border border-white/10 bg-black hover:bg-[#050505] transition-all"                    >
+                      className="group border border-white/10 bg-black hover:bg-[#050505] transition-all"
+                    >
                       {/* Image */}
                       <div className="relative h-[280px] overflow-hidden border-b border-white/10 bg-[#080808]">
                         <img
@@ -273,9 +274,7 @@ className="group border border-white/10 bg-black hover:bg-[#050505] transition-a
 
                     <button
                       onClick={() =>
-                        setCurrentPage((prev) =>
-                          Math.min(prev + 1, totalPages)
-                        )
+                        setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                       }
                       disabled={currentPage === totalPages}
                       className={`px-4 py-3 border text-[12px] font-black tracking-[0.14em] uppercase transition-all ${

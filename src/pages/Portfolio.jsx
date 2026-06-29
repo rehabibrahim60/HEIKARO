@@ -128,7 +128,7 @@ const Portfolio = () => {
     <div className="portfolio-page">
       <section
         className="unified-page-hero"
-        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+        style={{ "--hero-bg": "url('/images/Portfolio/COVER.jpg')" }}
       >
         <div className="unified-page-hero-content">
           <h1 className="unified-page-title">

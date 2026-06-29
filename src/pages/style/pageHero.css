@@ -17,7 +17,7 @@
   background-image: var(--hero-bg);
   background-size: cover;
   background-position: center;
-  opacity: 0.25;
+  opacity: 0.75;
   z-index: 0;
 }
 
@@ -88,5 +88,165 @@
 
   .unified-page-desc {
     font-size: 15px;
+  }
+}
+
+
+:root {
+  --service-page-x: clamp(20px, 6vw, 96px);
+  --service-page-max: 1536px;
+}
+
+/* الصفحة كلها */
+body .service-page.service-page {
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: "Aspekta", sans-serif !important;
+}
+
+/* توحيد كل السكاشن يمين وشمال */
+body .service-page.service-page>section {
+  padding-left: var(--service-page-x) !important;
+  padding-right: var(--service-page-x) !important;
+}
+
+/* توحيد الهيرو */
+body .service-page.service-page .unified-page-hero {
+  padding-left: var(--service-page-x) !important;
+  padding-right: var(--service-page-x) !important;
+}
+
+/* توحيد الكونتينر الداخلي */
+body .service-page.service-page .unified-page-hero-content,
+body .service-page.service-page .clarity-banner-container,
+body .service-page.service-page .service-page-container {
+  width: 100%;
+  max-width: var(--service-page-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* توحيد الخطوط بشكل عام */
+body .service-page.service-page h1 {
+  font-size: clamp(44px, 7vw, 90px) !important;
+  line-height: 0.95 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.04em !important;
+  text-transform: uppercase !important;
+}
+
+body .service-page.service-page h2 {
+  font-size: clamp(34px, 4.2vw, 52px) !important;
+  line-height: 1.12 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.035em !important;
+  text-transform: uppercase !important;
+}
+
+body .service-page.service-page h3,
+body .service-page.service-page h4 {
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+}
+
+body .service-page.service-page p {
+  line-height: 1.85;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --service-page-x: 6%;
+  }
+
+  body .service-page.service-page h1 {
+    font-size: clamp(38px, 11vw, 58px) !important;
+  }
+
+  body .service-page.service-page h2 {
+    font-size: 31px !important;
+  }
+}
+
+/* ================================
+   Unified Service Pages Background
+   ================================ */
+
+:root {
+  --service-bg: #0a0a0a;
+  --service-card-bg: #0d0d0d;
+  --service-border: rgba(255, 255, 255, 0.1);
+}
+
+/* يخلي خلفية كل صفحة خدمة واحدة */
+body .service-page {
+  background: var(--service-bg) !important;
+}
+
+/* يخلي كل السكاشن نفس الخلفية */
+body .service-page section {
+  background-color: var(--service-bg) !important;
+  background-image: none !important;
+}
+
+/* يشيل أي grid / مربعات داخل السكاشن */
+body .service-page section>.pointer-events-none.absolute.inset-0 {
+  display: none !important;
+}
+
+/* يشيل grid الخلفية اللي معمولة كـ div aria-hidden */
+body .service-page section [aria-hidden="true"] {
+  background-image: none !important;
+}
+
+/* يوحد شكل الكروت */
+body .service-page article,
+body .service-page .group.bg-\[rgba\(13\,13\,13\,0\.6\)\] {
+  background: var(--service-card-bg) !important;
+}
+
+/* يخلي البوردر موحد وهادي */
+body .service-page article,
+body .service-page a,
+body .service-page .group {
+  border-color: var(--service-border);
+}
+
+
+/* ================================
+   Hero Full Width Background
+   Content Same Service Margin
+   ================================ */
+
+/* نخلي الهيرو نفسه واخد عرض الشاشة كله */
+body .service-page .unified-page-hero {
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* الصورة / اللون / overlay يفضلوا واخدين العرض كله */
+body .service-page .unified-page-hero::before,
+body .service-page .unified-page-hero::after {
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+/* الكونتنت بس ياخد نفس مارجن باقي السكاشن */
+body .service-page .unified-page-hero-content {
+  width: 100%;
+  /* max-width: var(--service-page-max); */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 120px var(--service-page-x) 90px;
+  box-sizing: border-box;
+}
+
+/* الموبايل */
+@media (max-width: 768px) {
+  body .service-page .unified-page-hero-content {
+    padding: 95px var(--service-page-x) 65px;
   }
 }

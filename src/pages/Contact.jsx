@@ -9,7 +9,7 @@ const API = "http://localhost:3000";
    Service → Solutions Map
 ======================= */
 const SOLUTIONS_MAP = {
-  "Track Film — Media & Production": [
+  "Media & Production": [
     "Commercial Production",
     "Corporate & Brand Videos",
     "Motion Graphics",
@@ -18,14 +18,14 @@ const SOLUTIONS_MAP = {
     "Media Production Management",
   ],
 
-  "Track Learning — Digital Learning Experience": [
+  "Digital Learning Experience": [
     "Learning Experience Design",
     "Interactive Educational Content",
     "Training & Capacity Building Programs",
     "Learning Platforms UX & Content",
   ],
 
-  "Track AI/CGI — AI-Powered Video & CGI": [
+  "AI-Powered Video & CGI": [
     "AI Cinematic Video Production",
     "CGI & Hyper-Real Visual Experiences",
     "AI Commercials & Brand Films",
@@ -33,7 +33,7 @@ const SOLUTIONS_MAP = {
     "AI Motion & VFX",
   ],
 
-  "Track Events — Events & Experiential": [
+  "Events & Experiential": [
     "Event Strategy & Concept",
     "Corporate Events",
     "Exhibitions & Booths",
@@ -44,7 +44,7 @@ const SOLUTIONS_MAP = {
     "Hybrid & Digital Events",
   ],
 
-  "Track Identity — Brand & Identity": [
+  "Brand & Identity": [
     "Brand Strategy & Positioning",
     "Brand Naming & Messaging",
     "Logo Design & Visual Identity",
@@ -53,21 +53,21 @@ const SOLUTIONS_MAP = {
     "Packaging & Product Branding",
   ],
 
-  "Track UX/UI — Design & Experience": [
+  "Design & Experience": [
     "UX & UI Service",
     "Website Design",
     "App Design",
     "Landing Pages",
   ],
 
-  "Track Content — Content & Storytelling": [
+  "Content & Storytelling": [
     "Copywriting & Storytelling",
     "Content Strategy & Content System",
     "Social Media Content Production (Graphic)",
     "Social Media Content Production (Video/Photo)",
   ],
 
-  "Track Growth — Marketing & Growth": [
+  "Marketing & Growth": [
     "Social Media Strategy & Management",
     "Digital Advertising (Paid Acquisition)",
     "Campaign Strategy & Performance Analytics",
@@ -139,12 +139,11 @@ const Contact = () => {
       {/* ================= HERO ================= */}
       <section
         className="unified-page-hero"
-        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+        style={{ "--hero-bg": "url('/images/Contact/COVER.jpg')" }}
       >
         <div className="unified-page-hero-content">
           <h1 className="unified-page-title">
-            CONNECT <br />
-            & CONVERT.
+            CONNECT <br />& CONVERT.
           </h1>
 
           <p className="unified-page-desc">
@@ -200,7 +199,7 @@ const Contact = () => {
                   value={form.serviceFamily}
                   onChange={handleChange}
                 >
-                  <option value="">Select Track</option>
+                  <option value="">Select Service</option>
                   {Object.keys(SOLUTIONS_MAP).map((track) => (
                     <option key={track} value={track}>
                       {track}
@@ -242,47 +241,47 @@ const Contact = () => {
               />
             </div>
 
-       <div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    gap: "14px",
-    marginTop: "18px",
-    marginBottom: "8px",
-  }}
->
-  <input
-    id="privacy"
-    type="checkbox"
-    name="agreedToPrivacyPolicy"
-    checked={form.agreedToPrivacyPolicy}
-    onChange={handleChange}
-    style={{
-      width: "18px",
-      height: "18px",
-      minWidth: "22px",
-      margin: 0,
-      accentColor: "#0f33fe",
-      cursor: "pointer",
-    }}
-  />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "14px",
+                marginTop: "18px",
+                marginBottom: "8px",
+              }}
+            >
+              <input
+                id="privacy"
+                type="checkbox"
+                name="agreedToPrivacyPolicy"
+                checked={form.agreedToPrivacyPolicy}
+                onChange={handleChange}
+                style={{
+                  width: "18px",
+                  height: "18px",
+                  minWidth: "22px",
+                  margin: 0,
+                  accentColor: "#0f33fe",
+                  cursor: "pointer",
+                }}
+              />
 
-  <label
-    htmlFor="privacy"
-    style={{
-      fontSize: "14px",
-      lineHeight: "1.45",
-      color: "#ffffff",
-      fontWeight: 700,
-      letterSpacing: "0px",
-      textTransform: "none",
-      margin: 0,
-      cursor: "pointer",
-    }}
-  >
-    I agree to the Privacy Policy and allow HEIKARO to contact me.
-  </label>
-</div>
+              <label
+                htmlFor="privacy"
+                style={{
+                  fontSize: "14px",
+                  lineHeight: "1.45",
+                  color: "#ffffff",
+                  fontWeight: 700,
+                  letterSpacing: "0px",
+                  textTransform: "none",
+                  margin: 0,
+                  cursor: "pointer",
+                }}
+              >
+                I agree to the Privacy Policy and allow HEIKARO to contact me.
+              </label>
+            </div>
             {message && <p className="form-message">{message}</p>}
 
             <button className="submit-btn" disabled={loading}>

@@ -4,7 +4,10 @@ import Whoisitfor from "../components/digital_learning/Whoisitfor";
 import CapabilitiesSection from "../components/capabilities/CapabilitiesSection";
 import WhatAcademyIncludes from "../components/digital_learning/WhatAcademyIncludes";
 import HowWeBuildPrograms from "../components/digital_learning/HowWeBuildPrograms";
-import { FAQSection, CTASection } from "../components/digital_learning/Faqandcta";
+import {
+  FAQSection,
+  CTASection,
+} from "../components/digital_learning/Faqandcta";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
 import "./style/pageHero.css";
 
@@ -185,11 +188,11 @@ const digitalLearningCapabilities = [
 export default function DigitalLearning() {
   return (
     <div
-      className="digital-learning-page bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page digital-learning-page bg-[#0a0a0a] min-h-screen text-white"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
-     <style>
-  {`
+      <style>
+        {`
     .digital-learning-page,
     .digital-learning-page * {
       font-family: "Aspekta", sans-serif !important;
@@ -292,7 +295,7 @@ export default function DigitalLearning() {
       }
     }
   `}
-</style>
+      </style>
 
       {/* HERO زي Services */}
       <section
@@ -300,7 +303,6 @@ export default function DigitalLearning() {
         style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
       >
         <div className="unified-page-hero-content">
-
           <h1 className="unified-page-title">
             DIGITAL <br />
             LEARNING

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
 import "./style/pageHero.css";
+import CapabilitiesSection from "../components/capabilities/CapabilitiesSection";
 
 export default function DesignExperience() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -242,9 +243,152 @@ export default function DesignExperience() {
     },
   ];
 
+  const uxUiCapabilities = [
+    {
+      id: 1,
+      anchorId: "ux-ui-service",
+      chapter: "CHAPTER 01 // VALUE PROPOSITION",
+      title: "UX & UI SERVICE",
+      description:
+        "We map precise user journey loops, organize information architectures, build low-fidelity interactive wireframes for performance testing, and design gorgeous, high-contrast, brand-aligned interfaces that make digital products clear and confidence-inspiring.",
+      competencyText: "USER EXPERIENCE & INTERFACE SYSTEMS",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "UX and UI Service",
+      imagePosition: "right",
+      details: [
+        {
+          title: "01 // STRATEGIC ROLE",
+          text: "Minimizes onboarding friction and drops abandonment rates by aligning visual weights natively with user-retention targets. Brings aesthetic order to convoluted application data dashboards.",
+        },
+        {
+          title: "02 // HOW HEIKARO APPROACHES IT",
+          text: "We create interactive interface layouts and fully detailed user flow maps inside Figma. By designing comprehensive component systems and testing mobile-responsive modules, we deliver clear, developer-ready structures.",
+        },
+        {
+          title: "03 // EXECUTION FLOW",
+          list: [
+            "Target Audience Exploration",
+            "Navigation Blueprint Outline",
+            "Interactive Greyscale Prototype Run",
+            "Elite Visual Element Styling",
+          ],
+        },
+        {
+          title: "04 // OUTCOMES & USE CASES",
+          text: "Creates bulletproof SaaS layouts ready for dev handoff. Critical for tech founders needing to pitch clear product flows or traditional firms modernizing customer portals.",
+        },
+      ],
+    },
+    {
+      id: 2,
+      anchorId: "website-design-development",
+      chapter: "CHAPTER 02 // WEB DEVELOPMENT SYSTEMS",
+      title: "WEBSITE DESIGN & DEVELOPMENT",
+      description:
+        "We construct ultra-fast responsive corporate sites. By combining beautiful SEO structure with lightweight components, we make sure your primary digital window ranks quickly while keeping the experience friction-free and conversion-centric.",
+      competencyText: "RESPONSIVE WEBSITE SYSTEMS",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "Website Design and Development",
+      imagePosition: "right",
+      details: [
+        {
+          title: "01 // STRATEGIC ROLE",
+          text: "Functions as the central anchor of your digital marketing setup. Establishes commercial status, highlights authority case studies, and drives corporate lead generation.",
+        },
+        {
+          title: "02 // HOW HEIKARO APPROACHES IT",
+          text: "We build lightweight React and Tailwind web deployments with clean structure, analytics logic, responsive layouts, and fast-load optimization for elite performance.",
+        },
+        {
+          title: "03 // EXECUTION FLOW",
+          list: [
+            "Site-Map Content Outlining",
+            "Widescreen & Tablet UI Proofing",
+            "Semantic Code Compilation",
+            "Performance Optimization Checks",
+          ],
+        },
+        {
+          title: "04 // OUTCOMES & USE CASES",
+          text: "Maintains high-speed lead profiles to support paid traffic runs. Designed for scale-ups re-engineering outdated web designs to capture credibility.",
+        },
+      ],
+    },
+    {
+      id: 3,
+      anchorId: "app-design-development",
+      chapter: "CHAPTER 03 // MOBILE & WEB-APP SYSTEMS",
+      title: "APP DESIGN & DEVELOPMENT",
+      description:
+        "Structuring native and cross-platform application matrices. We guide user experiences through micro-interaction designs, secure form frameworks, system grids, and database sync processes.",
+      competencyText: "MOBILE & WEB-APP SYSTEMS",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "App Design and Development",
+      imagePosition: "right",
+      details: [
+        {
+          title: "01 // STRATEGIC ROLE",
+          text: "Drives persistent product utility. Keeps customers loyal by packaging interactive features, operations flows, and account management in a secure, intuitive mobile environment.",
+        },
+        {
+          title: "02 // HOW HEIKARO APPROACHES IT",
+          text: "We prototype app interactions using touch-target guidelines and structured inputs. By styling mobile form behaviors and coding device-ready layouts, we build stable systems.",
+        },
+        {
+          title: "03 // EXECUTION FLOW",
+          list: [
+            "Experience Roadmap Setup",
+            "Standard Touch-Target Mapping",
+            "Micro-Interaction Modeling",
+            "Device Sandbox Compilation",
+          ],
+        },
+        {
+          title: "04 // OUTCOMES & USE CASES",
+          text: "Standardizes user flows to limit customer support inquiries. Suited for premium services, logistics agencies, and product startups launching active betas.",
+        },
+      ],
+    },
+    {
+      id: 4,
+      anchorId: "landing-pages-conversion-ux",
+      chapter: "CHAPTER 04 // TARGET CONVERSION ENGINES",
+      title: "LANDING PAGES / CONVERSION UX",
+      description:
+        "We engineer hyper-focused campaign landing environments. By stripping unnecessary options, amplifying value hierarchies, and structuring clear lead captures, we turn traffic into action.",
+      competencyText: "CONVERSION-FOCUSED LANDING PAGES",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "Landing Pages and Conversion UX",
+      imagePosition: "right",
+      details: [
+        {
+          title: "01 // STRATEGIC ROLE",
+          text: "Improves advertising return on investment. Isolates target offerings to eliminate user choice overload and direct attention down the conversion funnel.",
+        },
+        {
+          title: "02 // HOW HEIKARO APPROACHES IT",
+          text: "We design high-converting single-pages with multi-step conversion forms and robust lead intake processes, creating clear CTA paths that translate traffic into bookings.",
+        },
+        {
+          title: "03 // EXECUTION FLOW",
+          list: [
+            "Campaign Goal Alignment",
+            "Distraction Stripping Run",
+            "Conversion Copy Drafting",
+            "Fast-Load Build Packaging",
+          ],
+        },
+        {
+          title: "04 // OUTCOMES & USE CASES",
+          text: "Maximizes cost-per-acquisition performance. Crucial for teams running Google Search ads, social media campaigns, or limited product pre-sales.",
+        },
+      ],
+    },
+  ];
+
   return (
     <div
-      className="bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page bg-[#0a0a0a] min-h-screen text-white"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       {/* HERO زي Services */}
@@ -253,9 +397,8 @@ export default function DesignExperience() {
         style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
       >
         <div className="unified-page-hero-content">
-
           <h1 className="unified-page-title">
-            DESIGN <br /> & EXPERIENCE
+            DESIGN &<br /> EXPERIENCE
           </h1>
 
           <p className="unified-page-desc">
@@ -443,61 +586,12 @@ export default function DesignExperience() {
       </section>
 
       {/* Details */}
-      <div className="flex flex-col gap-20 py-[85px] px-[8%] bg-[#0a0a0a]">
-        <div className="mb-4">
-          <p className="text-[#0f33fe] font-black tracking-[3px] text-[12px] uppercase mb-4">
-            FUNCTIONAL EXPERIENCE ARCHITECTURE
-          </p>
-
-          <h2 className="text-[32px] md:text-[46px] font-black text-white leading-[1.12] tracking-[-0.03em] uppercase">
-            Capabilities In Detail
-          </h2>
-        </div>
-
-        {servicesData.map((service) => (
-          <section
-            key={service.id}
-            id={service.id}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border border-[#222] p-8 md:p-10 transition-all duration-300 hover:border-[#0f33fe] group"
-          >
-            <div className="lg:col-span-7">
-              <p className="text-[#bbfe0f] text-[12px] font-black uppercase tracking-[2px] mb-4">
-                {service.chapter}
-              </p>
-
-              <h2 className="text-[32px] md:text-[46px] font-black mb-7 text-white leading-[1.12] tracking-[-0.03em] uppercase">
-                {service.title}
-              </h2>
-
-              <p className="text-gray-400 mb-10 text-[16px] leading-[1.85]">
-                {service.desc}
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {service.items.map((item, idx) => (
-                  <div key={idx} className="border-l border-[#222] pl-6">
-                    <div className="text-white font-mono text-[13px] mb-2 uppercase">
-                      {item.n} // {item.t}
-                    </div>
-
-                    <div className="text-gray-500 text-[15px] leading-[1.8]">
-                      {item.d}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 h-[480px] sticky top-24">
-              <img
-                src={service.img}
-                alt={service.title}
-                className="w-full h-full object-cover border border-[#222] transition-colors duration-300 group-hover:border-[#0f33fe]"
-              />
-            </div>
-          </section>
-        ))}
-      </div>
+      <CapabilitiesSection
+        id="capabilities-section"
+        eyebrow="DESIGN & EXPERIENCE"
+        title="Capabilities In Detail"
+        cards={uxUiCapabilities}
+      />
 
       {/* Complete system includes */}
       <section className="bg-[#0a0a0a] text-white py-[90px] px-[8%] border-t border-[#111]">
@@ -610,8 +704,8 @@ export default function DesignExperience() {
             </h2>
 
             <p className="text-gray-400 text-[16px] leading-[1.85]">
-              Got questions on Figma design templates, mobile scaling setups,
-              or fast load optimizations? Explore answers here.
+              Got questions on Figma design templates, mobile scaling setups, or
+              fast load optimizations? Explore answers here.
             </p>
           </div>
 

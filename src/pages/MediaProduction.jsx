@@ -270,7 +270,7 @@ export default function MediaProduction() {
 
   return (
     <div
-      className="media-production-page bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page media-production-page bg-[#0a0a0a] min-h-screen text-white"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       <style>
@@ -394,14 +394,14 @@ export default function MediaProduction() {
         style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
       >
         <div className="unified-page-hero-content">
-
           <h1 className="unified-page-title">
             MEDIA <br /> PRODUCTION
           </h1>
 
           <p className="unified-page-desc">
             — Cinema-grade visual assets designed to turn products, spaces,
-            people, and brand stories into premium high-performing media systems.
+            people, and brand stories into premium high-performing media
+            systems.
           </p>
         </div>
       </section>

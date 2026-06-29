@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
 import "./style/pageHero.css";
+import CapabilitiesSection from "../components/capabilities/CapabilitiesSection";
 
 export default function ContentAndStorytelling() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -70,153 +71,6 @@ export default function ContentAndStorytelling() {
     },
   ];
 
-  const servicesData = [
-    {
-      id: "s1",
-      chapter: "CHAPTER 01 // PERSUASIVE VERBAL COPY",
-      title: "Copywriting & Storytelling",
-      desc: "We craft original and highly compelling sales copy, brand stories, website and landing page texts, persuasive script structures, and general communications language that make complicated service offerings easy to digest, trust, and choose over rivals.",
-      img: "/hero-bg.jpg.jpeg",
-      items: [
-        {
-          n: "01",
-          t: "STRATEGIC ROLE",
-          d: "Solves lead hesitation. Eliminates dull, predictable jargon by utilizing psychological emotional hooks, addressing actual customer friction, and organizing benefits down logical reading flows.",
-        },
-        {
-          n: "02",
-          t: "HOW HEIKARO APPROACHES IT",
-          d: "We craft original sales copy sheets, high-persuasion campaign texts, and corporate narrative overviews. By defining precise storyboard scripts and acoustic messaging templates, we ensure your message converts across all media formats.",
-        },
-        {
-          n: "03",
-          t: "EXECUTION FLOW",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>ICP Friction Point Analysis</li>
-              <li>Headline & Hook Concept Drafting</li>
-              <li>Interactive Body Copy Compilation</li>
-              <li>CTA Alignment Fine-tuning</li>
-            </ul>
-          ),
-        },
-        {
-          n: "04",
-          t: "OUTCOMES & USE CASES",
-          d: "Powers product landing page CTR optimization. Designed for services needing clear, professional ways to explain complex solutions without boring the target prospect.",
-        },
-      ],
-    },
-    {
-      id: "s2",
-      chapter: "CHAPTER 02 // COMMUNICATIONS ARCHITECTURE",
-      title: "Content Strategy & Content System",
-      desc: "We build bulletproof content foundations. We define strategic Content Pillars, devise practical publishing schedules, outline target platforms, and organize templates to keep monthly assets consistent and purposeful.",
-      img: "/hero-bg.jpg.jpeg",
-      items: [
-        {
-          n: "01",
-          t: "STRATEGIC ROLE",
-          d: "Overcomes active feed fatigue. Sets a logical direction for monthly assets so that teams stop outputting random posts and instead build long-term, compounding brand equity.",
-        },
-        {
-          n: "02",
-          t: "HOW HEIKARO APPROACHES IT",
-          d: "We establish core content pillar structures, long-term topic generation matrices, and unified publishing calendars. This framework ensures internal groups operate systematically under a single strategic connection model.",
-        },
-        {
-          n: "03",
-          t: "EXECUTION FLOW",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Brand Communication Mapping</li>
-              <li>Customer Objections Discovery</li>
-              <li>Pillar Mapping & Content Formulas</li>
-              <li>Calendar Grid Lock-in</li>
-            </ul>
-          ),
-        },
-        {
-          n: "04",
-          t: "OUTCOMES & USE CASES",
-          d: "Allows internal marketing groups to operate on decentralized sync frameworks. Essential for category leaders needing continuous B2B authority building on active social scales.",
-        },
-      ],
-    },
-    {
-      id: "s3",
-      chapter: "CHAPTER 03 // GRAPHICS SYSTEM & LAYOUTS",
-      title: "Social Media Content Production (Graphic)",
-      desc: "We construct professional social layouts, educational sliding carousels, dynamic stories, campaign templates, and ad graphics designed under unified grid systems.",
-      img: "/hero-bg.jpg.jpeg",
-      items: [
-        {
-          n: "01",
-          t: "STRATEGIC ROLE",
-          d: "Prevents visual chaos or cheap-looking templated visuals on active feeds, elevating overall company status and authority during lead checks.",
-        },
-        {
-          n: "02",
-          t: "HOW HEIKARO APPROACHES IT",
-          d: "We engineer custom multi-slide carousels, campaign storyboards, and high-persuasion ad graphics. Built inside standardized color and grid rules, every layout contributes to overall brand authority.",
-        },
-        {
-          n: "03",
-          t: "EXECUTION FLOW",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Brand Colors & Grids Configuration</li>
-              <li>Vector Element Design Runs</li>
-              <li>High-persuasion Typographic Styling</li>
-              <li>Platform Sandbox File Exports</li>
-            </ul>
-          ),
-        },
-        {
-          n: "04",
-          t: "OUTCOMES & USE CASES",
-          d: "Gives real estate, wellness clinic, or advisory networks high-end graphic consistency on daily timelines.",
-        },
-      ],
-    },
-    {
-      id: "s4",
-      chapter: "CHAPTER 04 // PLATFORM REELS & VIDEO ASSETS",
-      title: "Social Media Content Production (Video/Photo)",
-      desc: "We produce high-performing platform video assets, professional product shoots, company atmosphere photography, and unified cover grids.",
-      img: "/hero-bg.jpg.jpeg",
-      items: [
-        {
-          n: "01",
-          t: "STRATEGIC ROLE",
-          d: "Feeds social mobile recommendation algorithms natively through clean visual transitions, paced edits, clear captions, and strong brand placement.",
-        },
-        {
-          n: "02",
-          t: "HOW HEIKARO APPROACHES IT",
-          d: "We capture high-pacing vertical Reels and corporate atmosphere B-roll, styled with dynamic captions and cohesive timeline covers.",
-        },
-        {
-          n: "03",
-          t: "EXECUTION FLOW",
-          d: (
-            <ul className="list-disc pl-5 m-0 space-y-2">
-              <li>Shot Script & Concept Hooking</li>
-              <li>Light & Framing Capture Session</li>
-              <li>Dynamic Caption Addition & Pacing Edit</li>
-              <li>Cover & Thumbnail Finalization</li>
-            </ul>
-          ),
-        },
-        {
-          n: "04",
-          t: "OUTCOMES & USE CASES",
-          d: "Ideal for founders wanting cohesive personal-brand authority, product launches needing visual action, or service clinics building trust.",
-        },
-      ],
-    },
-  ];
-
   const operationalSteps = [
     {
       step: "01",
@@ -279,9 +133,152 @@ export default function ContentAndStorytelling() {
     },
   ];
 
+  const contentStorytellingCapabilities = [
+    {
+      id: 1,
+      anchorId: "copywriting-storytelling",
+      chapter: "CHAPTER 01 // PERSUASIVE VERBAL COPY",
+      title: "COPYWRITING & STORYTELLING",
+      description:
+        "We craft original and highly compelling sales copy, brand stories, website and landing page texts, persuasive script structures, and general communications language that make complicated service offerings easy to digest, trust, and choose over rivals.",
+      competencyText: "PERSUASIVE VERBAL COPY",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "Copywriting and Storytelling",
+      imagePosition: "right",
+      details: [
+        {
+          title: "01 // STRATEGIC ROLE",
+          text: "Solves lead hesitation. Eliminates dull, predictable jargon by utilizing psychological emotional hooks, addressing actual customer friction, and organizing benefits down logical reading flows.",
+        },
+        {
+          title: "02 // HOW HEIKARO APPROACHES IT",
+          text: "We craft original sales copy sheets, high-persuasion campaign texts, and corporate narrative overviews. By defining precise storyboard scripts and acoustic messaging templates, we ensure your message converts across all media formats.",
+        },
+        {
+          title: "03 // EXECUTION FLOW",
+          list: [
+            "ICP Friction Point Analysis",
+            "Headline & Hook Concept Drafting",
+            "Interactive Body Copy Compilation",
+            "CTA Alignment Fine-tuning",
+          ],
+        },
+        {
+          title: "04 // OUTCOMES & USE CASES",
+          text: "Powers product landing page CTR optimization. Designed for services needing clear, professional ways to explain complex solutions without boring the target prospect.",
+        },
+      ],
+    },
+    {
+      id: 2,
+      anchorId: "content-strategy-content-system",
+      chapter: "CHAPTER 02 // COMMUNICATIONS ARCHITECTURE",
+      title: "CONTENT STRATEGY & CONTENT SYSTEM",
+      description:
+        "We build bulletproof content foundations. We define strategic Content Pillars, devise practical publishing schedules, outline target platforms, and organize templates to keep monthly assets consistent and purposeful.",
+      competencyText: "COMMUNICATIONS ARCHITECTURE",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "Content Strategy and Content System",
+      imagePosition: "right",
+      details: [
+        {
+          title: "01 // STRATEGIC ROLE",
+          text: "Overcomes active feed fatigue. Sets a logical direction for monthly assets so that teams stop outputting random posts and instead build long-term, compounding brand equity.",
+        },
+        {
+          title: "02 // HOW HEIKARO APPROACHES IT",
+          text: "We establish core content pillar structures, long-term topic generation matrices, and unified publishing calendars. This framework ensures internal groups operate systematically under a single strategic connection model.",
+        },
+        {
+          title: "03 // EXECUTION FLOW",
+          list: [
+            "Brand Communication Mapping",
+            "Customer Objections Discovery",
+            "Pillar Mapping & Content Formulas",
+            "Calendar Grid Lock-in",
+          ],
+        },
+        {
+          title: "04 // OUTCOMES & USE CASES",
+          text: "Allows internal marketing groups to operate on decentralized sync frameworks. Essential for category leaders needing continuous B2B authority building on active social scales.",
+        },
+      ],
+    },
+    {
+      id: 3,
+      anchorId: "social-media-content-production-graphic",
+      chapter: "CHAPTER 03 // GRAPHICS SYSTEM & LAYOUTS",
+      title: "SOCIAL MEDIA CONTENT PRODUCTION (GRAPHIC)",
+      description:
+        "We construct professional social layouts, educational sliding carousels, dynamic stories, campaign templates, and ad graphics designed under unified grid systems.",
+      competencyText: "GRAPHICS SYSTEM & LAYOUTS",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "Social Media Content Production Graphic",
+      imagePosition: "right",
+      details: [
+        {
+          title: "01 // STRATEGIC ROLE",
+          text: "Prevents visual chaos or cheap-looking templated visuals on active feeds, elevating overall company status and authority during lead checks.",
+        },
+        {
+          title: "02 // HOW HEIKARO APPROACHES IT",
+          text: "We engineer custom multi-slide carousels, campaign storyboards, and high-persuasion ad graphics. Built inside standardized color and grid rules, every layout contributes to overall brand authority.",
+        },
+        {
+          title: "03 // EXECUTION FLOW",
+          list: [
+            "Brand Colors & Grids Configuration",
+            "Vector Element Design Runs",
+            "High-persuasion Typographic Styling",
+            "Platform Sandbox File Exports",
+          ],
+        },
+        {
+          title: "04 // OUTCOMES & USE CASES",
+          text: "Gives real estate, wellness clinic, or advisory networks high-end graphic consistency on daily timelines.",
+        },
+      ],
+    },
+    {
+      id: 4,
+      anchorId: "social-media-content-production-video-photo",
+      chapter: "CHAPTER 04 // PLATFORM REELS & VIDEO ASSETS",
+      title: "SOCIAL MEDIA CONTENT PRODUCTION (VIDEO/PHOTO)",
+      description:
+        "We produce high-performing platform video assets, professional product shoots, company atmosphere photography, and unified cover grids.",
+      competencyText: "PLATFORM REELS & VIDEO ASSETS",
+      image: "/hero-bg.jpg.jpeg",
+      imageAlt: "Social Media Content Production Video and Photo",
+      imagePosition: "right",
+      details: [
+        {
+          title: "01 // STRATEGIC ROLE",
+          text: "Feeds social mobile recommendation algorithms natively through clear visual transitions, paced edits, clear captions, and strong brand placement.",
+        },
+        {
+          title: "02 // HOW HEIKARO APPROACHES IT",
+          text: "We capture high-pacing vertical Reels and corporate atmosphere B-roll, styled with dynamic captions and cohesive timeline covers.",
+        },
+        {
+          title: "03 // EXECUTION FLOW",
+          list: [
+            "Shot Script & Concept Hooking",
+            "Light & Framing Capture Session",
+            "Dynamic Caption Addition & Pacing Edit",
+            "Cover & Thumbnail Finalization",
+          ],
+        },
+        {
+          title: "04 // OUTCOMES & USE CASES",
+          text: "Ideal for founders wanting cohesive personal-brand authority, product launches needing visual action, or service clinics building trust.",
+        },
+      ],
+    },
+  ];
+
   return (
     <div
-      className="bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page bg-[#0a0a0a] min-h-screen text-white"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       {/* HERO زي Services */}
@@ -290,9 +287,8 @@ export default function ContentAndStorytelling() {
         style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
       >
         <div className="unified-page-hero-content">
-
           <h1 className="unified-page-title">
-            CONTENT <br /> & STORYTELLING
+            CONTENT &<br /> STORYTELLING
           </h1>
 
           <p className="unified-page-desc">
@@ -471,110 +467,61 @@ export default function ContentAndStorytelling() {
       </section>
 
       {/* Included Capabilities */}
-<section className="bg-[#0a0a0a] text-white py-[95px] px-[8%] border-t border-[#111]">
-  <div className="text-center mb-16">
-    <p className="text-[#bbfe0f] font-black tracking-[4px] text-[12px] uppercase mb-5">
-      CAPABILITIES SPECTRUM
-    </p>
-
-    <h2 className="text-[36px] md:text-[58px] font-black leading-[1.05] tracking-[-0.04em] text-white">
-      Included Capabilities
-    </h2>
-  </div>
-
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-    {services.map((item, index) => (
-      <a
-        key={item.id}
-        href={`#${item.id}`}
-        className="group min-h-[360px] border border-[#222] bg-[#080808] p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
-      >
-        <div>
-          <div className="flex items-center justify-between mb-12">
-            <span className="text-[#8da2c0] text-[13px] font-mono">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-
-            <span className="text-[#8da2c0] text-2xl group-hover:text-[#0f33fe] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">
-              ↗
-            </span>
-          </div>
-
-          <h3 className="text-white text-[18px] leading-[1.3] font-black mb-5 tracking-[-0.02em] group-hover:text-[#0f33fe] transition-colors">
-            {item.title}
-          </h3>
-
-          <p className="text-[#8b9bb3] text-[15px] leading-[1.75]">
-            {item.desc}
-          </p>
-        </div>
-
-        <div className="pt-7 mt-8 border-t border-[#222]">
-          <p className="text-[#bbfe0f] text-[13px] leading-[1.5] font-black">
-            Explore this capability in detail
-          </p>
-        </div>
-      </a>
-    ))}
-  </div>
-</section>
-
-      {/* Details */}
-      <div className="flex flex-col gap-20 py-[85px] px-[8%] bg-[#0a0a0a]">
-        <div className="mb-4">
-          <p className="text-[#0f33fe] font-black tracking-[3px] text-[12px] uppercase mb-4">
-            FUNCTIONAL EXPERIENCE ARCHITECTURE
+      <section className="bg-[#0a0a0a] text-white py-[95px] px-[8%] border-t border-[#111]">
+        <div className="text-center mb-16">
+          <p className="text-[#bbfe0f] font-black tracking-[4px] text-[12px] uppercase mb-5">
+            CAPABILITIES SPECTRUM
           </p>
 
-          <h2 className="text-[32px] md:text-[46px] font-black text-white leading-[1.12] tracking-[-0.03em] uppercase">
-            Capabilities In Detail
+          <h2 className="text-[36px] md:text-[58px] font-black leading-[1.05] tracking-[-0.04em] text-white">
+            Included Capabilities
           </h2>
         </div>
 
-        {servicesData.map((service) => (
-          <section
-            key={service.id}
-            id={service.id}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border border-[#222] p-8 md:p-10 transition-all duration-300 hover:border-[#0f33fe] group"
-          >
-            <div className="lg:col-span-7">
-              <p className="text-[#bbfe0f] text-[12px] font-black uppercase tracking-[2px] mb-4">
-                {service.chapter}
-              </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {services.map((item, index) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className="group min-h-[360px] border border-[#222] bg-[#080808] p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-12">
+                  <span className="text-[#8da2c0] text-[13px] font-mono">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-              <h2 className="text-[32px] md:text-[46px] font-black mb-7 text-white leading-[1.12] tracking-[-0.03em] uppercase">
-                {service.title}
-              </h2>
+                  <span className="text-[#8da2c0] text-2xl group-hover:text-[#0f33fe] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">
+                    ↗
+                  </span>
+                </div>
 
-              <p className="text-gray-400 mb-10 text-[16px] leading-[1.85]">
-                {service.desc}
-              </p>
+                <h3 className="text-white text-[18px] leading-[1.3] font-black mb-5 tracking-[-0.02em] group-hover:text-[#0f33fe] transition-colors">
+                  {item.title}
+                </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {service.items.map((item, idx) => (
-                  <div key={idx} className="border-l border-[#222] pl-6">
-                    <div className="text-white font-mono text-[13px] mb-2 uppercase">
-                      {item.n} // {item.t}
-                    </div>
-
-                    <div className="text-gray-500 text-[15px] leading-[1.8]">
-                      {item.d}
-                    </div>
-                  </div>
-                ))}
+                <p className="text-[#8b9bb3] text-[15px] leading-[1.75]">
+                  {item.desc}
+                </p>
               </div>
-            </div>
 
-            <div className="lg:col-span-5 h-[480px] sticky top-24">
-              <img
-                src={service.img}
-                alt={service.title}
-                className="w-full h-full object-cover border border-[#222] transition-colors duration-300 group-hover:border-[#0f33fe]"
-              />
-            </div>
-          </section>
-        ))}
-      </div>
+              <div className="pt-7 mt-8 border-t border-[#222]">
+                <p className="text-[#bbfe0f] text-[13px] leading-[1.5] font-black">
+                  Explore this capability in detail
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Details */}
+      <CapabilitiesSection
+        id="capabilities-section"
+        eyebrow="CONTENT & STORYTELLING"
+        title="Capabilities In Detail"
+        cards={contentStorytellingCapabilities}
+      />
 
       {/* Complete system includes */}
       <section className="bg-[#0a0a0a] text-white py-[90px] px-[8%] border-t border-[#111]">
@@ -640,8 +587,8 @@ export default function ContentAndStorytelling() {
           </h2>
 
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-[16px] leading-[1.85]">
-            Our 8-step operating process ensures strategic alignment from
-            visual blueprint to final developer sign-off and site launch.
+            Our 8-step operating process ensures strategic alignment from visual
+            blueprint to final developer sign-off and site launch.
           </p>
         </div>
 
