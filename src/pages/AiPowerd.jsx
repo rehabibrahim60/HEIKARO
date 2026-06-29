@@ -20,7 +20,6 @@ export default function AiPowerd() {
       title: "AI Cinematic Video Production",
       desc: "Synthesis-first scripting, photorealistic video programming, and film environments with natural AI direction and prompt continuity.",
       tag: "Generative film systems",
-      image: "/images/ai-video/cinematic-video-production.jpg",
       anchor: "cinematic-ai-direction",
     },
     {
@@ -28,7 +27,6 @@ export default function AiPowerd() {
       title: "CGI & Hyper-Real Visual Experiences",
       desc: "Develop perfect, photorealistic 3D assets, environments, and simulations with Blender-based 3D rendering for seamlessly lifelike output.",
       tag: "Hyper-real 3D environments",
-      image: "/images/ai-video/cgi-hyper-real.jpg",
       anchor: "hyper-real-cgi-3d",
     },
     {
@@ -36,7 +34,6 @@ export default function AiPowerd() {
       title: "AI Commercials & Brand Films",
       desc: "Our directors develop screenplays with narrative visual stories to produce high-system, concept-driven advertisements and brand films.",
       tag: "Concept-driven brand ads",
-      image: "/images/ai-video/commercials-brand-films.jpg",
       anchor: "brand-film-commercials",
     },
     {
@@ -44,7 +41,6 @@ export default function AiPowerd() {
       title: "Product Visualization (3D/CGI)",
       desc: "Create premium product models, packaging visualizations, and high-realism simulations before physical production shoot production lines.",
       tag: "Pre-shoot product renders",
-      image: "/images/ai-video/product-visualization.jpg",
       anchor: "hyper-real-cgi-3d",
     },
     {
@@ -52,7 +48,6 @@ export default function AiPowerd() {
       title: "AI Motion & VFX",
       desc: "Inject fluid motion, cinematic kinetic typography, texture transitions, and complex visual-based elements for speed and precision.",
       tag: "Motion & VFX pipelines",
-      image: "/images/ai-video/motion-vfx.jpg",
       anchor: "universal-vfx-craft",
     },
   ];
@@ -66,7 +61,7 @@ export default function AiPowerd() {
       description:
         "Synthesize breathtaking, photorealistic video sequences and filmic environments under strict artistic control. We preserve visual realism and directing emotion by applying localized regional displacement maps to mega-characters, locations, and styling parameters over complex story sequences.",
       competencyText: "ENTERTAINMENT & SCENE CGI",
-      image: "",
+      image: "/images/Ai/AICINEMATIC.jpg",
       imageAlt: "AI Cinematic Video Production",
       imagePosition: "right",
       details: [
@@ -101,7 +96,7 @@ export default function AiPowerd() {
       description:
         "We develop hyper-real, physics-compliant 3D environments, custom fluid dynamics simulations, and structured particle visuals. We construct palette scenes from raw CGI briefs to support premium commercial branding campaigns.",
       competencyText: "PHYSICAL BRAND RENDERING (PBR)",
-      image: "",
+      image: "/images/Ai/CGIHYPERREAL.jpg",
       imageAlt: "CGI and Hyper-Real Visual Experiences",
       imagePosition: "right",
       details: [
@@ -136,7 +131,7 @@ export default function AiPowerd() {
       description:
         "Combine high-end visual synthesis with structured marketing screenplays to deliver disruptive campaign films. We build high-persuasion visual storytelling structures designed to command immediate attention.",
       competencyText: "IMMERSIVE ACQUISITION FILMS",
-      image: "",
+      image: "/images/Ai/AICOMMERCIALS.jpg",
       imageAlt: "AI Commercials and Brand Films",
       imagePosition: "right",
       details: [
@@ -171,7 +166,7 @@ export default function AiPowerd() {
       description:
         "Create premium photorealistic product renders, packaging visualizations, and dynamic light studio loops. Allows category leaders to secure campaign materials before manufacturing runs are finalized.",
       competencyText: "PRECISION PRODUCT MODELING",
-      image: "",
+      image: "/images/Ai/PRODUCT.jpg",
       imageAlt: "Product Visualization 3D CGI",
       imagePosition: "right",
       details: [
@@ -206,7 +201,7 @@ export default function AiPowerd() {
       description:
         "Develop fluid visual kinetics, luxury brand motion curves, digital transitions, and multi-track neural visual effects. We craft modern and impactful kinetic typography interfaces to capture and direct audience attention.",
       competencyText: "DYNAMIC VFX OVERLAYS",
-      image: "",
+      image: "/images/Ai/AIMOTION.jpg",
       imageAlt: "AI Motion and VFX",
       imagePosition: "right",
       details: [

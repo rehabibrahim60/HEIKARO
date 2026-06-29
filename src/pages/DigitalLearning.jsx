@@ -51,7 +51,7 @@ const digitalLearningCapabilities = [
     description:
       "Designing structural e-learning pathways from ground zero. We define terminal skills objectives, build module maps, sequence chapters strategically to balance cognitive load, and design locking progress gates to keep student progress clear and purposeful.",
     competencyText: "CURRICULUM BLUEPRINTS",
-    image: "",
+    image: "/images/digital-learning/LEARNINGUX.jpg",
     imageAlt: "Learning Experience Design",
     imagePosition: "right",
     details: [
@@ -86,7 +86,7 @@ const digitalLearningCapabilities = [
     description:
       "We transform boring scripts and manuals into visual explanatory slides, interactive case challenges, scenario cards, responsive maps, and high-impact micro videos that help students learn concepts by experimenting in sandbox settings.",
     competencyText: "SENSORY MEDIA & SCORM ASSETS",
-    image: "",
+    image: "/images/digital-learning/INTERACTIVEED.jpg",
     imageAlt: "Interactive Educational Content",
     imagePosition: "right",
     details: [
@@ -121,7 +121,7 @@ const digitalLearningCapabilities = [
     description:
       "Building complete training programs optimized to up-skill massive partner groups, internal team divisions, or administrative bureaus under strict, trackable compliance metrics.",
     competencyText: "ENTERPRISE TALENT ACADEMIES",
-    image: "",
+    image: "/images/digital-learning/TRAINING.jpg",
     imageAlt: "Training and Capacity Building Programs",
     imagePosition: "right",
     details: [
@@ -156,7 +156,7 @@ const digitalLearningCapabilities = [
     description:
       "Designing seamless visual learning spaces. We build intuitive course checklists, smooth progress menus, clear video containers, and secure profile systems to reduce navigational friction.",
     competencyText: "FRICTIONLESS LMS INTERFACES",
-    image: "",
+    image: "/images/digital-learning/LEARNING.jpg",
     imageAlt: "Learning Platforms UX and Content",
     imagePosition: "right",
     details: [
@@ -300,7 +300,7 @@ export default function DigitalLearning() {
       {/* HERO زي Services */}
       <section
         className="unified-page-hero"
-        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+        style={{ "--hero-bg": "url('/images/digital-learning/cover.jpg')" }}
       >
         <div className="unified-page-hero-content">
           <h1 className="unified-page-title">

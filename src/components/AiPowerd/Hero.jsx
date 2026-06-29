@@ -1,29 +1,26 @@
 const Hero = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-[#0d0d0d] px-[6%] py-24 min-h-[340px] flex flex-col justify-center">
-      {/* ── Background image with dark overlay ── */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/images/ai-video/hero-bg.jpg')",
-          opacity: 0.35,
-        }}
+    <section className="relative isolate w-full overflow-hidden px-[6%] py-24 min-h-[520px] flex flex-col justify-center bg-[#0d0d0d]">
+      {/* Background Image */}
+      <img
+        src="/images/Ai/COVER.jpg"
+        alt=""
+        className="absolute inset-0 z-0 h-full w-full object-cover object-[65%_center]"
         aria-hidden="true"
       />
 
-      {/* ── Dark gradient overlay (fades left to right) ── */}
+      {/* Dark Overlay */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 z-[1]"
         style={{
           background:
-            "linear-gradient(to right, rgba(13,13,13,0.95) 35%, rgba(13,13,13,0.55) 70%, rgba(13,13,13,0.2) 100%)",
+            "linear-gradient(to right, rgba(13,13,13,0.88) 0%, rgba(13,13,13,0.72) 35%, rgba(13,13,13,0.35) 65%, rgba(13,13,13,0.08) 100%)",
         }}
         aria-hidden="true"
       />
 
-      {/* ── Content ── */}
+      {/* Content */}
       <div className="relative z-10 max-w-xl">
-        {/* Title */}
         <h1
           className="mb-6 font-black uppercase leading-none text-[#1a5fff]"
           style={{
@@ -36,8 +33,7 @@ const Hero = () => {
           CGI
         </h1>
 
-        {/* Description */}
-        <p className="max-w-lg text-sm leading-relaxed text-[#999999]">
+        <p className="max-w-lg text-sm leading-relaxed text-white">
           Cinema-grade generative AI models fused with premium CGI and 3D
           product visualizations to bypass physical filming limits and unlock
           scale.
