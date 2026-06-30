@@ -64,7 +64,7 @@ export default function MediaProduction() {
       description:
         "Promotional film assets engineered to carry bold message directions, setting off product and brand launches cleanly. By structuring dynamic opening hooks and high-persuasion visual storytelling sequences, we make sure pay-per-click traffic converts.",
       competencyText: "LAUNCH ADS & PRODUCT FILMS",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/media-production/COMMERCIALPRODUCTION.jpg",
       imageAlt: "Commercial Production",
       imagePosition: "right",
       details: [
@@ -99,7 +99,7 @@ export default function MediaProduction() {
       description:
         "Highlighting company culture, scale assets, executive visions, and operational structures. We create premium brand documentaries and test testimonials that build deep institutional credibility with clients, investors, and prospective partners.",
       competencyText: "BRAND PROFILES & DOCU-STORIES",
-      image: "",
+      image: "/images/media-production/CORPORATEVIDEOS.jpg",
       imageAlt: "Corporate and Brand Videos",
       imagePosition: "right",
       details: [
@@ -134,7 +134,7 @@ export default function MediaProduction() {
       description:
         "Custom branded animated layouts designed to illustrate technical data, operations pipelines, and abstract product structures. We animate complex vectors under unified grid systems, keeping visual flows elite, consistent, and educational.",
       competencyText: "2D/3D DATA VECTOR SYSTEMS",
-      image: "",
+      image: "/images/media-production/MOTIONGRAPHICS.jpg",
       imageAlt: "Motion Graphics",
       imagePosition: "right",
       details: [
@@ -169,7 +169,7 @@ export default function MediaProduction() {
       description:
         "High-contrast product modeling, space capturing, and targeted lifestyle compositions. We use professional studio light directions and custom styling scopes to construct premium stills that populate high-end catalog sheets and modern e-commerce arrays.",
       competencyText: "PRODUCT & ARCHITECTURAL STILLS",
-      image: "",
+      image: "/images/media-production/.jpg",
       imageAlt: "Commercial Photography",
       imagePosition: "right",
       details: [
@@ -204,7 +204,7 @@ export default function MediaProduction() {
       description:
         "Interactive clinical, real estate, and office space spatial scans. We compile high-resolution 360 panorama nodes into fluid digital interfaces, allowing visitors to walk through and examine your physical environments remotely.",
       competencyText: "PANORAMIC SPATIAL SCANS",
-      image: "",
+      image: "/images/media-production/.jpg",
       imageAlt: "Virtual Tour 360",
       imagePosition: "right",
       details: [
@@ -239,7 +239,7 @@ export default function MediaProduction() {
       description:
         "Complete strategic pre-production planning, concept storyboard designs, team logistics management, crew direction, and raw-asset library metadata curation. We keep shoots focused on commercial goals and on-time delivery benchmarks.",
       competencyText: "END-TO-END PROJECT LOGISTICS",
-      image: "",
+      image: "/images/media-production/.jpg",
       imageAlt: "Media Production Management",
       imagePosition: "right",
       details: [
