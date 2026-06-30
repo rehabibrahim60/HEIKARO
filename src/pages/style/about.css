@@ -70,7 +70,7 @@
 
 .hk-title {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(56px, 7vw, 96px);
+  font-size: clamp(46px, 7vw, 96px);
   font-weight: 900;
   line-height: 1;
   color: #0f33fe;

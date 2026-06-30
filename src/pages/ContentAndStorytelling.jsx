@@ -142,7 +142,7 @@ export default function ContentAndStorytelling() {
       description:
         "We craft original and highly compelling sales copy, brand stories, website and landing page texts, persuasive script structures, and general communications language that make complicated service offerings easy to digest, trust, and choose over rivals.",
       competencyText: "PERSUASIVE VERBAL COPY",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/contant-story/COPYWRITING.jpg",
       imageAlt: "Copywriting and Storytelling",
       imagePosition: "right",
       details: [
@@ -177,7 +177,7 @@ export default function ContentAndStorytelling() {
       description:
         "We build bulletproof content foundations. We define strategic Content Pillars, devise practical publishing schedules, outline target platforms, and organize templates to keep monthly assets consistent and purposeful.",
       competencyText: "COMMUNICATIONS ARCHITECTURE",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/contant-story/CONTENTSTRATEGY.jpg",
       imageAlt: "Content Strategy and Content System",
       imagePosition: "right",
       details: [
@@ -212,7 +212,7 @@ export default function ContentAndStorytelling() {
       description:
         "We construct professional social layouts, educational sliding carousels, dynamic stories, campaign templates, and ad graphics designed under unified grid systems.",
       competencyText: "GRAPHICS SYSTEM & LAYOUTS",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/contant-story/SOCIALGRAPHIC.jpg",
       imageAlt: "Social Media Content Production Graphic",
       imagePosition: "right",
       details: [
@@ -247,7 +247,7 @@ export default function ContentAndStorytelling() {
       description:
         "We produce high-performing platform video assets, professional product shoots, company atmosphere photography, and unified cover grids.",
       competencyText: "PLATFORM REELS & VIDEO ASSETS",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/contant-story/SOCIALVIDEOPHOTO.jpg",
       imageAlt: "Social Media Content Production Video and Photo",
       imagePosition: "right",
       details: [
@@ -284,7 +284,7 @@ export default function ContentAndStorytelling() {
       {/* HERO زي Services */}
       <section
         className="unified-page-hero"
-        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+        style={{ "--hero-bg": "url('/images/contant-story/cover.png')" }}
       >
         <div className="unified-page-hero-content">
           <h1 className="unified-page-title">
@@ -367,7 +367,7 @@ export default function ContentAndStorytelling() {
 
           <div className="lg:col-span-5 bg-[#111] border border-[#222] h-[560px] sticky top-24 flex flex-col items-center justify-center p-8 text-center">
             <img
-              src="/hero-bg.jpg.jpeg"
+              src="/images/contant-story/What-Content.jpg"
               alt="Content and Storytelling"
               className="w-full h-full object-cover opacity-80"
             />

@@ -262,11 +262,7 @@ export default function HeroSection() {
 
         <div className="hk-content">
           <div className="hk-badge">Who We Are / System Overview</div>
-          <h1 className="hk-title">
-            Creative Growth
-            <br />
-            Operating System
-          </h1>
+          <h1 className="hk-title">Creative Growth Operating System</h1>
           <p className="hk-sub">
             Not just a studio. Not just an agency. HEIKARO connects strategy,
             creativity, technology, and execution into one structured ecosystem.

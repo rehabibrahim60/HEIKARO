@@ -14,7 +14,7 @@ export default function MarketingGrowth() {
       description:
         "Developing and deploying a custom organic workflow that builds community influence. We establish clear visual grids, premium message hooks, platform moderation protocols, and direct cross-track content systems that turn casual organic channels into highly leveraged brand media systems.",
       competencyText: "SOCIAL MEDIA STRATEGY",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/marketing-gro/SOCIALSTRATEGY.jpg",
       imageAlt: "Social Media Strategy and Management",
       imagePosition: "right",
       details: [
@@ -48,7 +48,7 @@ export default function MarketingGrowth() {
       description:
         "Surgical paid traffic programs running across major global advertising networks. We structure campaigns around rigorous testing models: finding winning hooks, optimizing dynamic bids, configuring system offline APIs (CAPI), and scaling target ad budgets globally to secure clear acquisitions.",
       competencyText: "PAID MEDIA ACQUISITION",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/marketing-gro/DIGITAL.jpg",
       imageAlt: "Digital Advertising",
       imagePosition: "right",
       details: [
@@ -82,7 +82,7 @@ export default function MarketingGrowth() {
       description:
         "Granular tracking and dynamic dashboards custom configured for complete visibility. We build robust systems that attribute exact multi-channel purchases, map client long-term values, track cohort margins, and run rigorous statistical tests to eliminate poor spend models.",
       competencyText: "DATA ATTRIBUTION",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/marketing-gro/CAMPAGIN.jpg",
       imageAlt: "Campaign Strategy and Performance Analytics",
       imagePosition: "right",
       details: [
@@ -116,7 +116,7 @@ export default function MarketingGrowth() {
       description:
         "Complete multi-format campaign orchestration aligned for maximum impact. We design the launch schedule from strategy blueprint and offer design to unified asset creation, media planning, and cross-channel optimization to secure immediate market choices.",
       competencyText: "360° OMNICHANNEL LAUNCHES",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/marketing-gro/MARKETING.jpg",
       imageAlt: "End-to-End Marketing Campaigns",
       imagePosition: "right",
       details: [
@@ -269,7 +269,7 @@ export default function MarketingGrowth() {
       {/* HERO زي Services */}
       <section
         className="unified-page-hero"
-        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+        style={{ "--hero-bg": "url('/images/marketing-gro/COVER.jpg')" }}
       >
         <div className="unified-page-hero-content">
           <h1 className="unified-page-title">
@@ -286,23 +286,45 @@ export default function MarketingGrowth() {
 
       {/* Section 2 */}
       <section className="bg-[#0a0a0a] text-white py-24 px-[8%]">
-        <p className="text-[#0f33fe] font-black tracking-[3px] text-xs uppercase mb-6">
-          STRATEGIC POSITIONING
-        </p>
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.25fr_0.75fr]">
+          {/* Left Content */}
+          <div>
+            <p className="text-[#0f33fe] font-black tracking-[3px] text-xs uppercase mb-6">
+              STRATEGIC POSITIONING
+            </p>
 
-        <h2 className="text-4xl md:text-5xl font-black leading-tight max-w-3xl mb-8">
-          Marketing is not a line item. It is a mathematical model for human
-          choices.
-        </h2>
+            <h2 className="text-4xl md:text-5xl font-black leading-tight max-w-3xl mb-8 uppercase">
+              Marketing is not a line item. It is a mathematical model for human
+              choices.
+            </h2>
 
-        <p className="text-gray-400 text-lg leading-relaxed max-w-3xl">
-          Most growth agencies operate on separation: buyers optimize click
-          metrics while creative studios make pretty designs. At HEIKARO, we
-          eliminate the divide. We pair heavy statistical media-buying execution
-          with elite creative asset production. Every hook, visual angle, and
-          copywriting style is crafted based on clean attribution loops to turn
-          visitor attention into solid balance-sheet value.
-        </p>
+            <p className="text-gray-400 text-lg leading-relaxed max-w-3xl">
+              Most growth agencies operate on separation: buyers optimize click
+              metrics while creative studios make pretty designs. At HEIKARO, we
+              eliminate the divide. We pair heavy statistical media-buying
+              execution with elite creative asset production. Every hook, visual
+              angle, and copywriting style is crafted based on clean attribution
+              loops to turn visitor attention into solid balance-sheet value.
+            </p>
+          </div>
+
+          {/* Right Image */}
+          <div className="relative h-[340px] w-full max-w-[460px] justify-self-end overflow-hidden border border-[#1e1e1e] lg:h-[430px]">
+            <img
+              src="/images/marketing-gro/Marketing-is-not-a-line-item.jpg"
+              alt="Strategic Positioning"
+              className="h-full w-full object-cover object-center"
+            />
+
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(10,10,10,0.05), rgba(10,10,10,0.35))",
+              }}
+            />
+          </div>
+        </div>
       </section>
 
       {/* Section 3 */}

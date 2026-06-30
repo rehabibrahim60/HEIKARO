@@ -252,7 +252,7 @@ export default function DesignExperience() {
       description:
         "We map precise user journey loops, organize information architectures, build low-fidelity interactive wireframes for performance testing, and design gorgeous, high-contrast, brand-aligned interfaces that make digital products clear and confidence-inspiring.",
       competencyText: "USER EXPERIENCE & INTERFACE SYSTEMS",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/design-exp/UIUX.jpg",
       imageAlt: "UX and UI Service",
       imagePosition: "right",
       details: [
@@ -287,7 +287,7 @@ export default function DesignExperience() {
       description:
         "We construct ultra-fast responsive corporate sites. By combining beautiful SEO structure with lightweight components, we make sure your primary digital window ranks quickly while keeping the experience friction-free and conversion-centric.",
       competencyText: "RESPONSIVE WEBSITE SYSTEMS",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/design-exp/WEBSITE.jpg",
       imageAlt: "Website Design and Development",
       imagePosition: "right",
       details: [
@@ -322,7 +322,7 @@ export default function DesignExperience() {
       description:
         "Structuring native and cross-platform application matrices. We guide user experiences through micro-interaction designs, secure form frameworks, system grids, and database sync processes.",
       competencyText: "MOBILE & WEB-APP SYSTEMS",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/design-exp/APPDESIGN.jpg",
       imageAlt: "App Design and Development",
       imagePosition: "right",
       details: [
@@ -357,7 +357,7 @@ export default function DesignExperience() {
       description:
         "We engineer hyper-focused campaign landing environments. By stripping unnecessary options, amplifying value hierarchies, and structuring clear lead captures, we turn traffic into action.",
       competencyText: "CONVERSION-FOCUSED LANDING PAGES",
-      image: "/hero-bg.jpg.jpeg",
+      image: "/images/design-exp/LANDINGPAGE.jpg",
       imageAlt: "Landing Pages and Conversion UX",
       imagePosition: "right",
       details: [
@@ -394,7 +394,7 @@ export default function DesignExperience() {
       {/* HERO زي Services */}
       <section
         className="unified-page-hero"
-        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+        style={{ "--hero-bg": "url('/images/design-exp/COVER.jpg')" }}
       >
         <div className="unified-page-hero-content">
           <h1 className="unified-page-title">
@@ -476,7 +476,7 @@ export default function DesignExperience() {
 
           <div className="lg:col-span-5 bg-[#111] border border-[#222] h-[560px] sticky top-24 flex flex-col items-center justify-center p-8 text-center">
             <img
-              src="/hero-bg.jpg.jpeg"
+              src="/images/design-exp/What-Design.jpg"
               alt="Design and Experience"
               className="w-full h-full object-cover opacity-80"
             />

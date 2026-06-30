@@ -169,7 +169,7 @@ export default function MediaProduction() {
       description:
         "High-contrast product modeling, space capturing, and targeted lifestyle compositions. We use professional studio light directions and custom styling scopes to construct premium stills that populate high-end catalog sheets and modern e-commerce arrays.",
       competencyText: "PRODUCT & ARCHITECTURAL STILLS",
-      image: "/images/media-production/.jpg",
+      image: "/images/media-production/COMMERCIALPHOTOGRAPHY.jpg",
       imageAlt: "Commercial Photography",
       imagePosition: "right",
       details: [
@@ -204,7 +204,7 @@ export default function MediaProduction() {
       description:
         "Interactive clinical, real estate, and office space spatial scans. We compile high-resolution 360 panorama nodes into fluid digital interfaces, allowing visitors to walk through and examine your physical environments remotely.",
       competencyText: "PANORAMIC SPATIAL SCANS",
-      image: "/images/media-production/.jpg",
+      image: "/images/media-production/360.jpg",
       imageAlt: "Virtual Tour 360",
       imagePosition: "right",
       details: [
@@ -239,7 +239,7 @@ export default function MediaProduction() {
       description:
         "Complete strategic pre-production planning, concept storyboard designs, team logistics management, crew direction, and raw-asset library metadata curation. We keep shoots focused on commercial goals and on-time delivery benchmarks.",
       competencyText: "END-TO-END PROJECT LOGISTICS",
-      image: "/images/media-production/.jpg",
+      image: "/images/media-production/MEDIAPRODACTION.jpg",
       imageAlt: "Media Production Management",
       imagePosition: "right",
       details: [
@@ -391,7 +391,9 @@ export default function MediaProduction() {
       {/* HERO زي Services */}
       <section
         className="unified-page-hero"
-        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+        style={{
+          "--hero-bg": "url('/images/media-production/cover.jpg')",
+        }}
       >
         <div className="unified-page-hero-content">
           <h1 className="unified-page-title">

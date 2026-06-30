@@ -26,6 +26,7 @@ import ContentBuilder from "./pages/admin/ContentBuilder";
 import Blogs from "./pages/Blogs";
 import BlogDetails from "./pages/BlogDetails";
 import ProjectDetails from "./pages/ProjectDetails";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 // ── Admin wrapper (handles auth + sidebar navigation) ──────────────────────
 function AdminApp() {
@@ -60,8 +61,12 @@ function AdminApp() {
       <ToastContainer toasts={toast.toasts} />
       <AdminLayout page={page} navigate={setPage} onLogout={logout}>
         {page === "home" && <DashboardHome navigate={setPage} />}
-        {page === "blogs" && <BlogsPage toast={toast} openBuilder={openBuilder} />}
-        {page === "projects" && <ProjectsPage toast={toast} openBuilder={openBuilder} />}
+        {page === "blogs" && (
+          <BlogsPage toast={toast} openBuilder={openBuilder} />
+        )}
+        {page === "projects" && (
+          <ProjectsPage toast={toast} openBuilder={openBuilder} />
+        )}
         {page === "contacts" && <ContactsPage toast={toast} />}
         {page === "hero" && <HeroPage toast={toast} />}
         {page === "builder" && builderConfig && (
@@ -96,6 +101,7 @@ export default function App() {
       <Routes>
         {/* ── Public website routes ── */}
         <Route element={<Layout />}>
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
@@ -104,14 +110,32 @@ export default function App() {
           <Route path="/blogs/:slug" element={<BlogDetails />} />
           <Route path="/projects/:slug" element={<ProjectDetails />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/services/media-production" element={<MediaProduction />} />
-          <Route path="/services/digital-learning" element={<DigitalLearning />} />
-          <Route path="/services/design-experience" element={<DesignExperience />} />
+          <Route
+            path="/services/media-production"
+            element={<MediaProduction />}
+          />
+          <Route
+            path="/services/digital-learning"
+            element={<DigitalLearning />}
+          />
+          <Route
+            path="/services/design-experience"
+            element={<DesignExperience />}
+          />
           <Route path="/services/ai-video-cgi" element={<AiPowerd />} />
-          <Route path="/services/events-experiential" element={<EventsExperiential />} />
+          <Route
+            path="/services/events-experiential"
+            element={<EventsExperiential />}
+          />
           <Route path="/services/brand-identity" element={<ServiceDetail />} />
-          <Route path="/services/content-storytelling" element={<ContentAndStorytelling />} />
-          <Route path="/services/marketing-growth" element={<MarketingGrowth />} />
+          <Route
+            path="/services/content-storytelling"
+            element={<ContentAndStorytelling />}
+          />
+          <Route
+            path="/services/marketing-growth"
+            element={<MarketingGrowth />}
+          />
         </Route>
 
         {/* ── Admin routes (no Navbar/Footer) ── */}
