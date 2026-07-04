@@ -189,6 +189,7 @@ export default function HeroPage({ toast }) {
   return (
     <div>
       <div
+        className="admin-page-header"
         style={{
           display: "flex",
           alignItems: "center",

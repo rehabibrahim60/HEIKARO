@@ -147,123 +147,245 @@ export default function MarketingGrowth() {
 
   return (
     <div
-      className="service-page marketing-growth-page bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page marketing-growth-page bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       <style>
         {`
-          .marketing-growth-page,
-          .marketing-growth-page * {
-            font-family: "Aspekta", sans-serif !important;
-          }
+    .marketing-growth-page {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
 
-          .marketing-growth-page h1 {
-            font-size: clamp(44px, 6vw, 78px) !important;
-            line-height: 0.95 !important;
-            font-weight: 900 !important;
-            letter-spacing: -0.04em !important;
-            text-transform: uppercase !important;
-          }
+    .marketing-growth-page,
+    .marketing-growth-page * {
+      font-family: "Aspekta", sans-serif !important;
+      box-sizing: border-box;
+    }
 
-          .marketing-growth-page h2 {
-            font-size: clamp(34px, 4.2vw, 52px) !important;
-            line-height: 1.12 !important;
-            font-weight: 900 !important;
-            letter-spacing: -0.035em !important;
-          }
+    .marketing-growth-page img,
+    .marketing-growth-page video {
+      max-width: 100%;
+      display: block;
+    }
 
-          .marketing-growth-page h3,
-          .marketing-growth-page h4 {
-            font-size: 21px !important;
-            line-height: 1.3 !important;
-            font-weight: 900 !important;
-            letter-spacing: -0.02em !important;
-          }
+    .marketing-growth-page h1 {
+      font-size: clamp(44px, 6vw, 78px) !important;
+      line-height: 0.95 !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.04em !important;
+      text-transform: uppercase !important;
+    }
 
-          .marketing-growth-page p {
-            font-size: 18px !important;
-            line-height: 1.9 !important;
-            font-weight: 500 !important;
-          }
+    .marketing-growth-page h2 {
+      font-size: clamp(34px, 4.2vw, 52px) !important;
+      line-height: 1.12 !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.035em !important;
+    }
 
-          .marketing-growth-page li {
-            font-size: 16px !important;
-            line-height: 1.8 !important;
-            color: #9ca3af !important;
-          }
+    .marketing-growth-page h3,
+    .marketing-growth-page h4 {
+      font-size: 21px !important;
+      line-height: 1.3 !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.02em !important;
+    }
 
-          .marketing-growth-page .text-sm,
-          .marketing-growth-page [class*="text-sm"] {
-            font-size: 16px !important;
-            line-height: 1.85 !important;
-          }
+    .marketing-growth-page p {
+      font-size: 18px !important;
+      line-height: 1.9 !important;
+      font-weight: 500 !important;
+      overflow-wrap: anywhere;
+    }
 
-          .marketing-growth-page .text-xs,
-          .marketing-growth-page [class*="text-xs"] {
-            font-size: 13px !important;
-            line-height: 1.5 !important;
-            font-weight: 900 !important;
-          }
+    .marketing-growth-page li {
+      font-size: 16px !important;
+      line-height: 1.8 !important;
+      color: #9ca3af !important;
+    }
 
-          .marketing-growth-page .text-lg,
-          .marketing-growth-page [class*="text-lg"] {
-            font-size: 18px !important;
-            line-height: 1.9 !important;
-          }
+    .marketing-growth-page a,
+    .marketing-growth-page button {
+      max-width: 100%;
+      font-size: 14px !important;
+      font-weight: 900 !important;
+      letter-spacing: 1.5px !important;
+    }
 
-          .marketing-growth-page .text-xl,
-          .marketing-growth-page [class*="text-xl"] {
-            font-size: 20px !important;
-            line-height: 1.6 !important;
-          }
+    .marketing-growth-page .grid {
+      min-width: 0 !important;
+    }
 
-          .marketing-growth-page .text-3xl,
-          .marketing-growth-page [class*="text-3xl"] {
-            font-size: 30px !important;
-            line-height: 1.25 !important;
-          }
+    .marketing-growth-page .unified-page-title {
+      font-size: clamp(44px, 7vw, 90px) !important;
+    }
 
-          .marketing-growth-page a,
-          .marketing-growth-page button {
-            font-size: 14px !important;
-            font-weight: 900 !important;
-            letter-spacing: 1.5px !important;
-          }
+    .marketing-growth-page .unified-page-desc {
+      font-size: clamp(16px, 2vw, 21px) !important;
+      line-height: 1.7 !important;
+    }
 
-          .marketing-growth-page .unified-page-title {
-            font-size: clamp(44px, 7vw, 90px) !important;
-          }
+    @media (max-width: 1024px) {
+      .marketing-growth-page section:not(.unified-page-hero) {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+      }
+    }
 
-          .marketing-growth-page .unified-page-desc {
-            font-size: clamp(16px, 2vw, 21px) !important;
-            line-height: 1.7 !important;
-          }
+    @media (max-width: 768px) {
+      .marketing-growth-page section:not(.unified-page-hero) {
+        padding-top: 70px !important;
+        padding-bottom: 70px !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+      }
 
-          @media (max-width: 768px) {
-            .marketing-growth-page h1 {
-              font-size: clamp(38px, 11vw, 56px) !important;
-            }
+      .marketing-growth-page .unified-page-title {
+        font-size: clamp(38px, 12vw, 58px) !important;
+        line-height: 0.95 !important;
+      }
 
-            .marketing-growth-page h2 {
-              font-size: 31px !important;
-            }
+      .marketing-growth-page .unified-page-desc {
+        font-size: 15px !important;
+        line-height: 1.8 !important;
+        max-width: 100% !important;
+      }
 
-            .marketing-growth-page h3,
-            .marketing-growth-page h4 {
-              font-size: 19px !important;
-            }
+      .marketing-growth-page h1 {
+        font-size: clamp(34px, 10vw, 48px) !important;
+        line-height: 1.05 !important;
+      }
 
-            .marketing-growth-page p {
-              font-size: 16px !important;
-              line-height: 1.8 !important;
-            }
+      .marketing-growth-page h2 {
+        font-size: clamp(28px, 9vw, 36px) !important;
+        line-height: 1.12 !important;
+      }
 
-            .marketing-growth-page .text-sm,
-            .marketing-growth-page [class*="text-sm"] {
-              font-size: 15px !important;
-            }
-          }
-        `}
+      .marketing-growth-page h3,
+      .marketing-growth-page h4 {
+        font-size: 18px !important;
+        line-height: 1.35 !important;
+      }
+
+      .marketing-growth-page p {
+        font-size: 15px !important;
+        line-height: 1.8 !important;
+      }
+
+      .marketing-growth-page li {
+        font-size: 14px !important;
+      }
+
+      .marketing-growth-page .text-lg,
+      .marketing-growth-page [class*="text-lg"],
+      .marketing-growth-page .text-xl,
+      .marketing-growth-page [class*="text-xl"] {
+        font-size: 15px !important;
+        line-height: 1.8 !important;
+      }
+
+      .marketing-growth-page .text-sm,
+      .marketing-growth-page [class*="text-sm"] {
+        font-size: 14px !important;
+        line-height: 1.75 !important;
+      }
+
+      .marketing-growth-page .text-xs,
+      .marketing-growth-page [class*="text-xs"] {
+        font-size: 11px !important;
+        line-height: 1.5 !important;
+        letter-spacing: 1.2px !important;
+      }
+
+      .marketing-growth-page .text-3xl,
+      .marketing-growth-page [class*="text-3xl"] {
+        font-size: 24px !important;
+        line-height: 1.25 !important;
+      }
+
+      .marketing-growth-page .tracking-\\[4px\\],
+      .marketing-growth-page .tracking-\\[3px\\],
+      .marketing-growth-page .tracking-widest {
+        letter-spacing: 1.3px !important;
+      }
+
+      .marketing-growth-page .min-h-\\[360px\\] {
+        min-height: auto !important;
+      }
+
+      .marketing-growth-page .p-8 {
+        padding: 24px !important;
+      }
+
+      .marketing-growth-page .p-10 {
+        padding: 24px !important;
+      }
+
+      .marketing-growth-page .mb-16 {
+        margin-bottom: 42px !important;
+      }
+
+      .marketing-growth-page .gap-16 {
+        gap: 36px !important;
+      }
+
+      .marketing-growth-page .gap-12 {
+        gap: 34px !important;
+      }
+
+      .marketing-growth-page a.bg-\\[\\#0f33fe\\],
+      .marketing-growth-page a.bg-transparent.border {
+        width: 100% !important;
+        min-height: 58px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 16px 18px !important;
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+      }
+
+      .marketing-growth-page .flex.flex-col.sm\\:flex-row {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .marketing-growth-page section:not(.unified-page-hero) {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+
+      .marketing-growth-page .unified-page-title {
+        font-size: 40px !important;
+      }
+
+      .marketing-growth-page h1 {
+        font-size: 34px !important;
+      }
+
+      .marketing-growth-page h2 {
+        font-size: 30px !important;
+      }
+
+      .marketing-growth-page h3,
+      .marketing-growth-page h4 {
+        font-size: 17px !important;
+      }
+
+      .marketing-growth-page p {
+        font-size: 14px !important;
+      }
+
+      .marketing-growth-page .p-8,
+      .marketing-growth-page .p-10 {
+        padding: 20px !important;
+      }
+    }
+  `}
       </style>
 
       {/* HERO زي Services */}
@@ -309,7 +431,7 @@ export default function MarketingGrowth() {
           </div>
 
           {/* Right Image */}
-          <div className="relative h-[340px] w-full max-w-[460px] justify-self-end overflow-hidden border border-[#1e1e1e] lg:h-[430px]">
+          <div className="relative mx-auto h-[260px] w-full max-w-[460px] overflow-hidden border border-[#1e1e1e] sm:h-[340px] lg:mx-0 lg:h-[430px] lg:justify-self-end">
             <img
               src="/images/marketing-gro/Marketing-is-not-a-line-item.jpg"
               alt="Strategic Positioning"
@@ -395,45 +517,41 @@ export default function MarketingGrowth() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {[
-            {
-              num: "01",
-              title: "Social Media Strategy & Management",
-              desc: "Architecting brand presence across global platforms to build community, influence, and compound organic attention.",
-              footer: "Average +120% organic engagement rate",
-              id: "c1",
-            },
-            {
-              num: "02",
-              title: "Digital Advertising (Paid Acquisition)",
-              desc: "Hyper-targeted paid campaigns across Meta, Google, LinkedIn, and TikTok engineered for surgical cost-per-acquisition scaling.",
-              footer: "Average 4.1x ROAS on active ad spend",
-              id: "c2",
-            },
-            {
-              num: "03",
-              title: "Campaign Strategy & Performance Analytics",
-              desc: "Granular conversion attributions, data visualization, and predictive user modeling to eliminate ad-waste and maximize LTV.",
-              footer: "100% transparent attribution boards",
-              id: "c3",
-            },
-            {
-              num: "04",
-              title: "End-to-End Marketing Campaigns",
-              desc: "Cohesive multi-channel campaign architectures designed around specific brand product drops, market expansion, or seasonal growth.",
-              footer: "Integrated media plan in under 14 days",
-              id: "c4",
-            },
-          ].map((item, index) => (
-            <div
-              key={index}
-              onClick={() =>
-                document
-                  .getElementById(item.id)
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="border border-[#222] p-8 flex flex-col justify-between min-h-[360px] hover:border-[#0f33fe] transition-colors duration-300 group cursor-pointer"
-            >
+{[
+  {
+    num: "01",
+    title: "Social Media Strategy & Management",
+    desc: "Architecting brand presence across global platforms to build community, influence, and compound organic attention.",
+    footer: "Average +120% organic engagement rate",
+  },
+  {
+    num: "02",
+    title: "Digital Advertising (Paid Acquisition)",
+    desc: "Hyper-targeted paid campaigns across Meta, Google, LinkedIn, and TikTok engineered for surgical cost-per-acquisition scaling.",
+    footer: "Average 4.1x ROAS on active ad spend",
+  },
+  {
+    num: "03",
+    title: "Campaign Strategy & Performance Analytics",
+    desc: "Granular conversion attributions, data visualization, and predictive user modeling to eliminate ad-waste and maximize LTV.",
+    footer: "100% transparent attribution boards",
+  },
+  {
+    num: "04",
+    title: "End-to-End Marketing Campaigns",
+    desc: "Cohesive multi-channel campaign architectures designed around specific brand product drops, market expansion, or seasonal growth.",
+    footer: "Integrated media plan in under 14 days",
+  },
+].map((item, index) => (
+  <div
+    key={index}
+    onClick={() =>
+      document
+        .getElementById(marketingGrowthCapabilities[index].anchorId)
+        ?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+    className="border border-[#222] p-8 flex flex-col justify-between min-h-[360px] hover:border-[#0f33fe] transition-colors duration-300 group cursor-pointer"
+  >
               <div>
                 <div className="flex items-center justify-between mb-10">
                   <span className="text-gray-500 font-mono text-xs">

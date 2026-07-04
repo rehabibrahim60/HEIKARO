@@ -388,7 +388,7 @@ export default function DesignExperience() {
 
   return (
     <div
-      className="service-page bg-[#0a0a0a] min-h-screen text-white"
+      className="design-experience-page service-page bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       {/* HERO زي Services */}
@@ -474,7 +474,7 @@ export default function DesignExperience() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 bg-[#111] border border-[#222] h-[560px] sticky top-24 flex flex-col items-center justify-center p-8 text-center">
+          <div className="design-experience-media lg:col-span-5 bg-[#111] border border-[#222] h-[300px] sm:h-[360px] md:h-[440px] lg:h-[560px] lg:sticky lg:top-24 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 text-center">
             <img
               src="/images/design-exp/What-Design.jpg"
               alt="Design and Experience"
@@ -552,7 +552,7 @@ export default function DesignExperience() {
           {services.map((item, index) => (
             <a
               key={item.id}
-              href={`#${item.id}`}
+href={`#${uxUiCapabilities[index].anchorId}`}
               className="group min-h-[360px] border border-[#222] bg-[#080808] p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
             >
               <div>
@@ -728,7 +728,7 @@ export default function DesignExperience() {
                 <div
                   className={`overflow-hidden transition-all duration-300 ${
                     openIndex === index
-                      ? "max-h-48 opacity-100 pb-7"
+                      ? "max-h-[700px] opacity-100 pb-7"
                       : "max-h-0 opacity-0"
                   }`}
                 >
@@ -774,6 +774,145 @@ export default function DesignExperience() {
           </Link>
         </div>
       </section>
+
+      <style>{`
+  .design-experience-page {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .design-experience-page * {
+    box-sizing: border-box;
+  }
+
+  .design-experience-page img {
+    max-width: 100%;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .design-experience-page section:not(.unified-page-hero) {
+      padding-top: 70px !important;
+      padding-bottom: 70px !important;
+      padding-left: 18px !important;
+      padding-right: 18px !important;
+    }
+
+    .design-experience-page h2 {
+      font-size: clamp(28px, 9vw, 38px) !important;
+      line-height: 1.12 !important;
+      letter-spacing: -0.03em !important;
+    }
+
+    .design-experience-page h1:not(.unified-page-title) {
+      font-size: clamp(30px, 9vw, 42px) !important;
+      line-height: 1.12 !important;
+      letter-spacing: -0.035em !important;
+    }
+
+    .design-experience-page p {
+      overflow-wrap: anywhere;
+    }
+
+    .design-experience-page .design-experience-media {
+      position: relative !important;
+      top: auto !important;
+      height: 300px !important;
+      padding: 12px !important;
+    }
+
+    .design-experience-page .grid {
+      min-width: 0 !important;
+    }
+
+    .design-experience-page a,
+    .design-experience-page button {
+      max-width: 100%;
+    }
+
+    .design-experience-page .min-h-\\[360px\\] {
+      min-height: auto !important;
+    }
+
+    .design-experience-page .tracking-\\[4px\\],
+    .design-experience-page .tracking-\\[3px\\],
+    .design-experience-page .tracking-\\[1\\.8px\\] {
+      letter-spacing: 1.4px !important;
+    }
+
+    .design-experience-page .text-\\[58px\\],
+    .design-experience-page .text-\\[56px\\] {
+      font-size: 38px !important;
+    }
+
+    .design-experience-page .text-\\[46px\\] {
+      font-size: 34px !important;
+    }
+
+    .design-experience-page .text-\\[18px\\] {
+      font-size: 16px !important;
+    }
+
+    .design-experience-page .text-\\[16px\\] {
+      font-size: 15px !important;
+    }
+
+    .design-experience-page .text-\\[15px\\] {
+      font-size: 14px !important;
+    }
+
+    .design-experience-page .text-\\[13px\\] {
+      font-size: 12px !important;
+    }
+
+    .design-experience-page .text-\\[12px\\] {
+      font-size: 11px !important;
+    }
+
+    .design-experience-page button {
+      align-items: flex-start !important;
+      gap: 14px !important;
+    }
+
+    .design-experience-page button span:first-child {
+      flex: 1;
+    }
+
+    .design-experience-page button span:last-child {
+      flex-shrink: 0;
+    }
+
+    .design-experience-page .flex.flex-col.sm\\:flex-row {
+      width: 100%;
+    }
+
+    .design-experience-page .flex.flex-col.sm\\:flex-row a {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .design-experience-page section:not(.unified-page-hero) {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+
+    .design-experience-page .design-experience-media {
+      height: 260px !important;
+    }
+
+    .design-experience-page h2 {
+      font-size: 30px !important;
+    }
+
+    .design-experience-page h1:not(.unified-page-title) {
+      font-size: 32px !important;
+    }
+  }
+`}</style>
 
       <StartWithClarity />
     </div>

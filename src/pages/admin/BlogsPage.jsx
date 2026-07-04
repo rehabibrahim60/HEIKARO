@@ -12,6 +12,12 @@ export default function BlogsPage({ toast, openBuilder }) {
   const [loading, setLoading] = useState(true);
   const [confirm, setConfirm] = useState(null);
 
+  const getMediaUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("http")) return url;
+    return `${API}${url}`;
+  };
+
   const load = async () => {
     setLoading(true);
     try {
@@ -47,6 +53,7 @@ export default function BlogsPage({ toast, openBuilder }) {
   return (
     <div>
       <div
+        className="admin-page-header"
         style={{
           display: "flex",
           alignItems: "center",
@@ -97,7 +104,7 @@ export default function BlogsPage({ toast, openBuilder }) {
 
                   if (!createRes.ok) {
                     throw new Error(
-                      createResult.message || "Failed to create blog"
+                      createResult.message || "Failed to create blog",
                     );
                   }
 
@@ -132,7 +139,10 @@ export default function BlogsPage({ toast, openBuilder }) {
                   load();
                 } catch (error) {
                   console.error(error);
-                  toast.show(error.message || "Failed to publish blog", "error");
+                  toast.show(
+                    error.message || "Failed to publish blog",
+                    "error",
+                  );
                 }
               },
             })
@@ -146,103 +156,145 @@ export default function BlogsPage({ toast, openBuilder }) {
       {loading ? (
         <LoadingGrid />
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+            gap: 14,
+          }}
+        >
           {blogs.length === 0 && (
             <EmptyState icon="blog" label="No blogs yet" />
           )}
 
           {blogs.map((b) => (
-            <div key={b._id} style={listCard}>
-              {b.coverImage && (
+            <div
+              key={b._id}
+              style={{
+                ...listCard,
+                flexDirection: "column",
+                gap: 12,
+                padding: 0,
+                overflow: "hidden",
+                alignItems: "stretch",
+              }}
+            >
+              {b.coverImage ? (
                 <img
-                  src={b.coverImage}
-                  alt=""
+                  src={getMediaUrl(b.coverImage)}
+                  alt={b.title || ""}
                   style={{
-                    width: 72,
-                    height: 52,
+                    width: "100%",
+                    height: 160,
                     objectFit: "cover",
-                    borderRadius: 8,
-                    flexShrink: 0,
+                    background: "#1f2937",
                   }}
                 />
+              ) : (
+                <div
+                  style={{
+                    height: 160,
+                    background: "#1f2937",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#374151",
+                  }}
+                >
+                  <Icon name="blog" size={40} />
+                </div>
               )}
 
-              <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ padding: "12px 16px 16px" }}>
                 <p
                   style={{
                     color: "#f1f5f9",
                     fontWeight: 600,
                     fontSize: 15,
                     margin: "0 0 4px",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
                   }}
                 >
                   {b.title}
                 </p>
 
-                <p style={{ color: "#6b7280", fontSize: 12, margin: 0 }}>
+                <p
+                  style={{
+                    color: "#6b7280",
+                    fontSize: 12,
+                    margin: "0 0 10px",
+                  }}
+                >
                   {new Date(b.createdAt).toLocaleDateString("en-US")}
                 </p>
-              </div>
 
-              <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
-               <button
-  onClick={() =>
-    openBuilder({
-      titlePlaceholder: "Blog Title...",
-      publishLabel: "Update Blog",
-      returnPage: "blogs",
-      showCategory: true,
-      initialTitle: b.title || "",
-      initialCategory: b.category || "",
-      existingCoverImage: b.coverImage || "",
+                <div style={{ display: "flex", gap: 8 }}>
+                  <button
+                    onClick={() =>
+                      openBuilder({
+                        titlePlaceholder: "Blog Title...",
+                        publishLabel: "Update Blog",
+                        returnPage: "blogs",
+                        showCategory: true,
+                        initialTitle: b.title || "",
+                        initialCategory: b.category || "",
+                        existingCoverImage: b.coverImage || "",
 
-      onPublish: async (data) => {
-        try {
-          const formData = new FormData();
+                        onPublish: async (data) => {
+                          try {
+                            const formData = new FormData();
 
-          formData.append("title", data.title);
-          formData.append("category", data.category || "General");
-          formData.append("description", data.description || "");
+                            formData.append("title", data.title);
+                            formData.append(
+                              "category",
+                              data.category || "General",
+                            );
+                            formData.append(
+                              "description",
+                              data.description || "",
+                            );
 
-          if (data.coverImage) {
-            formData.append("coverImage", data.coverImage);
-          }
+                            if (data.coverImage) {
+                              formData.append("coverImage", data.coverImage);
+                            }
 
-          const res = await fetch(`${API}/blogs/${b._id}`, {
-            method: "PATCH",
-            headers: authHeaders(),
-            body: formData,
-          });
+                            const res = await fetch(`${API}/blogs/${b._id}`, {
+                              method: "PATCH",
+                              headers: authHeaders(),
+                              body: formData,
+                            });
 
-          const result = await res.json();
+                            const result = await res.json();
 
-          if (!res.ok) {
-            throw new Error(result.message || "Failed to update blog");
-          }
+                            if (!res.ok) {
+                              throw new Error(
+                                result.message || "Failed to update blog",
+                              );
+                            }
 
-          toast.show("Blog updated successfully");
-          load();
-        } catch (error) {
-          console.error(error);
-          toast.show(error.message || "Failed to update blog", "error");
-        }
-      },
-    })
-  }
-  style={iconBtn}
->
-  <Icon name="edit" size={16} />
-</button>
+                            toast.show("Blog updated successfully");
+                            load();
+                          } catch (error) {
+                            console.error(error);
+                            toast.show(
+                              error.message || "Failed to update blog",
+                              "error",
+                            );
+                          }
+                        },
+                      })
+                    }
+                    style={{ ...iconBtn, flex: 1, justifyContent: "center" }}
+                  >
+                    <Icon name="edit" size={15} /> Edit
+                  </button>
 
-                <button
-                  onClick={() => setConfirm(b._id)}
-                  style={{ ...iconBtn, color: "#f87171" }}
-                >
-                  <Icon name="trash" size={16} />
-                </button>
+                  <button
+                    onClick={() => setConfirm(b._id)}
+                    style={{ ...iconBtn, color: "#f87171" }}
+                  >
+                    <Icon name="trash" size={15} />
+                  </button>
+                </div>
               </div>
             </div>
           ))}

@@ -989,3 +989,327 @@ body .service-page section.has-bg-image > * {
   position: relative;
   z-index: 1;
 }
+
+/* =====================================
+   Service Detail Responsive Fix
+===================================== */
+
+.service-detail-page {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.service-detail-page,
+.service-detail-page * {
+  box-sizing: border-box;
+}
+
+.service-detail-page img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Hero */
+.service-detail-page .sd-main-hero {
+  position: relative;
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 120px 0 90px !important;
+  background-image: var(--hero-bg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.service-detail-page .sd-main-hero .sd-hero-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.service-detail-page .sd-desc-small {
+  max-width: 520px;
+  line-height: 1.8;
+}
+
+/* Quote + image section */
+.service-detail-page .sd-content-section {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+}
+
+.service-detail-page .sd-content-left,
+.service-detail-page .sd-content-right {
+  min-width: 0 !important;
+}
+
+.service-detail-page .sd-side-img {
+  width: 100% !important;
+  max-height: 420px !important;
+  object-fit: contain !important;
+}
+
+/* Global grids safety */
+.service-detail-page .operational-grid,
+.service-detail-page .pillars-grid,
+.service-detail-page .capabilities-grid,
+.service-detail-page .grid-side,
+.service-detail-page .grid-side-pillars {
+  min-width: 0 !important;
+}
+
+/* FAQ safety */
+.service-detail-page .faq-item.active .faq-content {
+  max-height: 600px !important;
+}
+
+/* CTA buttons */
+.service-detail-page .hero-buttons {
+  flex-wrap: wrap;
+}
+
+.service-detail-page .custom-btn,
+.service-detail-page .btn-outline {
+  text-decoration: none;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .service-detail-page .site-container {
+    max-width: 100%;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .service-detail-page .sd-content-section {
+    flex-direction: column !important;
+  }
+
+  .service-detail-page .sd-content-left,
+  .service-detail-page .sd-content-right {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+  }
+
+  .service-detail-page .sd-pillars {
+    border-right: none !important;
+  }
+
+  .service-detail-page .sd-content-right {
+    padding: 40px 0 !important;
+  }
+
+  .service-detail-page .split-layout {
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+
+  .service-detail-page .text-side {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+  }
+
+  .service-detail-page .grid-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .service-detail-page .operational-grid,
+  .service-detail-page .pillars-grid,
+  .service-detail-page .capabilities-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .service-detail-page .site-container {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .service-detail-page section {
+    padding-top: 70px !important;
+    padding-bottom: 70px !important;
+  }
+
+  .service-detail-page .sd-main-hero {
+    min-height: 70vh !important;
+    padding: 100px 0 70px !important;
+  }
+
+  .service-detail-page .unified-page-title {
+    font-size: clamp(42px, 14vw, 64px) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  .service-detail-page .sd-desc-small {
+    font-size: 14px !important;
+    max-width: 100% !important;
+  }
+
+  .service-detail-page .sd-quote-left {
+    padding: 50px 0 36px !important;
+  }
+
+  .service-detail-page .sd-quote {
+    font-size: 25px !important;
+    line-height: 1.35 !important;
+  }
+
+  .service-detail-page .sd-description {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+  }
+
+  .service-detail-page .sd-pillars {
+    grid-template-columns: 1fr !important;
+  }
+
+  .service-detail-page .sd-pillar {
+    padding: 28px 0 !important;
+    border-right: none !important;
+  }
+
+  .service-detail-page .sd-content-right {
+    padding: 24px 0 !important;
+  }
+
+  .service-detail-page .sd-side-img {
+    max-height: 320px !important;
+  }
+
+  .service-detail-page .section-header {
+    margin-bottom: 46px !important;
+  }
+
+  .service-detail-page .section-title {
+    font-size: clamp(30px, 9vw, 40px) !important;
+    line-height: 1.12 !important;
+  }
+
+  .service-detail-page .section-description {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    max-width: 100% !important;
+  }
+
+  .service-detail-page .second-section,
+  .service-detail-page .capabilities-section,
+  .service-detail-page .strategic-section,
+  .service-detail-page .faq-section,
+  .service-detail-page .hero-section,
+  .service-detail-page .anatomy-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .service-detail-page .operational-grid,
+  .service-detail-page .pillars-grid,
+  .service-detail-page .capabilities-grid,
+  .service-detail-page .grid-side,
+  .service-detail-page .grid-side-pillars {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .service-detail-page .pillar-card,
+  .service-detail-page .capability-card,
+  .service-detail-page .op-card,
+  .service-detail-page .anatomy-card {
+    padding: 24px !important;
+  }
+
+  .service-detail-page .card-title,
+  .service-detail-page .pillar-title,
+  .service-detail-page .op-title {
+    font-size: 18px !important;
+    line-height: 1.35 !important;
+  }
+
+  .service-detail-page .card-desc,
+  .service-detail-page .pillar-text,
+  .service-detail-page .op-desc {
+    font-size: 14px !important;
+    line-height: 1.75 !important;
+  }
+
+  .service-detail-page .split-layout {
+    gap: 34px !important;
+  }
+
+  .service-detail-page .faq-header {
+    padding: 22px 18px !important;
+    gap: 16px !important;
+    align-items: flex-start !important;
+  }
+
+  .service-detail-page .faq-header h3 {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+  }
+
+  .service-detail-page .faq-item.active .faq-content {
+    padding: 0 18px 22px 18px !important;
+  }
+
+  .service-detail-page .faq-content p {
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+  }
+
+  .service-detail-page .hero-title {
+    font-size: clamp(30px, 10vw, 42px) !important;
+    line-height: 1.1 !important;
+  }
+
+  .service-detail-page .hero-buttons {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 14px !important;
+  }
+
+  .service-detail-page .custom-btn,
+  .service-detail-page .btn-outline {
+    width: 100% !important;
+    min-height: 58px !important;
+    padding: 16px 18px !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 420px) {
+  .service-detail-page .site-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .service-detail-page .unified-page-title {
+    font-size: 42px !important;
+  }
+
+  .service-detail-page .section-title {
+    font-size: 30px !important;
+  }
+
+  .service-detail-page .sd-quote {
+    font-size: 22px !important;
+  }
+
+  .service-detail-page .pillar-card,
+  .service-detail-page .capability-card,
+  .service-detail-page .op-card,
+  .service-detail-page .anatomy-card {
+    padding: 20px !important;
+  }
+}

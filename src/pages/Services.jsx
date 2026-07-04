@@ -5,74 +5,58 @@ import "./style/pageHero.css";
 
 const servicesData = [
   {
-    num: "01",
     icon: "🎨",
     title: "BRAND & IDENTITY",
     desc: "Translate your vision into a disciplined visual and strategic asset that benchmarks industry excellence.",
-    capabilities: 6,
     tags: ["MARKET AUTHORITY", "INSTANT RECOGNITION", "STRATEGIC CONSISTENCY"],
     link: "/services/brand-identity",
   },
   {
-    num: "02",
     icon: "🖥",
     title: "DESIGN & EXPERIENCE",
     desc: "Bridge the gap between aesthetic sophistication and functional conversion performance.",
-    capabilities: 4,
     tags: ["USER RETENTION", "CONVERSION SURGE", "OPERATIONAL SPEED"],
     link: "/services/design-experience",
   },
   {
-    num: "03",
     icon: "📄",
     title: "CONTENT & STORYTELLING",
     desc: "Shift from random acts of content to a structured storytelling system that builds durable brand equity.",
-    capabilities: 4,
     tags: ["MARKET ADVOCACY", "AUDIENCE GROWTH", "STRATEGIC NARRATIVE"],
     link: "/services/content-storytelling",
   },
   {
-    num: "04",
     icon: "📈",
     title: "MARKETING & GROWTH",
     desc: "Deploy creative that is engineered to scale, backed by real-time performance analytics.",
-    capabilities: 4,
     tags: ["REVENUE EXPANSION", "CAC REDUCTION", "PREDICTABLE GROWTH"],
     link: "/services/marketing-growth",
   },
   {
-    num: "05",
     icon: "🎬",
     title: "MEDIA & PRODUCTION",
     desc: "Cinematic excellence that justifies premier positioning and drives emotional conversion.",
-    capabilities: 6,
     tags: ["PREMIUM POSITIONING", "EMOTIONAL IMPACT", "CINEMATIC PROOF"],
     link: "/services/media-production",
   },
   {
-    num: "06",
     icon: "📚",
     title: "DIGITAL LEARNING EXPERIENCE",
     desc: "Standardize excellence by moving from traditional training to immersive capacity building systems.",
-    capabilities: 4,
     tags: ["KNOWLEDGE RETENTION", "STANDARDIZED QUALITY", "OPERATIONAL SCALE"],
     link: "/services/digital-learning",
   },
   {
-    num: "07",
     icon: "⚙️",
     title: "AI-POWERED VIDEO & CGI",
     desc: "Generate impossible visual worlds at strategic speed, blending imagination with technical precision.",
-    capabilities: 5,
     tags: ["VISUAL UNIQUENESS", "PRODUCTION SPEED", "FUTURE-PROOFING"],
     link: "/services/ai-video-cgi",
   },
   {
-    num: "08",
     icon: "🎯",
     title: "EVENTS & EXPERIENTIAL",
     desc: "We shape events as designed experience systems that connect audience emotion with brand purpose.",
-    capabilities: 8,
     tags: [
       "MEMORABLE AUDIENCE EXPERIENCES",
       "STRONGER BRAND STORYTELLING",
@@ -84,28 +68,31 @@ const servicesData = [
 
 export default function Services() {
   return (
-    <div className="bg-[#0a0a0a] min-h-screen text-white font-sans">
+    <div className="services-page bg-[#0a0a0a] min-h-screen text-white font-sans overflow-x-hidden">
       {/* Hero Section */}
       <section
-        className="unified-page-hero"
-        style={{ "--hero-bg": "url('/hero-bg.jpg.jpeg')" }}
+        className="unified-page-hero  services-main-hero"
+        style={{
+          "--hero-bg": "url('/images/contant-story/cover.jpeg')",
+        }}
       >
         <div className="unified-page-hero-content">
           <h1 className="unified-page-title">SERVICES</h1>
 
           <p className="unified-page-desc">
-            Strategic creative services designed as systems, not isolated outputs.
+            Strategic creative services designed as systems, not isolated
+            outputs.
           </p>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="bg-[#0a0a0a] py-20 px-[8%]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-l border-t border-[#222]">
+      <section className="services-main-grid-section bg-[#0a0a0a] py-16 px-4 sm:px-6 lg:px-[8%] lg:py-20">
+        <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {servicesData.map((item, index) => (
             <div
               key={index}
-              className="relative border-r border-b border-[#222] p-7 flex flex-col justify-between min-h-[480px] overflow-hidden group"
+              className="relative border border-[#222] bg-[#0a0a0a] p-6 sm:p-7 flex flex-col justify-between min-h-auto xl:min-h-[480px] overflow-hidden group hover:border-[#0f33fe]/60 transition-colors duration-300"
             >
               <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#0f33fe] transition-all duration-500 group-hover:w-full z-10" />
 
@@ -128,11 +115,7 @@ export default function Services() {
                   {item.desc}
                 </p>
 
-                <div className="border border-[#222] px-3 py-1 w-fit mb-7">
-                  <span className="text-gray-500 text-[11px] tracking-[2px] uppercase">
-                    {item.capabilities} CAPABILITIES
-                  </span>
-                </div>
+               
               </div>
 
               <div>
@@ -293,8 +276,8 @@ export default function Services() {
       <section className="bg-[#0a0a0a] text-white py-20 px-[8%] border-t border-[#111]">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-white font-extrabold text-[28px] md:text-[42px] leading-[1.15] tracking-[-0.03em] uppercase mb-7">
-  THE CREATIVE GROWTH OPERATING STANDARD
-</h2>
+            THE CREATIVE GROWTH OPERATING STANDARD
+          </h2>
 
           <p className="text-gray-500 text-[16px] md:text-[18px] leading-[1.85] mb-7">
             Under HEIKARO&apos;s modern operating model, we unify disparate
@@ -310,7 +293,8 @@ export default function Services() {
             eliminate the operational overhead, communication gaps, and
             inconsistent executions typical of traditional multi-agency
             structures. Ambitious companies choose HEIKARO to deploy systematic
-            brand value that translates directly into measurable customer choice.
+            brand value that translates directly into measurable customer
+            choice.
           </p>
         </div>
       </section>
@@ -334,9 +318,9 @@ export default function Services() {
           </h2>
 
           <p className="text-gray-400 text-[16px] md:text-[18px] leading-[1.85] max-w-2xl mx-auto mb-10">
-            We connect strategic diagnosis, high-fidelity design, and performance
-            media under one unified growth operating system. Build your brand
-            architecture today.
+            We connect strategic diagnosis, high-fidelity design, and
+            performance media under one unified growth operating system. Build
+            your brand architecture today.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
@@ -363,6 +347,130 @@ export default function Services() {
           </div>
         </div>
       </section>
+
+      <style>{`
+  .services-page {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .services-page,
+  .services-page * {
+    box-sizing: border-box;
+  }
+
+  .services-page img,
+  .services-page video {
+    max-width: 100%;
+    display: block;
+  }
+
+  .services-page .grid {
+    min-width: 0;
+  }
+
+  @media (max-width: 768px) {
+    .services-page section:not(.unified-page-hero) {
+      padding-left: 18px !important;
+      padding-right: 18px !important;
+    }
+
+    .services-page h1 {
+      font-size: clamp(40px, 13vw, 58px) !important;
+      line-height: 1 !important;
+    }
+
+    .services-page h2 {
+      font-size: clamp(28px, 9vw, 36px) !important;
+      line-height: 1.12 !important;
+    }
+
+    .services-page h3 {
+      font-size: 18px !important;
+      line-height: 1.35 !important;
+    }
+
+    .services-page p {
+      font-size: 15px !important;
+      line-height: 1.8 !important;
+      overflow-wrap: anywhere;
+    }
+
+    .services-page a,
+    .services-page button {
+      max-width: 100%;
+    }
+
+    .services-page .tracking-\\[3px\\],
+    .services-page .tracking-\\[2px\\],
+    .services-page .tracking-\\[1px\\] {
+      letter-spacing: 1.2px !important;
+    }
+
+    .services-page .min-h-\\[390px\\],
+    .services-page .min-h-\\[480px\\] {
+      min-height: auto !important;
+    }
+
+    .services-page .p-7 {
+      padding: 24px !important;
+    }
+
+    .services-page .gap-6 {
+      gap: 20px !important;
+    }
+
+    .services-page .gap-4 {
+      gap: 18px !important;
+    }
+
+    .services-page .flex.flex-col.sm\\:flex-row a {
+      width: 100% !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+
+    .services-page .flex.flex-wrap.items-center.justify-center {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 18px 12px !important;
+      width: 100% !important;
+      max-width: 360px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    .services-page .flex.flex-wrap.items-center.justify-center span {
+      text-align: center !important;
+      font-size: 10px !important;
+      letter-spacing: 1.2px !important;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .services-page section:not(.unified-page-hero) {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+
+    .services-page h1 {
+      font-size: 42px !important;
+    }
+
+    .services-page h2 {
+      font-size: 30px !important;
+    }
+
+    .services-page h3 {
+      font-size: 17px !important;
+    }
+
+    .services-page p {
+      font-size: 14px !important;
+    }
+  }
+`}</style>
 
       <StartWithClarity />
     </div>

@@ -232,9 +232,80 @@ export default function AiPowerd() {
 
   return (
     <div
-      className="service-page ai-powered-page bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page ai-powered-page bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
+      <style>{`
+  .ai-powered-page {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .ai-powered-page,
+  .ai-powered-page * {
+    box-sizing: border-box;
+  }
+
+  .ai-powered-page img,
+  .ai-powered-page video {
+    max-width: 100%;
+    display: block;
+  }
+
+  .ai-powered-page .grid {
+    min-width: 0;
+  }
+
+  @media (max-width: 768px) {
+    .ai-powered-page section:not(.unified-page-hero) {
+      padding-left: 18px !important;
+      padding-right: 18px !important;
+    }
+
+    .ai-powered-page h1 {
+      font-size: clamp(36px, 11vw, 54px) !important;
+      line-height: 1 !important;
+    }
+
+    .ai-powered-page h2 {
+      font-size: clamp(28px, 9vw, 36px) !important;
+      line-height: 1.12 !important;
+    }
+
+    .ai-powered-page h3,
+    .ai-powered-page h4 {
+      font-size: 18px !important;
+      line-height: 1.35 !important;
+    }
+
+    .ai-powered-page p {
+      font-size: 15px !important;
+      line-height: 1.8 !important;
+      overflow-wrap: anywhere;
+    }
+
+    .ai-powered-page a,
+    .ai-powered-page button {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .ai-powered-page section:not(.unified-page-hero) {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+
+    .ai-powered-page h1 {
+      font-size: 36px !important;
+    }
+
+    .ai-powered-page h2 {
+      font-size: 30px !important;
+    }
+  }
+`}</style>
       <Hero />
       <FutureIntelligence />
       <WhyFilmShootsStagnate />

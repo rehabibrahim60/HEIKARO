@@ -16,6 +16,12 @@ function IconFleeCursor() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    const isMobileOrTouch =
+      window.matchMedia("(max-width: 1023px)").matches ||
+      window.matchMedia("(pointer: coarse)").matches;
+
+    if (isMobileOrTouch) return;
+
     const handleMouseMove = (e) => {
       if (!containerRef.current) return;
 
@@ -51,18 +57,18 @@ function IconFleeCursor() {
   return (
     <div
       ref={containerRef}
-      className="relative flex w-full max-w-[480px] justify-center"
+      className="hero-icon-wrapper relative flex w-full max-w-[480px] justify-center"
     >
       <div className="absolute -right-20 top-20 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
       <div className="absolute -bottom-14 left-10 h-44 w-44 rounded-full border border-cyan-400/10 bg-cyan-500/5 blur-2xl" />
 
       <div
-        className="relative flex h-[380px] w-[320px] flex-col items-center justify-center rounded-[30px] border border-white/1 bg-[radial-gradient(circle_at_top,_rgba(17,24,39,0.95),rgba(5, 7, 13, 0.0))] p-6 shadow-[0_40px_120px_-60px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out"
+        className="hero-icon-card relative flex h-[380px] w-[320px] flex-col items-center justify-center rounded-[30px] border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(17,24,39,0.95),rgba(5,7,13,0))] p-6 shadow-[0_40px_120px_-60px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out"
         style={{
           transform: `translate(${offset.x}px, ${offset.y}px)`,
         }}
       >
-        <div className="mx-auto flex h-[380px] w[320px] items-center justify-center rounded-[24px]  overflow-hidden">
+        <div className="mx-auto flex h-full w-full items-center justify-center overflow-hidden rounded-[24px]">
           <img
             src="/images/home/hero-icon-01.png"
             alt="Heikaro Logo"
@@ -274,39 +280,68 @@ export default function Home() {
         ) : !slide.isMediaSlide ? (
           <div className="absolute inset-0 z-[1] bg-[url('https://images.unsplash.com/photo-1500534623283-312aade485b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10" />
         ) : null}
-        {slide.isMediaSlide &&
-          slide.mediaUrl &&
-          (slide.type === "video" ? (
-            <video
-              key={slide.mediaUrl}
-              src={slide.mediaUrl}
-              autoPlay
-              muted
-              playsInline
-              className="absolute inset-0 z-[1] w-full h-full object-cover opacity-80"
-            />
-          ) : (
-            <div
-              key={`${slide.mediaUrl}-${currentSlide}`}
-              className="hero-media-animate absolute inset-0 z-[1] opacity-80"
-              style={{
-                backgroundImage: `url(${slide.mediaUrl})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            />
-          ))}
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-110px)] max-w-[1240px] flex-col items-stretch gap-0 px-6 py-10 lg:flex-row lg:items-center lg:gap-12 lg:px-10">
+        {slide.isMediaSlide && slide.mediaUrl && (
+          <div className="absolute inset-0 z-[1] overflow-hidden bg-black">
+            {slide.type === "video" ? (
+              <>
+                <video
+                  key={`bg-${slide.mediaUrl}`}
+                  src={slide.mediaUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="hero-media-bg absolute inset-0 h-full w-full object-cover"
+                />
+
+                <video
+                  key={`main-${slide.mediaUrl}`}
+                  src={slide.mediaUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="hero-media-main absolute inset-0 h-full w-full object-contain lg:object-cover"
+                />
+              </>
+            ) : (
+              <>
+                <div
+                  className="hero-media-bg absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${slide.mediaUrl})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                />
+
+                <img
+                  src={slide.mediaUrl}
+                  alt=""
+                  className="hero-media-main absolute inset-0 h-full w-full object-contain lg:object-cover"
+                />
+              </>
+            )}
+          </div>
+        )}
+        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1240px] flex-col items-center justify-center gap-8 px-4 pb-24 pt-28 sm:px-6 md:px-8 lg:min-h-[calc(100vh-110px)] lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-10 lg:py-10">
           <div
             key={currentSlide}
-            className="hero-slide-content hero-content-animate max-w-2xl space-y-8 flex-1"
+            className="hero-slide-content hero-content-animate w-full max-w-[720px] flex-1 space-y-6 text-center lg:space-y-8 lg:text-left"
           >
             {loadingSlides ? (
               <div style={{ color: "#6b7280" }}>...</div>
             ) : displaySlide ? (
               <>
                 {displaySlide.label && (
-                  <div className="hero-label inline-flex items-center gap-3 border border-white/20 bg-white/5 px-4 py-2 text-xs font-black uppercase tracking-[0.35em] text-slate-200 w-fit">
+                  <div
+                    className="hero-label mx-auto
+                    inline-flex w-fit max-w-full items-center justify-center
+                    gap-3 border border-white/20 bg-white/5 px-4 py-2 text-xs
+                    font-black uppercase tracking-[0.35em] text-slate-200
+                    lg:mx-0"
+                  >
                     {displaySlide.label}
                   </div>
                 )}
@@ -319,7 +354,7 @@ export default function Home() {
                   </h1>
 
                   {displaySlide.description && (
-                    <p className="hero-desc max-w-3xl border-l border-lime-400 pl-5 text-base leading-8 text-slate-300 sm:text-lg">
+                    <p className="hero-desc mx-auto max-w-3xl border-l border-lime-400 pl-5 text-left text-base leading-8 text-slate-300 sm:text-lg lg:mx-0">
                       {displaySlide.description}
                     </p>
                   )}
@@ -327,7 +362,7 @@ export default function Home() {
 
                 {displaySlide.buttons?.length > 0 && (
                   <div
-                    className={`hero-buttons flex flex-col gap-4 ${
+                    className={`hero-buttons flex w-full flex-col gap-4 sm:w-auto ${
                       displaySlide.buttons.length === 1
                         ? "sm:w-fit"
                         : "sm:flex-row"
@@ -337,7 +372,7 @@ export default function Home() {
                       <a
                         key={idx}
                         href={btn.href}
-                        className={`inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase transition duration-300 ${
+                        className={`inline-flex w-full items-center justify-center gap-2 rounded-sm px-8 py-3 text-sm font-semibold uppercase transition duration-300 sm:w-auto ${
                           btn.variant === "primary"
                             ? "bg-[#065bff] text-white hover:bg-white hover:text-black"
                             : "border border-white/30 bg-transparent text-white hover:border-blue-400 hover:text-blue-200"
@@ -375,71 +410,71 @@ export default function Home() {
                 <div style={{ height: 48 }} />
               </div>
             )}
-
-            <div className="flex items-center gap-2 pt-4">
-              <div className="flex gap-2">
-                {slides.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSlide(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      index === currentSlide
-                        ? "w-8 bg-blue-500"
-                        : "w-2 bg-white/30 hover:bg-white/50"
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
           </div>
 
           {showLogoCard && (
-            <div className="flex-1 flex justify-center lg:justify-end">
+            <div className="hero-logo-wrap flex w-full flex-1 justify-center lg:justify-end">
               <IconFleeCursor />
             </div>
           )}
         </div>
-        <div className="absolute bottom-10 right-6 lg:right-10 z-20 flex items-center gap-4">
-          <button
-            onClick={prevSlide}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition duration-300 hover:border-blue-400 hover:bg-blue-500/10"
-            aria-label="Previous slide"
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
+        <div className="hero-controls absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center justify-between lg:bottom-10">
+          {" "}
+          <div className="hero-dots flex items-center gap-2">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide
+                    ? "w-8 bg-blue-500"
+                    : "w-2 bg-white/30 hover:bg-white/50"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
-            </svg>
-          </button>
+            ))}
+          </div>
+          <div className="hero-arrows flex items-center gap-3">
+            <button
+              onClick={prevSlide}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition duration-300 hover:border-blue-400 hover:bg-blue-500/10"
+              aria-label="Previous slide"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
 
-          <button
-            onClick={nextSlide}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition duration-300 hover:border-blue-400 hover:bg-blue-500/10"
-            aria-label="Next slide"
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <button
+              onClick={nextSlide}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition duration-300 hover:border-blue-400 hover:bg-blue-500/10"
+              aria-label="Next slide"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -619,6 +654,228 @@ export default function Home() {
               font-size: 15px !important;
             }
           }
+
+          html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#homePageFontFix {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#homePageFontFix img,
+#homePageFontFix video {
+  max-width: 100%;
+}
+
+#homePageFontFix section {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#homePageFontFix .hero-buttons a {
+  min-height: 48px;
+}
+
+@media (max-width: 1024px) {
+  #homePageFontFix .hero-slide-content {
+    max-width: 820px !important;
+  }
+
+  #homePageFontFix .hero-logo-wrap {
+    margin-top: 10px;
+  }
+
+  #homePageFontFix .hero-icon-wrapper {
+    max-width: 360px;
+  }
+
+  #homePageFontFix .hero-icon-card {
+    width: 280px !important;
+    height: 320px !important;
+    padding: 18px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #homePageFontFix h1,
+  #homePageFontFix .hero-title {
+    font-size: clamp(36px, 11vw, 54px) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.035em !important;
+  }
+
+  #homePageFontFix h2 {
+    font-size: clamp(28px, 8vw, 36px) !important;
+  }
+
+  #homePageFontFix .hero-desc {
+    font-size: 15px !important;
+    line-height: 1.75 !important;
+    padding-left: 14px !important;
+  }
+
+  #homePageFontFix .hero-label {
+    max-width: 100%;
+    font-size: 10px !important;
+    letter-spacing: 1.8px !important;
+    text-align: center;
+    white-space: normal;
+  }
+
+  #homePageFontFix .hero-buttons {
+    width: 100%;
+  }
+
+  #homePageFontFix .hero-buttons a {
+    width: 100%;
+    padding: 13px 18px !important;
+  }
+
+  #homePageFontFix .hero-icon-wrapper {
+    max-width: 280px;
+  }
+
+  #homePageFontFix .hero-icon-card {
+    width: 230px !important;
+    height: 260px !important;
+    border-radius: 24px !important;
+    padding: 14px !important;
+  }
+
+  #homePageFontFix .hero-arrows button {
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #homePageFontFix h1,
+  #homePageFontFix .hero-title {
+    font-size: clamp(32px, 12vw, 46px) !important;
+  }
+
+  #homePageFontFix .hero-slide-content {
+    space-y: 20px;
+  }
+
+  #homePageFontFix .hero-desc {
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+  }
+
+  #homePageFontFix .hero-icon-card {
+    width: 200px !important;
+    height: 220px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #homePageFontFix .hero-video {
+    object-fit: contain !important;
+    object-position: center center !important;
+    background: #000 !important;
+  }
+}
+
+#homePageFontFix .hero-media-bg {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#homePageFontFix .hero-media-main {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  #homePageFontFix .hero-media-bg {
+    opacity: 0.75;
+    filter: blur(18px);
+    transform: scale(1.15);
+  }
+
+  #homePageFontFix .hero-media-main {
+    object-fit: contain !important;
+    object-position: center center !important;
+    opacity: 1 !important;
+  }
+}
+
+#homePageFontFix .hero-controls {
+  width: max-content;
+  max-width: calc(100% - 32px);
+}
+
+#homePageFontFix .hero-dots {
+  min-height: 42px;
+}
+
+#homePageFontFix .hero-arrows {
+  min-height: 42px;
+}
+
+@media (max-width: 480px) {
+  #homePageFontFix .hero-controls {
+    gap: 14px !important;
+    bottom: 28px !important;
+  }
+
+  #homePageFontFix .hero-arrows {
+    gap: 10px !important;
+  }
+
+  #homePageFontFix .hero-arrows button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+#homePageFontFix .hero-controls {
+  width: clamp(190px, 26vw, 360px);
+  max-width: calc(100% - 32px);
+}
+
+#homePageFontFix .hero-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+}
+
+#homePageFontFix .hero-arrows {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.2vw, 18px);
+  min-height: 42px;
+}
+
+@media (max-width: 480px) {
+  #homePageFontFix .hero-controls {
+    width: 190px;
+    bottom: 28px !important;
+  }
+
+  #homePageFontFix .hero-arrows button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  #homePageFontFix .hero-controls {
+    width: 280px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #homePageFontFix .hero-controls {
+    width: 360px;
+  }
+}
         `}
       </style>
     </div>

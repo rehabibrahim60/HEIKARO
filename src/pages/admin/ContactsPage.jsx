@@ -109,11 +109,7 @@ export default function ContactsPage({ toast }) {
         <LoadingGrid />
       ) : (
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: selected ? "1fr 1fr" : "1fr",
-            gap: 14,
-          }}
+          className={`admin-contacts-grid ${selected ? "has-selected" : ""}`}
         >
           {/* List */}
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>

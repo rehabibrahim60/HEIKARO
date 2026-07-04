@@ -278,7 +278,7 @@ export default function ContentAndStorytelling() {
 
   return (
     <div
-      className="service-page bg-[#0a0a0a] min-h-screen text-white"
+      className="content-story-page service-page bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       {/* HERO زي Services */}
@@ -365,7 +365,7 @@ export default function ContentAndStorytelling() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 bg-[#111] border border-[#222] h-[560px] sticky top-24 flex flex-col items-center justify-center p-8 text-center">
+          <div className="content-story-media lg:col-span-5 bg-[#111] border border-[#222] h-[300px] sm:h-[360px] md:h-[440px] lg:h-[560px] lg:sticky lg:top-24 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 text-center">
             <img
               src="/images/contant-story/What-Content.jpg"
               alt="Content and Storytelling"
@@ -482,7 +482,7 @@ export default function ContentAndStorytelling() {
           {services.map((item, index) => (
             <a
               key={item.id}
-              href={`#${item.id}`}
+href={`#${contentStorytellingCapabilities[index].anchorId}`}
               className="group min-h-[360px] border border-[#222] bg-[#080808] p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
             >
               <div>
@@ -659,7 +659,7 @@ export default function ContentAndStorytelling() {
                 <div
                   className={`overflow-hidden transition-all duration-300 ${
                     openIndex === index
-                      ? "max-h-48 opacity-100 pb-7"
+                      ? "max-h-[600px] opacity-100 pb-7"
                       : "max-h-0 opacity-0"
                   }`}
                 >
@@ -705,6 +705,114 @@ export default function ContentAndStorytelling() {
           </Link>
         </div>
       </section>
+
+      <style>{`
+  .content-story-page {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .content-story-page * {
+    box-sizing: border-box;
+  }
+
+  .content-story-page img {
+    max-width: 100%;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .content-story-page section:not(.unified-page-hero) {
+      padding-top: 70px !important;
+      padding-bottom: 70px !important;
+      padding-left: 18px !important;
+      padding-right: 18px !important;
+    }
+
+    .content-story-page h2 {
+      font-size: clamp(28px, 9vw, 38px) !important;
+      line-height: 1.12 !important;
+      letter-spacing: -0.03em !important;
+    }
+
+    .content-story-page h1:not(.unified-page-title) {
+      font-size: clamp(30px, 9vw, 42px) !important;
+      line-height: 1.12 !important;
+      letter-spacing: -0.035em !important;
+    }
+
+    .content-story-page p {
+      overflow-wrap: anywhere;
+    }
+
+    .content-story-page .content-story-media {
+      position: relative !important;
+      top: auto !important;
+      height: 300px !important;
+      padding: 12px !important;
+    }
+
+    .content-story-page .grid {
+      min-width: 0;
+    }
+
+    .content-story-page a,
+    .content-story-page button {
+      max-width: 100%;
+    }
+
+    .content-story-page .min-h-\\[360px\\] {
+      min-height: auto !important;
+    }
+
+    .content-story-page .tracking-\\[4px\\],
+    .content-story-page .tracking-\\[3px\\],
+    .content-story-page .tracking-\\[1\\.8px\\] {
+      letter-spacing: 1.5px !important;
+    }
+
+    .content-story-page .text-\\[58px\\],
+    .content-story-page .text-\\[56px\\] {
+      font-size: 38px !important;
+    }
+
+    .content-story-page .text-\\[46px\\] {
+      font-size: 34px !important;
+    }
+
+    .content-story-page .text-\\[18px\\] {
+      font-size: 16px !important;
+    }
+
+    .content-story-page .text-\\[16px\\] {
+      font-size: 15px !important;
+    }
+
+    .content-story-page .text-\\[15px\\] {
+      font-size: 14px !important;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .content-story-page section:not(.unified-page-hero) {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+
+    .content-story-page .content-story-media {
+      height: 260px !important;
+    }
+
+    .content-story-page .text-\\[13px\\] {
+      font-size: 12px !important;
+    }
+
+    .content-story-page .text-\\[12px\\] {
+      font-size: 11px !important;
+    }
+  }
+`}</style>
 
       <StartWithClarity />
     </div>

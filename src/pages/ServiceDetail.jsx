@@ -112,7 +112,8 @@ const SERVICES_DATA = {
         desc: "We turn identity into guidelines, rules, files, templates, and scalable systems so the brand can stay consistent over time.",
       },
     ],
-    image: "/images/Brand-identity/Brand-identity-is-not-the-surface-of-the-business.-It-is-the-core-operating-system..jpg",
+    image:
+      "/images/Brand-identity/Brand-identity-is-not-the-surface-of-the-business.-It-is-the-core-operating-system..jpg",
   },
 };
 
@@ -641,322 +642,456 @@ export default function ServiceDetail() {
       </div>
     );
 
-  return (
-    <div className="service-page service-detail-page">
-      <div className="site-container">
-        {/* Breadcrumb */}
-        {/* <div className="sd-breadcrumb">
-          <Link to="/" className="sd-crumb">
-            🏠 HOME
-          </Link>
-          <span className="sd-crumb-sep">›</span>
-          <Link to="/services" className="sd-crumb">
-            SERVICES
-          </Link>
-          <span className="sd-crumb-sep">›</span>
-          <span className="sd-crumb active">
-            {service.title.replace("\n", " ")}
-          </span>
-        </div> */}
+ return (
+  <div
+    className="brand-identity-page service-page bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden"
+    style={{ fontFamily: "Aspekta, sans-serif" }}
+  >
+    {/* HERO زي صفحة Design & Experience */}
+    <section
+      className="unified-page-hero"
+      style={{
+        "--hero-bg": "url('/images/Brand-identity/brand-idinty-cover-page.jpeg')",
+      }}
+    >
+      <div className="unified-page-hero-content">
+        <h1 className="unified-page-title">
+          BRAND &<br /> IDENTITY
+        </h1>
 
-        {/* Hero */}
-        <section
-          className="operational-section has-bg-image"
-          style={{ "--hero-bg": `url("/images/Brand-identity/brand-idinty-cover-page.jpg")` }}
-        >
-          <div className="sd-hero-overlay" />
-          <div className="sd-hero-content unified-page-hero-content">
-            {/* <div className="sd-badge">
-              <span className="sd-badge-static">SERVICE {service.id} // </span>
-              <span className="sd-badge-gradient">{service.track}</span>
-            </div> */}
-            <h1 className="unified-page-title">
-              {service.title.split("\n").map((line, i) => (
-                <span key={i}>
-                  {line}
-                  <br />
-                </span>
-              ))}
-            </h1>
-            <p className="sd-desc-small">
-              {service.description.slice(0, 120)}...
-            </p>
-          </div>
-        </section>
+        <p className="unified-page-desc">
+          — Strategic brand systems designed to define how your brand thinks,
+          speaks, looks, behaves, and becomes remembered.
+        </p>
+      </div>
+    </section>
 
-        {/* Quote + Pillars + Image */}
-        <section className="sd-content-section">
-          <div className="sd-content-left">
-            <div className="sd-quote-left">
-              <span className="sd-subtitle-label">{service.subtitle}</span>
-              <h2 className="sd-quote">{service.quote}</h2>
-              <p className="sd-description">{service.description}</p>
-            </div>
-            <div className="sd-pillars">
-              {service.pillars.map((p, i) => (
-                <div key={i} className="sd-pillar">
-                  <span className="sd-pillar-icon">{p.icon}</span>
-                  <h3 className="sd-pillar-title">{p.title}</h3>
-                  <p className="sd-pillar-desc">{p.desc}</p>
+    {/* What it means */}
+    <section className="bg-[#0a0a0a] text-white py-[90px] px-[8%]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
+        <div className="lg:col-span-7">
+          <p className="text-[#0f33fe] font-black tracking-[3px] mb-4 text-[12px] uppercase">
+            A UNIFIED ECOSYSTEM
+          </p>
+
+          <h2 className="text-[32px] md:text-[46px] font-black mb-7 leading-[1.12] tracking-[-0.03em] uppercase">
+            What Brand & Identity Means
+          </h2>
+
+          <p className="text-gray-400 mb-14 text-[16px] leading-[1.85] max-w-2xl">
+            Brand identity is not only a logo or a visual style. It is the
+            complete system that defines how the brand is positioned, how it
+            speaks, how it looks, and how it stays consistent across every
+            digital and physical touchpoint.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:32px_32px] opacity-30"></div>
+
+            {service.pillars.map((item, index) => (
+              <div
+                key={index}
+                className="relative z-10 bg-[#0a0a0a] border border-[#222] p-7 hover:border-[#0f33fe] transition-all duration-300 group"
+              >
+                <div className="mb-5 text-2xl text-[#bbfe0f]">
+                  {item.icon}
                 </div>
-              ))}
-            </div>
-          </div>
-          <div className="sd-content-right">
-            <img
-              src={service.image}
-              alt={service.title}
-              className="sd-side-img"
-            />
-          </div>
-        </section>
-        <section className="second-section">
-          {/* Section title */}
-          <div className="section-header">
-            <span className="section-label">EROSION OF DIFFERENTIATION</span>
-            <h2 className="section-title">Why Most Brands Look Similar</h2>
-            <p className="section-description">
-              When a brand has no strategy-centered design guidelines, every
-              asset deployment restarts from zero. Flat templated brands
-              dissolve in aggressive scaling stages:
-            </p>
-          </div>
 
-          {/* Boxes grid (4 columns × 2 rows) */}
-          <div className="pillars-grid">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="pillar-card">
-                <span className="pillar-number">0{i + 1}</span>
-                <p className="pillar-text">
-                  The brand has a logo but no clear positioning background or
-                  rationale.
+                <h4 className="text-white font-black text-[17px] mb-3 tracking-[-0.02em] uppercase group-hover:text-[#0f33fe] transition-colors">
+                  {item.title}
+                </h4>
+
+                <p className="text-gray-500 text-[15px] leading-[1.8]">
+                  {item.desc}
                 </p>
               </div>
             ))}
           </div>
-        </section>
-        <section className="capabilities-section">
-          <div className="section-header">
-            <span className="section-label">MODULAR COMPETENCY</span>
-            <h2 className="section-title">Our Included Capabilities</h2>
-          </div>
+        </div>
 
-          <div className="capabilities-grid">
-            {capabilities.map((item, i) => (
-              // Linking is handled through the ID named section-cap-01 and so on
-              <a
-                href={`#section-cap-0${i + 1}`}
-                key={i}
-                className="capability-card"
-              >
-                <span className="card-number">0{i + 1}</span>
-                <h3 className="card-title">{item.title}</h3>
-                <p className="card-desc">{item.desc}</p>
-                <div className="card-divider"></div>
-                <span className="card-footer">{item.footer}</span>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        {/* Main title appears only in the first section */}
-
-        <CapabilitiesSection
-          id="capabilities-section"
-          eyebrow="BRAND & IDENTITY"
-          title="Capabilities In Detail"
-          cards={brandIdentityCapabilities}
-        />
-
-        <section className="operational-section"
-          style={{ "--hero-bg": `url("/images/Brand-identity/Step-Brand-&-Identity-Systems-Framework.jpg")` }}
-        >
-          <div className="section-container">
-            {/* Section title */}
-            <div className="operational-header">
-              <span className="section-label">OPERATIONAL METHODOLOGY</span>
-              <h2 className="section-title">
-                Our 8-Step Brand & Identity Systems Framework
-              </h2>
-              <p className="section-description">
-                We deploy creative projects according to a rigorous scientific
-                roadmap to ensure strategic purpose underpins every single
-                graphic element.
-              </p>
-            </div>
-
-            {/* Grid (4 columns × 2 rows) */}
-            <div className="operational-grid">
-              {operationalSteps.map((step, i) => (
-                <div key={i} className="op-card">
-                  <span className="op-number">STEP {step.step}</span>
-                  <h3 className="op-title">{step.title}</h3>
-                  <p className="op-desc">{step.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <div className="brand-identity-media lg:col-span-5 bg-[#111] border border-[#222] h-[300px] sm:h-[360px] md:h-[440px] lg:h-[560px] lg:sticky lg:top-24 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 text-center">
+          <img
+            src={service.image}
+            alt="Brand Identity"
+            className="w-full h-full object-cover opacity-80"
+          />
+        </div>
       </div>
-      <section className="anatomy-section">
-        <div className="site-container">
-          <div className="split-layout">
-            {/* Left side: text */}
-            <div className="text-side">
-              <span className="section-label">ANATOMY OF A MARKET LEADER</span>
-              <h2 className="section-title">
-                What A Complete Brand System Includes
-              </h2>
-              <p className="section-description">
-                Branding is not a file package. It is an operating standard. We
-                develop each component as an interactive variable, engineered to
-                work synchronously across the enterprise runtime.
-              </p>
+    </section>
+
+    {/* Problems */}
+    <section className="bg-[#0a0a0a] text-white py-[90px] px-[8%] border-t border-[#111]">
+      <div className="text-center mb-14">
+        <p className="text-[#ff3b30] font-black tracking-[3px] text-[12px] uppercase mb-4">
+          Erosion of Differentiation
+        </p>
+
+        <h2 className="text-[32px] md:text-[46px] font-black max-w-3xl mx-auto leading-[1.12] tracking-[-0.03em] uppercase">
+          Why Most Brands Look Similar
+        </h2>
+
+        <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-[16px] leading-[1.85]">
+          When a brand has no clear strategy, verbal system, visual rules, or
+          consistent identity guidelines, it becomes easy to copy, forget, and
+          replace.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          "The brand has a logo but no clear positioning background or strategic direction.",
+          "The message changes from platform to platform and customers do not understand what the company really offers.",
+          "Colors, fonts, layouts, and visual assets are used randomly without a controlled identity system.",
+          "The brand looks similar to competitors and does not own a memorable visual signature.",
+          "Social media, website, presentations, and printed materials do not feel connected.",
+          "The company looks smaller or less professional than its actual value and capabilities.",
+          "Rebranding decisions happen emotionally without protecting the existing audience recognition.",
+          "Packaging, product visuals, and brand applications do not support premium perception.",
+          "Teams and designers work without clear brand guidelines, which causes inconsistency over time.",
+        ].map((text, index) => (
+          <div
+            key={index}
+            className="border border-[#222] p-7 hover:border-[#333] transition-colors bg-[#0f0f0f]"
+          >
+            <div className="text-[#ff3b30] font-mono text-[15px] mb-4">
+              [{String(index + 1).padStart(2, "0")}]
             </div>
 
-            {/* Right side: matrix (4x4) */}
-            <div className="grid-side">
-              {[
-                "Brand Purpose",
-                "Audience Definition",
-                "Market Positioning",
-                "Competitive Differentiation",
-                "Brand Promise",
-                "Brand Personality",
-                "Naming System",
-                "Messaging Framework",
-                "Tone of Voice",
-                "Logo System",
-                "Color Palette",
-                "Typography",
-                "Visual Language",
-                "Imagery Direction",
-                "Layout Rules",
-                "Brand Applications",
-                "Packaging System",
-                "Brand Guidelines",
-                "Governance Rules",
-                "Template System",
-              ].map((item, i) => (
-                <div key={i} className="anatomy-card">
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="strategic-section">
-        <div className="site-container">
-          <div className="split-layout">
-            {/* Left side: text */}
-            <div className="text-side">
-              <span className="section-label">
-                DESIGN LOGIC & MARKET PEDIGREE
-              </span>
-              <h2 className="section-title">
-                Elite Creative Grounded In Pure Strategic Purpose
-              </h2>
-              <p className="section-description">
-                Beautiful graphics without strategy are empty assets. Similarly,
-                extensive strategy slide-decks lacking visual taste look
-                clinical and fail to align with premium customer lifestyles.
-              </p>
-              <p className="section-description">
-                HEIKARO bridges this aesthetic discrepancy. We are a
-                consolidated, design-first brand engine. Our
-                strategist-designers work synchronously inside single unified
-                conceptual pods, ensuring every grid layout, curve, message, and
-                dieline traces natively to your corporate margins and target
-                audience metrics.
-              </p>
-            </div>
-
-            {/* Right side: 4 cards */}
-            <div className="grid-side-pillars">
-              {pillarsData.map((item, i) => (
-                <div key={i} className="pillar-card">
-                  <span className="pillar-icon">✓</span>
-                  <h3 className="pillar-title">{item.title}</h3>
-                  <p className="pillar-text">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="faq-section">
-        <div className="site-container split-layout">
-          <div className="text-side">
-            <span className="section-label" style={{ color: "#bbfe0f" }}>
-              FAQS
-            </span>
-            <h2 className="section-title">Got Questions? We Have Answers.</h2>
-            <p className="section-description">
-              Got questions about positioning logic, asset licensing rules, or
-              transition workflows? Discover details here, or reach out for
-              custom scoping.
+            <p className="text-gray-400 text-[15px] leading-[1.8]">
+              {text}
             </p>
           </div>
+        ))}
+      </div>
 
-          <div className="faq-side">
-            {faqData.map((item, i) => (
-              <div
-                key={i}
-                className={`faq-item ${openIndex === i ? "active" : ""}`}
-              >
-                <div
-                  className="faq-header"
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                >
-                  <h3>{item.q}</h3>
-                  <span className="faq-arrow">
-                    {openIndex === i ? "−" : "+"}
-                  </span>
-                </div>
-                <div className="faq-content">
-                  <p>{item.a}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="hero-section">
-        <div className="site-container">
-          <span className="hero-label">AESTHETIC ALIGNMENT</span>
-          <h1 className="hero-title">ENFORCE YOUR DISTINCT VISUAL IP</h1>
-          <p
-            className="hero-description"
-            style={{ color: "#888", maxWidth: "600px", margin: "0 auto" }}
+      <div className="mt-20 text-center max-w-3xl mx-auto">
+        <p className="text-[#bbfe0f] font-black tracking-[2px] uppercase text-[14px] leading-[1.8]">
+          WHEN BRAND IDENTITY HAS NO STRATEGY, CONSISTENCY DISAPPEARS.
+          HEIKARO BUILDS BRAND SYSTEMS THAT TURN POSITIONING, VOICE, VISUALS,
+          AND GUIDELINES INTO ONE CLEAR OPERATING STANDARD.
+        </p>
+      </div>
+    </section>
+
+    {/* Included Capabilities */}
+    <section className="bg-[#0a0a0a] text-white py-[95px] px-[8%] border-t border-[#111]">
+      <div className="text-center mb-16">
+        <p className="text-[#bbfe0f] font-black tracking-[4px] text-[12px] uppercase mb-5">
+          CAPABILITIES SPECTRUM
+        </p>
+
+        <h2 className="text-[36px] md:text-[58px] font-black leading-[1.05] tracking-[-0.04em] text-white">
+          Included Capabilities
+        </h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {capabilities.map((item, index) => (
+          <a
+            key={item.id}
+href={`#${brandIdentityCapabilities[index].anchorId}`}
+            className="group min-h-[330px] border border-[#222] bg-[#080808] p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
           >
-            Book an identity strategy exploration. Our team will audit your
-            current positioning baseline and design a custom structural brand
-            rollout path.
+            <div>
+              <div className="flex items-center justify-between mb-12">
+                <span className="text-[#8da2c0] text-[13px] font-mono">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <span className="text-[#8da2c0] text-2xl group-hover:text-[#0f33fe] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all">
+                  ↗
+                </span>
+              </div>
+
+              <h3 className="text-white text-[18px] leading-[1.3] font-black mb-5 tracking-[-0.02em] group-hover:text-[#0f33fe] transition-colors">
+                {item.title}
+              </h3>
+
+              <p className="text-[#8b9bb3] text-[15px] leading-[1.75]">
+                {item.desc}
+              </p>
+            </div>
+
+            <div className="pt-7 mt-8 border-t border-[#222]">
+              <p className="text-[#bbfe0f] text-[13px] leading-[1.5] font-black">
+                Explore this capability in detail
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {/* Details */}
+    <CapabilitiesSection
+      id="capabilities-section"
+      eyebrow="BRAND & IDENTITY"
+      title="Capabilities In Detail"
+      cards={brandIdentityCapabilities}
+    />
+
+    {/* Complete system includes */}
+    <section className="bg-[#0a0a0a] text-white py-[90px] px-[8%] border-t border-[#111]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-start">
+        <div className="lg:col-span-4">
+          <p className="text-[#0f33fe] font-black tracking-[3px] text-[12px] uppercase mb-4">
+            OPERATIONAL ARCHITECTURE
           </p>
 
-          <div className="hero-buttons">
-            {/* First button: Contact with color change */}
-            <button
-              className={`custom-btn ${isActive ? "active" : ""}`}
-              onClick={() => {
-                setIsActive(true);
-                setTimeout(() => {
-                  window.location.href = "/contact";
-                }, 200); // Very slight delay so the blue color appears before navigation
-              }}
-            >
-              REQUEST BRAND SCOPING →
-            </button>
+          <h2 className="text-[32px] md:text-[46px] font-black leading-[1.12] tracking-[-0.03em] uppercase mb-7">
+            What A Complete Brand System Includes
+          </h2>
 
-            {/* Second button: Services */}
-            <Link to="/services" className="btn-outline">
-              BROWSE ALL SERVICES
-            </Link>
-          </div>
+          <p className="text-gray-400 text-[16px] leading-[1.85]">
+            Branding is not a file package. It is an operating standard. A
+            complete brand system aligns purpose, positioning, language,
+            visuals, applications, packaging, and governance rules.
+          </p>
         </div>
-      </section>
-      <StartWithClarity />
-    </div>
-  );
+
+        <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            "Brand Purpose",
+            "Audience Definition",
+            "Market Positioning",
+            "Competitive Differentiation",
+            "Brand Promise",
+            "Brand Personality",
+            "Naming System",
+            "Messaging Framework",
+            "Tone of Voice",
+            "Logo System",
+            "Color Palette",
+            "Typography",
+            "Visual Language",
+            "Imagery Direction",
+            "Layout Rules",
+            "Brand Applications",
+            "Packaging System",
+            "Brand Guidelines",
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="border border-[#222] p-5 bg-[#0f0f0f] hover:border-[#333] transition-colors"
+            >
+              <p className="text-white text-[15px] leading-[1.65] font-semibold">
+                {item}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* 8-step section */}
+    <section className="bg-[#0a0a0a] text-white py-[90px] px-[8%]">
+      <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-14">
+        <p className="text-[#0f33fe] font-black tracking-[3px] text-[12px] uppercase mb-4">
+          OPERATIONAL METHODOLOGY
+        </p>
+
+        <h2 className="text-[32px] md:text-[46px] font-black mb-6 leading-[1.12] tracking-[-0.03em] uppercase">
+          Our 8-Step Brand & Identity Systems Framework
+        </h2>
+
+        <p className="text-gray-400 text-[16px] leading-[1.85]">
+          We deploy creative projects through a clear roadmap to ensure
+          strategic purpose supports every visual, verbal, and operational brand
+          decision.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {operationalSteps.map((step, index) => (
+          <div
+            key={index}
+            className="relative p-7 border border-[#222] bg-[#0a0a0a] overflow-hidden group cursor-pointer transition-colors hover:border-[#333]"
+          >
+            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#0f33fe] transition-all duration-500 group-hover:w-full"></div>
+
+            <div className="text-[#0f33fe] font-mono text-[13px] mb-4">
+              {step.step}
+            </div>
+
+            <h4 className="text-white font-black text-[17px] leading-[1.35] mb-4 uppercase">
+              {step.title}
+            </h4>
+
+            <p className="text-gray-500 text-[15px] leading-[1.8]">
+              {step.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* FAQ */}
+    <section className="bg-[#0a0a0a] text-white py-[90px] px-[8%] border-t border-[#111]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-14">
+        <div className="lg:col-span-4">
+          <div className="w-12 h-12 border border-[#0f33fe] flex items-center justify-center mb-6">
+            <span className="text-[#0f33fe] text-xl">?</span>
+          </div>
+
+          <p className="text-[#0f33fe] font-black tracking-[3px] text-[12px] uppercase mb-4">
+            FAQS
+          </p>
+
+          <h2 className="text-[32px] md:text-[46px] font-black mb-6 leading-[1.12] tracking-[-0.03em] uppercase">
+            Frequently Asked Questions
+          </h2>
+
+          <p className="text-gray-400 text-[16px] leading-[1.85]">
+            Got questions about brand strategy, logo systems, rebranding,
+            packaging, or brand guidelines? Explore answers here.
+          </p>
+        </div>
+
+        <div className="lg:col-span-8">
+          {faqData.map((item, index) => (
+            <div key={index} className="border-b border-[#222]">
+              <button
+                onClick={() =>
+                  setOpenIndex(openIndex === index ? null : index)
+                }
+                className="w-full flex justify-between items-center py-7 text-left hover:text-[#0f33fe] transition-colors"
+              >
+                <span className="font-black text-[18px] leading-[1.5]">
+                  {item.q}
+                </span>
+
+                <span className="ml-4 text-xl">
+                  {openIndex === index ? "−" : "+"}
+                </span>
+              </button>
+
+              <div
+                className={`overflow-hidden transition-all duration-300 ${
+                  openIndex === index
+                    ? "max-h-[700px] opacity-100 pb-7"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <p className="text-gray-400 text-[16px] leading-[1.85]">
+                  {item.a}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section className="bg-[#0a0a0a] py-[90px] px-[8%] text-center">
+      <div className="text-[#0f33fe] font-black tracking-[4px] text-[12px] uppercase mb-6">
+        AESTHETIC ALIGNMENT
+      </div>
+
+      <h1 className="text-[34px] md:text-[56px] font-black text-white mb-7 leading-[1.12] tracking-[-0.04em] uppercase">
+        ENFORCE YOUR DISTINCT <br /> VISUAL IP
+      </h1>
+
+      <p className="text-gray-400 text-[16px] md:text-[18px] max-w-2xl mx-auto mb-11 leading-[1.85]">
+        Book an identity strategy exploration. Our team will audit your current
+        positioning baseline and design a custom structural brand rollout path.
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Link
+          to="/contact"
+          className="bg-[#0f33fe] text-white px-8 py-4 font-black uppercase tracking-[1.8px] text-[13px] hover:bg-white hover:text-black transition-all duration-300"
+        >
+          REQUEST BRAND SCOPING →
+        </Link>
+
+        <Link
+          to="/services"
+          className="bg-transparent border border-[#333] text-white px-8 py-4 font-black uppercase tracking-[1.8px] text-[13px] hover:bg-white hover:text-black transition-all duration-300"
+        >
+          BROWSE ALL SERVICES
+        </Link>
+      </div>
+    </section>
+
+    <style>{`
+      .brand-identity-page {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      .brand-identity-page * {
+        box-sizing: border-box;
+      }
+
+      .brand-identity-page img {
+        max-width: 100%;
+        display: block;
+      }
+
+      @media (max-width: 768px) {
+        .brand-identity-page section:not(.unified-page-hero) {
+          padding-top: 70px !important;
+          padding-bottom: 70px !important;
+          padding-left: 18px !important;
+          padding-right: 18px !important;
+        }
+
+        .brand-identity-page h2 {
+          font-size: clamp(28px, 9vw, 38px) !important;
+          line-height: 1.12 !important;
+          letter-spacing: -0.03em !important;
+        }
+
+        .brand-identity-page h1:not(.unified-page-title) {
+          font-size: clamp(30px, 9vw, 42px) !important;
+          line-height: 1.12 !important;
+          letter-spacing: -0.035em !important;
+        }
+
+        .brand-identity-page p {
+          overflow-wrap: anywhere;
+        }
+
+        .brand-identity-page .brand-identity-media {
+          position: relative !important;
+          top: auto !important;
+          height: 300px !important;
+          padding: 12px !important;
+        }
+
+        .brand-identity-page .grid {
+          min-width: 0 !important;
+        }
+
+        .brand-identity-page a,
+        .brand-identity-page button {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .brand-identity-page section:not(.unified-page-hero) {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+
+        .brand-identity-page .brand-identity-media {
+          height: 260px !important;
+        }
+
+        .brand-identity-page h2 {
+          font-size: 30px !important;
+        }
+
+        .brand-identity-page h1:not(.unified-page-title) {
+          font-size: 32px !important;
+        }
+      }
+    `}</style>
+
+    <StartWithClarity />
+  </div>
+);
 }

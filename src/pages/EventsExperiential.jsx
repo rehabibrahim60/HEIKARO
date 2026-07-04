@@ -506,7 +506,7 @@ export default function EventsExperiential() {
           {eventsCapabilities.map((item) => (
             <a
               key={item.id}
-              href={`#${item.anchor}`}
+href={`#${brandIdentityCapabilities[index].anchorId}`}
               className="group min-h-[360px] border border-[#222] bg-[#080808] p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
             >
               <div>

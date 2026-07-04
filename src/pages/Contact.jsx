@@ -3,7 +3,7 @@ import "./style/contact.css";
 import { Link } from "react-router-dom";
 import "./style/pageHero.css";
 
-const API = "http://localhost:3000";
+const API = "https://api.heikaro.com";
 
 /* =======================
    Service → Solutions Map
@@ -316,12 +316,33 @@ const Contact = () => {
             <h3 className="sidebar-title">ECOSYSTEM</h3>
 
             <div className="social-grid">
-              <div className="social-item">FACEBOOK</div>
-              <div className="social-item">INSTAGRAM</div>
-              <div className="social-item">TWITTER</div>
-              <div className="social-item">YOUTUBE</div>
-              <div className="social-item">LINKEDIN</div>
-              <div className="social-item">BEHANCE</div>
+              <Link to="https://www.facebook.com/heikaro" target="_blank">
+                <div className="social-item">FACEBOOK</div>
+              </Link>
+              <Link
+                to="https://www.instagram.com/heikaro.agancy/"
+                target="_blank"
+              >
+                <div className="social-item">INSTAGRAM</div>
+              </Link>
+              <Link to="https://x.com/heikaro_agancy" target="_blank">
+                <div className="social-item">TWITTER</div>
+              </Link>
+              <Link
+                to="https://www.youtube.com/@Heikaro.Agancy"
+                target="_blank"
+              >
+                <div className="social-item">YOUTUBE</div>
+              </Link>
+              <Link
+                to="https://www.linkedin.com/company/heikaro/"
+                target="_blank"
+              >
+                <div className="social-item">LINKEDIN</div>
+              </Link>
+              <Link to="https://www.behance.net/heikaroagancy" target="_blank">
+                <div className="social-item">BEHANCE</div>
+              </Link>
             </div>
           </div>
 

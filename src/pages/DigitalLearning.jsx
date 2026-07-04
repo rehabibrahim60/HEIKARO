@@ -188,14 +188,27 @@ const digitalLearningCapabilities = [
 export default function DigitalLearning() {
   return (
     <div
-      className="service-page digital-learning-page bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page digital-learning-page bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       <style>
         {`
+    .digital-learning-page {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     .digital-learning-page,
     .digital-learning-page * {
       font-family: "Aspekta", sans-serif !important;
+      box-sizing: border-box;
+    }
+
+    .digital-learning-page img,
+    .digital-learning-page video {
+      max-width: 100%;
+      display: block;
     }
 
     .digital-learning-page h1 {
@@ -227,6 +240,7 @@ export default function DigitalLearning() {
       font-size: 18px !important;
       line-height: 1.9 !important;
       font-weight: 500 !important;
+      overflow-wrap: anywhere;
     }
 
     .digital-learning-page li {
@@ -265,33 +279,115 @@ export default function DigitalLearning() {
 
     .digital-learning-page a,
     .digital-learning-page button {
+      max-width: 100%;
       font-size: 14px !important;
       font-weight: 900 !important;
       letter-spacing: 1.5px !important;
     }
 
+    .digital-learning-page .grid {
+      min-width: 0 !important;
+    }
+
+    @media (max-width: 1024px) {
+      .digital-learning-page section:not(.unified-page-hero) {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+      }
+    }
+
     @media (max-width: 768px) {
+      .digital-learning-page section:not(.unified-page-hero) {
+        padding-top: 70px !important;
+        padding-bottom: 70px !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+      }
+
       .digital-learning-page h1 {
-        font-size: clamp(38px, 11vw, 56px) !important;
+        font-size: clamp(36px, 11vw, 54px) !important;
+        line-height: 1 !important;
       }
 
       .digital-learning-page h2 {
-        font-size: 31px !important;
+        font-size: clamp(28px, 9vw, 36px) !important;
+        line-height: 1.12 !important;
       }
 
       .digital-learning-page h3,
       .digital-learning-page h4 {
-        font-size: 19px !important;
+        font-size: 18px !important;
+        line-height: 1.35 !important;
       }
 
       .digital-learning-page p {
-        font-size: 16px !important;
+        font-size: 15px !important;
         line-height: 1.8 !important;
+      }
+
+      .digital-learning-page li {
+        font-size: 14px !important;
       }
 
       .digital-learning-page .text-sm,
       .digital-learning-page [class*="text-sm"] {
         font-size: 15px !important;
+      }
+
+      .digital-learning-page .text-xs,
+      .digital-learning-page [class*="text-xs"] {
+        font-size: 11px !important;
+        letter-spacing: 1.4px !important;
+      }
+
+      .digital-learning-page .tracking-\\[4px\\],
+      .digital-learning-page .tracking-\\[3px\\],
+      .digital-learning-page .tracking-\\[1\\.5px\\] {
+        letter-spacing: 1.4px !important;
+      }
+
+      .digital-learning-page .min-h-\\[360px\\] {
+        min-height: auto !important;
+      }
+
+      .digital-learning-page a.group {
+        padding: 24px !important;
+      }
+
+      .digital-learning-page a.group .mb-12 {
+        margin-bottom: 28px !important;
+      }
+
+      .digital-learning-page a.group .mt-8 {
+        margin-top: 24px !important;
+      }
+
+      .digital-learning-page a.group .pt-7 {
+        padding-top: 20px !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .digital-learning-page section:not(.unified-page-hero) {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+
+      .digital-learning-page h1 {
+        font-size: 36px !important;
+      }
+
+      .digital-learning-page h2 {
+        font-size: 30px !important;
+      }
+
+      .digital-learning-page h3,
+      .digital-learning-page h4 {
+        font-size: 17px !important;
+      }
+
+      .digital-learning-page p {
+        font-size: 14px !important;
       }
     }
   `}
@@ -321,7 +417,7 @@ export default function DigitalLearning() {
       <Whoisitfor />
 
       {/* Included Capabilities - بدون صور */}
-      <section className="bg-[#0a0a0a] text-white py-[95px] px-[8%] border-t border-[#111]">
+      <section className="bg-[#0a0a0a] text-white py-20 px-4 sm:px-6 lg:px-[8%] lg:py-[95px] border-t border-[#111]">
         <div className="text-center mb-16">
           <p className="text-[#bbfe0f] font-black tracking-[4px] text-[12px] uppercase mb-5">
             CAPABILITIES SPECTRUM
@@ -337,7 +433,7 @@ export default function DigitalLearning() {
             <a
               key={item.id}
               href={`#${item.anchor}`}
-              className="group min-h-[360px] border border-[#222] bg-[#080808] p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
+              className="group min-h-auto lg:min-h-[360px] border border-[#222] bg-[#080808] p-6 sm:p-7 lg:p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
             >
               <div>
                 <div className="flex items-center justify-between mb-12">

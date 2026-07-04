@@ -5,7 +5,7 @@ import "./style/pageHero.css";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
 import EngineerYourMarket from "../components/common/ENGINEER_YOUR_MARKET";
 
-const API = "http://localhost:3000";
+const API = "https://api.heikaro.com";
 const PROJECTS_PER_PAGE = 9;
 
 const filters = [
@@ -21,14 +21,14 @@ const filters = [
 ];
 
 const categoryMap = {
-  IDENTITY: "Brand & Identity",
-  "UX/UI": "Design & Experience",
-  CONTENT: "Content & Storytelling",
-  GROWTH: "Marketing & Growth",
-  FILM: "Media & Production",
-  "AI/CGI": "AI & CGI",
-  EVENTS: "Events & Experiential",
-  LEARNING: "Digital Learning",
+  IDENTITY: "Brand&Identity",
+  "UX/UI": "Design&Experience",
+  CONTENT: "Content&Storytelling",
+  GROWTH: "Marketing&Growth",
+  FILM: "Media&Production",
+  "AI/CGI": "AI&CGI",
+  EVENTS: "Events&Experiential",
+  LEARNING: "DigitalLearning",
 };
 
 const Portfolio = () => {
@@ -125,7 +125,7 @@ const Portfolio = () => {
   );
 
   return (
-    <div className="portfolio-page">
+    <div className="portfolio-page overflow-x-hidden">
       <section
         className="unified-page-hero"
         style={{ "--hero-bg": "url('/images/Portfolio/COVER.jpg')" }}
@@ -143,31 +143,96 @@ const Portfolio = () => {
         </div>
       </section>
 
-      <section className="portfolio-blog-filter-wrap">
-        <div className="portfolio-blog-filter-inner">
-          <div className="portfolio-blog-filter-buttons">
-            {filters.map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                className={`portfolio-blog-filter-btn ${
-                  activeFilter === filter ? "active" : ""
-                }`}
-                onClick={() => setActiveFilter(filter)}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
+      <section className="portfolio-filter-section">
+        <div className="portfolio-filter-container">
+          <div className="portfolio-filter-layout">
+            {/* Filters */}
+            <div className="portfolio-filter-left">
+              <div className="portfolio-filter-mobile-label">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                </svg>
+                Filter by system
+              </div>
 
-          <div className="portfolio-blog-search-box">
-            <input
-              type="text"
-              placeholder="SEARCH PROJECTS..."
-              className="portfolio-blog-search-input"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+              <div className="portfolio-filter-row">
+                <div className="portfolio-filter-icon">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                  </svg>
+                </div>
+
+                <div className="portfolio-filter-scroll">
+                  {filters.map((filter) => (
+                    <button
+                      key={filter}
+                      type="button"
+                      className={`portfolio-filter-chip ${
+                        activeFilter === filter ? "active" : ""
+                      }`}
+                      onClick={() => setActiveFilter(filter)}
+                    >
+                      {filter}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Search */}
+            <div className="portfolio-search-box-new">
+              <div className="portfolio-search-inner">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="portfolio-search-icon"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+
+                <input
+                  type="text"
+                  placeholder="SEARCH PROJECTS..."
+                  className="portfolio-search-input-new"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+
+                {search && (
+                  <button
+                    type="button"
+                    className="portfolio-search-clear"
+                    onClick={() => setSearch("")}
+                    aria-label="Clear search"
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1568,3 +1568,618 @@
     padding-bottom: 70px !important;
   }
 }
+
+/* =========================================================
+   ABOUT PAGE RESPONSIVE FINAL OVERRIDES
+   Put this at the very end of about.css
+========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+/* General section spacing */
+.hk-root,
+.ab-root,
+.beliefs-root,
+.services-root,
+.model-root,
+.edge-root,
+.statement-root,
+.eco-root,
+.val-root,
+.pers-root,
+.briefing-root,
+.clarity-banner-root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Better shared padding */
+.ab-root,
+.beliefs-root,
+.services-root,
+.model-root,
+.edge-root,
+.statement-root,
+.eco-root,
+.val-root,
+.pers-root,
+.briefing-root {
+  padding-left: clamp(18px, 5vw, 80px) !important;
+  padding-right: clamp(18px, 5vw, 80px) !important;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hk-root {
+  width: 100% !important;
+  min-height: 100svh !important;
+  padding: 120px clamp(18px, 6vw, 80px) 70px !important;
+  background-position: center !important;
+}
+
+.hk-content {
+  width: 100% !important;
+  max-width: 760px !important;
+  padding: 0 !important;
+}
+
+.hk-content>div:last-child,
+.briefing-container>div:last-child {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+}
+
+.hk-btn-primary,
+.hk-btn-outline {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  min-height: 52px !important;
+}
+
+/* =========================
+   ABOUT VISUAL CARDS
+========================= */
+
+.ab-container {
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.9fr) !important;
+  gap: clamp(40px, 6vw, 80px) !important;
+  align-items: center !important;
+}
+
+.ab-left {
+  min-width: 0 !important;
+}
+
+.ab-right {
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 560px !important;
+  height: 520px !important;
+  justify-self: center !important;
+}
+
+.ab-card-1 {
+  left: 0 !important;
+  top: 20px !important;
+}
+
+.ab-card-2 {
+  left: 105px !important;
+  top: 145px !important;
+}
+
+.ab-card-3 {
+  left: 210px !important;
+  top: 270px !important;
+}
+
+/* =========================
+   GRIDS
+========================= */
+
+.beliefs-grid,
+.services-grid,
+.eco-grid,
+.val-grid,
+.pers-grid {
+  width: 100% !important;
+  max-width: 1320px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.services-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+}
+
+.service-card {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 330px !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.beliefs-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.eco-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.val-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+}
+
+.pers-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+/* =========================
+   OPERATING MODEL
+========================= */
+
+.model-container {
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr) !important;
+  gap: clamp(40px, 6vw, 70px) !important;
+}
+
+.media-wrapper {
+  width: 100% !important;
+  margin-top: 40px !important;
+}
+
+.model-img {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 420px !important;
+  object-fit: cover !important;
+}
+
+/* =========================
+   STRATEGIC EDGE
+========================= */
+
+.edge-row {
+  grid-template-columns: 110px minmax(0, 1fr) minmax(0, 1.5fr) !important;
+}
+
+.edge-col-typical,
+.edge-col-heikaro {
+  min-width: 0 !important;
+}
+
+/* =========================
+   CLARITY BANNER
+========================= */
+
+.clarity-banner-container {
+  max-width: 1320px !important;
+  margin: 0 auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.clarity-banner-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  text-decoration: none !important;
+}
+
+/* =========================================================
+   LAPTOP SMALL / TABLET LANDSCAPE
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .services-grid,
+  .eco-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .val-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .pers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .ab-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ab-right {
+    height: 500px !important;
+    max-width: 560px !important;
+  }
+
+  .model-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .model-right-media {
+    justify-content: center !important;
+  }
+
+  .media-wrapper {
+    max-width: 720px !important;
+    margin: 20px auto 0 !important;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .hk-root {
+    min-height: auto !important;
+    padding-top: 120px !important;
+    padding-bottom: 70px !important;
+    background-position: center !important;
+  }
+
+  .hk-overlay {
+    background: linear-gradient(180deg,
+        rgba(10, 13, 20, 0.92),
+        rgba(10, 13, 20, 0.78)) !important;
+  }
+
+  .hk-bg-lines {
+    width: 100% !important;
+    opacity: 0.08 !important;
+  }
+
+  .hk-title {
+    font-size: clamp(40px, 10vw, 66px) !important;
+  }
+
+  .hk-sub,
+  .hk-headline,
+  .hk-body {
+    max-width: 100% !important;
+  }
+
+  .beliefs-grid,
+  .services-grid,
+  .eco-grid,
+  .val-grid,
+  .pers-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .service-card,
+  .belief-card,
+  .val-card,
+  .pers-card {
+    min-height: auto !important;
+  }
+
+  .edge-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .edge-col-stage,
+  .edge-col-typical {
+    border-right: none !important;
+    border-bottom: 1px solid #161616 !important;
+  }
+
+  .edge-col-stage {
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .clarity-banner-container {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .clarity-banner-right,
+  .clarity-banner-btn {
+    width: 100% !important;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+  .ab-root,
+  .beliefs-root,
+  .services-root,
+  .model-root,
+  .edge-root,
+  .statement-root,
+  .eco-root,
+  .val-root,
+  .pers-root,
+  .briefing-root,
+  .clarity-banner-root {
+    padding-top: 70px !important;
+    padding-bottom: 70px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .hk-root {
+    padding: 105px 18px 60px !important;
+    min-height: 100svh !important;
+    align-items: center !important;
+  }
+
+  .hk-badge {
+    max-width: 100% !important;
+    white-space: normal !important;
+    font-size: 10px !important;
+    letter-spacing: 1.6px !important;
+    padding: 8px 12px !important;
+  }
+
+  .hk-title {
+    font-size: clamp(34px, 12vw, 48px) !important;
+    line-height: 1.02 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .hk-sub,
+  .hk-body {
+    font-size: 14px !important;
+    line-height: 1.75 !important;
+  }
+
+  .hk-headline {
+    font-size: 18px !important;
+    line-height: 1.45 !important;
+  }
+
+  .hk-content>div:last-child,
+  .briefing-container>div:last-child {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .hk-btn-primary,
+  .hk-btn-outline {
+    width: 100% !important;
+    padding: 15px 18px !important;
+  }
+
+  .ab-title,
+  .eco-title,
+  .services-title,
+  .model-title,
+  .edge-title,
+  .val-title,
+  .pers-title,
+  .briefing-title,
+  .clarity-banner-title {
+    font-size: clamp(30px, 9vw, 40px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.8px !important;
+  }
+
+  .ab-body,
+  .ab-quote,
+  .services-sub,
+  .model-sub,
+  .edge-sub,
+  .eco-sub,
+  .pers-sub,
+  .briefing-desc,
+  .clarity-banner-desc {
+    font-size: 15px !important;
+    line-height: 1.75 !important;
+  }
+
+  /* About cards become normal stacked cards on mobile */
+  .ab-container {
+    gap: 40px !important;
+  }
+
+  .ab-right {
+    height: auto !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .ab-card,
+  .ab-card-1,
+  .ab-card-2,
+  .ab-card-3 {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 220px !important;
+  }
+
+  .ab-card-img-box {
+    height: 170px !important;
+  }
+
+  .belief-card,
+  .service-card,
+  .pers-card,
+  .val-card {
+    padding: 24px !important;
+  }
+
+  .belief-footer {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .services-header,
+  .model-header,
+  .edge-header,
+  .eco-header,
+  .val-header,
+  .pers-header {
+    margin-bottom: 38px !important;
+  }
+
+  .service-inspect {
+    opacity: 1 !important;
+    transform: none !important;
+    margin-top: 24px !important;
+  }
+
+  .timeline-item {
+    gap: 18px !important;
+  }
+
+  .timeline-line {
+    left: 19px !important;
+  }
+
+  .step-title {
+    font-size: 18px !important;
+  }
+
+  .step-desc {
+    font-size: 14px !important;
+  }
+
+  .media-wrapper {
+    padding: 10px !important;
+  }
+
+  .model-img {
+    min-height: 260px !important;
+  }
+
+  .edge-col-stage,
+  .edge-col-typical,
+  .edge-col-heikaro {
+    padding: 20px !important;
+  }
+
+  .statement-root {
+    padding-top: 90px !important;
+    padding-bottom: 90px !important;
+  }
+
+  .statement-text {
+    font-size: clamp(24px, 8vw, 32px) !important;
+    line-height: 1.35 !important;
+  }
+
+  .eco-img-wrapper {
+    aspect-ratio: 16 / 11 !important;
+  }
+
+  .val-card-footer {
+    margin-top: 32px !important;
+  }
+
+  .briefing-root {
+    min-height: auto !important;
+  }
+
+  .briefing-glow {
+    width: 320px !important;
+    height: 260px !important;
+  }
+
+  .clarity-banner-container {
+    gap: 28px !important;
+  }
+
+  .clarity-banner-btn {
+    padding: 18px 22px !important;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .hk-title {
+    font-size: 32px !important;
+  }
+
+  .ab-title,
+  .eco-title,
+  .services-title,
+  .model-title,
+  .edge-title,
+  .val-title,
+  .pers-title,
+  .briefing-title,
+  .clarity-banner-title {
+    font-size: 28px !important;
+  }
+
+  .belief-card,
+  .service-card,
+  .pers-card,
+  .val-card {
+    padding: 20px !important;
+  }
+
+  .step-number-box {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .timeline-line {
+    left: 17px !important;
+  }
+}
+.services-grid .service-card-link {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 20 !important;
+}
+
+.services-grid .service-card-link * {
+  pointer-events: auto !important;
+}
+
+.services-grid {
+  position: relative !important;
+  z-index: 20 !important;
+}

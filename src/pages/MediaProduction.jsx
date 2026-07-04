@@ -270,122 +270,230 @@ export default function MediaProduction() {
 
   return (
     <div
-      className="service-page media-production-page bg-[#0a0a0a] min-h-screen text-white"
+      className="service-page media-production-page bg-[#0a0a0a] min-h-screen text-white overflow-x-hidden"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
       <style>
         {`
-          .media-production-page,
-          .media-production-page * {
-            font-family: "Aspekta", sans-serif !important;
-          }
+    .media-production-page {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
 
-          .media-production-page h1 {
-            font-size: clamp(44px, 6vw, 78px) !important;
-            line-height: 0.95 !important;
-            font-weight: 900 !important;
-            letter-spacing: -0.04em !important;
-            text-transform: uppercase !important;
-          }
+    .media-production-page,
+    .media-production-page * {
+      font-family: "Aspekta", sans-serif !important;
+      box-sizing: border-box;
+    }
 
-          .media-production-page h2 {
-            font-size: clamp(34px, 4.2vw, 52px) !important;
-            line-height: 1.12 !important;
-            font-weight: 900 !important;
-            letter-spacing: -0.035em !important;
-            text-transform: uppercase !important;
-          }
+    .media-production-page img,
+    .media-production-page video {
+      max-width: 100%;
+      display: block;
+    }
 
-          .media-production-page h3,
-          .media-production-page h4 {
-            font-size: 21px !important;
-            line-height: 1.3 !important;
-            font-weight: 900 !important;
-            letter-spacing: -0.02em !important;
-            text-transform: uppercase !important;
-          }
+    .media-production-page h1 {
+      font-size: clamp(44px, 6vw, 78px) !important;
+      line-height: 0.95 !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.04em !important;
+      text-transform: uppercase !important;
+    }
 
-          .media-production-page p {
-            font-size: 18px !important;
-            line-height: 1.9 !important;
-            font-weight: 500 !important;
-          }
+    .media-production-page h2 {
+      font-size: clamp(34px, 4.2vw, 52px) !important;
+      line-height: 1.12 !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.035em !important;
+      text-transform: uppercase !important;
+    }
 
-          .media-production-page li {
-            font-size: 16px !important;
-            line-height: 1.8 !important;
-          }
+    .media-production-page h3,
+    .media-production-page h4 {
+      font-size: 21px !important;
+      line-height: 1.3 !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.02em !important;
+      text-transform: uppercase !important;
+    }
 
-          .media-production-page .text-sm,
-          .media-production-page [class*="text-sm"] {
-            font-size: 16px !important;
-            line-height: 1.85 !important;
-          }
+    .media-production-page p {
+      font-size: 18px !important;
+      line-height: 1.9 !important;
+      font-weight: 500 !important;
+      overflow-wrap: anywhere;
+    }
 
-          .media-production-page .text-xs,
-          .media-production-page [class*="text-xs"] {
-            font-size: 13px !important;
-            line-height: 1.5 !important;
-            font-weight: 900 !important;
-          }
+    .media-production-page li {
+      font-size: 16px !important;
+      line-height: 1.8 !important;
+    }
 
-          .media-production-page .text-lg,
-          .media-production-page [class*="text-lg"] {
-            font-size: 18px !important;
-            line-height: 1.9 !important;
-          }
+    .media-production-page a,
+    .media-production-page button {
+      max-width: 100%;
+      font-size: 14px !important;
+      font-weight: 900 !important;
+      letter-spacing: 1.5px !important;
+    }
 
-          .media-production-page a p {
-            font-size: 16px !important;
-            line-height: 1.85 !important;
-          }
+    .media-production-page .grid {
+      min-width: 0 !important;
+    }
 
-          .media-production-page a h3 {
-            font-size: 20px !important;
-            line-height: 1.3 !important;
-          }
+    .media-production-page .unified-page-title {
+      font-size: clamp(44px, 7vw, 90px) !important;
+    }
 
-          .media-production-page a,
-          .media-production-page button {
-            font-size: 14px !important;
-            font-weight: 900 !important;
-            letter-spacing: 1.5px !important;
-          }
+    .media-production-page .unified-page-desc {
+      font-size: clamp(16px, 2vw, 21px) !important;
+      line-height: 1.7 !important;
+    }
 
-          .media-production-page .unified-page-title {
-            font-size: clamp(44px, 7vw, 90px) !important;
-          }
+    .media-production-page a p {
+      font-size: 16px !important;
+      line-height: 1.85 !important;
+    }
 
-          .media-production-page .unified-page-desc {
-            font-size: clamp(16px, 2vw, 21px) !important;
-            line-height: 1.7 !important;
-          }
+    .media-production-page a h3 {
+      font-size: 20px !important;
+      line-height: 1.3 !important;
+    }
 
-          @media (max-width: 768px) {
-            .media-production-page h1 {
-              font-size: clamp(38px, 11vw, 56px) !important;
-            }
+    @media (max-width: 1024px) {
+      .media-production-page section:not(.unified-page-hero) {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+      }
+    }
 
-            .media-production-page h2 {
-              font-size: 31px !important;
-            }
+    @media (max-width: 768px) {
+      .media-production-page section:not(.unified-page-hero) {
+        padding-top: 70px !important;
+        padding-bottom: 70px !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+      }
 
-            .media-production-page h3,
-            .media-production-page h4 {
-              font-size: 19px !important;
-            }
+      .media-production-page .unified-page-title {
+        font-size: clamp(38px, 12vw, 58px) !important;
+        line-height: 0.95 !important;
+      }
 
-            .media-production-page p {
-              font-size: 16px !important;
-              line-height: 1.8 !important;
-            }
+      .media-production-page .unified-page-desc {
+        font-size: 15px !important;
+        line-height: 1.8 !important;
+        max-width: 100% !important;
+      }
 
-            .media-production-page .text-sm,
-            .media-production-page [class*="text-sm"] {
-              font-size: 15px !important;
-            }
-          }
-        `}
+      .media-production-page h1 {
+        font-size: clamp(34px, 10vw, 48px) !important;
+        line-height: 1.05 !important;
+      }
+
+      .media-production-page h2 {
+        font-size: clamp(28px, 9vw, 36px) !important;
+        line-height: 1.12 !important;
+      }
+
+      .media-production-page h3,
+      .media-production-page h4 {
+        font-size: 18px !important;
+        line-height: 1.35 !important;
+      }
+
+      .media-production-page p {
+        font-size: 15px !important;
+        line-height: 1.8 !important;
+      }
+
+      .media-production-page li {
+        font-size: 14px !important;
+      }
+
+      .media-production-page .text-lg,
+      .media-production-page [class*="text-lg"] {
+        font-size: 15px !important;
+        line-height: 1.8 !important;
+      }
+
+      .media-production-page .text-sm,
+      .media-production-page [class*="text-sm"] {
+        font-size: 14px !important;
+        line-height: 1.75 !important;
+      }
+
+      .media-production-page .text-xs,
+      .media-production-page [class*="text-xs"] {
+        font-size: 11px !important;
+        line-height: 1.5 !important;
+        letter-spacing: 1.2px !important;
+      }
+
+      .media-production-page .tracking-\\[4px\\],
+      .media-production-page .tracking-\\[3px\\],
+      .media-production-page .tracking-\\[-0\\.04em\\] {
+        letter-spacing: 1.3px !important;
+      }
+
+      .media-production-page .min-h-\\[360px\\] {
+        min-height: auto !important;
+      }
+
+      .media-production-page .p-8 {
+        padding: 24px !important;
+      }
+
+      .media-production-page .mb-16 {
+        margin-bottom: 42px !important;
+      }
+
+      .media-production-page .mb-12 {
+        margin-bottom: 28px !important;
+      }
+
+      .media-production-page .mt-8 {
+        margin-top: 24px !important;
+      }
+
+      .media-production-page .pt-7 {
+        padding-top: 20px !important;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .media-production-page section:not(.unified-page-hero) {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+
+      .media-production-page .unified-page-title {
+        font-size: 40px !important;
+      }
+
+      .media-production-page h1 {
+        font-size: 34px !important;
+      }
+
+      .media-production-page h2 {
+        font-size: 30px !important;
+      }
+
+      .media-production-page h3,
+      .media-production-page h4 {
+        font-size: 17px !important;
+      }
+
+      .media-production-page p {
+        font-size: 14px !important;
+      }
+
+      .media-production-page .p-8 {
+        padding: 20px !important;
+      }
+    }
+  `}
       </style>
 
       {/* HERO زي Services */}
@@ -413,7 +521,7 @@ export default function MediaProduction() {
       <Audiences />
 
       {/* Included Capabilities - بدون صور */}
-      <section className="bg-[#0a0a0a] text-white py-[95px] px-[8%] border-t border-[#111]">
+      <section className="bg-[#0a0a0a] text-white py-20 px-4 sm:px-6 lg:px-[8%] lg:py-[95px] border-t border-[#111]">
         <div className="text-center mb-16">
           <p className="text-[#bbfe0f] font-black tracking-[4px] text-[12px] uppercase mb-5">
             CAPABILITIES SPECTRUM
@@ -425,12 +533,12 @@ export default function MediaProduction() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {includedCapabilities.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.anchor}`}
-              className="group min-h-[360px] border border-[#222] bg-[#080808] p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
-            >
+         {includedCapabilities.map((item) => (
+  <a
+    key={item.id}
+    href={`#${item.anchor}`}
+    className="group min-h-auto lg:min-h-[360px] border border-[#222] bg-[#080808] p-6 sm:p-7 lg:p-8 flex flex-col justify-between hover:border-[#0f33fe] transition-all duration-300"
+  >
               <div>
                 <div className="flex items-center justify-between mb-12">
                   <span className="text-[#8da2c0] text-[13px] font-mono">

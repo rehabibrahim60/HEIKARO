@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
@@ -34,6 +35,30 @@ function AdminApp() {
   const [page, setPage] = useState("home");
   const [builderConfig, setBuilderConfig] = useState(null); // ← جديد
   const toast = useToast();
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto",
+      });
+
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+
+      const adminMain = document.querySelector(".admin-layout-main");
+      if (adminMain) {
+        adminMain.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "auto",
+        });
+      }
+    });
+
+    return () => cancelAnimationFrame(id);
+  }, [page]);
 
   const logout = () => {
     localStorage.removeItem("admin_token");
@@ -97,6 +122,8 @@ export default function App() {
         @keyframes slideIn { from{transform:translateX(20px);opacity:0} to{transform:none;opacity:1} }
         textarea:focus, input:focus { outline: 2px solid #22d3ee !important; border-color: transparent !important; }
       `}</style>
+
+      <ScrollToTop />
 
       <Routes>
         {/* ── Public website routes ── */}
