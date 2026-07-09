@@ -4,8 +4,9 @@ import "./style/Portfolio.css";
 import "./style/pageHero.css";
 import StartWithClarity from "../components/common/START_WITH_CLARITY";
 import EngineerYourMarket from "../components/common/ENGINEER_YOUR_MARKET";
+import { API } from "../utils/api";
+//const API = "https://api.heikaro.com";
 
-const API = "https://api.heikaro.com";
 const PROJECTS_PER_PAGE = 9;
 
 const filters = [
@@ -43,6 +44,12 @@ const Portfolio = () => {
     if (url.startsWith("http")) return url;
     return `${API}${url}`;
   };
+  const formatCategory = (category = "") =>
+  category
+    .replace(/&/g, " & ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .toUpperCase();
+
 
   useEffect(() => {
     setCurrentPage(1);
@@ -263,8 +270,7 @@ const Portfolio = () => {
                 </div>
 
                 <div className="project-info">
-                  <span className="project-cat">{project.category}</span>
-
+<span className="project-cat">{formatCategory(project.category)}</span>
                   <h3>{project.title}</h3>
 
                   {project.description && (

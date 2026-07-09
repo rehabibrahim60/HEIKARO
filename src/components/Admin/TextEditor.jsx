@@ -35,7 +35,7 @@ export default function TextEditor({ value, onChange }) {
       }),
 
       Link.configure({
-        openOnClick: true,
+        openOnClick: false,
         HTMLAttributes: {
           class: "text-[#0f33fe] underline cursor-pointer",
           target: "_blank",
@@ -67,9 +67,30 @@ export default function TextEditor({ value, onChange }) {
     </button>
   );
 
-  const handleDocumentUpload = async (e) => {
-    console.log("DOCUMENT FILE CHANGED");
+  const handleAddLink = () => {
+    const previousUrl = editor.getAttributes("link").href;
+    const url = window.prompt("Enter URL", previousUrl || "");
 
+    if (url === null) return;
+
+    if (url === "") {
+      editor.chain().focus().extendMarkRange("link").unsetLink().run();
+      return;
+    }
+
+    editor
+      .chain()
+      .focus()
+      .extendMarkRange("link")
+      .setLink({
+        href: url,
+        target: "_blank",
+        rel: "noopener noreferrer",
+      })
+      .run();
+  };
+
+  const handleDocumentUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -90,20 +111,34 @@ export default function TextEditor({ value, onChange }) {
         return;
       }
 
+      const uploadedUrl = data.url || data.fileUrl || data.path;
+
+      if (!uploadedUrl) {
+        alert("Document uploaded but no URL returned");
+        e.target.value = "";
+        return;
+      }
+
+      const documentUrl = uploadedUrl.startsWith("http")
+        ? uploadedUrl
+        : `${API}${uploadedUrl}`;
+
       const savedSelection = savedSelectionRef.current;
 
       if (savedSelection && savedSelection.from !== savedSelection.to) {
-        const { from, to } = savedSelection;
-
-        const linkMark = editor.schema.marks.link.create({
-          href: data.url,
-          target: "_blank",
-          rel: "noopener noreferrer",
-        });
-
-        const tr = editor.state.tr.addMark(from, to, linkMark);
-        editor.view.dispatch(tr);
-        editor.view.focus();
+        editor
+          .chain()
+          .focus()
+          .setTextSelection({
+            from: savedSelection.from,
+            to: savedSelection.to,
+          })
+          .setLink({
+            href: documentUrl,
+            target: "_blank",
+            rel: "noopener noreferrer",
+          })
+          .run();
       } else {
         const linkText = window.prompt("Enter link text", file.name);
 
@@ -116,14 +151,12 @@ export default function TextEditor({ value, onChange }) {
           .chain()
           .focus()
           .insertContent(
-            `<a href="${data.url}" target="_blank" rel="noopener noreferrer">${linkText}</a>`
+            `<a href="${documentUrl}" target="_blank" rel="noopener noreferrer">${linkText}</a>`
           )
           .run();
       }
 
-      const html = editor.getHTML();
-      console.log("FINAL EDITOR HTML:", html);
-      onChange(html);
+      onChange(editor.getHTML());
 
       savedSelectionRef.current = null;
       alert("Document uploaded successfully");
@@ -206,25 +239,9 @@ export default function TextEditor({ value, onChange }) {
           <div className="w-px h-6 bg-gray-600 mx-1" />
 
           <ToolbarButton
-            onClick={() => {
-              const url = window.prompt("Enter URL");
-
-              if (url) {
-                editor
-                  .chain()
-                  .focus()
-                  .setLink({
-                    href: url,
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                  })
-                  .run();
-              } else {
-                editor.chain().focus().unsetLink().run();
-              }
-            }}
+            onClick={handleAddLink}
             active={editor.isActive("link")}
-            title="Link"
+            title="Add Link"
           >
             <Link2 size={18} />
           </ToolbarButton>
@@ -236,9 +253,9 @@ export default function TextEditor({ value, onChange }) {
                 to: editor.state.selection.to,
               };
 
-              console.log("DOCUMENT BUTTON CLICKED");
-
-              documentInputRef.current?.click();
+              setTimeout(() => {
+                documentInputRef.current?.click();
+              }, 0);
             }}
             active={false}
             title="Upload Document"

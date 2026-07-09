@@ -78,7 +78,7 @@ export default function BlogDetails() {
     <div className="blog-details-page min-h-screen bg-black text-white font-sans overflow-x-hidden">
       {/* Hero Details */}
       <section
-        className="relative overflow-hidden border-b border-white/10 px-4 pt-24 pb-14 sm:px-6 md:pt-28 md:pb-20"
+className="relative overflow-hidden px-4 pt-24 pb-14 sm:px-6 md:pt-28 md:pb-20"
         style={{
           backgroundImage: blog.coverImage
             ? `linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 45%, rgba(0,0,0,0.45) 100%), url(${getMediaUrl(blog.coverImage)})`
@@ -131,8 +131,8 @@ export default function BlogDetails() {
             {blog.title}
           </h1>
 
-          <div className="border-t border-white/10 pt-7">
-            <div className="blog-share-row flex flex-wrap items-center gap-4">
+<div className="pt-7">
+              <div className="blog-share-row flex flex-wrap items-center gap-4">
               <span className="text-gray-500 font-extrabold tracking-[0.2em] uppercase text-[12px]">
                 SHARE INSIGHTS
               </span>
@@ -379,6 +379,19 @@ export default function BlogDetails() {
       font-size: 9px !important;
     }
   }
+    .blog-details-page section,
+.project-details-page section {
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.blog-details-page section::before,
+.blog-details-page section::after,
+.project-details-page section::before,
+.project-details-page section::after {
+  display: none !important;
+}
 `}</style>
     </div>
   );

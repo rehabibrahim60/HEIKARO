@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Icon from "../../components/Admin/ui/Icon";
 import ConfirmDialog from "../../components/Admin/ui/ConfirmDialog";
 import { LoadingGrid, EmptyState } from "../../components/Admin/ui/LoadingGrid";
 import { apiFetch, API, authHeaders } from "../../utils/api";
 import { primaryBtn, iconBtn, listCard } from "../../pages/style/shared";
-
+const projectCategoryOptions = [
+  { label: "IDENTITY", value: "Brand&Identity" },
+  { label: "UX/UI", value: "Design&Experience" },
+  { label: "CONTENT", value: "Content&Storytelling" },
+  { label: "GROWTH", value: "Marketing&Growth" },
+  { label: "FILM", value: "Media&Production" },
+  { label: "LEARNING", value: "DigitalLearning" },
+  { label: "AI/CGI", value: "AI&CGI" },
+  { label: "EVENTS", value: "Events&Experiential" },
+];
 export default function ProjectsPage({ toast, openBuilder }) {
-  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [confirm, setConfirm] = useState(null);
@@ -55,6 +62,7 @@ export default function ProjectsPage({ toast, openBuilder }) {
       publishLabel: "Publish Project",
       returnPage: "projects",
       showCategory: true,
+      categoryOptions: projectCategoryOptions,
       onPublish: async (data) => {
         try {
           // 1. Create project with cover image
@@ -235,12 +243,54 @@ export default function ProjectsPage({ toast, openBuilder }) {
                   </div>
                 )}
                 <div style={{ display: "flex", gap: 8 }}>
-                  <button
-                    onClick={() => navigate(`/admin/project/edit/${pr._id}`)}
-                    style={{ ...iconBtn, flex: 1, justifyContent: "center" }}
-                  >
-                    <Icon name="edit" size={15} /> Edit
-                  </button>
+                 <button
+  onClick={() =>
+    openBuilder({
+      titlePlaceholder: "Project Title...",
+      publishLabel: "Update Project",
+      returnPage: "projects",
+      showCategory: true,
+      initialTitle: pr.title || "",
+      initialCategory: pr.category || "",
+      existingCoverImage: pr.coverImage || "",
+      initialContent: pr.content || [],
+
+      onPublish: async (data) => {
+        try {
+          const formData = new FormData();
+
+          formData.append("title", data.title);
+          formData.append("category", data.category || "General");
+          formData.append("description", data.description || "");
+
+          if (data.coverImage) {
+            formData.append("coverImage", data.coverImage);
+          }
+
+          const res = await fetch(`${API}/projects/${pr._id}`, {
+            method: "PATCH",
+            body: formData,
+          });
+
+          const result = await res.json();
+
+          if (!res.ok) {
+            throw new Error(result.message || "Failed to update project");
+          }
+
+          toast.show("Project updated successfully");
+          load();
+        } catch (error) {
+          console.error(error);
+          toast.show(error.message || "Failed to update project", "error");
+        }
+      },
+    })
+  }
+  style={{ ...iconBtn, flex: 1, justifyContent: "center" }}
+>
+  <Icon name="edit" size={15} /> Edit
+</button>
                   <button
                     onClick={() => setConfirm(pr._id)}
                     style={{ ...iconBtn, color: "#f87171" }}

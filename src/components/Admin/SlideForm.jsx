@@ -88,14 +88,7 @@ function Toggle({ value, onChange }) {
    Main Component
 ========================= */
 
-export default function SlideForm({
-  mode = "hero",
-  slide,
-  toast,
-  onClose,
-  allVisible = false,
-  selectedVisible = [],
-}) {
+export default function SlideForm({ mode = "hero", slide, toast, onClose }) {
   const isEdit = !!slide;
   const isContentMode = mode === "content";
   const isHeroMode = mode === "hero";
@@ -189,21 +182,41 @@ export default function SlideForm({
 
   /* ---------- Helpers ---------- */
 
+  const formHeaders = () => {
+    const headers = authHeaders();
+
+    delete headers["Content-Type"];
+    delete headers["content-type"];
+
+    return headers;
+  };
+
   const uploadFile = async (file) => {
     const fd = new FormData();
     fd.append("file", file);
 
+    console.log("FILE BEFORE UPLOAD:", {
+      name: file.name,
+      type: file.type,
+      size: file.size,
+    });
+
     const res = await fetch(`${API}/upload`, {
       method: "POST",
-      headers: authHeaders(),
+      headers: formHeaders(),
       body: fd,
     });
 
-    const data = await res.json();
-    if (!res.ok) throw new Error(data?.message || "Upload failed");
-    return data.url;
-  };
+    const uploadResult = await res.json();
 
+    console.log("UPLOAD RESULT:", uploadResult);
+
+    if (!res.ok) {
+      throw new Error(uploadResult?.message || "Upload failed");
+    }
+
+    return uploadResult.url;
+  };
   const updateContentButton = (idx, field, value) => {
     setContentButtons((prev) => {
       const buttons = [...prev];
@@ -330,6 +343,11 @@ export default function SlideForm({
       const imageUrl = imageFile ? await uploadFile(imageFile) : imagePreview;
       const videoUrl = videoFile ? await uploadFile(videoFile) : videoPreview;
 
+      console.log("FINAL MEDIA URLS:", {
+        type,
+        imageUrl,
+        videoUrl,
+      });
       // if adding new content slide, create it first
       let overlayTextId = null;
 
@@ -361,8 +379,9 @@ export default function SlideForm({
         overlayTextId: type === "image" && showOverlay ? overlayTextId : null,
         durationSeconds: Number(durationSeconds) || 10,
       };
+      console.log("SLIDE BODY BEFORE SAVE:", body);
 
-      await fetch(
+      const saveRes = await fetch(
         isEdit ? `${API}/home/slides/${slide._id}` : `${API}/home/slides`,
         {
           method: isEdit ? "PATCH" : "POST",
@@ -371,13 +390,13 @@ export default function SlideForm({
         },
       );
 
-      await fetch(`${API}/home/visible-slides`, {
-        method: "PATCH",
-        headers: { ...authHeaders(), "Content-Type": "application/json" },
-        body: JSON.stringify({
-          visibleContentSlides: allVisible ? [] : selectedVisible,
-        }),
-      });
+      const saveData = await saveRes.json().catch(() => null);
+
+      console.log("SAVE SLIDE RESPONSE:", saveData);
+
+      if (!saveRes.ok) {
+        throw new Error(saveData?.message || "Failed to save slide");
+      }
 
       toast.show(isEdit ? "Slide updated" : "Slide created");
       onClose();

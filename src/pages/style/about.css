@@ -2183,3 +2183,63 @@ video {
   position: relative !important;
   z-index: 20 !important;
 }
+
+.ab-right {
+  height: 620px;
+  /* زودي أو قللي الرقم حسب اللي عايزاه */
+}
+
+.ab-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* Equal service cards content alignment */
+.services-grid {
+  align-items: stretch !important;
+}
+
+.service-card {
+  height: 100% !important;
+  min-height: 245px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.service-card-header {
+  margin-bottom: 14px !important;
+}
+
+.service-title {
+  min-height: 60px !important;
+  margin: 0 0 20px 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  line-height: 1.15 !important;
+}
+
+.service-desc {
+  min-height: 48px !important;
+  margin: 0 0 20px 0 !important;
+  line-height: 1.45 !important;
+}
+
+.service-inspect {
+  margin-top: auto !important;
+}

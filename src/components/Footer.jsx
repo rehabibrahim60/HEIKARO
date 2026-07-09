@@ -11,7 +11,7 @@ import {
 import logo from "../assets/Logo.png";
 
 const socialLinks = [
-  { href: "https://www.facebook.com/heikaro", icon: <FaFacebookF /> },
+  { href: "https://www.facebook.com/heikaro.agency/", icon: <FaFacebookF /> },
   { href: "https://www.instagram.com/heikaro.agancy/", icon: <FaInstagram /> },
   { href: "https://x.com/heikaro_agancy", icon: <FaXTwitter /> },
   { href: "https://www.youtube.com/@Heikaro.Agancy", icon: <FaYoutube /> },

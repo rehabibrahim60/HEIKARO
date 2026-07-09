@@ -216,8 +216,7 @@ export default function Blogs() {
                   <Link
                     to={`/blogs/${blog.slug}`}
                     key={blog._id}
-                    className="group border border-white/10 bg-black hover:bg-[#050505] transition-all"
-                  >
+className="blog-card group border border-white/10 bg-black hover:bg-[#050505] transition-all"                  >
                     {/* Image */}
                     <div className="relative h-[210px] overflow-hidden border-b border-white/10 bg-[#080808] sm:h-[240px] lg:h-[280px]">
                       <img
@@ -327,6 +326,29 @@ export default function Blogs() {
     max-width: 100%;
     overflow-x: hidden;
   }
+    .blog-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.blog-card h2 {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.blog-card p {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
   .blog-page,
   .blog-page * {

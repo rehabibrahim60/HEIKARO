@@ -26,6 +26,11 @@ export default function CaseArchitectures() {
     if (url.startsWith("http")) return url;
     return `${API}${url}`;
   };
+  const formatCategory = (category = "") =>
+  category
+    .replace(/&/g, " & ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .toUpperCase();
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -106,9 +111,9 @@ export default function CaseArchitectures() {
                   </div>
 
                   <div className="absolute bottom-7 left-6 right-6 z-10">
-                    <p className="text-[12px] font-black uppercase leading-[1.5] tracking-[0.28em] text-[#0f33fe]">
-                      {item.category || item.tag}
-                    </p>
+                 <p className="text-[12px] font-black uppercase leading-[1.4] tracking-[[0.04em] text-[#0f33fe]">
+                  {formatCategory(item.category || item.tag)}
+                </p>
 
                     <h3 className="mt-4 max-w-[260px] text-[24px] font-black uppercase leading-[1.05] tracking-[-0.04em] text-white">
                       {item.title}

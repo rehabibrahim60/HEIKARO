@@ -63,12 +63,13 @@ function IconFleeCursor() {
       <div className="absolute -bottom-14 left-10 h-44 w-44 rounded-full border border-cyan-400/10 bg-cyan-500/5 blur-2xl" />
 
       <div
-        className="hero-icon-card relative flex h-[380px] w-[320px] flex-col items-center justify-center rounded-[30px] border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(17,24,39,0.95),rgba(5,7,13,0))] p-6 shadow-[0_40px_120px_-60px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out"
+        className="hero-icon-card relative flex h-[380px] w-[320px] flex-col items-center justify-center bg-transparent p-0 shadow-none transition-transform duration-300 ease-out"
         style={{
           transform: `translate(${offset.x}px, ${offset.y}px)`,
         }}
       >
-        <div className="mx-auto flex h-full w-full items-center justify-center overflow-hidden rounded-[24px]">
+        <div className="mx-auto flex h-full w-full items-center justify-center">
+          {" "}
           <img
             src="/images/home/hero-icon-01.png"
             alt="Heikaro Logo"
@@ -84,66 +85,7 @@ export default function Home() {
   const [slides, setSlides] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loadingSlides, setLoadingSlides] = useState(true);
-
-  const defaultSlides = [
-    {
-      label: "Creative Powerhouse",
-      heading: "We Build BRANDS That Move",
-      description:
-        "HEIKARO transforms ideas into structured brand, design, content, marketing, media, and digital experiences. Direction before design. Systems before decoration. Impact before noise.",
-      buttons: [
-        { text: "Start Your Growth", href: "contact", variant: "primary" },
-        { text: "Explore Services", href: "services", variant: "secondary" },
-      ],
-    },
-    {
-      label: "Brand Systems",
-      heading: "We Scale IDENTITY Global Brands",
-      description:
-        "Every visual, message, and interaction works as part of one connected creative system. Consistency that builds trust. Design that drives growth. Strategy that wins market share.",
-      buttons: [
-        { text: "EXPLORE DESIGN", href: "services", variant: "primary" },
-        { text: "OUR WORK", href: "portfolio", variant: "secondary" },
-      ],
-    },
-    {
-      label: "Content & Storytelling",
-      heading: "We Tell NARRATIVES With Purpose",
-      description:
-        "Connecting creative direction with execution across every customer touchpoint. Words that convert. Stories that stick. Content systems that scale your message.",
-      buttons: [
-        { text: "See the Stories", href: "portfolio", variant: "primary" },
-        { text: "Read Blogs", href: "blog", variant: "secondary" },
-      ],
-    },
-    {
-      label: "Marketing & Growth",
-      heading: "We Ignite GROWTH Next Era Brands",
-      description:
-        "Multi-channel acquisition strategy with AI-accelerated creative iterations. Growth is not a lucky break. It's a structured system of testing, learning, and scaling.",
-      buttons: [
-        { text: "SCALE YOUR BRAND", href: "contact", variant: "primary" },
-      ],
-    },
-    {
-      label: "Media & Production",
-      heading: "We Create Cinema That Last",
-      description:
-        "Cinematic excellence that justifies premier positioning and drives emotional conversion. High-fidelity production for brands that demand perfection in every pixel.",
-      buttons: [
-        { text: "View Showreel", href: "portfolio", variant: "primary" },
-      ],
-    },
-    {
-      label: "Future Intelligence",
-      heading: "We Build SYNTHESIS By Design",
-      description:
-        "AI-enhanced creative systems for brands ready to grow smarter. Blending human intuition with artificial intelligence to engineer impossible solutions.",
-      buttons: [
-        { text: "BUILD THE FUTURE", href: "contact", variant: "primary" },
-      ],
-    },
-  ];
+  const [mediaReady, setMediaReady] = useState(false);
 
   const nextSlide = () => {
     if (slides.length === 0) return;
@@ -157,55 +99,63 @@ export default function Home() {
 
   const goToSlide = (index) => setCurrentSlide(index);
 
+  const HTTPS_API = (API || "https://api.heikaro.com")
+    .replace(/^http:\/\//i, "https://")
+    .replace(/\/$/, "");
+
+  const getMediaUrl = (url) => {
+    if (!url) return "";
+
+    if (url.startsWith("http")) return url;
+    if (url.startsWith("blob:")) return url;
+
+    const apiBase = API.replace(/\/$/, "");
+
+    return `${apiBase}${url.startsWith("/") ? url : `/${url}`}`;
+  };
+
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const contentRes = await fetch(`${API}/contentSlides`);
-        const contentData = await contentRes.json();
-        const allContentSlides = contentData.slides || [];
-
         const heroRes = await fetch(`${API}/home`);
         const heroData = await heroRes.json();
-        const heroSlides = heroData.slides || [];
-        const visibleIds = (heroData.visibleContentSlides || []).map(
-          (v) => v._id || v,
-        );
 
-        const textSlides =
-          allContentSlides.length === 0
-            ? defaultSlides
-            : visibleIds.length > 0
-              ? allContentSlides.filter((s) => visibleIds.includes(s._id))
-              : allContentSlides;
+        const heroSlides = heroData.slides || heroData.data?.slides || [];
 
-        const normalizedTextSlides = textSlides.map((s) => ({
-          ...s,
-          durationSeconds: s.durationSeconds || 10,
-        }));
+        const mediaSlides = heroSlides.map((s) => {
+          const slideType = String(s.type || "image").toLowerCase();
 
-        const mediaSlides = heroSlides.map((s) => ({
-          _id: s._id,
-          label: "",
-          heading: "",
-          description: "",
-          buttons: [],
-          type: s.type,
-          mediaUrl: s.imageUrl || s.videoUrl,
-          showLogo: s.showLogo ?? true,
-          showOverlay: s.showOverlay,
-          overlayText: s.overlayText,
-          order: s.order,
-          durationSeconds: s.durationSeconds || 10,
-          isMediaSlide: true,
-        }));
+          const imageUrl = getMediaUrl(s.imageUrl);
+          const videoUrl = getMediaUrl(s.videoUrl);
 
-        const combined = [...textSlides, ...mediaSlides].sort(
-          (a, b) => (a.order ?? 99) - (b.order ?? 99),
-        );
+          return {
+            _id: s._id,
+            label: "",
+            heading: "",
+            description: "",
+            buttons: [],
+            type: slideType,
 
-        setSlides(combined.length > 0 ? combined : defaultSlides);
+            imageUrl,
+            videoUrl,
+            mediaUrl: slideType === "video" ? videoUrl : imageUrl,
+
+            showLogo: s.showLogo ?? true,
+            showOverlay: s.showOverlay,
+            overlayText: s.overlayText,
+            order: s.order,
+            durationSeconds: s.durationSeconds || 10,
+            isDefault: s.isDefault || false,
+            isMediaSlide: true,
+          };
+        });
+
+        console.log("HOME MEDIA SLIDES:", mediaSlides);
+        console.log("HOME MEDIA SLIDES:", mediaSlides);
+
+        setSlides(mediaSlides);
       } catch {
-        setSlides(defaultSlides);
+        setSlides([]);
       } finally {
         setLoadingSlides(false);
       }
@@ -232,26 +182,23 @@ export default function Home() {
 
     return () => clearTimeout(timer);
   }, [slides, currentSlide]);
-  const slide = slides[currentSlide] || defaultSlides[0];
-
+  const slide = slides[currentSlide] || null;
   let displaySlide = null;
+  useEffect(() => {
+  setMediaReady(false);
+}, [currentSlide, slide?.mediaUrl]);
 
-  if (!slide.isMediaSlide) {
-    displaySlide = slide;
-  } else if (slide.type === "image" && slide.showOverlay && slide.overlayText) {
+  if (slide?.type === "image" && slide?.showOverlay && slide?.overlayText) {
     displaySlide = {
-      label: slide.overlayText.label || "",
-      heading: slide.overlayText.heading || "",
-      description: slide.overlayText.description || "",
-      buttons: slide.overlayText.buttons || [],
+      label: slide?.overlayText?.label || "",
+      heading: slide?.overlayText?.heading || "",
+      description: slide?.overlayText?.description || "",
+      buttons: slide?.overlayText?.buttons || [],
     };
   }
 
-  const showLogoCard = !slide.isMediaSlide
-    ? true
-    : slide.type === "image"
-      ? (slide.showLogo ?? true)
-      : false;
+  const showLogoCard =
+    slide?.type === "image" ? (slide?.showLogo ?? true) : false;
 
   return (
     <div
@@ -259,73 +206,64 @@ export default function Home() {
       className="home-page bg-[#020306] min-h-screen text-white"
       style={{ fontFamily: "Aspekta, sans-serif" }}
     >
-      <div className="relative min-h-screen overflow-hidden bg-[#020306] text-white">
+      <div className="home-hero-section relative min-h-screen overflow-hidden bg-[#020306] text-white">
         {" "}
         <div
           className={`pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_top_right,_rgba(15,118,255,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,_rgba(74,199,255,0.08),transparent_25%),linear-gradient(180deg,${
-            slide.isMediaSlide
+            slide?.isMediaSlide
               ? "rgba(7,9,16,0.3),rgba(3,3,8,0.4)"
               : "rgba(7,9,16,0.92),rgba(3,3,8,0.98)"
           })]`}
         />
-        {!slide.isMediaSlide && slide.backgroundImage ? (
+        {!slide?.isMediaSlide && slide?.backgroundImage ? (
           <div
             className="absolute inset-0 z-[1] opacity-55"
             style={{
-              backgroundImage: `url(${slide.backgroundImage})`,
+              backgroundImage: `url(${slide?.backgroundImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           />
-        ) : !slide.isMediaSlide ? (
-          <div className="absolute inset-0 z-[1] bg-[url('https://images.unsplash.com/photo-1500534623283-312aade485b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-10" />
-        ) : null}
-        {slide.isMediaSlide && slide.mediaUrl && (
-          <div className="absolute inset-0 z-[1] overflow-hidden bg-black">
-            {slide.type === "video" ? (
-              <>
-                <video
-                  key={`bg-${slide.mediaUrl}`}
-                  src={slide.mediaUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="hero-media-bg absolute inset-0 h-full w-full object-cover"
-                />
+        ) : !slide?.isMediaSlide ? (
+  <div className="absolute inset-0 z-[1] bg-black" />
+) : null}
+        {slide?.isMediaSlide && slide.mediaUrl && (
+          <div className="hero-media-layer absolute inset-0 z-[1] overflow-hidden bg-black">
+        {slide.type === "video" ? (
+  <>
+    {!mediaReady && (
+      <div className="hero-video-loading absolute inset-0 z-[2] flex items-center justify-center bg-black">
+        <span className="text-[12px] font-black uppercase tracking-[0.25em] text-white/40">
+          Loading video...
+        </span>
+      </div>
+    )}
 
-                <video
-                  key={`main-${slide.mediaUrl}`}
-                  src={slide.mediaUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="hero-media-main absolute inset-0 h-full w-full object-contain lg:object-cover"
-                />
-              </>
-            ) : (
-              <>
-                <div
-                  className="hero-media-bg absolute inset-0"
-                  style={{
-                    backgroundImage: `url(${slide.mediaUrl})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                />
-
-                <img
-                  src={slide.mediaUrl}
-                  alt=""
-                  className="hero-media-main absolute inset-0 h-full w-full object-contain lg:object-cover"
-                />
-              </>
+    <video
+      key={`main-${slide.mediaUrl}`}
+      src={slide.mediaUrl}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      onLoadedData={() => setMediaReady(true)}
+      onCanPlay={() => setMediaReady(true)}
+      className={`hero-media-main absolute inset-0 h-full w-full object-contain lg:object-cover transition-opacity duration-500 ${
+        mediaReady ? "opacity-100" : "opacity-0"
+      }`}
+    />
+  </>
+) : (
+              <img
+                src={slide.mediaUrl}
+                alt=""
+                className="hero-media-main absolute inset-0 h-full w-full object-contain lg:object-cover"
+              />
             )}
           </div>
         )}
-        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1240px] flex-col items-center justify-center gap-8 px-4 pb-24 pt-28 sm:px-6 md:px-8 lg:min-h-[calc(100vh-110px)] lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-10 lg:py-10">
+        <div className="hero-inner relative z-10 mx-auto flex min-h-[100svh] max-w-[1240px] flex-col items-center justify-center gap-8 px-4 pb-24 pt-28 sm:px-6 md:px-8 lg:min-h-[calc(100vh-110px)] lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-10 lg:py-10">
           <div
             key={currentSlide}
             className="hero-slide-content hero-content-animate w-full max-w-[720px] flex-1 space-y-6 text-center lg:space-y-8 lg:text-left"
@@ -485,7 +423,7 @@ export default function Home() {
         subtitle1="Creative systems built for brands that need clarity, presence, and growth."
         subtitle2="HEIKARO transforms ideas into structured brand, design, content, and digital experiences."
         buttonText="Start Your Brief"
-        buttonHref="services"
+        buttonHref="contact"
         imagePath="/images/home/DirectionBeforeDesign.jpg"
         imagePosition="right"
       />
@@ -736,16 +674,9 @@ body,
     padding: 13px 18px !important;
   }
 
-  #homePageFontFix .hero-icon-wrapper {
-    max-width: 280px;
-  }
+ 
 
-  #homePageFontFix .hero-icon-card {
-    width: 230px !important;
-    height: 260px !important;
-    border-radius: 24px !important;
-    padding: 14px !important;
-  }
+ 
 
   #homePageFontFix .hero-arrows button {
     width: 42px !important;
@@ -768,10 +699,7 @@ body,
     line-height: 1.7 !important;
   }
 
-  #homePageFontFix .hero-icon-card {
-    width: 200px !important;
-    height: 220px !important;
-  }
+ 
 }
 
 @media (max-width: 768px) {
@@ -876,6 +804,424 @@ body,
     width: 360px;
   }
 }
+
+/* ================================
+   MOBILE HERO LAYERS FIX
+   Background -> Icon -> Text
+   Keep mouse flee animation
+================================ */
+
+@media (max-width: 768px) {
+  #homePageFontFix .hero-slide-content {
+    position: relative !important;
+    z-index: 30 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #homePageFontFix .hero-logo-wrap {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 10 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 0 !important;
+    pointer-events: none !important;
+  }
+
+  #homePageFontFix .hero-icon-wrapper {
+    position: absolute !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    /* ده مكان الأيقونة ورا الكلام */
+    transform: translateY(80px) scale(1.05) !important;
+
+    /* الشفافية */
+    opacity: 0.34 !important;
+  }
+
+  #homePageFontFix .hero-icon-card {
+    width: 310px !important;
+    height: 340px !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    /* مهم جدًا: ماتحطيش transform هنا */
+  }
+
+  #homePageFontFix .hero-icon-card > div {
+    border-radius: 0 !important;
+  }
+
+  #homePageFontFix .hero-icon-card img {
+    object-fit: contain !important;
+  }
+
+  #homePageFontFix .hero-content-animate {
+    position: relative !important;
+    z-index: 40 !important;
+  }
+
+  #homePageFontFix .hero-buttons {
+    position: relative !important;
+    z-index: 45 !important;
+  }
+}
+
+#homePageFontFix .hero-icon-card {
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#homePageFontFix .hero-icon-card > div {
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+/* =========================================
+   FINAL MOBILE HERO - SINGLE MEDIA / NO CROP / NO BLUR
+   الميديا عنصر واحد فقط.
+   بدون cover وبدون contain في الموبايل.
+   نستخدم fill عشان الصورة/الفيديو يبانوا كاملين
+   ويملاوا السكشن من غير طبقة خلفية أو فراغات.
+========================================= */
+@media (max-width: 768px) {
+  #homePageFontFix .home-hero-section {
+    position: relative !important;
+    min-height: 0 !important;
+    height: clamp(340px, 94vw, 440px) !important;
+    max-height: 74svh !important;
+    overflow: hidden !important;
+    background: transparent !important;
+  }
+
+  #homePageFontFix .home-hero-section > .pointer-events-none {
+    z-index: 2 !important;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.18),
+      rgba(0, 0, 0, 0.26)
+    ) !important;
+  }
+
+  #homePageFontFix .hero-media-layer {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    background: transparent !important;
+  }
+
+  #homePageFontFix .hero-media-bg {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  #homePageFontFix .hero-media-main,
+  #homePageFontFix video.hero-media-main,
+  #homePageFontFix img.hero-media-main {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+object-fit: cover !important;
+    object-position: center center !important;
+    opacity: 1 !important;
+    background: transparent !important;
+  }
+
+  #homePageFontFix .hero-inner {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 10 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    height: 100% !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 0 !important;
+    padding: clamp(48px, 13vw, 64px) 12px 38px !important;
+    overflow: hidden !important;
+  }
+
+  #homePageFontFix .hero-slide-content {
+    position: relative !important;
+    z-index: 40 !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 8px !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 7px !important;
+    transform: none !important;
+  }
+
+  #homePageFontFix .hero-slide-content .space-y-6,
+  #homePageFontFix .hero-slide-content .space-y-8 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 7px !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-label {
+    max-width: 88% !important;
+    padding: 4px 8px !important;
+    margin: 0 auto !important;
+    font-size: 6.8px !important;
+    line-height: 1.15 !important;
+    letter-spacing: 1.15px !important;
+    text-align: center !important;
+    white-space: normal !important;
+  }
+
+  #homePageFontFix .home-hero-section h1,
+  #homePageFontFix .home-hero-section .hero-title {
+    margin: 0 !important;
+    max-width: 94% !important;
+    font-size: clamp(20px, 7vw, 30px) !important;
+    line-height: 0.96 !important;
+    letter-spacing: -0.035em !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-title-text {
+    font-size: inherit !important;
+    line-height: inherit !important;
+    font-weight: inherit !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-desc {
+    max-width: 92% !important;
+    margin: 0 auto !important;
+    padding-left: 7px !important;
+    font-size: 9.2px !important;
+    line-height: 1.28 !important;
+    font-weight: 500 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-buttons {
+    position: relative !important;
+    z-index: 45 !important;
+    width: 100% !important;
+    max-width: 250px !important;
+    gap: 5px !important;
+    margin-top: 0 !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-buttons a {
+    width: 100% !important;
+    min-height: 28px !important;
+    height: 28px !important;
+    padding: 6px 9px !important;
+    font-size: 7.3px !important;
+    line-height: 1 !important;
+    letter-spacing: 0.6px !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-buttons svg {
+    width: 10px !important;
+    height: 10px !important;
+  }
+
+  #homePageFontFix .hero-logo-wrap {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 20 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 0 !important;
+    pointer-events: none !important;
+  }
+
+  #homePageFontFix .hero-icon-wrapper {
+    position: absolute !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: translateY(40px) scale(0.72) !important;
+    opacity: 0.25 !important;
+  }
+
+  #homePageFontFix .hero-icon-card {
+    width: 220px !important;
+    height: 245px !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  #homePageFontFix .hero-controls {
+    bottom: 8px !important;
+    width: 158px !important;
+    max-width: calc(100% - 24px) !important;
+    z-index: 60 !important;
+  }
+
+  #homePageFontFix .hero-dots,
+  #homePageFontFix .hero-arrows {
+    min-height: 28px !important;
+  }
+
+  #homePageFontFix .hero-dots {
+    gap: 6px !important;
+  }
+
+  #homePageFontFix .hero-arrows {
+    gap: 8px !important;
+  }
+
+  #homePageFontFix .hero-arrows button {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  #homePageFontFix .hero-arrows svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  #homePageFontFix .home-hero-section {
+    height: clamp(315px, 92vw, 380px) !important;
+    max-height: 72svh !important;
+  }
+
+  #homePageFontFix .hero-inner {
+    padding-top: clamp(44px, 12.5vw, 56px) !important;
+    padding-bottom: 34px !important;
+  }
+
+  #homePageFontFix .home-hero-section h1,
+  #homePageFontFix .home-hero-section .hero-title {
+    font-size: clamp(18px, 6.7vw, 26px) !important;
+    line-height: 0.95 !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-desc {
+    font-size: 8.6px !important;
+    line-height: 1.22 !important;
+    -webkit-line-clamp: 2 !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-buttons {
+    max-width: 230px !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-buttons a {
+    min-height: 26px !important;
+    height: 26px !important;
+    font-size: 7px !important;
+  }
+
+  #homePageFontFix .hero-icon-wrapper {
+    transform: translateY(34px) scale(0.66) !important;
+    opacity: 0.22 !important;
+  }
+}
+
+@media (max-width: 330px) {
+  #homePageFontFix .home-hero-section {
+    height: 300px !important;
+  }
+
+  #homePageFontFix .home-hero-section h1,
+  #homePageFontFix .home-hero-section .hero-title {
+    font-size: 17px !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-desc {
+    display: none !important;
+  }
+
+  #homePageFontFix .home-hero-section .hero-buttons a {
+    height: 24px !important;
+    min-height: 24px !important;
+  }
+}
+  #homePageFontFix .hero-video-loading {
+  background:
+    radial-gradient(circle at center, rgba(15, 51, 254, 0.12), transparent 35%),
+    #000;
+}
+
+#homePageFontFix video.hero-media-main {
+  background: #000;
+}
+/* Fix Case Architectures category spacing on Home only */
+#homePageFontFix .project-cat,
+#homePageFontFix .home-project-cat,
+#homePageFontFix .case-category,
+#homePageFontFix .case-card-category,
+#homePageFontFix .case-card .category,
+#homePageFontFix .project-card .category,
+#homePageFontFix [class*="category"],
+#homePageFontFix [class*="cat"] {
+  letter-spacing: 0.08em !important;
+  word-spacing: 0.12em !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  font-weight: 900 !important;
+  white-space: normal !important;
+  text-transform: uppercase !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+  @media (max-width: 768px) {
+  #homePageFontFix .home-hero-section {
+    min-height: 560px !important;
+    height: 100svh !important;
+    max-height: none !important;
+    background: #000 !important;
+  }
+
+  #homePageFontFix .hero-media-main,
+  #homePageFontFix video.hero-media-main,
+  #homePageFontFix img.hero-media-main {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    background: #000 !important;
+  }
+}
+
         `}
       </style>
     </div>

@@ -5,56 +5,56 @@ import "./style/pageHero.css";
 
 const servicesData = [
   {
-    icon: "🎨",
+    image: "/images/icons/BRAND--IDENTITY.png",
     title: "BRAND & IDENTITY",
     desc: "Translate your vision into a disciplined visual and strategic asset that benchmarks industry excellence.",
     tags: ["MARKET AUTHORITY", "INSTANT RECOGNITION", "STRATEGIC CONSISTENCY"],
     link: "/services/brand-identity",
   },
   {
-    icon: "🖥",
+    image: "/images/icons/DESIGN-EXPERIENCE.png",
     title: "DESIGN & EXPERIENCE",
     desc: "Bridge the gap between aesthetic sophistication and functional conversion performance.",
     tags: ["USER RETENTION", "CONVERSION SURGE", "OPERATIONAL SPEED"],
     link: "/services/design-experience",
   },
   {
-    icon: "📄",
+    image: "/images/icons/CONTENT-STORYTELLING.png",
     title: "CONTENT & STORYTELLING",
     desc: "Shift from random acts of content to a structured storytelling system that builds durable brand equity.",
     tags: ["MARKET ADVOCACY", "AUDIENCE GROWTH", "STRATEGIC NARRATIVE"],
     link: "/services/content-storytelling",
   },
   {
-    icon: "📈",
+    image: "/images/icons/MARKETING--GROWTH.png",
     title: "MARKETING & GROWTH",
     desc: "Deploy creative that is engineered to scale, backed by real-time performance analytics.",
     tags: ["REVENUE EXPANSION", "CAC REDUCTION", "PREDICTABLE GROWTH"],
     link: "/services/marketing-growth",
   },
   {
-    icon: "🎬",
+    image: "/images/icons/MEDIA-PRODUCTION.png",
     title: "MEDIA & PRODUCTION",
     desc: "Cinematic excellence that justifies premier positioning and drives emotional conversion.",
     tags: ["PREMIUM POSITIONING", "EMOTIONAL IMPACT", "CINEMATIC PROOF"],
     link: "/services/media-production",
   },
   {
-    icon: "📚",
+    image: "/images/icons/DIGITAL-LEARNING-EXPERIENCE.png",
     title: "DIGITAL LEARNING EXPERIENCE",
     desc: "Standardize excellence by moving from traditional training to immersive capacity building systems.",
     tags: ["KNOWLEDGE RETENTION", "STANDARDIZED QUALITY", "OPERATIONAL SCALE"],
     link: "/services/digital-learning",
   },
   {
-    icon: "⚙️",
+    image: "/images/icons/AI-POWERED-VIDEO-CGI.png",
     title: "AI-POWERED VIDEO & CGI",
     desc: "Generate impossible visual worlds at strategic speed, blending imagination with technical precision.",
     tags: ["VISUAL UNIQUENESS", "PRODUCTION SPEED", "FUTURE-PROOFING"],
     link: "/services/ai-video-cgi",
   },
   {
-    icon: "🎯",
+    image: "/images/icons/EVENTS-EXPERIENTIAL.png",
     title: "EVENTS & EXPERIENTIAL",
     desc: "We shape events as designed experience systems that connect audience emotion with brand purpose.",
     tags: [
@@ -98,8 +98,12 @@ export default function Services() {
 
               <div>
                 <div className="flex items-center justify-between mb-7">
-                  <div className="w-11 h-11 border border-[#222] group-hover:border-[#0f33fe] transition-colors duration-300 flex items-center justify-center text-lg">
-                    {item.icon}
+                  <div className="w-11 h-11 border border-[#222] group-hover:border-[#0f33fe] transition-colors duration-300 flex items-center justify-center overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-7 h-7 object-contain"
+                    />
                   </div>
 
                   <span className="text-gray-600 group-hover:text-[#bbfe0f] font-mono text-[13px] transition-colors duration-300">
@@ -114,8 +118,6 @@ export default function Services() {
                 <p className="text-gray-500 text-[15px] leading-[1.8] mb-6">
                   {item.desc}
                 </p>
-
-               
               </div>
 
               <div>

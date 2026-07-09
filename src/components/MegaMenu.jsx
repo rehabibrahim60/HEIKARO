@@ -1,21 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./MegaMenu.css";
-import {
-  FaPaintBrush,
-  FaDesktop,
-  FaFileAlt,
-  FaChartLine,
-  FaVideo,
-  FaGraduationCap,
-  FaRobot,
-  FaCalendarAlt,
-} from "react-icons/fa";
 
 const services = [
   {
     slug: "brand-identity",
-    icon: <FaPaintBrush />,
+    image: "/images/icons/BRAND--IDENTITY.png",
     title: "BRAND & IDENTITY",
     subtitle: "Identity Architecture & Strategic Authority",
     items: [
@@ -29,7 +19,7 @@ const services = [
   },
   {
     slug: "design-experience",
-    icon: <FaDesktop />,
+    image: "/images/icons/DESIGN-EXPERIENCE.png",
     title: "DESIGN & EXPERIENCE",
     subtitle: "Digital Interface Engines & UX Physics",
     items: [
@@ -41,7 +31,7 @@ const services = [
   },
   {
     slug: "content-storytelling",
-    icon: <FaFileAlt />,
+    image: "/images/icons/CONTENT-STORYTELLING.png",
     title: "CONTENT & STORYTELLING",
     subtitle: "Narrative Infrastructure & Social Dominance",
     items: [
@@ -53,7 +43,7 @@ const services = [
   },
   {
     slug: "marketing-growth",
-    icon: <FaChartLine />,
+    image: "/images/icons/MARKETING--GROWTH.png",
     title: "MARKETING & GROWTH",
     subtitle: "Market Capture Systems & ROI Logic",
     items: [
@@ -65,7 +55,7 @@ const services = [
   },
   {
     slug: "media-production",
-    icon: <FaVideo />,
+    image: "/images/icons/MEDIA-PRODUCTION.png",
     title: "MEDIA & PRODUCTION",
     subtitle: "Cinematic Media & High-Fidelity Proof",
     items: [
@@ -76,7 +66,7 @@ const services = [
   },
   {
     slug: "digital-learning",
-    icon: <FaGraduationCap />,
+    image: "/images/icons/DIGITAL-LEARNING-EXPERIENCE.png",
     title: "DIGITAL LEARNING EXPERIENCE",
     subtitle: "Capacity Building & Immersive UX",
     items: [
@@ -87,7 +77,7 @@ const services = [
   },
   {
     slug: "ai-video-cgi",
-    icon: <FaRobot />,
+    image: "/images/icons/AI-POWERED-VIDEO-CGI.png",
     title: "AI-POWERED VIDEO & CGI",
     subtitle: "Visual Synthesis & Future Production",
     items: [
@@ -98,7 +88,7 @@ const services = [
   },
   {
     slug: "events-experiential",
-    icon: <FaCalendarAlt />,
+    image: "/images/icons/EVENTS-EXPERIENTIAL.png",
     title: "EVENTS & EXPERIENTIAL",
     subtitle: "Strategic Event & Experiential Systems",
     items: [
@@ -114,15 +104,31 @@ const MegaMenu = () => {
     <div className="mega-menu-overlay">
       <div className="mega-menu-grid">
         {services.map((s) => (
-          <Link to={`/services/${s.slug}`} className="explore-link">
-            <div key={s.id} className="service-column">
-              <span className="service-id">{s.id}</span>
-              <div className="service-header">
-                <span className="service-icon">{s.icon}</span>
-                <h3 className="service-title">{s.title}</h3>
+          <Link
+            key={s.slug}
+            to={`/services/${s.slug}`}
+            className="service-card-link"
+          >
+            <div className="service-column">
+              <div>
+                <div className="service-header">
+                  <span className="service-icon">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      className="service-icon-img"
+                    />
+                  </span>
+
+                  <h3 className="service-title">{s.title}</h3>
+                </div>
+
+                <p className="service-subtitle">{s.subtitle}</p>
               </div>
-              <p className="service-subtitle">{s.subtitle}</p>
-              EXPLORE SERVICE <span className="explore-arrow">→</span>
+
+              <div className="explore-link">
+                EXPLORE SERVICE <span className="explore-arrow">→</span>
+              </div>
             </div>
           </Link>
         ))}

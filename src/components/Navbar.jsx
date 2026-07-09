@@ -68,20 +68,20 @@ const Navbar = () => {
             About
           </NavLink>
 
-         <div
-          className="nav-item-services"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <NavLink to="/services" className="nav-link services-trigger">
-            SERVICES{" "}
-            {showServices ? (
-              <FaChevronUp size={10} />
-            ) : (
-              <FaChevronDown size={10} />
-            )}
-          </NavLink>
-        </div>
+          <div
+            className="nav-item-services"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <NavLink to="/services" className="nav-link services-trigger">
+              SERVICES{" "}
+              {showServices ? (
+                <FaChevronUp size={10} />
+              ) : (
+                <FaChevronDown size={10} />
+              )}
+            </NavLink>
+          </div>
 
           <NavLink to="/portfolio" className="nav-link">
             Portfolio
@@ -108,7 +108,7 @@ const Navbar = () => {
 
         <div className="social-icons">
           <a
-            href="https://www.facebook.com/heikaro"
+            href="https://www.facebook.com/heikaro.agency/"
             target="_blank"
             rel="noopener noreferrer"
           >

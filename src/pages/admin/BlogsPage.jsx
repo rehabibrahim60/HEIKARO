@@ -18,6 +18,14 @@ export default function BlogsPage({ toast, openBuilder }) {
     return `${API}${url}`;
   };
 
+  const formHeaders = () => {
+    const headers = authHeaders();
+
+    delete headers["Content-Type"];
+    delete headers["content-type"];
+
+    return headers;
+  };
   const load = async () => {
     setLoading(true);
     try {
@@ -238,6 +246,7 @@ export default function BlogsPage({ toast, openBuilder }) {
                         initialTitle: b.title || "",
                         initialCategory: b.category || "",
                         existingCoverImage: b.coverImage || "",
+                        initialContent: b.content || [],
 
                         onPublish: async (data) => {
                           try {
@@ -268,6 +277,79 @@ export default function BlogsPage({ toast, openBuilder }) {
                             if (!res.ok) {
                               throw new Error(
                                 result.message || "Failed to update blog",
+                              );
+                            }
+
+                            // update content blocks
+                            const contentFormData = new FormData();
+
+                            const blocks = data.content.map((item, index) => {
+                              if (item.type === "text") {
+                                return {
+                                  type: "text",
+                                  text: item.value || "",
+                                  order: index,
+                                };
+                              }
+
+                              if (item.type === "image") {
+                                if (item.file) {
+                                  contentFormData.append(
+                                    `file_${index}`,
+                                    item.file,
+                                  );
+                                }
+
+                                return {
+                                  type: "image",
+                                  existingUrl: item.existingUrl || "",
+                                  src: item.src || "",
+                                  alt: item.alt || "",
+                                  caption: item.caption || "",
+                                  order: index,
+                                };
+                              }
+
+                              if (item.type === "video") {
+                                if (item.file) {
+                                  contentFormData.append(
+                                    `file_${index}`,
+                                    item.file,
+                                  );
+                                }
+
+                                return {
+                                  type: "video",
+                                  existingUrl: item.existingUrl || "",
+                                  src: item.src || "",
+                                  caption: item.caption || "",
+                                  order: index,
+                                };
+                              }
+
+                              return item;
+                            });
+
+                            contentFormData.append(
+                              "blocks",
+                              JSON.stringify(blocks),
+                            );
+
+                            const contentRes = await fetch(
+                              `${API}/blogs/${b._id}/content/replace`,
+                              {
+                                method: "PATCH",
+                                headers: authHeaders(),
+                                body: contentFormData,
+                              },
+                            );
+
+                            const contentResult = await contentRes.json();
+
+                            if (!contentRes.ok) {
+                              throw new Error(
+                                contentResult.message ||
+                                  "Failed to update blog content",
                               );
                             }
 

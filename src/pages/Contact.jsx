@@ -295,16 +295,75 @@ const Contact = () => {
           <div className="channels-box">
             <h3 className="sidebar-title">DIRECT CHANNELS</h3>
 
-            <div className="channel-item">
-              <span className="channel-icon">📧</span>
+            <div
+              className="channel-item"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "22px",
+                marginBottom: "34px",
+              }}
+            >
+              <span
+                className="channel-icon"
+                style={{
+                  width: "55px",
+                  height: "55px",
+                  minWidth: "55px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src="/images/icons/email.png"
+                  alt="Email"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                />
+              </span>
+
               <div>
                 <span className="label-small">EMAIL</span>
                 <span className="value-bold">hallo@heikaro.com</span>
               </div>
             </div>
 
-            <div className="channel-item">
-              <span className="channel-icon">📍</span>
+            <div
+              className="channel-item"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "22px",
+              }}
+            >
+              <span
+                className="channel-icon"
+                style={{
+                  width: "70px",
+                  height: "70px",
+                  minWidth: "70px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src="/images/icons/location.png"
+                  alt="Location"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                />
+              </span>
+
               <div>
                 <span className="label-small">PRESENCE</span>
                 <span className="value-bold">CAIRO, EGYPT</span>
@@ -316,7 +375,10 @@ const Contact = () => {
             <h3 className="sidebar-title">ECOSYSTEM</h3>
 
             <div className="social-grid">
-              <Link to="https://www.facebook.com/heikaro" target="_blank">
+              <Link
+                to="https://www.facebook.com/heikaro.agency/"
+                target="_blank"
+              >
                 <div className="social-item">FACEBOOK</div>
               </Link>
               <Link

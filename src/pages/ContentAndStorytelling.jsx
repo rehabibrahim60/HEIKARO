@@ -284,7 +284,7 @@ export default function ContentAndStorytelling() {
       {/* HERO زي Services */}
       <section
         className="unified-page-hero"
-        style={{ "--hero-bg": "url('/images/contant-story/cover.png')" }}
+style={{ "--hero-bg": "url('/images/contant-story/cover.jpeg')" }}
       >
         <div className="unified-page-hero-content">
           <h1 className="unified-page-title">
@@ -812,6 +812,25 @@ href={`#${contentStorytellingCapabilities[index].anchorId}`}
       font-size: 11px !important;
     }
   }
+    .content-story-page .unified-page-hero {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.28) 45%,
+      rgba(0, 0, 0, 0.18) 100%
+    ),
+    var(--hero-bg) !important;
+
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.content-story-page .unified-page-hero::before,
+.content-story-page .unified-page-hero::after {
+  background: rgba(0, 0, 0, 0.18) !important;
+}
 `}</style>
 
       <StartWithClarity />

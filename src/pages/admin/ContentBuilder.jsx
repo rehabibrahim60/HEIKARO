@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Image, Type, Video, FileText, Trash2, Send, X } from "lucide-react";
+import { Image, Type, Video, Trash2, Send, X } from "lucide-react";
 import TextEditor from "../../components/Admin/TextEditor";
 import { API } from "../../utils/api";
 
@@ -13,14 +13,64 @@ const ContentBuilder = ({
   initialTitle = "",
   initialCategory = "",
   existingCoverImage = "",
+  initialContent = [],
+    categoryOptions = null,
+
 }) => {
+  const getFullMediaUrl = (url) => {
+  if (!url) return "";
+  if (url.startsWith("http") || url.startsWith("blob:")) return url;
+  return `${API}${url}`;
+};
+
+const normalizeInitialContent = (blocks = []) => {
+  return blocks.map((block, index) => {
+    if (block.type === "text") {
+      return {
+        id: `old-text-${index}`,
+        type: "text",
+        value: block.text || block.value || "",
+      };
+    }
+
+    if (block.type === "image") {
+      const imageUrl = block.image?.url || block.src || "";
+
+      return {
+        id: `old-image-${index}`,
+        type: "image",
+        src: getFullMediaUrl(imageUrl),
+        existingUrl: imageUrl,
+      };
+    }
+
+    if (block.type === "video") {
+      const videoUrl = block.video?.url || block.src || "";
+
+      return {
+        id: `old-video-${index}`,
+        type: "video",
+        src: getFullMediaUrl(videoUrl),
+        existingUrl: videoUrl,
+      };
+    }
+
+    return {
+      id: `old-block-${index}`,
+      type: block.type,
+      value: "",
+    };
+  });
+};
   const [title, setTitle] = useState(initialTitle);
   const [category, setCategory] = useState(initialCategory);
-  const [content, setContent] = useState([]);
-  const [showCoverModal, setShowCoverModal] = useState(false);
+const [content, setContent] = useState(() =>
+  normalizeInitialContent(initialContent)
+);  const [showCoverModal, setShowCoverModal] = useState(false);
   const [coverFile, setCoverFile] = useState(null);
-  const [coverPreview, setCoverPreview] = useState(existingCoverImage || "");
-  const [publishing, setPublishing] = useState(false);
+const [coverPreview, setCoverPreview] = useState(
+  existingCoverImage ? getFullMediaUrl(existingCoverImage) : ""
+);  const [publishing, setPublishing] = useState(false);
 
   const categories = [
     "Brand&Identity",
@@ -32,10 +82,15 @@ const ContentBuilder = ({
     "AI&CGI",
     "Events&Experiential",
   ];
+  const finalCategories =
+  categoryOptions ||
+  categories.map((cat) => ({
+    label: cat,
+    value: cat,
+  }));
 
   const imageInputRef = useRef(null);
   const videoInputRef = useRef(null);
-  const documentInputRef = useRef(null);
 
   const addText = () => {
     setContent((prev) => [
@@ -80,48 +135,6 @@ const ContentBuilder = ({
     ]);
 
     e.target.value = "";
-  };
-  const addDocumentFromDevice = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const res = await fetch(`${API}/upload/document`, {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        alert(data.message || "Document upload failed");
-        return;
-      }
-
-      const linkText = window.prompt("Enter link text", file.name);
-
-      if (!linkText) {
-        e.target.value = "";
-        return;
-      }
-
-      setContent((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          type: "text",
-          value: `<p><a href="${data.url}" target="_blank" download>${linkText}</a></p>`,
-        },
-      ]);
-
-      e.target.value = "";
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong while uploading the document");
-    }
   };
 
   const updateContent = (id, value) => {
@@ -189,7 +202,7 @@ const ContentBuilder = ({
 
       setShowCoverModal(false);
       setCoverFile(null);
-      setCoverPreview(existingCoverImage || "");
+setCoverPreview(existingCoverImage ? getFullMediaUrl(existingCoverImage) : "");
     } catch (error) {
       console.error(error);
       alert(error.message || "Publish failed");
@@ -236,14 +249,7 @@ const ContentBuilder = ({
             onChange={addVideoFromDevice}
             hidden
           />
-          <input
-            type="file"
-            accept=".pdf,.doc,.docx"
-            ref={documentInputRef}
-            onChange={addDocumentFromDevice}
-            hidden
-          />
-
+         
           {content.length === 0 ? (
             <div className="flex min-h-[420px] flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#050505] p-8 text-center">
               <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-[#0f33fe]">
@@ -365,19 +371,19 @@ const ContentBuilder = ({
                     Select Category...
                   </option>
 
-                  {categories.map((cat) => (
-                    <option
-                      key={cat}
-                      value={cat}
-                      style={{
-                        backgroundColor: "#000",
-                        color: "#ffffff",
-                        textAlign: "left",
-                      }}
-                    >
-                      {cat}
-                    </option>
-                  ))}
+                  {finalCategories.map((cat) => (
+  <option
+    key={cat.value}
+    value={cat.value}
+    style={{
+      backgroundColor: "#000",
+      color: "#ffffff",
+      textAlign: "left",
+    }}
+  >
+    {cat.label}
+  </option>
+))}
                 </select>
               </div>
             )}
@@ -389,50 +395,41 @@ const ContentBuilder = ({
                 Add Blocks
               </p>
 
-              <div className="grid grid-cols-1 gap-3">
-                <button
-                  onClick={() => imageInputRef.current.click()}
-                  className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
-                  type="button"
-                >
-                  <span className="flex items-center gap-3">
-                    <Image size={18} /> Image
-                  </span>
-                  <span>+</span>
-                </button>
+             <div className="grid grid-cols-1 gap-3">
+  <button
+    onClick={() => imageInputRef.current.click()}
+    className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
+    type="button"
+  >
+    <span className="flex items-center gap-3">
+      <Image size={18} /> Image
+    </span>
+    <span>+</span>
+  </button>
 
-                <button
-                  onClick={addText}
-                  className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
-                  type="button"
-                >
-                  <span className="flex items-center gap-3">
-                    <Type size={18} /> Text
-                  </span>
-                  <span>+</span>
-                </button>
+  <button
+    onClick={addText}
+    className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
+    type="button"
+  >
+    <span className="flex items-center gap-3">
+      <Type size={18} /> Text
+    </span>
+    <span>+</span>
+  </button>
 
-                <button
-                  onClick={() => videoInputRef.current.click()}
-                  className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
-                  type="button"
-                >
-                  <span className="flex items-center gap-3">
-                    <Video size={18} /> Video
-                  </span>
-                  <span>+</span>
-                </button>
-                <button
-                  onClick={() => documentInputRef.current.click()}
-                  className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
-                  type="button"
-                >
-                  <span className="flex items-center gap-3">
-                    <FileText size={18} /> Document
-                  </span>
-                  <span>+</span>
-                </button>
-              </div>
+  <button
+    onClick={() => videoInputRef.current.click()}
+    className="flex items-center justify-between rounded-xl border border-white/10 bg-black px-4 py-4 text-[15px] font-bold text-gray-200 transition hover:border-[#0f33fe] hover:text-white"
+    type="button"
+  >
+    <span className="flex items-center gap-3">
+      <Video size={18} /> Video
+    </span>
+    <span>+</span>
+  </button>
+</div>
+              
             </div>
 
             <div className="rounded-2xl border border-white/10 bg-black p-4">
@@ -467,7 +464,9 @@ const ContentBuilder = ({
                 <X size={17} />
                 Cancel
               </button>
+           
             </div>
+            
           </div>
         </aside>
       </div>

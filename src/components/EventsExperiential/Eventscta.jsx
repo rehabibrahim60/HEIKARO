@@ -1,3 +1,8 @@
+import { Link } from "react-router-dom";
+import React from "react";
+import { ArrowRight } from "lucide-react";
+
+
 const EventsCTA = () => {
     return (
         <section className="w-full bg-[#0d0d0d] px-[6%] py-28">
@@ -27,20 +32,20 @@ const EventsCTA = () => {
 
                 {/* Buttons */}
                 <div className="flex flex-wrap items-center justify-center gap-4">
-                    <a
-                        href="#"
-                        className="flex items-center gap-3 bg-[#0f33fe] px-7 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-90"
-                    >
-                        REQUEST EVENT FORMULATION
-                        <span className="text-base leading-none">→</span>
-                    </a>
+                    <Link
+                            to="/contact"
+                            className="flex items-center gap-2 bg-[#0f33fe] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90"
+                            >
+                            REQUEST EVENT FORMULATION
+                            <ArrowRight size={14} />
+                            </Link>
 
-                    <a
-                        href="#"
-                        className="flex items-center border border-[#2e2e2e] px-7 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-white transition-colors hover:border-white"
-                    >
-                        BROWSE ALL SERVICES
-                    </a>
+                            <Link
+                            to="/services"
+                            className="border border-[#2a2a2a] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white transition-colors hover:border-[#444]"
+                            >
+                            Browse All Services
+                            </Link>
                 </div>
 
             </div>

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { API } from "../utils/api";
 
-const API = "https://api.heikaro.com";
+//const API = "https://api.heikaro.com";
+
 
 export default function ProjectDetails() {
   const { slug } = useParams();
@@ -34,8 +36,9 @@ export default function ProjectDetails() {
   useEffect(() => {
     const loadProject = async () => {
       try {
-        const res = await fetch(`${API}/projects/${slug}`);
-        const data = await res.json();
+const res = await fetch(`${API}/projects/${slug}`, {
+  cache: "no-store",
+});        const data = await res.json();
 
         if (!res.ok) {
           throw new Error(data?.message || "Failed to load project");
@@ -83,7 +86,7 @@ export default function ProjectDetails() {
     <div className="project-details-page min-h-screen bg-black text-white overflow-x-hidden">
       {/* Hero Details */}
       <section
-        className="relative overflow-hidden border-b border-white/10 px-4 pt-24 pb-14 sm:px-6 md:pt-28 md:pb-20"
+className="relative overflow-hidden px-4 pt-24 pb-14 sm:px-6 md:pt-28 md:pb-20"
         style={{
           backgroundImage: project.coverImage
             ? `linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 45%, rgba(0,0,0,0.45) 100%), url(${getMediaUrl(project.coverImage)})`
@@ -387,6 +390,19 @@ export default function ProjectDetails() {
       font-size: 9px !important;
     }
   }
+    .blog-details-page section,
+.project-details-page section {
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.blog-details-page section::before,
+.blog-details-page section::after,
+.project-details-page section::before,
+.project-details-page section::after {
+  display: none !important;
+}
 `}</style>
     </div>
   );

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { MessageCircleQuestion, ChevronUp, ChevronDown, ArrowRight } from "lucide-react";
 
 // ─────────────────────────────────────────────
@@ -116,13 +118,20 @@ export const CTASection = () => {
 
         {/* Buttons */}
         <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-          <button className="flex items-center gap-2 bg-[#bbfe0f] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-black transition-opacity hover:opacity-90">
-            Request Synthetic Briefing
-            <ArrowRight size={14} />
-          </button>
-          <button className="border border-[#2a2a2a] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white transition-colors hover:border-[#444]">
-            Browse All Services
-          </button>
+         <Link
+  to="/contact"
+  className="flex items-center gap-2 bg-[#0f33fe] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90"
+>
+Request Synthetic Briefing
+  <ArrowRight size={14} />
+</Link>
+
+<Link
+  to="/services"
+  className="border border-[#2a2a2a] px-7 py-3 text-[12px] font-bold uppercase tracking-[0.12em] text-white transition-colors hover:border-[#444]"
+>
+  Browse All Services
+</Link>
         </div>
 
       </div>
