@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { API } from "../utils/api";
 import "../pages/style/Portfolio.css";
 import MarqueeSection from "../components/Home/MarqueeSection";
@@ -86,6 +86,26 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loadingSlides, setLoadingSlides] = useState(true);
   const [mediaReady, setMediaReady] = useState(false);
+
+  const heroMediaRef = useRef(null);
+
+  const centerHeroMedia = useCallback(() => {
+    const container = heroMediaRef.current;
+
+    if (!container) return;
+
+    /*
+    ننتظر اكتمال حساب عرض الصورة،
+    ثم نضع الـScroll في منتصف المساحة الزائدة.
+  */
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+
+        container.scrollLeft = Math.max(0, maxScroll / 2);
+      });
+    });
+  }, []);
 
   const nextSlide = () => {
     if (slides.length === 0) return;
@@ -183,10 +203,22 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [slides, currentSlide]);
   const slide = slides[currentSlide] || null;
+  useEffect(() => {
+    centerHeroMedia();
+  }, [currentSlide, slide?.mediaUrl, centerHeroMedia]);
+
+  useEffect(() => {
+    window.addEventListener("resize", centerHeroMedia);
+
+    return () => {
+      window.removeEventListener("resize", centerHeroMedia);
+    };
+  }, [centerHeroMedia]);
+
   let displaySlide = null;
   useEffect(() => {
-  setMediaReady(false);
-}, [currentSlide, slide?.mediaUrl]);
+    setMediaReady(false);
+  }, [currentSlide, slide?.mediaUrl]);
 
   if (slide?.type === "image" && slide?.showOverlay && slide?.overlayText) {
     displaySlide = {
@@ -225,39 +257,47 @@ export default function Home() {
             }}
           />
         ) : !slide?.isMediaSlide ? (
-  <div className="absolute inset-0 z-[1] bg-black" />
-) : null}
+          <div className="absolute inset-0 z-[1] bg-black" />
+        ) : null}
         {slide?.isMediaSlide && slide.mediaUrl && (
-          <div className="hero-media-layer absolute inset-0 z-[1] overflow-hidden bg-black">
-        {slide.type === "video" ? (
-  <>
-    {!mediaReady && (
-      <div className="hero-video-loading absolute inset-0 z-[2] flex items-center justify-center bg-black">
-        <span className="text-[12px] font-black uppercase tracking-[0.25em] text-white/40">
-          Loading video...
-        </span>
-      </div>
-    )}
+          <div
+            ref={heroMediaRef}
+            className="hero-media-layer absolute inset-0 z-[1] overflow-hidden bg-black"
+          >
+            {slide.type === "video" ? (
+              <>
+                {!mediaReady && (
+                  <div className="hero-video-loading absolute inset-0 z-[2] flex items-center justify-center bg-black">
+                    <span className="text-[12px] font-black uppercase tracking-[0.25em] text-white/40">
+                      Loading video...
+                    </span>
+                  </div>
+                )}
 
-    <video
-      key={`main-${slide.mediaUrl}`}
-      src={slide.mediaUrl}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      onLoadedData={() => setMediaReady(true)}
-      onCanPlay={() => setMediaReady(true)}
-      className={`hero-media-main absolute inset-0 h-full w-full object-contain lg:object-cover transition-opacity duration-500 ${
-        mediaReady ? "opacity-100" : "opacity-0"
-      }`}
-    />
-  </>
-) : (
+                <video
+                  key={`main-${slide.mediaUrl}`}
+                  src={slide.mediaUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  onLoadedMetadata={centerHeroMedia}
+                  onLoadedData={() => {
+                    setMediaReady(true);
+                    centerHeroMedia();
+                  }}
+                  onCanPlay={() => setMediaReady(true)}
+                  className={`hero-media-main absolute inset-0 h-full w-full object-contain lg:object-cover transition-opacity duration-500 ${
+                    mediaReady ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              </>
+            ) : (
               <img
                 src={slide.mediaUrl}
                 alt=""
+                onLoad={centerHeroMedia}
                 className="hero-media-main absolute inset-0 h-full w-full object-contain lg:object-cover"
               />
             )}
@@ -937,21 +977,6 @@ body,
     transform: none !important;
   }
 
-  #homePageFontFix .hero-media-main,
-  #homePageFontFix video.hero-media-main,
-  #homePageFontFix img.hero-media-main {
-    position: absolute !important;
-    inset: 0 !important;
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    max-height: none !important;
-object-fit: cover !important;
-    object-position: center center !important;
-    opacity: 1 !important;
-    background: transparent !important;
-  }
 
   #homePageFontFix .hero-inner {
     position: absolute !important;
@@ -1203,22 +1228,133 @@ object-fit: cover !important;
   overflow-wrap: normal !important;
   word-break: normal !important;
 }
-  @media (max-width: 768px) {
-  #homePageFontFix .home-hero-section {
-    min-height: 560px !important;
-    height: 100svh !important;
-    max-height: none !important;
-    background: #000 !important;
+
+/* ==================================================
+   FINAL MOBILE MEDIA
+   Centered image without horizontal scroll
+================================================== */
+@media (max-width: 768px) {
+  /* منع أي Horizontal Scroll في الصفحة */
+  html,
+  body,
+  #root,
+  #homePageFontFix {
+    overflow-x: hidden !important;
   }
 
-  #homePageFontFix .hero-media-main,
-  #homePageFontFix video.hero-media-main,
-  #homePageFontFix img.hero-media-main {
+  /* إخفاء الجزء الزائد بالتساوي يمين وشمال */
+  #homePageFontFix .home-hero-section {
+    overflow: hidden !important;
+  }
+
+  /*
+    الإيفكت القديم محدود بعرض الشاشة،
+    لذلك نلغيه ونستخدم brightness على الصورة نفسها.
+  */
+  #homePageFontFix .home-hero-section > .pointer-events-none {
+    background: transparent !important;
+  }
+
+  /*
+    طبقة بعرض شاشة الموبايل.
+    الصورة الأعرض يتم توسيطها داخلها.
+  */
+  #homePageFontFix .hero-media-layer {
+    position: absolute !important;
+    inset: 0 !important;
+
+    z-index: 1 !important;
+
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+
+    overflow: hidden !important;
+
+    transform: none !important;
+    background: transparent !important;
+  }
+
+  /*
+    الحفاظ على نسبة الصورة الأصلية.
+    الجزء الزائد يختفي بالتساوي من الجانبين.
+  */
+  #homePageFontFix .hero-media-main,
+  #homePageFontFix img.hero-media-main,
+  #homePageFontFix video.hero-media-main {
+    position: relative !important;
+
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    display: block !important;
+    flex: 0 0 auto !important;
+
+    height: 100% !important;
+    width: auto !important;
+
+    min-width: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+
+    object-fit: contain !important;
     object-position: center center !important;
-    background: #000 !important;
+
+    transform: none !important;
+
+    opacity: 1 !important;
+
+    /* نفس الإيفكت الغامق على الصورة كلها */
+    filter: brightness(0.74) !important;
+
+    background: transparent !important;
+  }
+
+  #homePageFontFix .hero-video-loading {
+    z-index: 3 !important;
+  }
+}
+
+/* ==================================================
+   DESKTOP HERO TEXT LEFT ALIGNMENT
+   Align text with navbar logo H
+================================================== */
+
+/*
+  من 1024px إلى 1240px:
+  hero-inner عنده padding-left = 40px،
+  نضيف 24px حتى يصبح بداية الكلام عند 64px.
+*/
+@media (min-width: 1024px) and (max-width: 1240px) {
+  #homePageFontFix .hero-slide-content {
+    position: relative !important;
+    left: 64px !important;
+  }
+}
+
+/*
+  بعد 1240px:
+  نعوض أيضًا المسافة الناتجة عن:
+  max-width: 1240px + mx-auto
+*/
+@media (min-width: 1241px) {
+  #homePageFontFix .hero-slide-content {
+    position: relative !important;
+    left: calc(684px - 50vw) !important;
+  }
+}
+
+/* Desktop hero heading size only */
+@media (min-width: 1024px) {
+  #homePageFontFix .home-hero-section .hero-title {
+    font-size: clamp(44px, 5.7vw, 78px) !important;
+    line-height: 0.95 !important;
   }
 }
 
